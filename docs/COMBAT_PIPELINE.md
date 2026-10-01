@@ -1,8 +1,6 @@
 # MOBA 战斗结算流水线
 
-> 当前执行状态（2026-10-01）：M0 已结束，进入 M1。规则基线仍为 0.1.1，工程版本为 0.2.0；原有 M0 文句保留为制定时说明。当前实现与未完成项以 [M1_IMPLEMENTATION.md](M1_IMPLEMENTATION.md) 和 [M1_ACCEPTANCE.md](M1_ACCEPTANCE.md) 为准，后续阶段尚未实现。
-
-版本：0.1.1。日期：2026-10-01。状态：M0 修订后的待实现规范。
+版本：0.1.2。日期：2026-10-01。状态：M1 空阶段骨架已实现；正式战斗流水线待 M2+。
 
 此文是 Tick 阶段、战斗顺序与因果关系的唯一规范来源。所有英雄、兵、野怪、塔、装备、Modifier 和 Debug 操作使用同一结算入口。表现动画、Phaser 碰撞回调、UI 和 Bot 不能决定命中或生命变化。正式数值在 Ruleset 中确定；下列默认公式和边界行为作为实现基线，变更须更新决策、文档和测试。
 
@@ -10,7 +8,7 @@
 
 ## 1 时间与全局顺序
 
-当前实现基线为模拟 30 Hz，最终 Tick 率须经 M1/M3 触屏探针决定，尚未实测。tickIndex 是整数，Tick n 表示从该 Tick 边界推进一次固定 step。所有持续状态使用半开区间 [startTick, endTick)：endTick = n 的状态在 Tick n 的 P0 先到期，再处理 n 的命令。冷却到期 n 意味着 n 可以施法。周期跳伤只在 nextPulseTick < endTick 时发生，默认没有到期边界的额外一跳；有末跳的技能须显式定义 end Effect。
+当前实现基线为模拟 30 Hz，M1 基础探针已测，最终 Tick 率仍须 M3 真实技能/受控情景决定。tickIndex 是整数，Tick n 表示从该 Tick 边界推进一次固定 step。所有持续状态使用半开区间 [startTick, endTick)：endTick = n 的状态在 Tick n 的 P0 先到期，再处理 n 的命令。冷却到期 n 意味着 n 可以施法。周期跳伤只在 nextPulseTick < endTick 时发生，默认没有到期边界的额外一跳；有末跳的技能须显式定义 end Effect。
 
 持续时间以 ceil(ms × tickRate / 1000) 转为 Tick，避免提前结束；瞬发显式标记为 0。攻击前摇/后摇也转换为 Tick，离散误差要测试并显示在调试器中。攻速周期若出现非整数 Tick，使用固定精度累计余数保持长期平均频率，不能每次 ceil 后令攻速系统性偏低；最低攻击间隔至少 1 Tick，正式攻速上限另由 Ruleset 决定。
 
@@ -267,4 +265,4 @@ ShopCommand 包含 transaction sequence 和 itemId，模拟验证金币、六格
 | 30/60/120 FPS 输入重放 | 相同已接受命令和模拟 Tick 数下权威结果一致 |
 | 后台恢复/超时/overflow | 不补后台战斗、不跳 Tick，fault 不存半 Tick |
 
-每次新增 Effect、Hook 或改公式都要增加至少一个正常用例和对应边界/交互回归。此清单是后续自动测试设计，本阶段没有宣称这些运行测试已经完成。
+每次新增 Effect、Hook 或改公式都要增加至少一个正常用例和对应边界/交互回归。此清单中的正式战斗/持久化用例仍是后续测试设计；M1 同率帧率、实体、生命周期与预测隔离用例已执行，详见 M1_TEST_REPORT.md。

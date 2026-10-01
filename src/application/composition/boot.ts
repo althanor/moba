@@ -73,7 +73,8 @@ export function boot(): () => void {
         case 'modeB': mode = 'B'; recreate(); break;
         case 'empty': shellMode = 'empty'; recreate(); break;
         case 'probe': shellMode = 'response-probe'; recreate(); break;
-        case 'export': downloadJSON(`M1-${mode}-session-${serial}.json`, { version: '0.2.0', phase: 'M1', androidAcceptance: 'pending user hardware execution',
+        case 'export': downloadJSON(`M1-${mode}-session-${serial}.json`, { version: __BUILD_INFO__.version, phase: 'M1', build: __BUILD_INFO__,
+          acceptanceReference: 'docs/M1_ACCEPTANCE.md (this sample is not an automatic hardware PASS)',
           config: session.config, renderTargetHz: 60, mode, interpolation: mode === 'A' ? 'previous/current' : 'VisualProxy <= 1 step',
           environment: presentation ? environmentReport(presentation.canvas) : {}, measurement: recorder.export(monotonicNowMs()), debug: session.debug() }); break;
       }

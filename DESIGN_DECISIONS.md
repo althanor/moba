@@ -1,6 +1,6 @@
 # MOBA 设计决策记录
 
-版本：0.1.1。日期：2026-10-01。当前阶段：M1；规则基线 0.1.1，工程 0.2.0。
+版本：0.1.2。日期：2026-10-01。当前阶段：M1 已收口；M2 就绪但未实施；工程 0.2.1。
 
 accepted 表示采用的架构约束而非已实现；proposed 表示需验证的候选；provisional baseline 表示后续实现暂用但尚未接受为最终选择；deferred 表示当前不实施。技术资料只核实平台行为，预算/探针提案不等于性能和手感事实。
 
@@ -24,19 +24,19 @@ accepted 表示采用的架构约束而非已实现；proposed 表示需验证�
 
 复审：M1 导入扫描落实时检验 alias、类型导入和 barrel；新增模块须更新白名单和强连通分量测试。
 
-## ADR 003 固定 Tick 与 30 Hz 候选决策
+## ADR 003 固定 Tick 与 M1 A/B 收口决策
 
-状态：固定 Tick/表现解耦原则 accepted；30 Hz 为首选默认候选和 provisional baseline，最终 Tick 率未决、未实测。
+状态：固定 Tick/表现解耦 accepted；A 为当前默认 presentation；B 为实验性 presentation-only 路径；C 当前不触发；30 Hz 仍是 provisional baseline，最终率未决。
 
-选择：当前基线 30 Hz、渲染可 30/60 FPS，Session 锁定 tickRate，持续时间按率转换、攻击保留余数。前台四步/250 ms 过载策略仍是基线；不在运行中动态改率。M1 已实现参数化驱动与 A/B 几何探针；运行基线仍为 30 Hz。60 Hz 仅用于 headless 同率回放测试，尚未形成 C 真机测量。
+选择：Session 锁定 30 Hz 当前运行基线，保留参数化测试；四步/250 ms 过载暂停、不补后台时间、不动态改率。渲染目标 60 FPS，Phaser limiter 关闭，详见 ADR 020。A 使用 previous/current 插值；B VisualProxy 窗口最多一 Tick，只读授权样本/本地意图，不能修改 World、碰撞、视野、资源、RNG 或任何权威状态/hash。未改变默认 Simulation 为 60 Hz。
 
-依据与代价：降低每秒模拟次数可能有 CPU/电耗收益，但这是待测假设。约 33.3 ms 的步长和接近一 Tick 的常规插值延迟可能影响摇杆/瞄准/释放反馈，不能由理论帧率证明可接受。
+证据：2026-10-01 用户在同一高档 Android、Edge 153/Chromium、系统 60 Hz、低像素配置、速度 180 world units/s 上完成修正版的正式三轮 A/B。逐轮数字见 M1_ACCEPTANCE.md 与 reports/android-m1-user-summary.json。三轮 run-level p95 中位数：A/B Visual 5.2/5.8 ms，UI 13.2/14.0 ms，capture→accept 27.1/26.9 ms；Frame CPU p95 约 4.9/5.9 ms（用户汇总）。不是合并事件 p95，不是物理 touch-to-photon；accept 不是首次权威位移。报告未提供全部逐阶段 count/p50/p99/原始 JSON，不伪造这些信息。软件 hash/隔离由自动测试独立验证。
 
-M1/M3 比较 A：30 Hz Simulation + 60 Hz Rendering + 当前插值；B：30 Hz Simulation + 60 Hz Rendering + 即时输入反馈/安全 VisualProxy 预测；C：必要时 60 Hz Simulation + 60 Hz Rendering。C 的插值/反馈与对应 A/B 配对记录。M1 基础移动/UI，M3 技能按下/拖动/释放、碰墙/控制/取消与热态；指标、条件、暂定阈值见 PERFORMANCE_BUDGET 第 3.3 节。
+B 三轮 correctionFraction=1，correction p95/max 约 6 world units，对应 180/30=6 world units/Tick。没有稳定、可重复且有工程意义的响应收益；UI 与 Frame CPU 成本倾向更高，并持续增加预测/reconciliation 复杂度。这支持 A 默认与 B 实验保留，不证明所有预测方案无用，也不证明最终 30 Hz 游戏手感。修复前约 30 FPS 数据仅留作诊断，不参与上述定案。
 
-接受最终 30 Hz 的条件：有非旗舰/高档参考的 touch→UI、视觉移动、权威移动结果及手感评估，CPU/每秒成本、电量/热量记录或明确缺口；说明是否采用 B、预测范围和纠正误差，为什么响应可接受。A/B 不达目标、精度或成本需要对照时完成 C。M3 决策记录前不大量制作正式英雄/内容；没有证据继续标记 provisional baseline。
+C 的触发修订：有效响应不达标、短动作精度存在实际问题，或模拟率 CPU/成本对照有明确必要性时执行；B 单独无收益不自动触发 C。本次 UI/视觉基础软件响应低于暂定阈值，没有新的响应/精度证据要求 C，暂不实施。权威首次位移指标和真实技能手感仍在 M3 细化，不能用 accept 指标宣称它们已 PASS。
 
-决策证据状态：A/B 已具备软件采集与桌面 Chromium 自动采样入口，原始数据见 reports/software-probe；Android A/B 未测，C 必要性待真机/M3 评估、未测。当前没有“30 Hz 手感已通过”结论。后续改率需重编时间/容量证书、更新内容与存档兼容，不把 30/60 Hz 不同离散步长要求成逐 Tick hash 相等。
+复审：M3 在真实技能、墙体、单位阻挡、CC、急转、取消窗口及代表性负载下重评 A/B，必要时 C。ADR 019 延期的低档设备、冷热态/电量/降频要在代表性性能门禁补齐；未完成决策门禁前不大量制作正式英雄/内容。接受最终率需记录两档真机响应、CPU/每秒成本、手感、预测安全和热态证据或明确未决；改率须新 Session、时间量化/容量证书/版本与存档复审。跨率不要求逐 Tick hash 相等。
 
 ## ADR 004 单机后台与严重过载暂停
 
@@ -116,7 +116,7 @@ M1/M3 比较 A：30 Hz Simulation + 60 Hz Rendering + 当前插值；B：30 Hz S
 
 待定：具体最低 SoC、Android 和 Chromium 版本、WebGL1 兼容范围、真实 draw calls 和视野精度。候选测试工具 Vitest/fast-check/Playwright/依赖扫描器，版本在 M1 锁定。
 
-理由：有可测量初始目标，避免以用户旗舰手机代表最低性能。代价：初始数值可能需要根据真机和正式内容调整。复审：M1、M4、M7、M9、M10；未实测不标记通过。
+理由：有可测量初始目标，避免以用户旗舰手机代表最低性能。代价：初始数值可能需要根据真机和正式内容调整。复审：M3、M4、M7、M9、M10；M1 仅高档基础实测通过，低档候选按 ADR 019 延期，未实测不标记通过。
 
 ## ADR 013 当前不实施真人联网
 
@@ -164,7 +164,7 @@ UI/音频/小地图不决定权限，Bot 使用同席位过滤结果；不提供
 
 ## ADR 017 M1 骨架、工程门禁与依赖锁定
 
-状态：accepted 的 M1 实施范围；Android 能力与最终 Tick 率仍未验收。
+状态：accepted 的 M1 实施范围；高档参考基础 Android 已验收，最低能力与最终 Tick 率未定。
 
 选择：Phaser 3.90.0、TypeScript 5.9.3、Vite 7.3.1、Vitest 3.2.4、ESLint 9.39.1 / typescript-eslint 8.48.1、Playwright 1.56.1。具体版本经 npm 元数据与安装树核实，唯一 package-lock.json；不声称使用当日最新版本。Node 实测 24.19.0，生产转换目标 Chromium 107，浏览器最低能力仍是候选。选择已知 Phaser 3 API 和 Vite 7 分支，升级必须另做回归。
 
@@ -176,7 +176,7 @@ application 显式创建 Session、Simulation、ProbeController、Phaser 与平�
 
 validate:content 在 M1 只确认正式内容目录为空，输出 NOT_APPLICABLE_M1；发现正式内容直接失败。未实现 Schema/属性 DAG/容量证明/权限编译，不能宣称内容校验已通过。
 
-复审：M2 建正式 content 编译及 CapacityCertificate，M3 替换响应 fixture 为通用 Movement/Actions 并复测，M5 完整存档。M1 真机出口缺口见 docs/M1_ACCEPTANCE.md。
+复审：M2 建正式 content 编译及 CapacityCertificate，M3 替换响应 fixture 为通用 Movement/Actions 并复测，M5 完整存档。M1 真机证据、正式延期项与出口见 M1_ACCEPTANCE.md。
 
 ## ADR 018 响应 fixture 与测量边界
 
@@ -190,4 +190,30 @@ A 使用 previous/current 插值；B 使用立即触控标记及 presentation �
 
 每指每帧只标记实际绘制的最新样本；Controller 按 Tick 只消费最新移动意图，缺失/合并样本通过 captured 与各指标 count 区分，不能伪造每个事件都有权威位移。begin/end 通常零方向，权威接受时间与真正移动延迟分别列出；没有位置变化则不计为移动成功。所有日志/采样缓冲有界（2000），命令重试历史 512，过窗重复明确拒绝。
 
-桌面自动化固定生产 dist，通过 CDP 输入，不使用 HMR 运行作测量，避免测试中源码重载污染；三轮交替 A/B 各 100 次手势。数据仅用于软件测量基线，不能支持 Android 电耗/温度/最终 30 Hz 决策。需 Android 真机按 PERFORMANCE_BUDGET 3.3 补齐非旗舰与高档参考、物理误差与热态记录。C 的真机必要性仍待数据；M1 当前没有接受最终率。
+桌面自动化固定生产 dist，通过 CDP 输入，不使用 HMR 运行作测量，避免测试中源码重载污染；三轮交替 A/B 各 100 次手势。数据仅用于软件测量基线，不能支持 Android 电耗/温度/最终 30 Hz 决策。高档 Android 正式三轮结果已按用户报告收录；非旗舰与长期热态按 ADR 019 延期，物理端到端仍未测。C 当前不触发，M3 复审；M1 没有接受最终率。
+
+## ADR 019 M1 验收策略修订与正式延期
+
+状态：accepted；2026-10-01，依据用户实际 Android 结果和明确不再执行本阶段长负载/不因找设备阻塞工程的决定。同步修订 MILESTONES、PERFORMANCE_BUDGET、CODING_RULES、ARCHITECTURE 与 M1_ACCEPTANCE，取代 0.1.1 将两档设备/空壳长期测试同时绑定 M1 出口的要求。
+
+理由：M1 仅有空壳与公开几何响应点，没有真实技能、碰撞、地图或 Bot；20 分钟 A/B 的代表性及电池百分比信息有限，当前执行成本高。第二档约 4 GB 非旗舰仍是长期支持门槛，但寻找设备不应阻塞已验证的软件架构。高档参考基础生命周期、三轮真实 60 FPS A/B 和约 198 秒零实体 S0 提供本阶段实际证据；不推广到最低设备或完整玩法。
+
+正式状态：A/B 各约 20 分钟持续负载、冷热态温度/降频、电量百分比比较，以及第二档约 4 GB Android 都是 DEFERRED / non-blocking performance validation，未执行、不是 PASS。M3 开始复审，在首个代表性实战负载性能基线执行相同亮度/刷新/充电/环境的配对测试；两档设备分别验证生命周期、响应、CPU、帧时、资源及可获取的热态/电量信息。接口不可用单列 unavailable，不能造温度或 mWh。M7 低档 45 分钟完整对局、M10 最低设备/发布兼容矩阵仍是强制门禁；未来缺失仍阻塞对应性能/发行结论。
+
+代价与边界：当前不能接受最低 SoC/OS/Chromium、低档性能、热稳定、电耗优势或永久 30 Hz。物理 touch-to-photon 未测，WebGL loss 的 Android 人工触发未报告，逐阶段原始样本/权威首次位移 p95 尚未提交，诚实保留测量缺口；不要求重做用户已通过的基础生命周期。本轮不删长期要求，不减权威隔离/导入/逻辑正确性门禁，不实施任何 M2 系统。
+
+出口：M1 必需软件门禁通过且当前基础真机项 PASS 后，可正式结束；以上明确延期项不阻塞 M1 软件架构出口。M2 可以开始，须另有明确阶段任务。本决定不是完整游戏、最终手感或发行认证。
+
+## ADR 020 Phaser 限帧修复与可追溯真机构建
+
+状态：accepted 的 M1 配置修复与回归保护。
+
+问题：Phaser 3.90.0 原 fps={target:60,limit:60,smoothStep:false} 在 Android Edge 153、系统 60 Hz 下长期约 30 FPS，frame p50/p95 约 31–34 ms。用户将 limit 改为 0 后立即稳定约 60 FPS，正式 A/B 与 S0 均在修正版完成。修复 commit 为 d4124a6402809363d3e866c50d6c110c90ff241c；Pages Actions run 36868684893/attempt 1 的 build、门禁、artifact upload 与 deploy 均经仓库记录核实成功。
+
+根因：应用把 fps.limit 误用作目标值。锁定源码 [TimeStep.js](https://github.com/phaserjs/phaser/blob/v3.90.0/src/core/TimeStep.js) 中 target 不设置浏览器刷新率；limit>0 选择 stepLimitFPS，等待累计 delta>=1000/limit 才调用 Game，随后 delta 清零。60 Hz RAF 间隔轻微短于 16.667 ms 时可跳过当前帧并形成隔帧调用，这与真机症状一致；没有逐 RAF trace，具体设备时间戳/相位是机制推断，不冒称已独立测得。确认的应用修复是禁用该额外门槛，不改变 Simulation rate，不归因于 World、GPU 负载或所谓“30 Hz 只能渲染 30 FPS”。
+
+选择：fps={target:60,limit:0,smoothStep:false}，遵循浏览器 RAF。它不是强制屏幕 60 Hz，未来高刷新率设备实际 Rendering 仍应记录/控制变量。tests/unit/presentation-fps.test.ts 截获实际 Phaser.Game 构造参数，重新引入 limit:60 会失败；依赖升级须重测。已通过的 Android 生命周期无需重复。
+
+构建：Android 正式验收优先 https://althanor.github.io/moba/ ，仓库 althanor/moba，GitHub Actions npm ci/check 后构建 /moba/ artifact 再部署。每次验收记录完整 commit、run/attempt 与构建 JSON；Vite 同时输出 build-info.json，并将同一元数据写入测量导出。本地/压缩包标记 local、dirty/unknown 和无 Actions 信息，不能冒充 Pages 构建。构建追溯缺字段或checkout SHA与GITHUB_SHA不一致时Actions build失败。workingTreeDirty按实际git状态报告，Actions生成报告也可能使其为true，不伪造干净工作树。云端浏览器不能替代 Android，Pages 不降低多指/生命周期/性能要求，本地 preview 为 fallback。
+
+证据局限：本次旧格式真机 JSON 未内嵌 commit；测试采用修正版由用户声明，仓库修复与成功部署链独立核实，两者合并形成收口记录，不声称从每轮原始 JSON 验证 SHA。新字段服务后续追溯；当前新收口构建未另做 Android 验收，不自动套用旧硬件 PASS。

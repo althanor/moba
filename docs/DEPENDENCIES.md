@@ -1,6 +1,6 @@
 # 依赖与兼容记录
 
-核实日期 2026-10-01；工程 0.2.0。npm view 指定版本核实存在性与 engines，npm install 后 npm ls --depth=0 核实实际安装；check:deps 逐项检查 manifest、lock 与 node_modules 版本相等，唯一 package-lock.json。这里锁定实际使用的已知版本，不使用 latest/^/~ 范围，也不声称是当日最新版本。
+核实日期 2026-10-01；工程 0.2.1。npm view 指定版本核实存在性与 engines，npm install 后 npm ls --depth=0 核实实际安装；check:deps 逐项检查 manifest、lock 与 node_modules 版本相等，唯一 package-lock.json。这里锁定实际使用的已知版本，不使用 latest/^/~ 范围，也不声称是当日最新版本。
 
 | 依赖 | 精确版本 | 责任 |
 | --- | --- | --- |
@@ -29,4 +29,4 @@ Phaser 打包 chunk 约 1.208 MB，gzip 约 332 KB，因此 Vite 给出 >500 KB 
 - [Vite 7 指南](https://v7.vite.dev/guide/)
 - [TypeScript strict](https://www.typescriptlang.org/tsconfig/strict.html)
 
-Android Termux 的 Node 25 符合范围，但此次仅在 Linux Node 24 实际执行。Android npm ci、本地服务与真实 Chromium 行为需用户按 M1_ACCEPTANCE.md 验证。Playwright 的 Linux Chromium 自动化不要求在 Termux 安装；Termux 可运行非浏览器门禁并在真实 Chrome 手动验收。完整 npm run check 为带浏览器执行环境的开发门禁，缺 Chromium 时会真实失败，不跳过伪装成功。
+Android Termux 的 Node 25 符合范围，但此次仅在 Linux Node 24 实际执行。正式真机优先GitHub Pages/Actions构建；用户已完成高档Android Edge153基础检查、A/B与S0。本地npm ci/preview是fallback，非要求用户重做已PASS测试；低档最低能力仍DEFERRED。Playwright 的 Linux Chromium 自动化不要求在 Termux 安装；Termux 可运行非浏览器门禁并在真实 Chrome 手动验收。完整 npm run check 为带浏览器执行环境的开发门禁，缺 Chromium 时会真实失败，不跳过伪装成功。

@@ -1,54 +1,60 @@
 {
-  "engineVersion": "0.2.0",
+  "engineVersion": "0.2.1",
   "phase": "M1",
-  "android": "pending user hardware execution",
+  "validationScope": "software only; hardware acceptance is separately recorded in docs/M1_ACCEPTANCE.md",
   "results": [
     {
       "command": "npm run typecheck",
       "exitCode": 0,
-      "durationMs": 2383.043568,
+      "durationMs": 2099.077417,
       "stage": "applicable"
     },
     {
       "command": "npm run lint",
       "exitCode": 0,
-      "durationMs": 1149.9605499999998,
+      "durationMs": 1068.527823,
       "stage": "applicable"
     },
     {
       "command": "npm run check:deps",
       "exitCode": 0,
-      "durationMs": 476.80301499999996,
+      "durationMs": 481.848755,
+      "stage": "applicable"
+    },
+    {
+      "command": "npm run check:docs",
+      "exitCode": 0,
+      "durationMs": 181.76977699999998,
       "stage": "applicable"
     },
     {
       "command": "npm run validate:content",
       "exitCode": 0,
-      "durationMs": 189.57831300000043,
+      "durationMs": 173.656966,
       "stage": "NOT_APPLICABLE_M1 (empty-stage guard only)"
     },
     {
       "command": "npm run test:unit",
       "exitCode": 0,
-      "durationMs": 1881.5509190000002,
+      "durationMs": 1694.8905720000002,
       "stage": "applicable"
     },
     {
       "command": "npm run test:sim",
       "exitCode": 0,
-      "durationMs": 1077.9069529999997,
+      "durationMs": 851.8079820000003,
       "stage": "applicable"
     },
     {
       "command": "npm run build",
       "exitCode": 0,
-      "durationMs": 8023.895461,
+      "durationMs": 6825.284048,
       "stage": "applicable"
     },
     {
       "command": "npm run test:browser",
       "exitCode": 0,
-      "durationMs": 6474.255063999999,
+      "durationMs": 12209.112822,
       "stage": "applicable"
     }
   ]

@@ -1,0 +1,7 @@
+{
+  "mutation": "fps.limit: 0 -> 60",
+  "expectedFailureExitCode": 1,
+  "actualExitCode": 1,
+  "assertionFailed": true,
+  "sourceRestored": true
+}

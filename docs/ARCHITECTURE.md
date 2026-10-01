@@ -1,10 +1,8 @@
 # Android HTML5 MOBA 技术架构
 
-> 当前执行状态（2026-10-01）：M0 已结束，进入 M1。规则基线仍为 0.1.1，工程版本为 0.2.0；原有 M0 文句保留为制定时说明。当前实现与未完成项以 [M1_IMPLEMENTATION.md](M1_IMPLEMENTATION.md) 和 [M1_ACCEPTANCE.md](M1_ACCEPTANCE.md) 为准，后续阶段尚未实现。
+版本：0.1.2。日期：2026-10-01。状态：M1 工程骨架已验收收口；正式玩法系统仍按后续阶段实现。
 
-版本：0.1.1。日期：2026-10-01。状态：M0 架构修订，尚未实现。
-
-本项目面向 Android Chromium 横屏，使用 Phaser、TypeScript、Vite 和 HTML5/WebGL。最终目标是 5v5，玩家控制一名英雄，其余席位由 Bot 控制；先完成可持续扩展的单机游戏，再评估真人联网。本次只定义架构、接口责任与验收标准，不创建游戏系统、运行工程、美术或 Demo。文中的目录、接口和预算均为后续实现约束。
+本项目面向 Android Chromium 横屏，使用 Phaser、TypeScript、Vite 和 HTML5/WebGL。最终目标是 5v5，玩家控制一名英雄，其余席位由 Bot 控制；先完成可持续扩展的单机游戏，再评估真人联网。M1 已创建纯模拟外壳、Session、实体与几何响应探针，未实现英雄、战斗、地图或 Bot。本文同时约束已实现骨架与后续系统；实现状态见 M1_IMPLEMENTATION.md，阶段出口见 M1_ACCEPTANCE.md。
 
 核心方案是独立的固定 Tick 模拟层、单向命令输入、明确顺序的事务结算和经过权威信息披露策略过滤的表现输出。空间视野是策略的重要证据，但不等于全部信息权限。Phaser 不保存权威战斗状态。未来联网可替换命令传输和状态来源，但仍需单独开发服务器、预测、校正与同步协议；本设计不声称单机工程天然具备联网能力。
 
@@ -221,7 +219,7 @@ PauseReason 是集合，例如 user、hidden、orientation、contextLost、overl
 
 ### 7.1 时钟方案
 
-30 Hz 是首选默认候选和当前实现基线，最终 Tick 率尚未验证，必须经 M1/M3 响应、CPU 与热态探针决策。Session 锁定 tickRate，step = 1000/tickRate ms，权威时间为整数 tickIndex；30 Hz 的一步约 33.3 ms。渲染目标 60 FPS，低画质可 30 FPS，但不在同一对局动态改变模拟率。时间转换用 ceil(durationMs × tickRate / 1000)，瞬发可为 0，持续状态通常至少 1 Tick。全部冷却、控制、刷新、复活与再生依赖 Tick，不用动画/浏览器计时器。
+30 Hz 是首选默认候选和当前实现基线；M1 基础响应已测，最终 Tick 率仍须 M3 技能、CPU 与代表性热态探针决策。Session 锁定 tickRate，step = 1000/tickRate ms，权威时间为整数 tickIndex；30 Hz 的一步约 33.3 ms。渲染目标 60 FPS，低画质可 30 FPS，但不在同一对局动态改变模拟率。时间转换用 ceil(durationMs × tickRate / 1000)，瞬发可为 0，持续状态通常至少 1 Tick。全部冷却、控制、刷新、复活与再生依赖 Tick，不用动画/浏览器计时器。
 
 application 接受由表现外壳驱动的每帧单调时钟脉冲，使用未平滑的实际 elapsed 维护 accumulator。Phaser 的平滑 delta 不能成为模拟时间源。时钟抽象可在 headless 测试中手动推进，不需要启动 Phaser。只有一个时钟驱动入口，不能同时启动第二个 requestAnimationFrame/setInterval 模拟循环。
 
@@ -252,9 +250,9 @@ P0 时间和到期 → P1 命令入口 → P2 动作 → P3 移动 → P4 空间
 
 ### 7.4 Tick 率与触屏响应探针
 
-后续 M1/M3 比较 A：30 Hz Simulation + 60 Hz Rendering + 当前插值；B：30 Hz Simulation + 60 Hz Rendering + 非权威即时反馈/安全表现预测；C：必要时作为对照的 60 Hz Simulation + 60 Hz Rendering。C 的插值/即时反馈配置要显式记录，和对应 A/B 配对，避免同时改多项却把收益全归 Tick 率。当前不建立探针工程，仍停 M0。
+M1/M3 比较 A：30 Hz Simulation + 60 Hz Rendering + 当前插值；B：30 Hz Simulation + 60 Hz Rendering + 非权威即时反馈/安全表现预测；C：必要时作为对照的 60 Hz Simulation + 60 Hz Rendering。C 的插值/即时反馈配置要显式记录，和对应 A/B 配对，避免同时改多项却把收益全归 Tick 率。M1 已完成高档参考 Android 的三轮正式 60 FPS A/B 与 S0；A 当前默认，B 保留为实验路径，C 当前不触发，见 ADR 003。
 
-M1 验证 A/B 的输入到 UI、视觉移动和权威移动延迟及空外壳成本；如响应门槛不达标或成本/精度对照有必要，加入 C。M3 在碰墙、控制、中断和技能按下/拖动/释放场景复测，再决定是否用于大量英雄/内容实现。初始测量门槛、设备、CPU/电量/热量方法见 PERFORMANCE_BUDGET 第 3.3 节；未实测的门槛只是待验证目标。
+M1 验证 A/B 的输入到 UI、视觉移动和权威移动延迟及空外壳成本；如响应门槛不达标或成本/精度对照有必要，加入 C。M3 在碰墙、控制、中断和技能按下/拖动/释放场景复测，再决定是否用于大量英雄/内容实现。初始测量门槛、设备、CPU/电量/热量方法见 PERFORMANCE_BUDGET 第 3.3 节。M1 长时间冷热态/电量/降频及第二档约 4 GB Android 按 ADR 019 正式 deferred，非本阶段硬阻塞，未标记通过；M3/首个代表性玩法性能基线和发行兼容性门禁保留。
 
 若保留 30 Hz，ADR 003 必须记录设备与浏览器、A/B/C 结果、触屏手感为何可接受、采用的反馈/预测方式和纠正误差；若证据不完整，只保留 provisional baseline，不标记最终 Tick 率已接受。改率需新 Session/版本及内容时间、容量证书和存档复审。同率不同渲染帧率用相同命令流核对 hash；30/60 Hz 对照按真实时间、数值不变量和声明量化容差比较，不能要求不同离散步长逐 Tick hash 相等。
 
@@ -352,11 +350,11 @@ Debug 面板分为只读观察与显式作弊命令：Tick 单步、暂停、实
 
 测试组合：纯公式/属性性质测试；headless 阶段测试；联合容量证书与合法最大扇出/并发测试；信息披露字段/精度/期限/接收者矩阵；依赖检测；同率命令回放与恢复 hash；Bot 仅接收授权感知；预测不写 World 的等价性；M1/M3 Android 响应/CPU/电量/热态探针。规则测试不依赖绘图，设备相关结论由真机数据支持。
 
-进一步的测试目录、必要用例、门禁命令与验收分布见 [编码规范](CODING_RULES.md) 和 [开发阶段](MILESTONES.md)。本次只检查文档结构、链接、清单、依赖 DAG 与跨文档一致性；没有可运行的 TypeScript 或 Vite 工程，不能报告编译/游戏测试通过。
+进一步的测试目录、必要用例、门禁命令与验收分布见 [编码规范](CODING_RULES.md) 和 [开发阶段](MILESTONES.md)。M1 已建立并实际运行 TypeScript、lint、真实导入扫描、unit/sim/replay/browser 与 build。正式战斗/容量/权限/持久化用例按对应阶段落实，不能由空壳测试冒充通过。
 
 ## 12 计划文件目录
 
-以下是后续工程的目标路径清单，不表示本次已经创建源文件。路径按责任划分，避免按“英雄一”“英雄二”复制完整系统。
+以下是工程的责任路径清单；M1 骨架已实现，未来功能目录仍为空占位，不能视为系统实现。路径按责任划分，避免按“英雄一”“英雄二”复制完整系统。
 
 ```text
 src/main.ts                         Vite 入口 只调用 application
@@ -436,21 +434,21 @@ docs/PERFORMANCE_BUDGET.md
 DESIGN_DECISIONS.md
 CHANGELOG.md
 ASSET_LICENSES.md                   引入资源时创建
-package.json                       M1 才创建
-tsconfig.json                      M1 才创建
-vite.config.ts                     M1 才创建
-index.html                         M1 才创建
+package.json                       M1 已创建
+tsconfig.json                      M1 已创建
+vite.config.ts                     M1 已创建
+index.html                         M1 已创建
 ```
 
 各模块仅提供最小公开入口，不把所有内部文件导出到大型 barrel。逻辑测试使用 simulation 公开 Session 接口；仅专门的白盒测试可访问内部路径，产品模块不得借用测试 helper。
 
 ## 13 架构核查与当前限制
 
-基线依赖按 foundation → contracts → 并列业务/适配模块 → application 的层级组成 DAG。模拟内部按 kernel → shared → feature → runtime 组成 DAG；所有允许导入均指向更低层，feature 之间无边。该结论是规范图检查结果，未来必须对真实 TypeScript 导入图执行检测。
+基线依赖按 foundation → contracts → 并列业务/适配模块 → application 的层级组成 DAG。模拟内部按 kernel → shared → feature → runtime 组成 DAG；所有允许导入均指向更低层，feature 之间无边。M1 已对真实 TypeScript 导入图执行白名单和 SCC 检测，并保留拒绝反例测试。
 
 系统覆盖核查：英雄/属性/攻击/技能/状态/控制由 Attributes、Actions、Status 管理；伤害/治疗/护盾/资源由 Combat、Resources 管理；移动/位移/投射物由 Movement、Projectiles 管理；空间视野/迷雾/草丛由 Visibility 管理，披露/感知权限由 Information 管理；兵线/野怪/塔/基地由 Map Rules、Match 管理；等级/经验/金币/装备/商店/击杀/助攻由 Progression 管理；死亡/复活由 Life 管理；AI 由 Controllers 管理；小地图/触屏/UI/音频/VFX 由 Presentation 管理。所有类别都有权威所有者和对外边界。
 
-未解决项：具体 Phaser/TypeScript/Vite 版本、最低机型、地图尺寸、正式战斗数值、视野遮挡精度、寻路结构、完整玩家瞄准体验以及未来联网模式，均在 [DESIGN_DECISIONS.md](../DESIGN_DECISIONS.md) 标记；不会将候选选择写成已验证事实。
+依赖已精确锁定，见 DEPENDENCIES.md。未解决项：最低机型、地图尺寸、正式战斗数值、视野遮挡精度、寻路结构、完整玩家瞄准体验以及未来联网模式，均在 [DESIGN_DECISIONS.md](../DESIGN_DECISIONS.md) 标记；不会将候选选择写成已验证事实。
 
 ## 14 已核实的平台资料
 

@@ -1,6 +1,6 @@
 {
   "name": "moba-core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "type": "module",
   "engines": {
@@ -12,6 +12,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.core.json --noEmit",
     "lint": "eslint .",
     "check:deps": "node tools/check-deps.mjs",
+    "check:docs": "node tools/check-docs.mjs",
     "validate:content": "node tools/validate-content.mjs",
     "test:unit": "vitest run tests/unit tests/architecture",
     "test:sim": "vitest run tests/simulation tests/replay",

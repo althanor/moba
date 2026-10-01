@@ -1,0 +1,11 @@
+{
+  "version": "0.2.1",
+  "phase": "M1",
+  "source": "local",
+  "commit": "d4124a6402809363d3e866c50d6c110c90ff241c",
+  "workingTreeDirty": true,
+  "repository": "althanor/moba",
+  "runId": null,
+  "runAttempt": null,
+  "actionsRunUrl": null
+}

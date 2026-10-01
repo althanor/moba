@@ -1,20 +1,20 @@
 # MOBA 工程编码与验证规范
 
-版本：0.1.1。日期：2026-10-01。状态：M0 修订的待建工程规范。
+版本：0.1.2。日期：2026-10-01。状态：M1 工程门禁已落实；后续阶段规则持续有效。
 
-本规范约束后续 Phaser、TypeScript、Vite 工程的实现与修改。当前仅有架构文件，本文中的配置和命令是 M1 必须落实的要求，不表示已经存在可构建代码。
+本规范约束后续 Phaser、TypeScript、Vite 工程的实现与修改。M1 可构建工程与相应门禁已落实；本文中正式内容、玩法和持久化要求按里程碑实施。
 
 优先顺序：规则正确性 → 可测试性与稳定边界 → Android 可运行性与性能 → 表现质量。不得为了一个英雄绕过系统约束，也不得在未理解现有文件时重写整套工程。
 
 ## 1 每次开发任务的流程
 
-1. 先阅读相关源文件、公开接口、测试、[ARCHITECTURE.md](ARCHITECTURE.md)、对应规则和 [DESIGN_DECISIONS.md](../DESIGN_DECISIONS.md)。查明状态所有者和依赖路径。
+1. 先阅读相关源文件、公开接口、测试、[ARCHITECTURE.md](ARCHITECTURE.md)、对应规则和 [DESIGN_DECISIONS.md](DESIGN_DECISIONS.md)。查明状态所有者和依赖路径。
 2. 实现前说明影响哪些系统、改变哪些行为、哪些接口或数据版本可能受影响。若发现规则冲突，先记录明确选择，不静默改变。
 3. 在已有边界内增量实现。新增复杂机制先定义 Operation/Component/Hook/Schema 和结算阶段，再增加数据实例。
 4. 运行与修改相关的测试和内容校验，必要时增补数学/交互回归。测试失败先解决原因，不靠修改期望掩盖错误。
 5. 运行类型检查、lint、依赖检查和生产构建。声明每项实际运行结果，未运行须写原因。
 6. 完成受影响系统的回归；需要 Android 行为或性能证据时执行真机检查。
-7. 更新规范、设计决策及 [CHANGELOG.md](../CHANGELOG.md)，报告修改、文件、原因、验证、已知问题和下一步。
+7. 更新规范、设计决策及 [CHANGELOG.md](CHANGELOG.md)，报告修改、文件、原因、验证、已知问题和下一步。
 
 禁止悄悄删除功能、测试、资源或内容规则。重构必须保留行为或明确记录行为变更。不因为某阶段尚未完成而伪造测试、性能和 build 通过。
 
@@ -52,7 +52,7 @@ Vite build 本身不替代 TypeScript 类型检查。M1 定义并实际验证以
 | npm run build | 类型门禁通过后生成 Vite 生产资源 |
 | npm run check | 串行组织必要门禁，失败时退出非零 |
 
-这些脚本尚未创建。本次文档交付无 package.json，因此类型检查和 build 状态为“不适用”，不是“通过”。
+上述脚本已创建并实际运行。M1 的 validate:content 仅执行空内容阶段 guard，输出 NOT_APPLICABLE_M1，不能称正式内容校验通过；check:docs 另检查根目录/docs 副本一致性。
 
 ## 4 权威状态和执行语义
 
@@ -116,7 +116,7 @@ Save 在完整 Tick 边界复制 DTO，并以原子事务写入；不能在异�
 | tests/browser | 适配层、输入、生命周期、表现预测 | 多指/技能各阶段反馈、取消/后台、匿名/方向消息、预测纠正 |
 | tests/performance | 容量峰值、A/B/C 与浸泡 | 分列延迟、CPU/每秒成本、电量/热态、证书/实际量和内存趋势 |
 
-初期候选工具为 Vitest、fast-check、Playwright 与依赖扫描器，M1 选择兼容的锁定版本。浏览器自动化模拟触摸不能取代 Android 真机的 GPU、热降频、音频和系统生命周期验证。
+M1 已锁定 Vitest、Playwright 与依赖扫描器的实际依赖，fast-check 仍为后续候选。浏览器自动化模拟触摸不能取代 Android 真机的 GPU、热降频、音频和系统生命周期验证。
 
 ### 8.2 核心不变量
 
@@ -141,7 +141,7 @@ Save 在完整 Tick 边界复制 DTO，并以原子事务写入；不能在异�
 
 每次合入运行 typecheck、lint、check:deps、validate:content、相关 unit/sim 和 build；修改公开契约或战斗阶段时运行全 headless/replay/persistence。涉及触屏、生命周期或表现桥时运行 browser，并记录真机可用检查。里程碑必须跑完整验证集和其规模性能场景；已有检查通过后，没有新改动或未决问题就不无意义重复执行。
 
-版本发布需记录设备/浏览器/构建/内容版本、全部门禁结果、基准场景和已知问题。未能真机验证的关键项目不能标记为 Android 已验收。
+版本发布需记录设备/浏览器/构建/内容版本、全部门禁结果、基准场景和已知问题。Android 真机优先使用可追溯到完整 commit、GitHub Actions run/attempt 和 Pages artifact 的构建，本地 preview 为 fallback；云端浏览器不替代真机，部署途径不降低功能/性能验收。未能真机验证的关键项目不能标记为 Android 已验收。
 
 ### 8.4 本轮新增门禁
 
@@ -149,7 +149,7 @@ Save 在完整 Tick 边界复制 DTO，并以原子事务写入；不能在异�
 
 披露门禁在 M4 建立：按 recipient×eventType×source/target 字段×positionPrecision×duration×scope 矩阵检查默认拒绝与显式允许，包括未知施法者可听、全局预警/播报、Ping、匿名事件、历史/队伍共享与隐身/草丛例外；检查原始 payload 和关联元数据，不只看是否隐藏图标。恢复与到期不能延长授权，声音许可不能改变目标选择。
 
-Tick 门禁在 M1 基础、M3 技能情景复测，依 PERFORMANCE_BUDGET 第 3.3 节完成 A/B、必要 C、原始响应统计、CPU/电量/热态和预测安全测试。结果写 ADR 003；缺真机或端到端测量时标明缺口。大量正式英雄/内容实现前必须完成 M3 Tick 决策记录，不能用框架启动/FPS 数字替代手感验收。当前不运行这些门禁、不创建其源码，仍为 M0 规范。
+Tick 门禁在 M1 基础、M3 技能情景复测，依 PERFORMANCE_BUDGET 第 3.3 节完成 A/B、必要 C、原始响应统计、CPU/电量/热态和预测安全测试。结果写 ADR 003；缺真机或端到端测量时标明缺口。M1 的 20 分钟冷热态/电量/降频与第二档 Android 按 ADR 019 标记 DEFERRED / non-blocking performance validation；其长期门禁仍保留，不能改为 PASS。大量正式英雄/内容实现前必须完成 M3 Tick 决策记录，不能用框架启动/FPS 数字替代手感验收。M1 基础软件门禁和高档 Android 响应已执行；容量/披露/正式技能仍按 M2/M4/M3 的阶段边界实施。
 
 ## 9 Debug 日志与错误
 

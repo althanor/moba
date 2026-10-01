@@ -1,3 +1,39 @@
+# M1 收口软件验证报告
+
+2026-10-01；工程0.2.1 / 规范0.1.2。本轮仅M1文档收口、Phaser配置回归和构建追溯；M2未实施。本轮全部适用软件门禁已实际运行通过，结果在reports/check.json；当前无M1出口阻塞，长期性能/兼容项目仍按正式延期追踪。
+
+## 本轮实际门禁
+
+| 命令 | 结果 |
+| --- | --- |
+| npm ci / npm ls --depth=0 | 安装成功；九个直接依赖保持精确原版本 |
+| npm run typecheck | PASS / exit0；完整工程与无DOM core |
+| npm run lint | PASS / exit0 |
+| npm run check:deps | PASS / exit0；42文件/80边、白名单/SCC/别名/类型/动态导入、manifest/lock/安装版本 |
+| npm run check:docs | PASS / exit0；根目录/docs七对全文副本一致 |
+| npm run validate:content | NOT_APPLICABLE_M1；空内容guard执行成功，正式编译未实现，非内容PASS |
+| npm run test:unit | PASS / exit0；24项、7文件 |
+| npm run test:sim | PASS / exit0；16项、3文件 |
+| npm run build | PASS / exit0；24模块，build-info.json与生产资源生成 |
+| npm run test:browser | PASS / exit0；4项，/moba/固定生产构建与preview，无HMR；含导出/asset元数据等价 |
+| npm run check | PASS / exit0；串行全门禁 |
+| limit:0→60负向回归实验 | 如预期FAIL / exit1；实际Game参数断言失败，源码恢复后完整check通过 |
+
+合计44项自动测试PASS；负向回归实验为证明保护有效，未留失败配置。报告：reports/check.json、reports/browser.json、reports/fps-regression.json。执行环境Node24.19.0/npm11.9.0，Playwright Chromium141/Linux/SwiftShader，不代表AndroidGPU/热态。已核对Pages旧修复run的build/check/artifact/deploy成功，新收口产物本轮只做软件回归。构建保留Phaser>500KB chunk提示，未提高阈值隐藏它。
+
+本轮创建/修改文件：九份要求文档及根目录/docs镜像，docs/M1_IMPLEMENTATION.md、DEPENDENCIES.md；package.json/lock版本、vite.config.ts、playwright.config.ts；application导出与vite-env类型；两个unit回归文件、browser导出检查；build-info工具/类型、check:docs与check组织器、打包版本入口；用户真机汇总与软件报告、更新dist/manifest。simulation/controllers/foundation/contracts权威实现未修改，没有新增任何M2系统。
+
+## 本轮范围与证据
+
+- 用户Android真实结果单列M1_ACCEPTANCE.md和reports/android-m1-user-summary.json；真机不是本环境执行，不重做已PASS生命周期。
+- 核实修复commit d4124a6402809363d3e866c50d6c110c90ff241c与成功Pages Actions run36868684893/attempt1。新增实际Phaser.Game配置回归、构建元数据测试、下载导出追溯检查和根目录/docs一致性门禁。
+- 依赖保持原精确版本，Simulation运行基线30 Hz，A默认/B实验/C不触发。长期热态和第二设备正式DEFERRED，不是PASS。
+- 本轮不重新执行桌面A/B性能探针：已有正式60 FPS真机三轮证据，桌面仅需软件正确性回归。
+
+## 历史0.2.0软件工程记录（诊断用途）
+
+以下为原交付时记录，日期/40项计数及“真机待测”仅描述当时状态，不覆盖上方当前收口或M1_ACCEPTANCE。原约33ms帧间隔A/B仅为诊断，不再用于正式方案定案；原始reports/software-probe JSON保留。
+
 # M1 实际交付与测试报告
 
 2026-10-01；工程 0.2.0 / 规范基线 0.1.1。M0 已结束，停在 M1；Android 真机验收待用户执行；未进入 M2。

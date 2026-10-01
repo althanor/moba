@@ -1,6 +1,6 @@
 # M1 工程实现说明
 
-工程 0.2.0；规则基线 0.1.1；2026-10-01。M0 已结束，当前停在 M1，真机出口未完成，没有进入 M2。
+工程0.2.1；规范0.1.2保留M0架构不变量；2026-10-01。M1按修订验收标准收口，M2就绪但未实施。
 
 ## 系统与状态所有者
 
@@ -36,7 +36,7 @@ EntityRef 仍为 index/generation；Kernel API 额外要求 session scope。Comm
 
 ## A/B 与软件测量
 
-A 为 30 Hz simulation、60 Hz rendering target、previous/current 插值。B 保持相同权威路径，使用 presentation 私有 VisualProxy。两组都有正常即时 Pointer UI；B 的主要额外差异是视觉代理，没有故意拖慢 A 的普通 UI。Phaser fps.limit=60 为目标上限，实际帧间隔另测，不据 target 数字称达到 60 FPS。
+A 为 30 Hz simulation、60 Hz rendering target、previous/current 插值。B 保持相同权威路径，使用 presentation 私有 VisualProxy。两组都有正常即时 Pointer UI；B 的主要额外差异是视觉代理，没有故意拖慢 A 的普通 UI。Phaser fps={target:60,limit:0,smoothStep:false}关闭额外limiter；原limit=60导致真机约30 FPS，修复后正式约60 FPS三轮支持A默认、B实验。实际刷新另测，不据target数字称达标；ADR003/020记录根因与回归。
 
 代理只读取授权本地样本与本地输入。预测时长不超过一个 step，下一权威样本重新定基准；取消/拒绝/失焦/暂停/Session 变化清理，discontinuity 不预测、不插值。正式控制/死亡/碰墙场景没有系统，保留在 M3 验收。预测误差比较旧的一步预测与下一观察到的权威 Tick 坐标，避免把正常帧间移动算成误差；迟到样本超一步仍保持原预测窗口，不扩展成多步预测。报告 reconciliation 总数、纠正次数/比例、最大误差。
 
@@ -45,3 +45,5 @@ A 为 30 Hz simulation、60 Hz rendering target、previous/current 插值。B �
 Tick CPU 包围 simulation.step；帧 CPU 为 Scene.update 至 POST_RENDER，包含模拟/表现/Debug，排除区间外浏览器/合成器。每秒 CPU 分母是采集会话 wall time，暂停也会包含，比较必须持续前台固定条件。电量/热量/系统进程内存/真实 GPU 时间不可用，不生成假数据。采样/追踪有界 2000 条，超出仅保留最近窗口；累计 CPU 独立计数。
 
 采集结果存 reports/software-probe，阶段验收见 M1_ACCEPTANCE.md，版本与锁定依据见 DEPENDENCIES.md。M1 调试 shell 的 build 是开发验收产物，不能视为正式发行游戏；未来正式发行需关闭作弊与内部 Debug 权限。
+
+构建/测量导出携带同一commit与Actions run/attempt；本地dirty/unknown明确标记，不进入权威hash。根目录/docs规范副本一致性门禁check:docs已加入check。当前硬件PASS与DEFERRED见M1_ACCEPTANCE.md，未测的热态/第二设备不自动变为PASS。

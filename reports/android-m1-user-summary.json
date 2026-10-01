@@ -1,0 +1,158 @@
+{
+  "provenance": {
+    "source": "user-reported Android test summary, 2026-10-01; not raw event data",
+    "rawReportsIndependentlyRead": false,
+    "buildAssociation": "User states all formal runs used repaired config; repository fix and successful deployment independently verified. Old exports do not embed SHA.",
+    "fixCommit": "d4124a6402809363d3e866c50d6c110c90ff241c",
+    "verifiedDeploymentRunId": "36868684893",
+    "verifiedDeploymentAttempt": 1
+  },
+  "environment": {
+    "browser": "Android Edge 153 / Chromium",
+    "systemRefreshHz": 60,
+    "simulationHz": 30,
+    "renderingFpsApprox": 60,
+    "probeSpeedWorldPerSecond": 180,
+    "deviceTier": "same high-end reference",
+    "pixelConfig": "same low-pixel configuration",
+    "exactDeviceAndOS": null
+  },
+  "preFix": {
+    "fpsConfig": {
+      "target": 60,
+      "limit": 60,
+      "smoothStep": false
+    },
+    "observedFpsApprox": 30,
+    "frameP50P95MsRange": [
+      31,
+      34
+    ],
+    "evidenceUse": "diagnostic only; excluded from formal A/B decision"
+  },
+  "formalFpsConfig": {
+    "target": 60,
+    "limit": 0,
+    "smoothStep": false
+  },
+  "pairs": [
+    {
+      "pair": 1,
+      "A": {
+        "visualP95Ms": 4.4,
+        "uiP95Ms": 12.7,
+        "captureToAcceptP95Ms": 24.5
+      },
+      "B": {
+        "visualP95Ms": 6.0,
+        "uiP95Ms": 14.0,
+        "captureToAcceptP95Ms": 26.7
+      }
+    },
+    {
+      "pair": 2,
+      "A": {
+        "visualP95Ms": 5.5,
+        "uiP95Ms": 13.2,
+        "captureToAcceptP95Ms": 27.1
+      },
+      "B": {
+        "visualP95Ms": 5.3,
+        "uiP95Ms": 13.6,
+        "captureToAcceptP95Ms": 26.9
+      }
+    },
+    {
+      "pair": 3,
+      "A": {
+        "visualP95Ms": 5.2,
+        "uiP95Ms": 13.4,
+        "captureToAcceptP95Ms": 28.7
+      },
+      "B": {
+        "visualP95Ms": 5.8,
+        "uiP95Ms": 14.4,
+        "captureToAcceptP95Ms": 28.3
+      }
+    }
+  ],
+  "runLevelP95Median": {
+    "statistic": "median of three run-level p95 values, NOT pooled event p95",
+    "A": {
+      "visualMs": 5.2,
+      "uiMs": 13.2,
+      "captureToAcceptMs": 27.1,
+      "frameCpuMsApproxUserSummary": 4.9
+    },
+    "B": {
+      "visualMs": 5.8,
+      "uiMs": 14.0,
+      "captureToAcceptMs": 26.9,
+      "frameCpuMsApproxUserSummary": 5.9
+    }
+  },
+  "BReconciliationEachOfThreeRuns": {
+    "correctionFraction": 1,
+    "correctionP95WorldApprox": 6,
+    "correctionMaxWorldApprox": 6
+  },
+  "S0": {
+    "status": "PASS (user hardware evidence)",
+    "mode": "empty",
+    "durationSecondsApprox": 197.97,
+    "totalTicks": 5938,
+    "inputSamples": 0,
+    "frameMs": {
+      "p50": 16.7,
+      "p95": 17.1,
+      "p99": 17.4,
+      "max": 20.9
+    },
+    "frameCpuMs": {
+      "p50": 0.2,
+      "p95": 0.4
+    },
+    "tickCpuP95Ms": 0.1,
+    "simulationCpuMsPerSecondApprox": 0.779
+  },
+  "lifecycle": {
+    "status": "PASS (user hardware evidence)",
+    "checks": [
+      "landscape",
+      "independent multitouch",
+      "pause/single step/resume",
+      "background/lock no catch-up",
+      "explicit resume",
+      "portrait pause no catch-up",
+      "Session recreate",
+      "Canvas/renderer ownership lifecycle"
+    ]
+  },
+  "limitations": {
+    "inputPhaseCounts": null,
+    "authorityMovementP95": null,
+    "otherABPercentilesAndRawEvents": null,
+    "physicalTouchToPhoton": "not measured",
+    "hardwareContextLossSeparateTest": "not reported"
+  },
+  "deferred": [
+    {
+      "item": "A/B ~20 minute sustained load, cold/hot, battery percentage, temperature/throttling",
+      "status": "DEFERRED / non-blocking performance validation",
+      "revisit": "M3 / first representative gameplay performance baseline; M7/M10 long-duration gates retained"
+    },
+    {
+      "item": "second non-flagship ~4 GB Android",
+      "status": "DEFERRED / non-blocking performance validation",
+      "revisit": "M3 / first representative gameplay performance baseline; M7 low-tier and M10 minimum-device release matrix retained"
+    }
+  ],
+  "decision": {
+    "defaultPresentation": "A",
+    "experimentalPresentationOnly": "B",
+    "C": "not triggered by current evidence",
+    "simulationBaselineHz": 30,
+    "finalTickRate": "provisional, reassess at M3",
+    "M1Exit": "no blocking issue under formally revised criteria; software gates verified; M2 ready, not implemented"
+  }
+}
