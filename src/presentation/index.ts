@@ -10,7 +10,7 @@ export function createPresentation(host: PresentationHost): Readonly<{ canvas: H
   const scene = new ProbeScene(host);
   const game = new Phaser.Game({ type: Phaser.WEBGL, parent: 'app', ...size(), backgroundColor: '#111a22',
     scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
-    fps: { target: 60, limit: 60, smoothStep: false }, audio: { noAudio: true }, input: { mouse: false, touch: false, keyboard: false }, scene: [scene] });
+    fps: { target: 60, limit: 0, smoothStep: false }, audio: { noAudio: true }, input: { mouse: false, touch: false, keyboard: false }, scene: [scene] });
   const resize = (): void => { const dimensions = size(); game.scale.resize(dimensions.width, dimensions.height); };
   window.addEventListener('resize', resize);
   const actions = ['pause', 'resume', 'step', 'recreate', 'modeA', 'modeB', 'export', 'empty', 'probe'] as const;
