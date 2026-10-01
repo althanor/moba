@@ -1,0 +1,1032 @@
+{
+  "method": "Desktop Chromium 141, SwiftShader, CDP injected touches, 3 alternating rounds x 100 gestures per mode.  NO Android / physical end-to-end / heat / power acceptance.",
+  "results": [
+    {
+      "round": 1,
+      "mode": "A",
+      "hostElapsedMs": 23712.515458,
+      "environment": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+        "cssWidth": 960,
+        "cssHeight": 540,
+        "devicePixelRatio": 1,
+        "backbufferWidth": 960,
+        "backbufferHeight": 540,
+        "webgl": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+        "maxTextureSize": 8192,
+        "renderer": "WebKit WebGL"
+      },
+      "touchToUI": {
+        "count": 300,
+        "p50": 16.799999998882413,
+        "p95": 26.300000000745058,
+        "p99": 27,
+        "max": 28.800000000745058
+      },
+      "touchToVisual": {
+        "count": 100,
+        "p50": 11.5,
+        "p95": 33.90000000037253,
+        "p99": 35.30000000074506,
+        "max": 50.80000000074506
+      },
+      "touchToAuthority": {
+        "count": 100,
+        "p50": 0.40000000037252903,
+        "p95": 33.19999999925494,
+        "p99": 34.80000000074506,
+        "max": 50.40000000037253
+      },
+      "tickCpuMs": {
+        "count": 712,
+        "p50": 0,
+        "p95": 0.10000000149011612,
+        "p99": 0.19999999925494194,
+        "max": 0.8000000007450581
+      },
+      "frameMs": {
+        "count": 931,
+        "p50": 33,
+        "p95": 33.59999999962747,
+        "p99": 33.90000000037253,
+        "max": 97.40000000037253
+      },
+      "simulationCpuMsPerSecond": 0.8033783947879927,
+      "frameCpuMs": {
+        "count": 932,
+        "p50": 0.599999999627471,
+        "p95": 1,
+        "p99": 1.5,
+        "max": 5.100000001490116
+      },
+      "measuredFrameCpuMsPerSecond": 25.2117806405637,
+      "correctionWorld": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "reconciliation": {
+        "retainedCount": 0,
+        "correctionCount": 0,
+        "correctionFraction": null,
+        "errorDefinition": "previous one-step prediction aligned to next observed authoritative Tick; late samples beyond one step remain capped"
+      },
+      "byPhase": {
+        "begin": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 16.800000000745058,
+            "p95": 26.59999999962747,
+            "p99": 27.200000001117587,
+            "max": 28.800000000745058
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "move": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 1,
+            "p95": 17.700000001117587,
+            "p99": 18.100000001490116,
+            "max": 18.40000000037253
+          },
+          "visual": {
+            "count": 100,
+            "p50": 11.5,
+            "p95": 33.90000000037253,
+            "p99": 35.30000000074506,
+            "max": 50.80000000074506
+          },
+          "authority": {
+            "count": 100,
+            "p50": 0.40000000037252903,
+            "p95": 33.19999999925494,
+            "p99": 34.80000000074506,
+            "max": 50.40000000037253
+          }
+        },
+        "end": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 16.90000000037253,
+            "p95": 26.399999998509884,
+            "p99": 26.699999999254942,
+            "max": 26.800000000745058
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "cancel": {
+          "captured": 0,
+          "ui": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        }
+      }
+    },
+    {
+      "round": 1,
+      "mode": "B",
+      "hostElapsedMs": 23625.481915,
+      "environment": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+        "cssWidth": 960,
+        "cssHeight": 540,
+        "devicePixelRatio": 1,
+        "backbufferWidth": 960,
+        "backbufferHeight": 540,
+        "webgl": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+        "maxTextureSize": 8192,
+        "renderer": "WebKit WebGL"
+      },
+      "touchToUI": {
+        "count": 300,
+        "p50": 16.600000001490116,
+        "p95": 26.40000000037253,
+        "p99": 27.09999999962747,
+        "max": 27.5
+      },
+      "touchToVisual": {
+        "count": 100,
+        "p50": 0.900000000372529,
+        "p95": 17.59999999962747,
+        "p99": 17.799999998882413,
+        "max": 17.899999998509884
+      },
+      "touchToAuthority": {
+        "count": 100,
+        "p50": 0.2999999988824129,
+        "p95": 33.40000000037253,
+        "p99": 33.90000000037253,
+        "max": 34
+      },
+      "tickCpuMs": {
+        "count": 708,
+        "p50": 0,
+        "p95": 0.10000000149011612,
+        "p99": 0.19999999925494194,
+        "max": 1.799999998882413
+      },
+      "frameMs": {
+        "count": 939,
+        "p50": 32.30000000074506,
+        "p95": 33.59999999962747,
+        "p99": 34.09999999962747,
+        "max": 67.09999999962747
+      },
+      "simulationCpuMsPerSecond": 1.0309017008461685,
+      "frameCpuMs": {
+        "count": 940,
+        "p50": 0.599999999627471,
+        "p95": 1.099999999627471,
+        "p99": 1.699999999254942,
+        "max": 5.599999999627471
+      },
+      "measuredFrameCpuMsPerSecond": 24.05296468750229,
+      "correctionWorld": {
+        "count": 297,
+        "p50": 0,
+        "p95": 6,
+        "p99": 6,
+        "max": 6
+      },
+      "reconciliation": {
+        "retainedCount": 297,
+        "correctionCount": 90,
+        "correctionFraction": 0.30303030303030304,
+        "errorDefinition": "previous one-step prediction aligned to next observed authoritative Tick; late samples beyond one step remain capped"
+      },
+      "byPhase": {
+        "begin": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 16.90000000037253,
+            "p95": 26.899999998509884,
+            "p99": 27.300000000745058,
+            "max": 27.5
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "move": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 0.900000000372529,
+            "p95": 17.59999999962747,
+            "p99": 17.799999998882413,
+            "max": 17.899999998509884
+          },
+          "visual": {
+            "count": 100,
+            "p50": 0.900000000372529,
+            "p95": 17.59999999962747,
+            "p99": 17.799999998882413,
+            "max": 17.899999998509884
+          },
+          "authority": {
+            "count": 100,
+            "p50": 0.2999999988824129,
+            "p95": 33.40000000037253,
+            "p99": 33.90000000037253,
+            "max": 34
+          }
+        },
+        "end": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 16.899999998509884,
+            "p95": 26.40000000037253,
+            "p99": 26.799999998882413,
+            "max": 26.90000000037253
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "cancel": {
+          "captured": 0,
+          "ui": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        }
+      }
+    },
+    {
+      "round": 2,
+      "mode": "B",
+      "hostElapsedMs": 23477.145026,
+      "environment": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+        "cssWidth": 960,
+        "cssHeight": 540,
+        "devicePixelRatio": 1,
+        "backbufferWidth": 960,
+        "backbufferHeight": 540,
+        "webgl": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+        "maxTextureSize": 8192,
+        "renderer": "WebKit WebGL"
+      },
+      "touchToUI": {
+        "count": 300,
+        "p50": 16.59999999962747,
+        "p95": 26.699999999254942,
+        "p99": 27.59999999962747,
+        "max": 27.600000001490116
+      },
+      "touchToVisual": {
+        "count": 100,
+        "p50": 0.8999999985098839,
+        "p95": 17.59999999962747,
+        "p99": 17.899999998509884,
+        "max": 18.5
+      },
+      "touchToAuthority": {
+        "count": 100,
+        "p50": 16.600000001490116,
+        "p95": 33.5,
+        "p99": 49.20000000111759,
+        "max": 50.30000000074506
+      },
+      "tickCpuMs": {
+        "count": 704,
+        "p50": 0,
+        "p95": 0.10000000149011612,
+        "p99": 0.10000000149011612,
+        "max": 0.2000000011175871
+      },
+      "frameMs": {
+        "count": 930,
+        "p50": 33,
+        "p95": 33.59999999962747,
+        "p99": 33.899999998509884,
+        "max": 38.30000000074506
+      },
+      "simulationCpuMsPerSecond": 0.8037901469946256,
+      "frameCpuMs": {
+        "count": 931,
+        "p50": 0.5,
+        "p95": 0.900000000372529,
+        "p99": 1.299999998882413,
+        "max": 2.599999999627471
+      },
+      "measuredFrameCpuMsPerSecond": 21.621529669458138,
+      "correctionWorld": {
+        "count": 283,
+        "p50": 0,
+        "p95": 6,
+        "p99": 6,
+        "max": 6
+      },
+      "reconciliation": {
+        "retainedCount": 283,
+        "correctionCount": 87,
+        "correctionFraction": 0.30742049469964666,
+        "errorDefinition": "previous one-step prediction aligned to next observed authoritative Tick; late samples beyond one step remain capped"
+      },
+      "byPhase": {
+        "begin": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 16.799999998882413,
+            "p95": 27,
+            "p99": 27.59999999962747,
+            "max": 27.59999999962747
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "move": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 0.8999999985098839,
+            "p95": 17.59999999962747,
+            "p99": 17.899999998509884,
+            "max": 18.5
+          },
+          "visual": {
+            "count": 100,
+            "p50": 0.8999999985098839,
+            "p95": 17.59999999962747,
+            "p99": 17.899999998509884,
+            "max": 18.5
+          },
+          "authority": {
+            "count": 100,
+            "p50": 16.600000001490116,
+            "p95": 33.5,
+            "p99": 49.20000000111759,
+            "max": 50.30000000074506
+          }
+        },
+        "end": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 16.700000001117587,
+            "p95": 26.799999998882413,
+            "p99": 27.5,
+            "max": 27.600000001490116
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "cancel": {
+          "captured": 0,
+          "ui": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        }
+      }
+    },
+    {
+      "round": 2,
+      "mode": "A",
+      "hostElapsedMs": 23402.257874999996,
+      "environment": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+        "cssWidth": 960,
+        "cssHeight": 540,
+        "devicePixelRatio": 1,
+        "backbufferWidth": 960,
+        "backbufferHeight": 540,
+        "webgl": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+        "maxTextureSize": 8192,
+        "renderer": "WebKit WebGL"
+      },
+      "touchToUI": {
+        "count": 300,
+        "p50": 16.59999999962747,
+        "p95": 26.699999999254942,
+        "p99": 27,
+        "max": 27.5
+      },
+      "touchToVisual": {
+        "count": 100,
+        "p50": 0.8000000007450581,
+        "p95": 17.59999999962747,
+        "p99": 18.90000000037253,
+        "max": 33.69999999925494
+      },
+      "touchToAuthority": {
+        "count": 100,
+        "p50": 0.2000000011175871,
+        "p95": 16.90000000037253,
+        "p99": 18.5,
+        "max": 33.5
+      },
+      "tickCpuMs": {
+        "count": 702,
+        "p50": 0,
+        "p95": 0.10000000149011612,
+        "p99": 0.10000000149011612,
+        "max": 1.099999999627471
+      },
+      "frameMs": {
+        "count": 927,
+        "p50": 33.09999999962747,
+        "p95": 33.59999999962747,
+        "p99": 33.69999999925494,
+        "max": 35.30000000074506
+      },
+      "simulationCpuMsPerSecond": 0.848396998810446,
+      "frameCpuMs": {
+        "count": 928,
+        "p50": 0.5,
+        "p95": 0.900000000372529,
+        "p99": 1.400000000372529,
+        "max": 2.199999999254942
+      },
+      "measuredFrameCpuMsPerSecond": 21.350613915606683,
+      "correctionWorld": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "reconciliation": {
+        "retainedCount": 0,
+        "correctionCount": 0,
+        "correctionFraction": null,
+        "errorDefinition": "previous one-step prediction aligned to next observed authoritative Tick; late samples beyond one step remain capped"
+      },
+      "byPhase": {
+        "begin": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 16.799999998882413,
+            "p95": 26.90000000037253,
+            "p99": 27.100000001490116,
+            "max": 27.5
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "move": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 0.8000000007450581,
+            "p95": 17.59999999962747,
+            "p99": 18.300000000745058,
+            "max": 18.90000000037253
+          },
+          "visual": {
+            "count": 100,
+            "p50": 0.8000000007450581,
+            "p95": 17.59999999962747,
+            "p99": 18.90000000037253,
+            "max": 33.69999999925494
+          },
+          "authority": {
+            "count": 100,
+            "p50": 0.2000000011175871,
+            "p95": 16.90000000037253,
+            "p99": 18.5,
+            "max": 33.5
+          }
+        },
+        "end": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 17,
+            "p95": 26.699999999254942,
+            "p99": 26.90000000037253,
+            "max": 27.399999998509884
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "cancel": {
+          "captured": 0,
+          "ui": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        }
+      }
+    },
+    {
+      "round": 3,
+      "mode": "A",
+      "hostElapsedMs": 23617.4476,
+      "environment": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+        "cssWidth": 960,
+        "cssHeight": 540,
+        "devicePixelRatio": 1,
+        "backbufferWidth": 960,
+        "backbufferHeight": 540,
+        "webgl": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+        "maxTextureSize": 8192,
+        "renderer": "WebKit WebGL"
+      },
+      "touchToUI": {
+        "count": 300,
+        "p50": 16.600000001490116,
+        "p95": 26.800000000745058,
+        "p99": 27.199999999254942,
+        "max": 27.59999999962747
+      },
+      "touchToVisual": {
+        "count": 100,
+        "p50": 0.8000000007450581,
+        "p95": 17.700000001117587,
+        "p99": 18.200000001117587,
+        "max": 19.800000000745058
+      },
+      "touchToAuthority": {
+        "count": 100,
+        "p50": 0.2000000011175871,
+        "p95": 17,
+        "p99": 17.5,
+        "max": 19.09999999962747
+      },
+      "tickCpuMs": {
+        "count": 708,
+        "p50": 0,
+        "p95": 0.10000000149011612,
+        "p99": 0.2000000011175871,
+        "max": 0.30000000074505806
+      },
+      "frameMs": {
+        "count": 938,
+        "p50": 31.90000000037253,
+        "p95": 33.59999999962747,
+        "p99": 34,
+        "max": 110.39999999850988
+      },
+      "simulationCpuMsPerSecond": 0.7521751813368744,
+      "frameCpuMs": {
+        "count": 939,
+        "p50": 0.5,
+        "p95": 0.900000000372529,
+        "p99": 1.300000000745058,
+        "max": 5
+      },
+      "measuredFrameCpuMsPerSecond": 21.217256081590545,
+      "correctionWorld": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "reconciliation": {
+        "retainedCount": 0,
+        "correctionCount": 0,
+        "correctionFraction": null,
+        "errorDefinition": "previous one-step prediction aligned to next observed authoritative Tick; late samples beyond one step remain capped"
+      },
+      "byPhase": {
+        "begin": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 16.800000000745058,
+            "p95": 27,
+            "p99": 27.199999999254942,
+            "max": 27.59999999962747
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "move": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 0.8000000007450581,
+            "p95": 17.700000001117587,
+            "p99": 18.200000001117587,
+            "max": 19.800000000745058
+          },
+          "visual": {
+            "count": 100,
+            "p50": 0.8000000007450581,
+            "p95": 17.700000001117587,
+            "p99": 18.200000001117587,
+            "max": 19.800000000745058
+          },
+          "authority": {
+            "count": 100,
+            "p50": 0.2000000011175871,
+            "p95": 17,
+            "p99": 17.5,
+            "max": 19.09999999962747
+          }
+        },
+        "end": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 16.800000000745058,
+            "p95": 26.90000000037253,
+            "p99": 27.199999999254942,
+            "max": 27.40000000037253
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "cancel": {
+          "captured": 0,
+          "ui": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        }
+      }
+    },
+    {
+      "round": 3,
+      "mode": "B",
+      "hostElapsedMs": 23967.390066000007,
+      "environment": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+        "cssWidth": 960,
+        "cssHeight": 540,
+        "devicePixelRatio": 1,
+        "backbufferWidth": 960,
+        "backbufferHeight": 540,
+        "webgl": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+        "maxTextureSize": 8192,
+        "renderer": "WebKit WebGL"
+      },
+      "touchToUI": {
+        "count": 300,
+        "p50": 16.59999999962747,
+        "p95": 26.300000000745058,
+        "p99": 26.699999999254942,
+        "max": 27.199999999254942
+      },
+      "touchToVisual": {
+        "count": 100,
+        "p50": 0.8000000007450581,
+        "p95": 17.5,
+        "p99": 18.5,
+        "max": 19.100000001490116
+      },
+      "touchToAuthority": {
+        "count": 100,
+        "p50": 0.2000000011175871,
+        "p95": 33.30000000074506,
+        "p99": 33.5,
+        "max": 33.59999999962747
+      },
+      "tickCpuMs": {
+        "count": 718,
+        "p50": 0,
+        "p95": 0.10000000149011612,
+        "p99": 0.10000000149011612,
+        "max": 2.400000000372529
+      },
+      "frameMs": {
+        "count": 952,
+        "p50": 23.09999999962747,
+        "p95": 33.600000001490116,
+        "p99": 35,
+        "max": 145.5
+      },
+      "simulationCpuMsPerSecond": 0.8204709587840595,
+      "frameCpuMs": {
+        "count": 953,
+        "p50": 0.5,
+        "p95": 1,
+        "p99": 1.699999999254942,
+        "max": 3.699999999254942
+      },
+      "measuredFrameCpuMsPerSecond": 22.019441413034766,
+      "correctionWorld": {
+        "count": 295,
+        "p50": 0,
+        "p95": 6,
+        "p99": 6,
+        "max": 12
+      },
+      "reconciliation": {
+        "retainedCount": 295,
+        "correctionCount": 94,
+        "correctionFraction": 0.31864406779661014,
+        "errorDefinition": "previous one-step prediction aligned to next observed authoritative Tick; late samples beyond one step remain capped"
+      },
+      "byPhase": {
+        "begin": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 16.699999999254942,
+            "p95": 26.5,
+            "p99": 27.09999999962747,
+            "max": 27.199999999254942
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "move": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 0.8000000007450581,
+            "p95": 17.5,
+            "p99": 18.5,
+            "max": 19.100000001490116
+          },
+          "visual": {
+            "count": 100,
+            "p50": 0.8000000007450581,
+            "p95": 17.5,
+            "p99": 18.5,
+            "max": 19.100000001490116
+          },
+          "authority": {
+            "count": 100,
+            "p50": 0.2000000011175871,
+            "p95": 33.30000000074506,
+            "p99": 33.5,
+            "max": 33.59999999962747
+          }
+        },
+        "end": {
+          "captured": 100,
+          "ui": {
+            "count": 100,
+            "p50": 16.90000000037253,
+            "p95": 26.40000000037253,
+            "p99": 26.59999999962747,
+            "max": 26.800000000745058
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        },
+        "cancel": {
+          "captured": 0,
+          "ui": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "visual": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          },
+          "authority": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null,
+            "max": null
+          }
+        }
+      }
+    }
+  ],
+  "errors": []
+}

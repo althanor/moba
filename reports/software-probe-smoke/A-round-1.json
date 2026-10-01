@@ -1,0 +1,343 @@
+{
+  "version": "0.2.0",
+  "phase": "M1",
+  "androidAcceptance": "pending user hardware execution",
+  "config": {
+    "sessionId": "session-2",
+    "matchId": "m1-probe-2",
+    "tickRate": 30,
+    "mode": "response-probe",
+    "probeSpeedWorldPerSecond": 180
+  },
+  "renderTargetHz": 60,
+  "mode": "A",
+  "interpolation": "previous/current",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+    "cssWidth": 960,
+    "cssHeight": 540,
+    "devicePixelRatio": 1,
+    "backbufferWidth": 960,
+    "backbufferHeight": 540,
+    "webgl": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+    "maxTextureSize": 8192,
+    "renderer": "WebKit WebGL"
+  },
+  "measurement": {
+    "timing": "software capture / CPU submission; physical touch-to-photon unavailable",
+    "durationMs": 618.3000000007451,
+    "retainedSampleCount": 6,
+    "traceCapacity": 2000,
+    "totalTicks": 18,
+    "touchToUI": {
+      "count": 6,
+      "p50": 17.300000000745058,
+      "p95": 19.90000000037253,
+      "p99": 19.90000000037253,
+      "max": 19.90000000037253
+    },
+    "touchToVisual": {
+      "count": 2,
+      "p50": 17.09999999962747,
+      "p95": 53.09999999962747,
+      "p99": 53.09999999962747,
+      "max": 53.09999999962747
+    },
+    "touchToAuthority": {
+      "count": 2,
+      "p50": 16.59999999962747,
+      "p95": 16.90000000037253,
+      "p99": 16.90000000037253,
+      "max": 16.90000000037253
+    },
+    "captureToQueue": {
+      "count": 6,
+      "p50": 16.59999999962747,
+      "p95": 19.40000000037253,
+      "p99": 19.40000000037253,
+      "max": 19.40000000037253
+    },
+    "captureToAcceptance": {
+      "count": 6,
+      "p50": 16.59999999962747,
+      "p95": 19.40000000037253,
+      "p99": 19.40000000037253,
+      "max": 19.40000000037253
+    },
+    "tickCpuMs": {
+      "count": 18,
+      "p50": 0,
+      "p95": 0.10000000149011612,
+      "p99": 0.10000000149011612,
+      "max": 0.10000000149011612
+    },
+    "frameMs": {
+      "count": 26,
+      "p50": 17,
+      "p95": 33.40000000037253,
+      "p99": 36,
+      "max": 36
+    },
+    "correctionWorld": {
+      "count": 0,
+      "p50": null,
+      "p95": null,
+      "p99": null,
+      "max": null
+    },
+    "frameCpuMs": {
+      "count": 27,
+      "p50": 0.5,
+      "p95": 2.099999999627471,
+      "p99": 2.299999998882413,
+      "max": 2.299999998882413
+    },
+    "measuredFrameCpuMsPerSecond": 29.759016656134097,
+    "cpuScope": "simulation.step total; frame interval from Scene.update to POST_RENDER (includes simulation, presentation, diagnostics; excludes browser/compositor work outside this interval)",
+    "totalSimulationCpuMs": 0.6000000033527613,
+    "simulationCpuMsPerSecond": 0.9704027225489864,
+    "battery": "unavailable; record manually",
+    "thermal": "unavailable; record manually",
+    "phaseCpu": "M1 total shell only; detailed phase tracing deferred",
+    "traces": [
+      {
+        "sample": {
+          "sampleId": 1,
+          "pointerId": 2,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 521.8000000007451
+        },
+        "queuedAtMs": 537.6000000014901,
+        "acceptedAtMs": 537.7000000011176,
+        "uiAtMs": 539.9000000003725
+      },
+      {
+        "sample": {
+          "sampleId": 2,
+          "pointerId": 2,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 620.8000000007451
+        },
+        "queuedAtMs": 637.6000000014901,
+        "acceptedAtMs": 637.7000000011176,
+        "authoritativeAtMs": 637.7000000011176,
+        "uiAtMs": 638.5,
+        "visualAtMs": 673.9000000003725
+      },
+      {
+        "sample": {
+          "sampleId": 3,
+          "pointerId": 2,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 718.3000000007451
+        },
+        "queuedAtMs": 737.7000000011176,
+        "acceptedAtMs": 737.7000000011176,
+        "uiAtMs": 738.2000000011176
+      },
+      {
+        "sample": {
+          "sampleId": 4,
+          "pointerId": 3,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 771.4000000003725
+        },
+        "queuedAtMs": 788,
+        "acceptedAtMs": 788.1000000014901,
+        "uiAtMs": 788.7000000011176
+      },
+      {
+        "sample": {
+          "sampleId": 5,
+          "pointerId": 3,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 870.9000000003725
+        },
+        "queuedAtMs": 887.5,
+        "acceptedAtMs": 887.5,
+        "authoritativeAtMs": 887.5,
+        "uiAtMs": 888,
+        "visualAtMs": 888
+      },
+      {
+        "sample": {
+          "sampleId": 6,
+          "pointerId": 3,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 955.3000000007451
+        },
+        "queuedAtMs": 970.9000000003725,
+        "acceptedAtMs": 970.9000000003725,
+        "uiAtMs": 971.3000000007451
+      }
+    ],
+    "byPhase": {
+      "begin": {
+        "captured": 2,
+        "ui": {
+          "count": 2,
+          "p50": 17.300000000745058,
+          "p95": 18.09999999962747,
+          "p99": 18.09999999962747,
+          "max": 18.09999999962747
+        },
+        "visual": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        },
+        "authority": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        }
+      },
+      "move": {
+        "captured": 2,
+        "ui": {
+          "count": 2,
+          "p50": 17.09999999962747,
+          "p95": 17.699999999254942,
+          "p99": 17.699999999254942,
+          "max": 17.699999999254942
+        },
+        "visual": {
+          "count": 2,
+          "p50": 17.09999999962747,
+          "p95": 53.09999999962747,
+          "p99": 53.09999999962747,
+          "max": 53.09999999962747
+        },
+        "authority": {
+          "count": 2,
+          "p50": 16.59999999962747,
+          "p95": 16.90000000037253,
+          "p99": 16.90000000037253,
+          "max": 16.90000000037253
+        }
+      },
+      "end": {
+        "captured": 2,
+        "ui": {
+          "count": 2,
+          "p50": 16,
+          "p95": 19.90000000037253,
+          "p99": 19.90000000037253,
+          "max": 19.90000000037253
+        },
+        "visual": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        },
+        "authority": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        }
+      },
+      "cancel": {
+        "captured": 0,
+        "ui": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        },
+        "visual": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        },
+        "authority": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        }
+      }
+    },
+    "frameSamplesMs": [
+      16.800000000745058,
+      33.40000000037253,
+      17,
+      33,
+      33.29999999888241,
+      18.5,
+      14.800000000745058,
+      33.19999999925494,
+      36,
+      18.800000000745058,
+      12.099999999627471,
+      33.19999999925494,
+      16.600000001490116,
+      33.29999999888241,
+      18.59999999962747,
+      14.900000000372529,
+      16.59999999962747,
+      16.90000000037253,
+      33,
+      16.700000001117587,
+      16.59999999962747,
+      16.699999999254942,
+      33.40000000037253,
+      16.699999999254942,
+      16.600000001490116,
+      33.399999998509884
+    ],
+    "tickSamplesMs": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.10000000149011612,
+      0.10000000149011612,
+      0,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0,
+      0.10000000149011612
+    ],
+    "correctionSamplesWorld": []
+  },
+  "debug": {
+    "state": "running",
+    "pauseReasons": [],
+    "tick": 18,
+    "tickRate": 30,
+    "hash": "38719466",
+    "backlogMs": 0.09999999962746386,
+    "ticksThisFrame": 1
+  }
+}

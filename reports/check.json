@@ -1,0 +1,55 @@
+{
+  "engineVersion": "0.2.0",
+  "phase": "M1",
+  "android": "pending user hardware execution",
+  "results": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "durationMs": 2383.043568,
+      "stage": "applicable"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "durationMs": 1149.9605499999998,
+      "stage": "applicable"
+    },
+    {
+      "command": "npm run check:deps",
+      "exitCode": 0,
+      "durationMs": 476.80301499999996,
+      "stage": "applicable"
+    },
+    {
+      "command": "npm run validate:content",
+      "exitCode": 0,
+      "durationMs": 189.57831300000043,
+      "stage": "NOT_APPLICABLE_M1 (empty-stage guard only)"
+    },
+    {
+      "command": "npm run test:unit",
+      "exitCode": 0,
+      "durationMs": 1881.5509190000002,
+      "stage": "applicable"
+    },
+    {
+      "command": "npm run test:sim",
+      "exitCode": 0,
+      "durationMs": 1077.9069529999997,
+      "stage": "applicable"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "durationMs": 8023.895461,
+      "stage": "applicable"
+    },
+    {
+      "command": "npm run test:browser",
+      "exitCode": 0,
+      "durationMs": 6474.255063999999,
+      "stage": "applicable"
+    }
+  ]
+}

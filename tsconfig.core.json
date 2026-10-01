@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": [
+      "ES2022"
+    ],
+    "types": [],
+    "skipLibCheck": false
+  },
+  "include": [
+    "src/foundation",
+    "src/contracts",
+    "src/simulation",
+    "src/controllers",
+    "src/application/session"
+  ]
+}

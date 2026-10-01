@@ -1,5 +1,20 @@
 # MOBA 变更记录
 
+## 0.2.0 2026-10-01 M1 工程骨架与核心基础
+
+M0 已正式结束，按 0.1.1 的 M1 范围创建 Phaser/TypeScript/Vite 工程与唯一 lockfile；当前停在 M1，Android 真机出口未完成，未进入 M2。
+
+- 建立 foundation/contracts、私有 Simulation/EntityStore、Session、参数化 FixedTick 与空 Observation/RenderDelta。最小 generation 复用/退休与 Session/match 隔离；没有全局 World/ServiceLocator。
+- Phaser 空场景仅网格/矩形/圆。application 桥接唯一单调时钟，4 步/250ms过载暂停，暂停集合/显式恢复/单步/重开/生命周期清理。
+- Android 多指 Pointer 采样及按 Tick 合并；取消/失焦/旋转/overlay/context loss 清理。A普通插值、B非权威 VisualProxy，窗口≤一步、按新样本纠正；不改 World/碰撞/视野/资源。
+- 建立 strict 无DOM core编译、lint、白名单/SCC/别名/类型/动态导入门禁、未知命令校验、有界重试和测量缓冲。
+- validate:content 明确 NOT_APPLICABLE_M1，当前只阻止正式内容提前进入，不伪造 schema/capacity/disclosure 通过。
+- 软件时间戳区分采集/入队/Tick完成/POST_RENDER；记录实际样本与分位数、Tick/帧CPU及每秒成本、同 Tick 预测误差。电量/温度/物理触屏延迟未测。
+- 40 项自动测试全部通过：20 unit/architecture、16 simulation/replay、4 Chromium browser。npm run typecheck/lint/check:deps/test:unit/test:sim/build/check 实际 exit0；browser额外通过，content阶段入口明确N/A。A/B桌面各三轮100手势，原始报告随工程保存。
+- 更新原规范执行状态、ADR003与新增ADR017/018、依赖/实现/测试/Android验收文档、许可文本、SHA256 manifest。完整源码、规范、测试、报告和 dist一并交付。
+
+已知缺口：Android两档真机/S0/冷热态/电量/最低能力与C必要性；最终Tick率未接受。Phaser大chunk提示保留，正式内容/战斗/存档/PWA等仍按后续阶段实施。详见 docs/M1_TEST_REPORT.md 和 docs/M1_ACCEPTANCE.md。
+
 ## 0.1.1 2026-10-01 M0 外部审核修订
 
 整体架构保留；本轮只改七份规范，仍停 M0。没有创建 src、package.json、探针/测试源码或游戏系统，也没有进入 M1。

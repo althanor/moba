@@ -1,0 +1,6289 @@
+{
+  "version": "0.2.0",
+  "phase": "M1",
+  "androidAcceptance": "pending user hardware execution",
+  "config": {
+    "sessionId": "session-7",
+    "matchId": "m1-probe-7",
+    "tickRate": 30,
+    "mode": "response-probe",
+    "probeSpeedWorldPerSecond": 180
+  },
+  "renderTargetHz": 60,
+  "mode": "B",
+  "interpolation": "VisualProxy <= 1 step",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+    "cssWidth": 960,
+    "cssHeight": 540,
+    "devicePixelRatio": 1,
+    "backbufferWidth": 960,
+    "backbufferHeight": 540,
+    "webgl": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+    "maxTextureSize": 8192,
+    "renderer": "WebKit WebGL"
+  },
+  "measurement": {
+    "timing": "software capture / CPU submission; physical touch-to-photon unavailable",
+    "durationMs": 24010.599999999627,
+    "retainedSampleCount": 300,
+    "traceCapacity": 2000,
+    "totalTicks": 718,
+    "touchToUI": {
+      "count": 300,
+      "p50": 16.59999999962747,
+      "p95": 26.300000000745058,
+      "p99": 26.699999999254942,
+      "max": 27.199999999254942
+    },
+    "touchToVisual": {
+      "count": 100,
+      "p50": 0.8000000007450581,
+      "p95": 17.5,
+      "p99": 18.5,
+      "max": 19.100000001490116
+    },
+    "touchToAuthority": {
+      "count": 100,
+      "p50": 0.2000000011175871,
+      "p95": 33.30000000074506,
+      "p99": 33.5,
+      "max": 33.59999999962747
+    },
+    "captureToQueue": {
+      "count": 300,
+      "p50": 16.300000000745058,
+      "p95": 33.30000000074506,
+      "p99": 41.40000000037253,
+      "max": 57.600000001490116
+    },
+    "captureToAcceptance": {
+      "count": 300,
+      "p50": 16.300000000745058,
+      "p95": 33.30000000074506,
+      "p99": 41.40000000037253,
+      "max": 57.600000001490116
+    },
+    "tickCpuMs": {
+      "count": 718,
+      "p50": 0,
+      "p95": 0.10000000149011612,
+      "p99": 0.10000000149011612,
+      "max": 2.400000000372529
+    },
+    "frameMs": {
+      "count": 952,
+      "p50": 23.09999999962747,
+      "p95": 33.600000001490116,
+      "p99": 35,
+      "max": 145.5
+    },
+    "correctionWorld": {
+      "count": 295,
+      "p50": 0,
+      "p95": 6,
+      "p99": 6,
+      "max": 12
+    },
+    "frameCpuMs": {
+      "count": 953,
+      "p50": 0.5,
+      "p95": 1,
+      "p99": 1.699999999254942,
+      "max": 3.699999999254942
+    },
+    "measuredFrameCpuMsPerSecond": 22.019441413034766,
+    "cpuScope": "simulation.step total; frame interval from Scene.update to POST_RENDER (includes simulation, presentation, diagnostics; excludes browser/compositor work outside this interval)",
+    "reconciliation": {
+      "retainedCount": 295,
+      "correctionCount": 94,
+      "correctionFraction": 0.31864406779661014,
+      "errorDefinition": "previous one-step prediction aligned to next observed authoritative Tick; late samples beyond one step remain capped"
+    },
+    "totalSimulationCpuMs": 19.700000002980232,
+    "simulationCpuMsPerSecond": 0.8204709587840595,
+    "battery": "unavailable; record manually",
+    "thermal": "unavailable; record manually",
+    "phaseCpu": "M1 total shell only; detailed phase tracing deferred",
+    "traces": [
+      {
+        "sample": {
+          "sampleId": 1501,
+          "pointerId": 502,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 118869.30000000075
+        },
+        "queuedAtMs": 118885.70000000112,
+        "acceptedAtMs": 118885.70000000112,
+        "uiAtMs": 118886
+      },
+      {
+        "sample": {
+          "sampleId": 1502,
+          "pointerId": 502,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 118985.5
+        },
+        "queuedAtMs": 119002.20000000112,
+        "acceptedAtMs": 119002.20000000112,
+        "authoritativeAtMs": 119002.20000000112,
+        "uiAtMs": 119002.40000000037,
+        "visualAtMs": 119002.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1503,
+          "pointerId": 502,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 119075.90000000037
+        },
+        "queuedAtMs": 119102.20000000112,
+        "acceptedAtMs": 119102.20000000112,
+        "uiAtMs": 119102.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1504,
+          "pointerId": 503,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 119146.60000000149
+        },
+        "queuedAtMs": 119168.90000000037,
+        "acceptedAtMs": 119168.90000000037,
+        "uiAtMs": 119169.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1505,
+          "pointerId": 503,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 119218.80000000075
+        },
+        "queuedAtMs": 119219,
+        "acceptedAtMs": 119219,
+        "authoritativeAtMs": 119219,
+        "uiAtMs": 119219.10000000149,
+        "visualAtMs": 119219.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1506,
+          "pointerId": 503,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 119309.80000000075
+        },
+        "uiAtMs": 119319,
+        "queuedAtMs": 119335.60000000149,
+        "acceptedAtMs": 119335.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1507,
+          "pointerId": 504,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 119379.20000000112
+        },
+        "uiAtMs": 119385.60000000149,
+        "queuedAtMs": 119402.10000000149,
+        "acceptedAtMs": 119402.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1508,
+          "pointerId": 504,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 119452.20000000112
+        },
+        "queuedAtMs": 119452.30000000075,
+        "acceptedAtMs": 119452.30000000075,
+        "authoritativeAtMs": 119452.30000000075,
+        "uiAtMs": 119452.5,
+        "visualAtMs": 119452.5
+      },
+      {
+        "sample": {
+          "sampleId": 1509,
+          "pointerId": 504,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 119545.30000000075
+        },
+        "uiAtMs": 119552.20000000112,
+        "queuedAtMs": 119585.5,
+        "acceptedAtMs": 119585.5
+      },
+      {
+        "sample": {
+          "sampleId": 1510,
+          "pointerId": 505,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 119602.60000000149
+        },
+        "queuedAtMs": 119618.80000000075,
+        "acceptedAtMs": 119618.80000000075,
+        "uiAtMs": 119619.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1511,
+          "pointerId": 505,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 119685.30000000075
+        },
+        "queuedAtMs": 119702.20000000112,
+        "acceptedAtMs": 119702.20000000112,
+        "authoritativeAtMs": 119702.20000000112,
+        "uiAtMs": 119702.5,
+        "visualAtMs": 119702.5
+      },
+      {
+        "sample": {
+          "sampleId": 1512,
+          "pointerId": 505,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 119779.30000000075
+        },
+        "queuedAtMs": 119802.10000000149,
+        "acceptedAtMs": 119802.10000000149,
+        "uiAtMs": 119802.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1513,
+          "pointerId": 506,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 119836
+        },
+        "queuedAtMs": 119852.20000000112,
+        "acceptedAtMs": 119852.20000000112,
+        "uiAtMs": 119852.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1514,
+          "pointerId": 506,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 119918.70000000112
+        },
+        "queuedAtMs": 119918.90000000037,
+        "acceptedAtMs": 119918.90000000037,
+        "authoritativeAtMs": 119918.90000000037,
+        "uiAtMs": 119919.20000000112,
+        "visualAtMs": 119919.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1515,
+          "pointerId": 506,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 120009.80000000075
+        },
+        "queuedAtMs": 120035.5,
+        "acceptedAtMs": 120035.5,
+        "uiAtMs": 120035.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1516,
+          "pointerId": 507,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 120075.90000000037
+        },
+        "queuedAtMs": 120102.10000000149,
+        "acceptedAtMs": 120102.20000000112,
+        "uiAtMs": 120102.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1517,
+          "pointerId": 507,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 120152
+        },
+        "queuedAtMs": 120152.10000000149,
+        "acceptedAtMs": 120152.20000000112,
+        "authoritativeAtMs": 120152.20000000112,
+        "uiAtMs": 120152.40000000037,
+        "visualAtMs": 120152.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1518,
+          "pointerId": 507,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 120242.30000000075
+        },
+        "queuedAtMs": 120268.90000000037,
+        "acceptedAtMs": 120268.90000000037,
+        "uiAtMs": 120269.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1519,
+          "pointerId": 508,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 120310.90000000037
+        },
+        "uiAtMs": 120318.90000000037,
+        "queuedAtMs": 120352.30000000075,
+        "acceptedAtMs": 120352.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1520,
+          "pointerId": 508,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 120385.5
+        },
+        "queuedAtMs": 120385.60000000149,
+        "acceptedAtMs": 120385.60000000149,
+        "authoritativeAtMs": 120385.60000000149,
+        "uiAtMs": 120385.90000000037,
+        "visualAtMs": 120385.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1521,
+          "pointerId": 508,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 120475.10000000149
+        },
+        "uiAtMs": 120485.5,
+        "queuedAtMs": 120502,
+        "acceptedAtMs": 120502
+      },
+      {
+        "sample": {
+          "sampleId": 1522,
+          "pointerId": 509,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 120535.80000000075
+        },
+        "queuedAtMs": 120552.30000000075,
+        "acceptedAtMs": 120552.30000000075,
+        "uiAtMs": 120552.5
+      },
+      {
+        "sample": {
+          "sampleId": 1523,
+          "pointerId": 509,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 120618.80000000075
+        },
+        "queuedAtMs": 120619,
+        "acceptedAtMs": 120619,
+        "authoritativeAtMs": 120619,
+        "uiAtMs": 120619.30000000075,
+        "visualAtMs": 120619.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1524,
+          "pointerId": 509,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 120712.40000000037
+        },
+        "uiAtMs": 120718.90000000037,
+        "queuedAtMs": 120735.40000000037,
+        "acceptedAtMs": 120735.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1525,
+          "pointerId": 510,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 120777.5
+        },
+        "uiAtMs": 120785.5,
+        "queuedAtMs": 120802,
+        "acceptedAtMs": 120802.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1526,
+          "pointerId": 510,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 120852.20000000112
+        },
+        "queuedAtMs": 120852.30000000075,
+        "acceptedAtMs": 120852.30000000075,
+        "authoritativeAtMs": 120852.30000000075,
+        "uiAtMs": 120852.5,
+        "visualAtMs": 120852.5
+      },
+      {
+        "sample": {
+          "sampleId": 1527,
+          "pointerId": 510,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 120944.70000000112
+        },
+        "queuedAtMs": 120968.70000000112,
+        "acceptedAtMs": 120968.70000000112,
+        "uiAtMs": 120968.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1528,
+          "pointerId": 511,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 121011
+        },
+        "queuedAtMs": 121035.40000000037,
+        "acceptedAtMs": 121035.40000000037,
+        "uiAtMs": 121035.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1529,
+          "pointerId": 511,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 121085.40000000037
+        },
+        "queuedAtMs": 121085.5,
+        "acceptedAtMs": 121085.5,
+        "authoritativeAtMs": 121085.5,
+        "uiAtMs": 121085.70000000112,
+        "visualAtMs": 121085.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1530,
+          "pointerId": 511,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 121176.80000000075
+        },
+        "uiAtMs": 121185.5,
+        "queuedAtMs": 121202,
+        "acceptedAtMs": 121202
+      },
+      {
+        "sample": {
+          "sampleId": 1531,
+          "pointerId": 512,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 121243
+        },
+        "queuedAtMs": 121268.80000000075,
+        "acceptedAtMs": 121268.80000000075,
+        "uiAtMs": 121269.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1532,
+          "pointerId": 512,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 121318.70000000112
+        },
+        "queuedAtMs": 121335.40000000037,
+        "acceptedAtMs": 121335.5,
+        "authoritativeAtMs": 121335.5,
+        "uiAtMs": 121335.60000000149,
+        "visualAtMs": 121335.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1533,
+          "pointerId": 512,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 121409
+        },
+        "uiAtMs": 121418.90000000037,
+        "queuedAtMs": 121435.30000000075,
+        "acceptedAtMs": 121435.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1534,
+          "pointerId": 513,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 121469.10000000149
+        },
+        "queuedAtMs": 121485.5,
+        "acceptedAtMs": 121485.60000000149,
+        "uiAtMs": 121485.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1535,
+          "pointerId": 513,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 121552.20000000112
+        },
+        "queuedAtMs": 121552.30000000075,
+        "acceptedAtMs": 121552.30000000075,
+        "authoritativeAtMs": 121552.30000000075,
+        "uiAtMs": 121552.70000000112,
+        "visualAtMs": 121552.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1536,
+          "pointerId": 513,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 121635.80000000075
+        },
+        "queuedAtMs": 121652.20000000112,
+        "acceptedAtMs": 121652.30000000075,
+        "uiAtMs": 121652.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1537,
+          "pointerId": 514,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 121710.10000000149
+        },
+        "uiAtMs": 121719.5,
+        "queuedAtMs": 121735.5,
+        "acceptedAtMs": 121735.5
+      },
+      {
+        "sample": {
+          "sampleId": 1538,
+          "pointerId": 514,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 121785.5
+        },
+        "queuedAtMs": 121804.40000000037,
+        "acceptedAtMs": 121804.40000000037,
+        "authoritativeAtMs": 121804.40000000037,
+        "uiAtMs": 121804.60000000149,
+        "visualAtMs": 121804.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1539,
+          "pointerId": 514,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 121993.60000000149
+        },
+        "queuedAtMs": 122001.90000000037,
+        "acceptedAtMs": 122002.10000000149,
+        "uiAtMs": 122002.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1540,
+          "pointerId": 515,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 122052.70000000112
+        },
+        "queuedAtMs": 122068.90000000037,
+        "acceptedAtMs": 122068.90000000037,
+        "uiAtMs": 122069.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1541,
+          "pointerId": 515,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 122135.30000000075
+        },
+        "uiAtMs": 122152.5,
+        "visualAtMs": 122152.5,
+        "queuedAtMs": 122168.70000000112,
+        "acceptedAtMs": 122168.80000000075,
+        "authoritativeAtMs": 122168.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1542,
+          "pointerId": 515,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 122219.20000000112
+        },
+        "queuedAtMs": 122235.70000000112,
+        "acceptedAtMs": 122235.70000000112,
+        "uiAtMs": 122236
+      },
+      {
+        "sample": {
+          "sampleId": 1543,
+          "pointerId": 516,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 122294.5
+        },
+        "queuedAtMs": 122318.70000000112,
+        "acceptedAtMs": 122318.80000000075,
+        "uiAtMs": 122319.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1544,
+          "pointerId": 516,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 122368.70000000112
+        },
+        "queuedAtMs": 122385.40000000037,
+        "acceptedAtMs": 122385.5,
+        "authoritativeAtMs": 122385.5,
+        "uiAtMs": 122385.80000000075,
+        "visualAtMs": 122385.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1545,
+          "pointerId": 516,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 122459.40000000037
+        },
+        "queuedAtMs": 122468.70000000112,
+        "acceptedAtMs": 122468.70000000112,
+        "uiAtMs": 122469
+      },
+      {
+        "sample": {
+          "sampleId": 1546,
+          "pointerId": 517,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 122526.10000000149
+        },
+        "queuedAtMs": 122535.40000000037,
+        "acceptedAtMs": 122535.40000000037,
+        "uiAtMs": 122535.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1547,
+          "pointerId": 517,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 122602.20000000112
+        },
+        "queuedAtMs": 122602.30000000075,
+        "acceptedAtMs": 122602.30000000075,
+        "authoritativeAtMs": 122602.30000000075,
+        "uiAtMs": 122602.70000000112,
+        "visualAtMs": 122602.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1548,
+          "pointerId": 517,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 122692.80000000075
+        },
+        "uiAtMs": 122702.40000000037,
+        "queuedAtMs": 122720.30000000075,
+        "acceptedAtMs": 122720.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1549,
+          "pointerId": 518,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 122758.70000000112
+        },
+        "queuedAtMs": 122768.70000000112,
+        "acceptedAtMs": 122768.70000000112,
+        "uiAtMs": 122769.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1550,
+          "pointerId": 518,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 122835.40000000037
+        },
+        "queuedAtMs": 122835.5,
+        "acceptedAtMs": 122835.5,
+        "authoritativeAtMs": 122835.5,
+        "uiAtMs": 122835.80000000075,
+        "visualAtMs": 122835.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1551,
+          "pointerId": 518,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 122919.20000000112
+        },
+        "queuedAtMs": 122935.5,
+        "acceptedAtMs": 122935.5,
+        "uiAtMs": 122935.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1552,
+          "pointerId": 519,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 122994.60000000149
+        },
+        "queuedAtMs": 123018.80000000075,
+        "acceptedAtMs": 123018.80000000075,
+        "uiAtMs": 123019.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1553,
+          "pointerId": 519,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 123068.70000000112
+        },
+        "queuedAtMs": 123068.80000000075,
+        "acceptedAtMs": 123068.90000000037,
+        "authoritativeAtMs": 123068.90000000037,
+        "uiAtMs": 123069.10000000149,
+        "visualAtMs": 123069.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1554,
+          "pointerId": 519,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 123159.40000000037
+        },
+        "queuedAtMs": 123185.40000000037,
+        "acceptedAtMs": 123185.5,
+        "uiAtMs": 123185.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1555,
+          "pointerId": 520,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 123219.20000000112
+        },
+        "queuedAtMs": 123235.30000000075,
+        "acceptedAtMs": 123235.30000000075,
+        "uiAtMs": 123235.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1556,
+          "pointerId": 520,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 123302.10000000149
+        },
+        "queuedAtMs": 123302.20000000112,
+        "acceptedAtMs": 123302.30000000075,
+        "authoritativeAtMs": 123302.30000000075,
+        "uiAtMs": 123302.60000000149,
+        "visualAtMs": 123302.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1557,
+          "pointerId": 520,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 123393.10000000149
+        },
+        "queuedAtMs": 123401.90000000037,
+        "acceptedAtMs": 123401.90000000037,
+        "uiAtMs": 123402.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1558,
+          "pointerId": 521,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 123459.40000000037
+        },
+        "queuedAtMs": 123485.40000000037,
+        "acceptedAtMs": 123485.40000000037,
+        "uiAtMs": 123485.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1559,
+          "pointerId": 521,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 123535.20000000112
+        },
+        "queuedAtMs": 123551.90000000037,
+        "acceptedAtMs": 123551.90000000037,
+        "authoritativeAtMs": 123551.90000000037,
+        "uiAtMs": 123552.30000000075,
+        "visualAtMs": 123552.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1560,
+          "pointerId": 521,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 123628.30000000075
+        },
+        "uiAtMs": 123652.30000000075,
+        "queuedAtMs": 123685.40000000037,
+        "acceptedAtMs": 123685.5
+      },
+      {
+        "sample": {
+          "sampleId": 1561,
+          "pointerId": 522,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 123693.70000000112
+        },
+        "queuedAtMs": 123718.70000000112,
+        "acceptedAtMs": 123718.70000000112,
+        "uiAtMs": 123719
+      },
+      {
+        "sample": {
+          "sampleId": 1562,
+          "pointerId": 522,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 123768.60000000149
+        },
+        "queuedAtMs": 123768.80000000075,
+        "acceptedAtMs": 123768.80000000075,
+        "authoritativeAtMs": 123768.80000000075,
+        "uiAtMs": 123769.10000000149,
+        "visualAtMs": 123769.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1563,
+          "pointerId": 522,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 123859.40000000037
+        },
+        "queuedAtMs": 123885.40000000037,
+        "acceptedAtMs": 123885.5,
+        "uiAtMs": 123885.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1564,
+          "pointerId": 523,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 123919.30000000075
+        },
+        "queuedAtMs": 123935.5,
+        "acceptedAtMs": 123935.5,
+        "uiAtMs": 123935.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1565,
+          "pointerId": 523,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 124002.20000000112
+        },
+        "queuedAtMs": 124002.30000000075,
+        "acceptedAtMs": 124002.30000000075,
+        "authoritativeAtMs": 124002.30000000075,
+        "uiAtMs": 124002.70000000112,
+        "visualAtMs": 124002.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1566,
+          "pointerId": 523,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 124085.70000000112
+        },
+        "queuedAtMs": 124102,
+        "acceptedAtMs": 124102,
+        "uiAtMs": 124102.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1567,
+          "pointerId": 524,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 124152.5
+        },
+        "queuedAtMs": 124168.70000000112,
+        "acceptedAtMs": 124168.70000000112,
+        "uiAtMs": 124169.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1568,
+          "pointerId": 524,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 124235.20000000112
+        },
+        "uiAtMs": 124236,
+        "visualAtMs": 124236,
+        "queuedAtMs": 124268.80000000075,
+        "acceptedAtMs": 124268.80000000075,
+        "authoritativeAtMs": 124268.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1569,
+          "pointerId": 524,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 124330.80000000075
+        },
+        "queuedAtMs": 124352.20000000112,
+        "acceptedAtMs": 124352.20000000112,
+        "uiAtMs": 124352.5
+      },
+      {
+        "sample": {
+          "sampleId": 1570,
+          "pointerId": 525,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 124394
+        },
+        "queuedAtMs": 124418.70000000112,
+        "acceptedAtMs": 124418.70000000112,
+        "uiAtMs": 124419.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1571,
+          "pointerId": 525,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 124468.5
+        },
+        "queuedAtMs": 124468.70000000112,
+        "acceptedAtMs": 124468.70000000112,
+        "authoritativeAtMs": 124468.70000000112,
+        "uiAtMs": 124469.10000000149,
+        "visualAtMs": 124469.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1572,
+          "pointerId": 525,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 124552.40000000037
+        },
+        "queuedAtMs": 124568.70000000112,
+        "acceptedAtMs": 124568.70000000112,
+        "uiAtMs": 124569
+      },
+      {
+        "sample": {
+          "sampleId": 1573,
+          "pointerId": 526,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 124627.20000000112
+        },
+        "queuedAtMs": 124652.20000000112,
+        "acceptedAtMs": 124652.20000000112,
+        "uiAtMs": 124652.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1574,
+          "pointerId": 526,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 124701.80000000075
+        },
+        "queuedAtMs": 124702,
+        "acceptedAtMs": 124702,
+        "authoritativeAtMs": 124702,
+        "uiAtMs": 124702.40000000037,
+        "visualAtMs": 124702.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1575,
+          "pointerId": 526,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 124785.70000000112
+        },
+        "queuedAtMs": 124802.10000000149,
+        "acceptedAtMs": 124802.10000000149,
+        "uiAtMs": 124802.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1576,
+          "pointerId": 527,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 124863.10000000149
+        },
+        "queuedAtMs": 124868.5,
+        "acceptedAtMs": 124868.5,
+        "uiAtMs": 124868.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1577,
+          "pointerId": 527,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 124935.10000000149
+        },
+        "queuedAtMs": 124935.30000000075,
+        "acceptedAtMs": 124935.30000000075,
+        "authoritativeAtMs": 124935.30000000075,
+        "uiAtMs": 124935.70000000112,
+        "visualAtMs": 124935.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1578,
+          "pointerId": 527,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 125029.30000000075
+        },
+        "queuedAtMs": 125035.20000000112,
+        "acceptedAtMs": 125035.30000000075,
+        "uiAtMs": 125035.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1579,
+          "pointerId": 528,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 125085.80000000075
+        },
+        "queuedAtMs": 125102,
+        "acceptedAtMs": 125102,
+        "uiAtMs": 125102.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1580,
+          "pointerId": 528,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 125168.70000000112
+        },
+        "queuedAtMs": 125168.90000000037,
+        "acceptedAtMs": 125168.90000000037,
+        "authoritativeAtMs": 125168.90000000037,
+        "uiAtMs": 125169.20000000112,
+        "visualAtMs": 125169.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1581,
+          "pointerId": 528,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 125265.30000000075
+        },
+        "queuedAtMs": 125285.30000000075,
+        "acceptedAtMs": 125285.30000000075,
+        "uiAtMs": 125285.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1582,
+          "pointerId": 529,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 125326.5
+        },
+        "queuedAtMs": 125352,
+        "acceptedAtMs": 125352,
+        "uiAtMs": 125352.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1583,
+          "pointerId": 529,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 125402
+        },
+        "queuedAtMs": 125402.10000000149,
+        "acceptedAtMs": 125402.10000000149,
+        "authoritativeAtMs": 125402.10000000149,
+        "uiAtMs": 125402.40000000037,
+        "visualAtMs": 125402.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1584,
+          "pointerId": 529,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 125493
+        },
+        "queuedAtMs": 125501.90000000037,
+        "acceptedAtMs": 125501.90000000037,
+        "uiAtMs": 125502.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1585,
+          "pointerId": 530,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 125552.30000000075
+        },
+        "queuedAtMs": 125568.60000000149,
+        "acceptedAtMs": 125568.60000000149,
+        "uiAtMs": 125568.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1586,
+          "pointerId": 530,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 125635.30000000075
+        },
+        "queuedAtMs": 125635.40000000037,
+        "acceptedAtMs": 125635.40000000037,
+        "authoritativeAtMs": 125635.40000000037,
+        "uiAtMs": 125635.70000000112,
+        "visualAtMs": 125635.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1587,
+          "pointerId": 530,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 125726.5
+        },
+        "queuedAtMs": 125751.80000000075,
+        "acceptedAtMs": 125751.80000000075,
+        "uiAtMs": 125752.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1588,
+          "pointerId": 531,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 125785.70000000112
+        },
+        "queuedAtMs": 125801.90000000037,
+        "acceptedAtMs": 125801.90000000037,
+        "uiAtMs": 125802.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1589,
+          "pointerId": 531,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 125868.5
+        },
+        "queuedAtMs": 125885.30000000075,
+        "acceptedAtMs": 125885.30000000075,
+        "authoritativeAtMs": 125885.30000000075,
+        "uiAtMs": 125885.60000000149,
+        "visualAtMs": 125885.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1590,
+          "pointerId": 531,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 125961.60000000149
+        },
+        "queuedAtMs": 125968.5,
+        "acceptedAtMs": 125968.5,
+        "uiAtMs": 125968.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1591,
+          "pointerId": 532,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 126027.70000000112
+        },
+        "queuedAtMs": 126035.10000000149,
+        "acceptedAtMs": 126035.20000000112,
+        "uiAtMs": 126035.5
+      },
+      {
+        "sample": {
+          "sampleId": 1592,
+          "pointerId": 532,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 126101.90000000037
+        },
+        "queuedAtMs": 126102,
+        "acceptedAtMs": 126102.10000000149,
+        "authoritativeAtMs": 126102.10000000149,
+        "uiAtMs": 126102.5,
+        "visualAtMs": 126102.5
+      },
+      {
+        "sample": {
+          "sampleId": 1593,
+          "pointerId": 532,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 126185.60000000149
+        },
+        "queuedAtMs": 126201.90000000037,
+        "acceptedAtMs": 126201.90000000037,
+        "uiAtMs": 126203.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1594,
+          "pointerId": 533,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 126252.40000000037
+        },
+        "queuedAtMs": 126268.60000000149,
+        "acceptedAtMs": 126268.60000000149,
+        "uiAtMs": 126269
+      },
+      {
+        "sample": {
+          "sampleId": 1595,
+          "pointerId": 533,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 126335.30000000075
+        },
+        "queuedAtMs": 126335.40000000037,
+        "acceptedAtMs": 126335.40000000037,
+        "authoritativeAtMs": 126335.40000000037,
+        "uiAtMs": 126335.80000000075,
+        "visualAtMs": 126335.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1596,
+          "pointerId": 533,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 126418.90000000037
+        },
+        "queuedAtMs": 126435.30000000075,
+        "acceptedAtMs": 126435.30000000075,
+        "uiAtMs": 126436
+      },
+      {
+        "sample": {
+          "sampleId": 1597,
+          "pointerId": 534,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 126492.5
+        },
+        "queuedAtMs": 126518.60000000149,
+        "acceptedAtMs": 126518.60000000149,
+        "uiAtMs": 126519
+      },
+      {
+        "sample": {
+          "sampleId": 1598,
+          "pointerId": 534,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 126568.5
+        },
+        "uiAtMs": 126568.90000000037,
+        "visualAtMs": 126568.90000000037,
+        "queuedAtMs": 126588.60000000149,
+        "acceptedAtMs": 126588.60000000149,
+        "authoritativeAtMs": 126588.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1599,
+          "pointerId": 534,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 126680.5
+        },
+        "queuedAtMs": 126702,
+        "acceptedAtMs": 126702,
+        "uiAtMs": 126702.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1600,
+          "pointerId": 535,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 126735.70000000112
+        },
+        "queuedAtMs": 126751.90000000037,
+        "acceptedAtMs": 126751.90000000037,
+        "uiAtMs": 126752.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1601,
+          "pointerId": 535,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 126835.40000000037
+        },
+        "queuedAtMs": 126835.5,
+        "acceptedAtMs": 126835.60000000149,
+        "authoritativeAtMs": 126835.60000000149,
+        "uiAtMs": 126835.90000000037,
+        "visualAtMs": 126835.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1602,
+          "pointerId": 535,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 126919
+        },
+        "queuedAtMs": 126935.40000000037,
+        "acceptedAtMs": 126935.40000000037,
+        "uiAtMs": 126935.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1603,
+          "pointerId": 536,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 126997
+        },
+        "queuedAtMs": 127002.80000000075,
+        "acceptedAtMs": 127002.80000000075,
+        "uiAtMs": 127003.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1604,
+          "pointerId": 536,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 127068.5
+        },
+        "uiAtMs": 127069.20000000112,
+        "visualAtMs": 127069.20000000112,
+        "queuedAtMs": 127102,
+        "acceptedAtMs": 127102,
+        "authoritativeAtMs": 127102
+      },
+      {
+        "sample": {
+          "sampleId": 1605,
+          "pointerId": 536,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 127152.30000000075
+        },
+        "queuedAtMs": 127168.60000000149,
+        "acceptedAtMs": 127168.60000000149,
+        "uiAtMs": 127169
+      },
+      {
+        "sample": {
+          "sampleId": 1606,
+          "pointerId": 537,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 127225.40000000037
+        },
+        "queuedAtMs": 127235.40000000037,
+        "acceptedAtMs": 127235.40000000037,
+        "uiAtMs": 127235.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1607,
+          "pointerId": 537,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 127301.70000000112
+        },
+        "queuedAtMs": 127318.60000000149,
+        "acceptedAtMs": 127318.60000000149,
+        "authoritativeAtMs": 127318.60000000149,
+        "uiAtMs": 127319,
+        "visualAtMs": 127319
+      },
+      {
+        "sample": {
+          "sampleId": 1608,
+          "pointerId": 537,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 127396.20000000112
+        },
+        "queuedAtMs": 127401.70000000112,
+        "acceptedAtMs": 127401.70000000112,
+        "uiAtMs": 127402.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1609,
+          "pointerId": 538,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 127461.10000000149
+        },
+        "queuedAtMs": 127485.5,
+        "acceptedAtMs": 127485.60000000149,
+        "uiAtMs": 127486
+      },
+      {
+        "sample": {
+          "sampleId": 1610,
+          "pointerId": 538,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 127535.10000000149
+        },
+        "queuedAtMs": 127551.90000000037,
+        "acceptedAtMs": 127552,
+        "authoritativeAtMs": 127552,
+        "uiAtMs": 127552.40000000037,
+        "visualAtMs": 127552.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1611,
+          "pointerId": 538,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 127618.90000000037
+        },
+        "queuedAtMs": 127635.30000000075,
+        "acceptedAtMs": 127635.40000000037,
+        "uiAtMs": 127635.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1612,
+          "pointerId": 539,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 127692.70000000112
+        },
+        "queuedAtMs": 127718.60000000149,
+        "acceptedAtMs": 127718.70000000112,
+        "uiAtMs": 127719.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1613,
+          "pointerId": 539,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 127768.5
+        },
+        "queuedAtMs": 127768.60000000149,
+        "acceptedAtMs": 127768.60000000149,
+        "authoritativeAtMs": 127768.60000000149,
+        "uiAtMs": 127769,
+        "visualAtMs": 127769
+      },
+      {
+        "sample": {
+          "sampleId": 1614,
+          "pointerId": 539,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 127859.70000000112
+        },
+        "queuedAtMs": 127868.5,
+        "acceptedAtMs": 127868.5,
+        "uiAtMs": 127868.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1615,
+          "pointerId": 540,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 127925.70000000112
+        },
+        "queuedAtMs": 127951.90000000037,
+        "acceptedAtMs": 127951.90000000037,
+        "uiAtMs": 127952.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1616,
+          "pointerId": 540,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 128001.70000000112
+        },
+        "queuedAtMs": 128001.90000000037,
+        "acceptedAtMs": 128001.90000000037,
+        "authoritativeAtMs": 128001.90000000037,
+        "uiAtMs": 128002.30000000075,
+        "visualAtMs": 128002.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1617,
+          "pointerId": 540,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 128095.30000000075
+        },
+        "queuedAtMs": 128101.80000000075,
+        "acceptedAtMs": 128101.80000000075,
+        "uiAtMs": 128102.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1618,
+          "pointerId": 541,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 128158.60000000149
+        },
+        "queuedAtMs": 128185.30000000075,
+        "acceptedAtMs": 128185.40000000037,
+        "uiAtMs": 128185.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1619,
+          "pointerId": 541,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 128235.20000000112
+        },
+        "queuedAtMs": 128235.30000000075,
+        "acceptedAtMs": 128235.40000000037,
+        "authoritativeAtMs": 128235.40000000037,
+        "uiAtMs": 128235.60000000149,
+        "visualAtMs": 128235.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1620,
+          "pointerId": 541,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 128319.20000000112
+        },
+        "queuedAtMs": 128335.10000000149,
+        "acceptedAtMs": 128335.10000000149,
+        "uiAtMs": 128335.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1621,
+          "pointerId": 542,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 128391.90000000037
+        },
+        "queuedAtMs": 128401.70000000112,
+        "acceptedAtMs": 128401.80000000075,
+        "uiAtMs": 128402.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1622,
+          "pointerId": 542,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 128468.40000000037
+        },
+        "queuedAtMs": 128485.10000000149,
+        "acceptedAtMs": 128485.10000000149,
+        "authoritativeAtMs": 128485.10000000149,
+        "uiAtMs": 128485.5,
+        "visualAtMs": 128485.5
+      },
+      {
+        "sample": {
+          "sampleId": 1623,
+          "pointerId": 542,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 128559.40000000037
+        },
+        "queuedAtMs": 128585.30000000075,
+        "acceptedAtMs": 128585.40000000037,
+        "uiAtMs": 128585.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1624,
+          "pointerId": 543,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 128618.80000000075
+        },
+        "queuedAtMs": 128635.10000000149,
+        "acceptedAtMs": 128635.10000000149,
+        "uiAtMs": 128635.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1625,
+          "pointerId": 543,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 128701.70000000112
+        },
+        "queuedAtMs": 128701.80000000075,
+        "acceptedAtMs": 128701.80000000075,
+        "authoritativeAtMs": 128701.80000000075,
+        "uiAtMs": 128702.30000000075,
+        "visualAtMs": 128702.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1626,
+          "pointerId": 543,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 128785.40000000037
+        },
+        "queuedAtMs": 128801.80000000075,
+        "acceptedAtMs": 128801.90000000037,
+        "uiAtMs": 128802.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1627,
+          "pointerId": 544,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 128859.10000000149
+        },
+        "queuedAtMs": 128885,
+        "acceptedAtMs": 128885,
+        "uiAtMs": 128885.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1628,
+          "pointerId": 544,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 128935.10000000149
+        },
+        "queuedAtMs": 128935.30000000075,
+        "acceptedAtMs": 128935.30000000075,
+        "authoritativeAtMs": 128935.30000000075,
+        "uiAtMs": 128935.70000000112,
+        "visualAtMs": 128935.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1629,
+          "pointerId": 544,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 129029.5
+        },
+        "queuedAtMs": 129035.10000000149,
+        "acceptedAtMs": 129035.10000000149,
+        "uiAtMs": 129035.5
+      },
+      {
+        "sample": {
+          "sampleId": 1630,
+          "pointerId": 545,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 129091.80000000075
+        },
+        "queuedAtMs": 129118.40000000037,
+        "acceptedAtMs": 129118.40000000037,
+        "uiAtMs": 129118.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1631,
+          "pointerId": 545,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 129168.40000000037
+        },
+        "queuedAtMs": 129168.5,
+        "acceptedAtMs": 129168.5,
+        "authoritativeAtMs": 129168.5,
+        "uiAtMs": 129168.90000000037,
+        "visualAtMs": 129168.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1632,
+          "pointerId": 545,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 129252
+        },
+        "queuedAtMs": 129268.70000000112,
+        "acceptedAtMs": 129268.70000000112,
+        "uiAtMs": 129269.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1633,
+          "pointerId": 546,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 129318.90000000037
+        },
+        "queuedAtMs": 129335,
+        "acceptedAtMs": 129335,
+        "uiAtMs": 129335.5
+      },
+      {
+        "sample": {
+          "sampleId": 1634,
+          "pointerId": 546,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 129401.70000000112
+        },
+        "queuedAtMs": 129418.5,
+        "acceptedAtMs": 129418.5,
+        "authoritativeAtMs": 129418.5,
+        "uiAtMs": 129419,
+        "visualAtMs": 129419
+      },
+      {
+        "sample": {
+          "sampleId": 1635,
+          "pointerId": 546,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 129485.40000000037
+        },
+        "queuedAtMs": 129501.70000000112,
+        "acceptedAtMs": 129501.70000000112,
+        "uiAtMs": 129502.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1636,
+          "pointerId": 547,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 129552.20000000112
+        },
+        "queuedAtMs": 129568.40000000037,
+        "acceptedAtMs": 129568.40000000037,
+        "uiAtMs": 129568.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1637,
+          "pointerId": 547,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 129635
+        },
+        "queuedAtMs": 129651.70000000112,
+        "acceptedAtMs": 129651.70000000112,
+        "authoritativeAtMs": 129651.70000000112,
+        "uiAtMs": 129652.10000000149,
+        "visualAtMs": 129652.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1638,
+          "pointerId": 547,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 129719
+        },
+        "queuedAtMs": 129735.10000000149,
+        "acceptedAtMs": 129735.10000000149,
+        "uiAtMs": 129735.5
+      },
+      {
+        "sample": {
+          "sampleId": 1639,
+          "pointerId": 548,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 129795.10000000149
+        },
+        "queuedAtMs": 129818.70000000112,
+        "acceptedAtMs": 129818.70000000112,
+        "uiAtMs": 129819.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1640,
+          "pointerId": 548,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 129868.30000000075
+        },
+        "queuedAtMs": 129885,
+        "acceptedAtMs": 129885.10000000149,
+        "authoritativeAtMs": 129885.10000000149,
+        "uiAtMs": 129885.70000000112,
+        "visualAtMs": 129885.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1641,
+          "pointerId": 548,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 129959
+        },
+        "queuedAtMs": 129985.10000000149,
+        "acceptedAtMs": 129985.10000000149,
+        "uiAtMs": 129985.5
+      },
+      {
+        "sample": {
+          "sampleId": 1642,
+          "pointerId": 549,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 130027.10000000149
+        },
+        "queuedAtMs": 130035.10000000149,
+        "acceptedAtMs": 130035.10000000149,
+        "uiAtMs": 130035.5
+      },
+      {
+        "sample": {
+          "sampleId": 1643,
+          "pointerId": 549,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 130101.60000000149
+        },
+        "queuedAtMs": 130101.70000000112,
+        "acceptedAtMs": 130101.80000000075,
+        "authoritativeAtMs": 130101.80000000075,
+        "uiAtMs": 130102.10000000149,
+        "visualAtMs": 130102.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1644,
+          "pointerId": 549,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 130193.60000000149
+        },
+        "queuedAtMs": 130218.30000000075,
+        "acceptedAtMs": 130218.40000000037,
+        "uiAtMs": 130218.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1645,
+          "pointerId": 550,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 130261.70000000112
+        },
+        "queuedAtMs": 130268.40000000037,
+        "acceptedAtMs": 130268.5,
+        "uiAtMs": 130269
+      },
+      {
+        "sample": {
+          "sampleId": 1646,
+          "pointerId": 550,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 130335
+        },
+        "uiAtMs": 130352.30000000075,
+        "visualAtMs": 130352.30000000075,
+        "queuedAtMs": 130368.30000000075,
+        "acceptedAtMs": 130368.40000000037,
+        "authoritativeAtMs": 130368.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1647,
+          "pointerId": 550,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 130418.90000000037
+        },
+        "queuedAtMs": 130435,
+        "acceptedAtMs": 130435,
+        "uiAtMs": 130435.5
+      },
+      {
+        "sample": {
+          "sampleId": 1648,
+          "pointerId": 551,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 130495
+        },
+        "queuedAtMs": 130501.80000000075,
+        "acceptedAtMs": 130501.80000000075,
+        "uiAtMs": 130502.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1649,
+          "pointerId": 551,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 130568.30000000075
+        },
+        "queuedAtMs": 130568.5,
+        "acceptedAtMs": 130568.5,
+        "authoritativeAtMs": 130568.5,
+        "uiAtMs": 130568.90000000037,
+        "visualAtMs": 130568.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1650,
+          "pointerId": 551,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 130663.30000000075
+        },
+        "queuedAtMs": 130685,
+        "acceptedAtMs": 130685.10000000149,
+        "uiAtMs": 130685.5
+      },
+      {
+        "sample": {
+          "sampleId": 1651,
+          "pointerId": 552,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 130718.90000000037
+        },
+        "queuedAtMs": 130735.30000000075,
+        "acceptedAtMs": 130735.30000000075,
+        "uiAtMs": 130735.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1652,
+          "pointerId": 552,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 130801.60000000149
+        },
+        "queuedAtMs": 130801.80000000075,
+        "acceptedAtMs": 130801.80000000075,
+        "authoritativeAtMs": 130801.80000000075,
+        "uiAtMs": 130802.30000000075,
+        "visualAtMs": 130802.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1653,
+          "pointerId": 552,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 130894.40000000037
+        },
+        "queuedAtMs": 130901.60000000149,
+        "acceptedAtMs": 130901.60000000149,
+        "uiAtMs": 130902.10000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1654,
+          "pointerId": 553,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 130961.60000000149
+        },
+        "queuedAtMs": 130985,
+        "acceptedAtMs": 130985,
+        "uiAtMs": 130985.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1655,
+          "pointerId": 553,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 131035
+        },
+        "queuedAtMs": 131035.20000000112,
+        "acceptedAtMs": 131035.20000000112,
+        "authoritativeAtMs": 131035.20000000112,
+        "uiAtMs": 131035.60000000149,
+        "visualAtMs": 131035.60000000149
+      },
+      {
+        "sample": {
+          "sampleId": 1656,
+          "pointerId": 553,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 131119
+        },
+        "queuedAtMs": 131135.20000000112,
+        "acceptedAtMs": 131135.20000000112,
+        "uiAtMs": 131135.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1657,
+          "pointerId": 554,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 131185.40000000037
+        },
+        "queuedAtMs": 131201.90000000037,
+        "acceptedAtMs": 131201.90000000037,
+        "uiAtMs": 131202.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1658,
+          "pointerId": 554,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 131268.20000000112
+        },
+        "queuedAtMs": 131285,
+        "acceptedAtMs": 131285,
+        "authoritativeAtMs": 131285,
+        "uiAtMs": 131285.6000000015,
+        "visualAtMs": 131285.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1659,
+          "pointerId": 554,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 131364.70000000112
+        },
+        "queuedAtMs": 131385,
+        "acceptedAtMs": 131385.1000000015,
+        "uiAtMs": 131385.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1660,
+          "pointerId": 555,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 131426.5
+        },
+        "queuedAtMs": 131434.90000000037,
+        "acceptedAtMs": 131435,
+        "uiAtMs": 131435.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1661,
+          "pointerId": 555,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 131501.5
+        },
+        "queuedAtMs": 131501.70000000112,
+        "acceptedAtMs": 131501.70000000112,
+        "authoritativeAtMs": 131501.70000000112,
+        "uiAtMs": 131502.6000000015,
+        "visualAtMs": 131502.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1662,
+          "pointerId": 555,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 131594.30000000075
+        },
+        "queuedAtMs": 131618.5,
+        "acceptedAtMs": 131618.6000000015,
+        "uiAtMs": 131619.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1663,
+          "pointerId": 556,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 131659.20000000112
+        },
+        "queuedAtMs": 131685.1000000015,
+        "acceptedAtMs": 131685.1000000015,
+        "uiAtMs": 131685.5
+      },
+      {
+        "sample": {
+          "sampleId": 1664,
+          "pointerId": 556,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 131734.90000000037
+        },
+        "queuedAtMs": 131735,
+        "acceptedAtMs": 131735,
+        "authoritativeAtMs": 131735,
+        "uiAtMs": 131735.70000000112,
+        "visualAtMs": 131735.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1665,
+          "pointerId": 556,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 131856.30000000075
+        },
+        "queuedAtMs": 131868.20000000112,
+        "acceptedAtMs": 131868.20000000112,
+        "uiAtMs": 131868.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1666,
+          "pointerId": 557,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 131918.70000000112
+        },
+        "queuedAtMs": 131934.90000000037,
+        "acceptedAtMs": 131935,
+        "uiAtMs": 131935.5
+      },
+      {
+        "sample": {
+          "sampleId": 1667,
+          "pointerId": 557,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 132001.6000000015
+        },
+        "queuedAtMs": 132001.80000000075,
+        "acceptedAtMs": 132001.80000000075,
+        "authoritativeAtMs": 132001.80000000075,
+        "uiAtMs": 132002.20000000112,
+        "visualAtMs": 132002.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1668,
+          "pointerId": 557,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 132085.30000000075
+        },
+        "queuedAtMs": 132101.80000000075,
+        "acceptedAtMs": 132101.90000000037,
+        "uiAtMs": 132102.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1669,
+          "pointerId": 558,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 132159.6000000015
+        },
+        "queuedAtMs": 132168.30000000075,
+        "acceptedAtMs": 132168.30000000075,
+        "uiAtMs": 132168.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1670,
+          "pointerId": 558,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 132235
+        },
+        "queuedAtMs": 132251.5,
+        "acceptedAtMs": 132251.6000000015,
+        "authoritativeAtMs": 132251.6000000015,
+        "uiAtMs": 132252,
+        "visualAtMs": 132252
+      },
+      {
+        "sample": {
+          "sampleId": 1671,
+          "pointerId": 558,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 132327.40000000037
+        },
+        "queuedAtMs": 132351.70000000112,
+        "acceptedAtMs": 132351.70000000112,
+        "uiAtMs": 132352.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1672,
+          "pointerId": 559,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 132385.40000000037
+        },
+        "queuedAtMs": 132401.70000000112,
+        "acceptedAtMs": 132401.70000000112,
+        "uiAtMs": 132402.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1673,
+          "pointerId": 559,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 132468.70000000112
+        },
+        "queuedAtMs": 132468.90000000037,
+        "acceptedAtMs": 132468.90000000037,
+        "authoritativeAtMs": 132468.90000000037,
+        "uiAtMs": 132469.70000000112,
+        "visualAtMs": 132469.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1674,
+          "pointerId": 559,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 132560.1000000015
+        },
+        "queuedAtMs": 132568.30000000075,
+        "acceptedAtMs": 132568.30000000075,
+        "uiAtMs": 132568.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1675,
+          "pointerId": 560,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 132625.40000000037
+        },
+        "queuedAtMs": 132634.90000000037,
+        "acceptedAtMs": 132634.90000000037,
+        "uiAtMs": 132635.5
+      },
+      {
+        "sample": {
+          "sampleId": 1676,
+          "pointerId": 560,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 132701.6000000015
+        },
+        "queuedAtMs": 132718.40000000037,
+        "acceptedAtMs": 132718.40000000037,
+        "authoritativeAtMs": 132718.40000000037,
+        "uiAtMs": 132718.90000000037,
+        "visualAtMs": 132718.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1677,
+          "pointerId": 560,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 132793.5
+        },
+        "queuedAtMs": 132818.30000000075,
+        "acceptedAtMs": 132818.30000000075,
+        "uiAtMs": 132818.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1678,
+          "pointerId": 561,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 132859.1000000015
+        },
+        "queuedAtMs": 132868.30000000075,
+        "acceptedAtMs": 132868.30000000075,
+        "uiAtMs": 132868.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1679,
+          "pointerId": 561,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 132934.90000000037
+        },
+        "queuedAtMs": 132935,
+        "acceptedAtMs": 132935.1000000015,
+        "authoritativeAtMs": 132935.1000000015,
+        "uiAtMs": 132935.90000000037,
+        "visualAtMs": 132935.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1680,
+          "pointerId": 561,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 133026.70000000112
+        },
+        "queuedAtMs": 133035.1000000015,
+        "acceptedAtMs": 133035.1000000015,
+        "uiAtMs": 133035.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1681,
+          "pointerId": 562,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 133096.40000000037
+        },
+        "queuedAtMs": 133101.5,
+        "acceptedAtMs": 133101.5,
+        "uiAtMs": 133102
+      },
+      {
+        "sample": {
+          "sampleId": 1682,
+          "pointerId": 562,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 133184.80000000075
+        },
+        "uiAtMs": 133185.6000000015,
+        "visualAtMs": 133185.6000000015,
+        "queuedAtMs": 133201.70000000112,
+        "acceptedAtMs": 133201.70000000112,
+        "authoritativeAtMs": 133201.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1683,
+          "pointerId": 562,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 133270
+        },
+        "queuedAtMs": 133285,
+        "acceptedAtMs": 133285,
+        "uiAtMs": 133285.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1684,
+          "pointerId": 563,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 133347.90000000037
+        },
+        "queuedAtMs": 133368.30000000075,
+        "acceptedAtMs": 133368.40000000037,
+        "uiAtMs": 133368.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1685,
+          "pointerId": 563,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 133418.20000000112
+        },
+        "queuedAtMs": 133435,
+        "acceptedAtMs": 133435,
+        "authoritativeAtMs": 133435,
+        "uiAtMs": 133435.6000000015,
+        "visualAtMs": 133435.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1686,
+          "pointerId": 563,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 133509.80000000075
+        },
+        "queuedAtMs": 133534.90000000037,
+        "acceptedAtMs": 133534.90000000037,
+        "uiAtMs": 133535.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1687,
+          "pointerId": 564,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 133568.80000000075
+        },
+        "queuedAtMs": 133584.90000000037,
+        "acceptedAtMs": 133585,
+        "uiAtMs": 133585.5
+      },
+      {
+        "sample": {
+          "sampleId": 1688,
+          "pointerId": 564,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 133651.6000000015
+        },
+        "uiAtMs": 133654.5,
+        "visualAtMs": 133654.5,
+        "queuedAtMs": 133674.80000000075,
+        "acceptedAtMs": 133674.90000000037,
+        "authoritativeAtMs": 133674.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1689,
+          "pointerId": 564,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 133803.40000000037
+        },
+        "uiAtMs": 133804.1000000015,
+        "queuedAtMs": 133835,
+        "acceptedAtMs": 133835
+      },
+      {
+        "sample": {
+          "sampleId": 1690,
+          "pointerId": 565,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 133915
+        },
+        "uiAtMs": 133918.70000000112,
+        "queuedAtMs": 133951.6000000015,
+        "acceptedAtMs": 133951.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1691,
+          "pointerId": 565,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 133985
+        },
+        "queuedAtMs": 133985,
+        "acceptedAtMs": 133985.1000000015,
+        "authoritativeAtMs": 133985.1000000015,
+        "uiAtMs": 133985.70000000112,
+        "visualAtMs": 133985.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1692,
+          "pointerId": 565,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 134075.40000000037
+        },
+        "uiAtMs": 134085.40000000037,
+        "queuedAtMs": 134118.30000000075,
+        "acceptedAtMs": 134118.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1693,
+          "pointerId": 566,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 134164.90000000037
+        },
+        "uiAtMs": 134185.40000000037,
+        "queuedAtMs": 134201.6000000015,
+        "acceptedAtMs": 134201.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1694,
+          "pointerId": 566,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 134234.80000000075
+        },
+        "queuedAtMs": 134251.6000000015,
+        "acceptedAtMs": 134251.6000000015,
+        "authoritativeAtMs": 134251.6000000015,
+        "uiAtMs": 134252.1000000015,
+        "visualAtMs": 134252.1000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1695,
+          "pointerId": 566,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 134325.80000000075
+        },
+        "queuedAtMs": 134334.90000000037,
+        "acceptedAtMs": 134334.90000000037,
+        "uiAtMs": 134335.5
+      },
+      {
+        "sample": {
+          "sampleId": 1696,
+          "pointerId": 567,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 134385.5
+        },
+        "queuedAtMs": 134401.6000000015,
+        "acceptedAtMs": 134401.6000000015,
+        "uiAtMs": 134402.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1697,
+          "pointerId": 567,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 134468.30000000075
+        },
+        "queuedAtMs": 134468.40000000037,
+        "acceptedAtMs": 134468.5,
+        "authoritativeAtMs": 134468.5,
+        "uiAtMs": 134469,
+        "visualAtMs": 134469
+      },
+      {
+        "sample": {
+          "sampleId": 1698,
+          "pointerId": 567,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 134559.40000000037
+        },
+        "queuedAtMs": 134584.90000000037,
+        "acceptedAtMs": 134585,
+        "uiAtMs": 134586
+      },
+      {
+        "sample": {
+          "sampleId": 1699,
+          "pointerId": 568,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 134628.5
+        },
+        "queuedAtMs": 134651.80000000075,
+        "acceptedAtMs": 134651.80000000075,
+        "uiAtMs": 134652.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1700,
+          "pointerId": 568,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 134701.6000000015
+        },
+        "queuedAtMs": 134701.70000000112,
+        "acceptedAtMs": 134701.80000000075,
+        "authoritativeAtMs": 134701.80000000075,
+        "uiAtMs": 134702.40000000037,
+        "visualAtMs": 134702.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1701,
+          "pointerId": 568,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 134793.80000000075
+        },
+        "queuedAtMs": 134801.6000000015,
+        "acceptedAtMs": 134801.6000000015,
+        "uiAtMs": 134802.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1702,
+          "pointerId": 569,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 134851.90000000037
+        },
+        "queuedAtMs": 134868.30000000075,
+        "acceptedAtMs": 134868.30000000075,
+        "uiAtMs": 134868.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1703,
+          "pointerId": 569,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 134934.90000000037
+        },
+        "queuedAtMs": 134935,
+        "acceptedAtMs": 134935,
+        "authoritativeAtMs": 134935,
+        "uiAtMs": 134935.6000000015,
+        "visualAtMs": 134935.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1704,
+          "pointerId": 569,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 135018.6000000015
+        },
+        "queuedAtMs": 135035,
+        "acceptedAtMs": 135035,
+        "uiAtMs": 135036.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1705,
+          "pointerId": 570,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 135099.5
+        },
+        "queuedAtMs": 135104.90000000037,
+        "acceptedAtMs": 135104.90000000037,
+        "uiAtMs": 135105.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1706,
+          "pointerId": 570,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 135168.1000000015
+        },
+        "queuedAtMs": 135168.30000000075,
+        "acceptedAtMs": 135168.30000000075,
+        "authoritativeAtMs": 135168.30000000075,
+        "uiAtMs": 135168.90000000037,
+        "visualAtMs": 135168.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1707,
+          "pointerId": 570,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 135251.80000000075
+        },
+        "queuedAtMs": 135268.1000000015,
+        "acceptedAtMs": 135268.1000000015,
+        "uiAtMs": 135268.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1708,
+          "pointerId": 571,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 135326
+        },
+        "queuedAtMs": 135351.6000000015,
+        "acceptedAtMs": 135351.6000000015,
+        "uiAtMs": 135352.1000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1709,
+          "pointerId": 571,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 135401.70000000112
+        },
+        "queuedAtMs": 135401.90000000037,
+        "acceptedAtMs": 135401.90000000037,
+        "authoritativeAtMs": 135401.90000000037,
+        "uiAtMs": 135403.40000000037,
+        "visualAtMs": 135403.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1710,
+          "pointerId": 571,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 135485.40000000037
+        },
+        "queuedAtMs": 135501.90000000037,
+        "acceptedAtMs": 135502,
+        "uiAtMs": 135502.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1711,
+          "pointerId": 572,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 135560.30000000075
+        },
+        "queuedAtMs": 135568.1000000015,
+        "acceptedAtMs": 135568.20000000112,
+        "uiAtMs": 135568.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1712,
+          "pointerId": 572,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 135635.20000000112
+        },
+        "queuedAtMs": 135635.30000000075,
+        "acceptedAtMs": 135635.40000000037,
+        "authoritativeAtMs": 135635.40000000037,
+        "uiAtMs": 135636.70000000112,
+        "visualAtMs": 135636.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1713,
+          "pointerId": 572,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 135718.6000000015
+        },
+        "queuedAtMs": 135735.1000000015,
+        "acceptedAtMs": 135735.1000000015,
+        "uiAtMs": 135735.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1714,
+          "pointerId": 573,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 135792.80000000075
+        },
+        "queuedAtMs": 135818.40000000037,
+        "acceptedAtMs": 135818.40000000037,
+        "uiAtMs": 135819
+      },
+      {
+        "sample": {
+          "sampleId": 1715,
+          "pointerId": 573,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 135868.1000000015
+        },
+        "queuedAtMs": 135885,
+        "acceptedAtMs": 135885,
+        "authoritativeAtMs": 135885,
+        "uiAtMs": 135885.6000000015,
+        "visualAtMs": 135885.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1716,
+          "pointerId": 573,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 135951.90000000037
+        },
+        "queuedAtMs": 135969.80000000075,
+        "acceptedAtMs": 135969.80000000075,
+        "uiAtMs": 135970.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1717,
+          "pointerId": 574,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 136029.40000000037
+        },
+        "queuedAtMs": 136034.90000000037,
+        "acceptedAtMs": 136034.90000000037,
+        "uiAtMs": 136035.5
+      },
+      {
+        "sample": {
+          "sampleId": 1718,
+          "pointerId": 574,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 136101.40000000037
+        },
+        "queuedAtMs": 136101.6000000015,
+        "acceptedAtMs": 136101.6000000015,
+        "authoritativeAtMs": 136101.6000000015,
+        "uiAtMs": 136102.20000000112,
+        "visualAtMs": 136102.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1719,
+          "pointerId": 574,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 136192.70000000112
+        },
+        "queuedAtMs": 136218.30000000075,
+        "acceptedAtMs": 136218.30000000075,
+        "uiAtMs": 136219.1000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1720,
+          "pointerId": 575,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 136268.90000000037
+        },
+        "queuedAtMs": 136284.80000000075,
+        "acceptedAtMs": 136284.90000000037,
+        "uiAtMs": 136285.5
+      },
+      {
+        "sample": {
+          "sampleId": 1721,
+          "pointerId": 575,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 136351.80000000075
+        },
+        "queuedAtMs": 136368.20000000112,
+        "acceptedAtMs": 136368.20000000112,
+        "authoritativeAtMs": 136368.20000000112,
+        "uiAtMs": 136368.90000000037,
+        "visualAtMs": 136368.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1722,
+          "pointerId": 575,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 136435.30000000075
+        },
+        "queuedAtMs": 136451.5,
+        "acceptedAtMs": 136451.5,
+        "uiAtMs": 136452.1000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1723,
+          "pointerId": 576,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 136501.90000000037
+        },
+        "queuedAtMs": 136518.20000000112,
+        "acceptedAtMs": 136518.20000000112,
+        "uiAtMs": 136518.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1724,
+          "pointerId": 576,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 136584.70000000112
+        },
+        "queuedAtMs": 136601.70000000112,
+        "acceptedAtMs": 136601.70000000112,
+        "authoritativeAtMs": 136601.70000000112,
+        "uiAtMs": 136602.30000000075,
+        "visualAtMs": 136602.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1725,
+          "pointerId": 576,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 136670.90000000037
+        },
+        "queuedAtMs": 136684.90000000037,
+        "acceptedAtMs": 136684.90000000037,
+        "uiAtMs": 136685.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1726,
+          "pointerId": 577,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 136752.6000000015
+        },
+        "queuedAtMs": 136768,
+        "acceptedAtMs": 136768,
+        "uiAtMs": 136768.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1727,
+          "pointerId": 577,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 136835
+        },
+        "queuedAtMs": 136835.1000000015,
+        "acceptedAtMs": 136835.1000000015,
+        "authoritativeAtMs": 136835.1000000015,
+        "uiAtMs": 136835.70000000112,
+        "visualAtMs": 136835.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1728,
+          "pointerId": 577,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 136927
+        },
+        "queuedAtMs": 136934.70000000112,
+        "acceptedAtMs": 136934.70000000112,
+        "uiAtMs": 136935.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1729,
+          "pointerId": 578,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 136995.20000000112
+        },
+        "queuedAtMs": 137018.30000000075,
+        "acceptedAtMs": 137018.30000000075,
+        "uiAtMs": 137019
+      },
+      {
+        "sample": {
+          "sampleId": 1730,
+          "pointerId": 578,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 137068
+        },
+        "queuedAtMs": 137085,
+        "acceptedAtMs": 137085,
+        "authoritativeAtMs": 137085,
+        "uiAtMs": 137086.5,
+        "visualAtMs": 137086.5
+      },
+      {
+        "sample": {
+          "sampleId": 1731,
+          "pointerId": 578,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 137152
+        },
+        "queuedAtMs": 137168.80000000075,
+        "acceptedAtMs": 137168.90000000037,
+        "uiAtMs": 137169.5
+      },
+      {
+        "sample": {
+          "sampleId": 1732,
+          "pointerId": 579,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 137243.6000000015
+        },
+        "queuedAtMs": 137268.1000000015,
+        "acceptedAtMs": 137268.5,
+        "uiAtMs": 137269.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1733,
+          "pointerId": 579,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 137318.20000000112
+        },
+        "uiAtMs": 137318.90000000037,
+        "visualAtMs": 137318.90000000037,
+        "queuedAtMs": 137335.6000000015,
+        "acceptedAtMs": 137335.6000000015,
+        "authoritativeAtMs": 137335.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1734,
+          "pointerId": 579,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 137409.5
+        },
+        "queuedAtMs": 137434.90000000037,
+        "acceptedAtMs": 137434.90000000037,
+        "uiAtMs": 137435.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1735,
+          "pointerId": 580,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 137478.40000000037
+        },
+        "queuedAtMs": 137501.6000000015,
+        "acceptedAtMs": 137501.6000000015,
+        "uiAtMs": 137502.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1736,
+          "pointerId": 580,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 137551.6000000015
+        },
+        "queuedAtMs": 137551.70000000112,
+        "acceptedAtMs": 137551.70000000112,
+        "authoritativeAtMs": 137551.70000000112,
+        "uiAtMs": 137552.40000000037,
+        "visualAtMs": 137552.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1737,
+          "pointerId": 580,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 137643.5
+        },
+        "queuedAtMs": 137668.20000000112,
+        "acceptedAtMs": 137668.20000000112,
+        "uiAtMs": 137668.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1738,
+          "pointerId": 581,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 137701.90000000037
+        },
+        "queuedAtMs": 137718.20000000112,
+        "acceptedAtMs": 137718.20000000112,
+        "uiAtMs": 137718.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1739,
+          "pointerId": 581,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 137785
+        },
+        "queuedAtMs": 137785.1000000015,
+        "acceptedAtMs": 137785.20000000112,
+        "authoritativeAtMs": 137785.20000000112,
+        "uiAtMs": 137785.70000000112,
+        "visualAtMs": 137785.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1740,
+          "pointerId": 581,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 137869
+        },
+        "queuedAtMs": 137884.70000000112,
+        "acceptedAtMs": 137884.70000000112,
+        "uiAtMs": 137885.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1741,
+          "pointerId": 582,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 137935.20000000112
+        },
+        "queuedAtMs": 137951.6000000015,
+        "acceptedAtMs": 137951.6000000015,
+        "uiAtMs": 137952.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1742,
+          "pointerId": 582,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 138018.1000000015
+        },
+        "uiAtMs": 138018.70000000112,
+        "visualAtMs": 138018.70000000112,
+        "queuedAtMs": 138051.6000000015,
+        "acceptedAtMs": 138051.6000000015,
+        "authoritativeAtMs": 138051.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1743,
+          "pointerId": 582,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 138102
+        },
+        "queuedAtMs": 138118.30000000075,
+        "acceptedAtMs": 138118.30000000075,
+        "uiAtMs": 138118.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1744,
+          "pointerId": 583,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 138168.6000000015
+        },
+        "queuedAtMs": 138184.80000000075,
+        "acceptedAtMs": 138184.90000000037,
+        "uiAtMs": 138185.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1745,
+          "pointerId": 583,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 138251.30000000075
+        },
+        "queuedAtMs": 138268.20000000112,
+        "acceptedAtMs": 138268.20000000112,
+        "authoritativeAtMs": 138268.20000000112,
+        "uiAtMs": 138269,
+        "visualAtMs": 138269
+      },
+      {
+        "sample": {
+          "sampleId": 1746,
+          "pointerId": 583,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 138344.6000000015
+        },
+        "queuedAtMs": 138368.30000000075,
+        "acceptedAtMs": 138368.30000000075,
+        "uiAtMs": 138368.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1747,
+          "pointerId": 584,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 138411.90000000037
+        },
+        "queuedAtMs": 138434.90000000037,
+        "acceptedAtMs": 138435,
+        "uiAtMs": 138435.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1748,
+          "pointerId": 584,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 138497.80000000075
+        },
+        "queuedAtMs": 138497.90000000037,
+        "acceptedAtMs": 138498.6000000015,
+        "authoritativeAtMs": 138498.6000000015,
+        "uiAtMs": 138501.30000000075,
+        "visualAtMs": 138501.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1749,
+          "pointerId": 584,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 138596.20000000112
+        },
+        "queuedAtMs": 138603.40000000037,
+        "acceptedAtMs": 138603.40000000037,
+        "uiAtMs": 138605.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1750,
+          "pointerId": 585,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 138663.6000000015
+        },
+        "uiAtMs": 138668.6000000015,
+        "queuedAtMs": 138701.6000000015,
+        "acceptedAtMs": 138701.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1751,
+          "pointerId": 585,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 138751.70000000112
+        },
+        "queuedAtMs": 138768.1000000015,
+        "acceptedAtMs": 138768.20000000112,
+        "authoritativeAtMs": 138768.20000000112,
+        "uiAtMs": 138769,
+        "visualAtMs": 138769
+      },
+      {
+        "sample": {
+          "sampleId": 1752,
+          "pointerId": 585,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 138846.30000000075
+        },
+        "queuedAtMs": 138868.30000000075,
+        "acceptedAtMs": 138868.30000000075,
+        "uiAtMs": 138869
+      },
+      {
+        "sample": {
+          "sampleId": 1753,
+          "pointerId": 586,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 138914.5
+        },
+        "uiAtMs": 138918.6000000015,
+        "queuedAtMs": 138935,
+        "acceptedAtMs": 138935
+      },
+      {
+        "sample": {
+          "sampleId": 1754,
+          "pointerId": 586,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 138984.90000000037
+        },
+        "uiAtMs": 138985.70000000112,
+        "visualAtMs": 138985.70000000112,
+        "queuedAtMs": 139018.20000000112,
+        "acceptedAtMs": 139018.20000000112,
+        "authoritativeAtMs": 139018.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1755,
+          "pointerId": 586,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 139081.5
+        },
+        "queuedAtMs": 139101.90000000037,
+        "acceptedAtMs": 139101.90000000037,
+        "uiAtMs": 139103.1000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1756,
+          "pointerId": 587,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 139258.40000000037
+        },
+        "queuedAtMs": 139268.1000000015,
+        "acceptedAtMs": 139268.30000000075,
+        "uiAtMs": 139268.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1757,
+          "pointerId": 587,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 139335
+        },
+        "queuedAtMs": 139335.1000000015,
+        "acceptedAtMs": 139335.1000000015,
+        "authoritativeAtMs": 139335.1000000015,
+        "uiAtMs": 139335.80000000075,
+        "visualAtMs": 139335.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1758,
+          "pointerId": 587,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 139426.90000000037
+        },
+        "queuedAtMs": 139434.80000000075,
+        "acceptedAtMs": 139434.80000000075,
+        "uiAtMs": 139435.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1759,
+          "pointerId": 588,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 139485.6000000015
+        },
+        "queuedAtMs": 139501.6000000015,
+        "acceptedAtMs": 139501.6000000015,
+        "uiAtMs": 139502.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1760,
+          "pointerId": 588,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 139570.1000000015
+        },
+        "queuedAtMs": 139570.20000000112,
+        "acceptedAtMs": 139570.20000000112,
+        "authoritativeAtMs": 139570.20000000112,
+        "uiAtMs": 139570.90000000037,
+        "visualAtMs": 139570.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1761,
+          "pointerId": 588,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 139651.90000000037
+        },
+        "queuedAtMs": 139668.40000000037,
+        "acceptedAtMs": 139668.5,
+        "uiAtMs": 139669.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1762,
+          "pointerId": 589,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 139719.90000000037
+        },
+        "queuedAtMs": 139734.80000000075,
+        "acceptedAtMs": 139734.80000000075,
+        "uiAtMs": 139735.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1763,
+          "pointerId": 589,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 139801.70000000112
+        },
+        "queuedAtMs": 139801.80000000075,
+        "acceptedAtMs": 139801.90000000037,
+        "authoritativeAtMs": 139801.90000000037,
+        "uiAtMs": 139802.70000000112,
+        "visualAtMs": 139802.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1764,
+          "pointerId": 589,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 139894.80000000075
+        },
+        "queuedAtMs": 139918.20000000112,
+        "acceptedAtMs": 139918.20000000112,
+        "uiAtMs": 139919
+      },
+      {
+        "sample": {
+          "sampleId": 1765,
+          "pointerId": 590,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 139952.40000000037
+        },
+        "queuedAtMs": 139968.1000000015,
+        "acceptedAtMs": 139968.20000000112,
+        "uiAtMs": 139968.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1766,
+          "pointerId": 590,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 140034.90000000037
+        },
+        "queuedAtMs": 140035.1000000015,
+        "acceptedAtMs": 140035.20000000112,
+        "authoritativeAtMs": 140035.20000000112,
+        "uiAtMs": 140036.20000000112,
+        "visualAtMs": 140036.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1767,
+          "pointerId": 590,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 140126.6000000015
+        },
+        "queuedAtMs": 140151.5,
+        "acceptedAtMs": 140151.6000000015,
+        "uiAtMs": 140152.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1768,
+          "pointerId": 591,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 140188.70000000112
+        },
+        "queuedAtMs": 140201.5,
+        "acceptedAtMs": 140201.6000000015,
+        "uiAtMs": 140202.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1769,
+          "pointerId": 591,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 140268.1000000015
+        },
+        "queuedAtMs": 140268.20000000112,
+        "acceptedAtMs": 140268.20000000112,
+        "authoritativeAtMs": 140268.20000000112,
+        "uiAtMs": 140269.1000000015,
+        "visualAtMs": 140269.1000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1770,
+          "pointerId": 591,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 140351.80000000075
+        },
+        "queuedAtMs": 140368.20000000112,
+        "acceptedAtMs": 140368.30000000075,
+        "uiAtMs": 140368.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1771,
+          "pointerId": 592,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 140427.90000000037
+        },
+        "queuedAtMs": 140451.90000000037,
+        "acceptedAtMs": 140452,
+        "uiAtMs": 140453
+      },
+      {
+        "sample": {
+          "sampleId": 1772,
+          "pointerId": 592,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 140534.80000000075
+        },
+        "queuedAtMs": 140534.90000000037,
+        "acceptedAtMs": 140534.90000000037,
+        "authoritativeAtMs": 140534.90000000037,
+        "uiAtMs": 140535.6000000015,
+        "visualAtMs": 140535.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1773,
+          "pointerId": 592,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 140631.80000000075
+        },
+        "uiAtMs": 140635.40000000037,
+        "queuedAtMs": 140668.1000000015,
+        "acceptedAtMs": 140668.1000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1774,
+          "pointerId": 593,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 140694
+        },
+        "uiAtMs": 140718.70000000112,
+        "queuedAtMs": 140751.6000000015,
+        "acceptedAtMs": 140751.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1775,
+          "pointerId": 593,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 140767.90000000037
+        },
+        "queuedAtMs": 140768.30000000075,
+        "acceptedAtMs": 140768.40000000037,
+        "authoritativeAtMs": 140768.40000000037,
+        "uiAtMs": 140769.1000000015,
+        "visualAtMs": 140769.1000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1776,
+          "pointerId": 593,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 140852.30000000075
+        },
+        "queuedAtMs": 140868.40000000037,
+        "acceptedAtMs": 140868.40000000037,
+        "uiAtMs": 140869.1000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1777,
+          "pointerId": 594,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 140918.80000000075
+        },
+        "queuedAtMs": 140935.1000000015,
+        "acceptedAtMs": 140935.1000000015,
+        "uiAtMs": 140936.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1778,
+          "pointerId": 594,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 141001.30000000075
+        },
+        "queuedAtMs": 141001.5,
+        "acceptedAtMs": 141001.80000000075,
+        "authoritativeAtMs": 141001.80000000075,
+        "uiAtMs": 141002.5,
+        "visualAtMs": 141002.5
+      },
+      {
+        "sample": {
+          "sampleId": 1779,
+          "pointerId": 594,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 141085.20000000112
+        },
+        "queuedAtMs": 141101.5,
+        "acceptedAtMs": 141101.5,
+        "uiAtMs": 141102.20000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1780,
+          "pointerId": 595,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 141160.40000000037
+        },
+        "queuedAtMs": 141184.80000000075,
+        "acceptedAtMs": 141184.90000000037,
+        "uiAtMs": 141185.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1781,
+          "pointerId": 595,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 141236.5
+        },
+        "queuedAtMs": 141236.6000000015,
+        "acceptedAtMs": 141236.6000000015,
+        "authoritativeAtMs": 141236.6000000015,
+        "uiAtMs": 141237.40000000037,
+        "visualAtMs": 141237.40000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1782,
+          "pointerId": 595,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 141327.6000000015
+        },
+        "queuedAtMs": 141351.5,
+        "acceptedAtMs": 141351.5,
+        "uiAtMs": 141352.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1783,
+          "pointerId": 596,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 141393.30000000075
+        },
+        "queuedAtMs": 141401.40000000037,
+        "acceptedAtMs": 141401.40000000037,
+        "uiAtMs": 141402.1000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1784,
+          "pointerId": 596,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 141468
+        },
+        "queuedAtMs": 141468.20000000112,
+        "acceptedAtMs": 141468.20000000112,
+        "authoritativeAtMs": 141468.20000000112,
+        "uiAtMs": 141468.80000000075,
+        "visualAtMs": 141468.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1785,
+          "pointerId": 596,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 141566.40000000037
+        },
+        "uiAtMs": 141585.5,
+        "queuedAtMs": 141601.30000000075,
+        "acceptedAtMs": 141601.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1786,
+          "pointerId": 597,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 141618.40000000037
+        },
+        "queuedAtMs": 141634.90000000037,
+        "acceptedAtMs": 141634.90000000037,
+        "uiAtMs": 141635.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1787,
+          "pointerId": 597,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 141701.5
+        },
+        "queuedAtMs": 141718.1000000015,
+        "acceptedAtMs": 141718.1000000015,
+        "authoritativeAtMs": 141718.1000000015,
+        "uiAtMs": 141718.90000000037,
+        "visualAtMs": 141718.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1788,
+          "pointerId": 597,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 141785
+        },
+        "queuedAtMs": 141801.40000000037,
+        "acceptedAtMs": 141801.40000000037,
+        "uiAtMs": 141802.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1789,
+          "pointerId": 598,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 141861.40000000037
+        },
+        "queuedAtMs": 141867.90000000037,
+        "acceptedAtMs": 141867.90000000037,
+        "uiAtMs": 141868.70000000112
+      },
+      {
+        "sample": {
+          "sampleId": 1790,
+          "pointerId": 598,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 141934.70000000112
+        },
+        "queuedAtMs": 141935,
+        "acceptedAtMs": 141935,
+        "authoritativeAtMs": 141935,
+        "uiAtMs": 141935.90000000037,
+        "visualAtMs": 141935.90000000037
+      },
+      {
+        "sample": {
+          "sampleId": 1791,
+          "pointerId": 598,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 142025.6000000015
+        },
+        "queuedAtMs": 142051.40000000037,
+        "acceptedAtMs": 142051.40000000037,
+        "uiAtMs": 142052
+      },
+      {
+        "sample": {
+          "sampleId": 1792,
+          "pointerId": 599,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 142095.1000000015
+        },
+        "queuedAtMs": 142118,
+        "acceptedAtMs": 142118.1000000015,
+        "uiAtMs": 142119
+      },
+      {
+        "sample": {
+          "sampleId": 1793,
+          "pointerId": 599,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 142167.80000000075
+        },
+        "queuedAtMs": 142168.1000000015,
+        "acceptedAtMs": 142168.20000000112,
+        "authoritativeAtMs": 142168.20000000112,
+        "uiAtMs": 142169.1000000015,
+        "visualAtMs": 142169.1000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1794,
+          "pointerId": 599,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 142253.90000000037
+        },
+        "queuedAtMs": 142268,
+        "acceptedAtMs": 142268.1000000015,
+        "uiAtMs": 142269
+      },
+      {
+        "sample": {
+          "sampleId": 1795,
+          "pointerId": 600,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 142327.70000000112
+        },
+        "queuedAtMs": 142334.5,
+        "acceptedAtMs": 142334.5,
+        "uiAtMs": 142335.30000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1796,
+          "pointerId": 600,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 142401.20000000112
+        },
+        "queuedAtMs": 142418,
+        "acceptedAtMs": 142418,
+        "authoritativeAtMs": 142418,
+        "uiAtMs": 142418.80000000075,
+        "visualAtMs": 142418.80000000075
+      },
+      {
+        "sample": {
+          "sampleId": 1797,
+          "pointerId": 600,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 142495.1000000015
+        },
+        "queuedAtMs": 142518.1000000015,
+        "acceptedAtMs": 142518.1000000015,
+        "uiAtMs": 142519
+      },
+      {
+        "sample": {
+          "sampleId": 1798,
+          "pointerId": 601,
+          "phase": "begin",
+          "screenCssX": 160,
+          "screenCssY": 300,
+          "capturedAtMs": 142561
+        },
+        "queuedAtMs": 142584.6000000015,
+        "acceptedAtMs": 142584.80000000075,
+        "uiAtMs": 142585.6000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1799,
+          "pointerId": 601,
+          "phase": "move",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 142636.30000000075
+        },
+        "queuedAtMs": 142651.40000000037,
+        "acceptedAtMs": 142651.40000000037,
+        "authoritativeAtMs": 142651.40000000037,
+        "uiAtMs": 142652.1000000015,
+        "visualAtMs": 142652.1000000015
+      },
+      {
+        "sample": {
+          "sampleId": 1800,
+          "pointerId": 601,
+          "phase": "end",
+          "screenCssX": 220,
+          "screenCssY": 300,
+          "capturedAtMs": 142728
+        },
+        "queuedAtMs": 142735,
+        "acceptedAtMs": 142735,
+        "uiAtMs": 142735.80000000075
+      }
+    ],
+    "byPhase": {
+      "begin": {
+        "captured": 100,
+        "ui": {
+          "count": 100,
+          "p50": 16.699999999254942,
+          "p95": 26.5,
+          "p99": 27.09999999962747,
+          "max": 27.199999999254942
+        },
+        "visual": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        },
+        "authority": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        }
+      },
+      "move": {
+        "captured": 100,
+        "ui": {
+          "count": 100,
+          "p50": 0.8000000007450581,
+          "p95": 17.5,
+          "p99": 18.5,
+          "max": 19.100000001490116
+        },
+        "visual": {
+          "count": 100,
+          "p50": 0.8000000007450581,
+          "p95": 17.5,
+          "p99": 18.5,
+          "max": 19.100000001490116
+        },
+        "authority": {
+          "count": 100,
+          "p50": 0.2000000011175871,
+          "p95": 33.30000000074506,
+          "p99": 33.5,
+          "max": 33.59999999962747
+        }
+      },
+      "end": {
+        "captured": 100,
+        "ui": {
+          "count": 100,
+          "p50": 16.90000000037253,
+          "p95": 26.40000000037253,
+          "p99": 26.59999999962747,
+          "max": 26.800000000745058
+        },
+        "visual": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        },
+        "authority": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        }
+      },
+      "cancel": {
+        "captured": 0,
+        "ui": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        },
+        "visual": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        },
+        "authority": {
+          "count": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null,
+          "max": null
+        }
+      }
+    },
+    "frameSamplesMs": [
+      33.30000000074506,
+      33.5,
+      16.5,
+      16.699999999254942,
+      16.699999999254942,
+      35.600000001490116,
+      31,
+      16.699999999254942,
+      16.699999999254942,
+      33.30000000074506,
+      33.30000000074506,
+      16.59999999962747,
+      16.699999999254942,
+      33.40000000037253,
+      16.59999999962747,
+      33.5,
+      16.5,
+      33.5,
+      33.09999999962747,
+      16.700000001117587,
+      16.799999998882413,
+      33.40000000037253,
+      16.5,
+      16.700000001117587,
+      16.5,
+      33.69999999925494,
+      16.40000000037253,
+      16.699999999254942,
+      33.40000000037253,
+      16.5,
+      16.699999999254942,
+      33.5,
+      33.30000000074506,
+      16.59999999962747,
+      33.30000000074506,
+      33.40000000037253,
+      16.699999999254942,
+      33.40000000037253,
+      16.5,
+      33.29999999888241,
+      16.700000001117587,
+      33.5,
+      16.40000000037253,
+      16.699999999254942,
+      33.59999999962747,
+      33.20000000111759,
+      16.5,
+      33.399999998509884,
+      33.40000000037253,
+      16.59999999962747,
+      16.700000001117587,
+      33.29999999888241,
+      16.700000001117587,
+      33.40000000037253,
+      16.59999999962747,
+      33.40000000037253,
+      33.19999999925494,
+      33.5,
+      33.5,
+      16.40000000037253,
+      33.59999999962747,
+      16.40000000037253,
+      16.799999998882413,
+      16.5,
+      33.30000000074506,
+      33.40000000037253,
+      16.699999999254942,
+      16.59999999962747,
+      16.700000001117587,
+      33.5,
+      16.40000000037253,
+      33.5,
+      16.899999998509884,
+      33,
+      16.600000001490116,
+      34.09999999962747,
+      16,
+      16.59999999962747,
+      33.5,
+      16.59999999962747,
+      16.59999999962747,
+      33.40000000037253,
+      16.90000000037253,
+      33.09999999962747,
+      16.700000001117587,
+      33.399999998509884,
+      33.20000000111759,
+      16.699999999254942,
+      16.59999999962747,
+      33.40000000037253,
+      16.59999999962747,
+      33.5,
+      16.5,
+      33.40000000037253,
+      33.30000000074506,
+      16.699999999254942,
+      16.59999999962747,
+      33.40000000037253,
+      33.40000000037253,
+      33.30000000074506,
+      33.29999999888241,
+      33.40000000037253,
+      33.19999999925494,
+      16.600000001490116,
+      16.699999999254942,
+      16.699999999254942,
+      33.5,
+      16.5,
+      16.600000001490116,
+      33.69999999925494,
+      16.40000000037253,
+      33.5,
+      16.5,
+      33.40000000037253,
+      16.59999999962747,
+      33.40000000037253,
+      16.5,
+      16.899999998509884,
+      33.20000000111759,
+      35.59999999962747,
+      31.199999999254942,
+      16.600000001490116,
+      16.5,
+      114.69999999925494,
+      18.59999999962747,
+      33.5,
+      33.5,
+      16.59999999962747,
+      33.80000000074506,
+      32.80000000074506,
+      16.59999999962747,
+      33.59999999962747,
+      33.40000000037253,
+      33.09999999962747,
+      16.59999999962747,
+      33.30000000074506,
+      16.699999999254942,
+      16.700000001117587,
+      33.29999999888241,
+      16.59999999962747,
+      16.700000001117587,
+      33.40000000037253,
+      16.59999999962747,
+      33.40000000037253,
+      16.5,
+      16.699999999254942,
+      16.699999999254942,
+      16.600000001490116,
+      33.69999999925494,
+      16.40000000037253,
+      33.5,
+      33.29999999888241,
+      16.5,
+      18.300000000745058,
+      31.800000000745058,
+      16.59999999962747,
+      16.699999999254942,
+      33.30000000074506,
+      16.799999998882413,
+      33.20000000111759,
+      33.40000000037253,
+      33.399999998509884,
+      16.5,
+      33.40000000037253,
+      33.40000000037253,
+      33.30000000074506,
+      16.699999999254942,
+      16.40000000037253,
+      16.699999999254942,
+      33.40000000037253,
+      16.699999999254942,
+      33.40000000037253,
+      16.5,
+      33.40000000037253,
+      16.800000000745058,
+      16.5,
+      33.5,
+      16.5,
+      33.29999999888241,
+      33.5,
+      16.5,
+      33.70000000111759,
+      16.299999998882413,
+      33.40000000037253,
+      33.30000000074506,
+      33.29999999888241,
+      33.5,
+      33.40000000037253,
+      33.19999999925494,
+      33.40000000037253,
+      33.20000000111759,
+      33.399999998509884,
+      16.700000001117587,
+      16.5,
+      16.699999999254942,
+      33.40000000037253,
+      16.59999999962747,
+      33.5,
+      18.40000000037253,
+      31.699999999254942,
+      33.30000000074506,
+      33.40000000037253,
+      16.40000000037253,
+      16.699999999254942,
+      33.5,
+      33.19999999925494,
+      16.600000001490116,
+      17,
+      33.09999999962747,
+      33.40000000037253,
+      17.59999999962747,
+      15.799999998882413,
+      33.30000000074506,
+      33.40000000037253,
+      16.299999998882413,
+      33.600000001490116,
+      16.5,
+      16.59999999962747,
+      33.5,
+      33.40000000037253,
+      16.59999999962747,
+      16.5,
+      33.5,
+      16.59999999962747,
+      33.40000000037253,
+      33.19999999925494,
+      16.59999999962747,
+      33.70000000111759,
+      33.19999999925494,
+      16.59999999962747,
+      33.5,
+      16.40000000037253,
+      16.59999999962747,
+      33.600000001490116,
+      16.399999998509884,
+      33.40000000037253,
+      16.59999999962747,
+      16.800000000745058,
+      33.30000000074506,
+      16.699999999254942,
+      16.5,
+      16.699999999254942,
+      33.40000000037253,
+      16.700000001117587,
+      16.59999999962747,
+      33.40000000037253,
+      33.29999999888241,
+      33.40000000037253,
+      33.59999999962747,
+      33,
+      33.40000000037253,
+      16.5,
+      33.5,
+      16.5,
+      16.59999999962747,
+      33.5,
+      16.59999999962747,
+      33.5,
+      33.20000000111759,
+      16.59999999962747,
+      33.40000000037253,
+      16.699999999254942,
+      33.30000000074506,
+      33.40000000037253,
+      16.5,
+      16.699999999254942,
+      33.59999999962747,
+      16.40000000037253,
+      33.59999999962747,
+      16.40000000037253,
+      16.699999999254942,
+      33.30000000074506,
+      16.59999999962747,
+      33.5,
+      33.40000000037253,
+      16.40000000037253,
+      33.59999999962747,
+      16.5,
+      16.699999999254942,
+      33.5,
+      16.5,
+      17,
+      33.100000001490116,
+      16.5,
+      33.69999999925494,
+      16.300000000745058,
+      16.899999998509884,
+      33.30000000074506,
+      33.30000000074506,
+      33.29999999888241,
+      16.5,
+      16.700000001117587,
+      33.5,
+      33.19999999925494,
+      16.59999999962747,
+      17,
+      16.59999999962747,
+      33.30000000074506,
+      16.5,
+      33.5,
+      16.40000000037253,
+      16.699999999254942,
+      16.700000001117587,
+      33.5,
+      35.69999999925494,
+      14.300000000745058,
+      20,
+      29.899999998509884,
+      33.5,
+      16.5,
+      33.40000000037253,
+      16.5,
+      33.5,
+      16.700000001117587,
+      17.699999999254942,
+      15.5,
+      33.69999999925494,
+      33.100000001490116,
+      33.29999999888241,
+      33.5,
+      33.20000000111759,
+      16.699999999254942,
+      17.5,
+      15.599999999627471,
+      34,
+      16.200000001117587,
+      33.29999999888241,
+      33.30000000074506,
+      33.29999999888241,
+      33.40000000037253,
+      16.59999999962747,
+      16.800000000745058,
+      33.30000000074506,
+      16.5,
+      33.5,
+      16.5,
+      17,
+      33.09999999962747,
+      16.5,
+      33.5,
+      16.699999999254942,
+      33.59999999962747,
+      16.200000001117587,
+      16.699999999254942,
+      33.5,
+      33.20000000111759,
+      16.59999999962747,
+      33.59999999962747,
+      16.5,
+      16.699999999254942,
+      16.700000001117587,
+      33.40000000037253,
+      33.29999999888241,
+      16.59999999962747,
+      33.40000000037253,
+      16.5,
+      16.700000001117587,
+      16.59999999962747,
+      16.799999998882413,
+      33.5,
+      16.5,
+      33.40000000037253,
+      16.5,
+      16.700000001117587,
+      16.799999998882413,
+      33.40000000037253,
+      16.5,
+      33.40000000037253,
+      16.5,
+      33.5,
+      16.5,
+      33.59999999962747,
+      16.40000000037253,
+      33.59999999962747,
+      16.40000000037253,
+      33.40000000037253,
+      16.59999999962747,
+      33.40000000037253,
+      33.5,
+      16.399999998509884,
+      16.700000001117587,
+      33.29999999888241,
+      16.600000001490116,
+      33.5,
+      16.59999999962747,
+      33.40000000037253,
+      16.59999999962747,
+      33.59999999962747,
+      16.40000000037253,
+      33.40000000037253,
+      33.29999999888241,
+      16.59999999962747,
+      16.700000001117587,
+      16.699999999254942,
+      33.40000000037253,
+      16.5,
+      33.5,
+      33.30000000074506,
+      16.59999999962747,
+      33.29999999888241,
+      33.30000000074506,
+      16.90000000037253,
+      16.40000000037253,
+      16.799999998882413,
+      33.30000000074506,
+      16.59999999962747,
+      16.800000000745058,
+      33.29999999888241,
+      16.59999999962747,
+      33.40000000037253,
+      16.700000001117587,
+      33.399999998509884,
+      33.20000000111759,
+      33.40000000037253,
+      33.5,
+      16.399999998509884,
+      16.600000001490116,
+      33.399999998509884,
+      33.40000000037253,
+      16.700000001117587,
+      33.399999998509884,
+      16.600000001490116,
+      33.19999999925494,
+      33.40000000037253,
+      33.29999999888241,
+      33.30000000074506,
+      16.699999999254942,
+      16.700000001117587,
+      16.699999999254942,
+      33.30000000074506,
+      16.59999999962747,
+      33.40000000037253,
+      33.40000000037253,
+      33.19999999925494,
+      16.800000000745058,
+      33.59999999962747,
+      16.299999998882413,
+      16.600000001490116,
+      33.399999998509884,
+      16.600000001490116,
+      33.399999998509884,
+      16.700000001117587,
+      33.29999999888241,
+      33.40000000037253,
+      16.700000001117587,
+      33.29999999888241,
+      16.59999999962747,
+      16.700000001117587,
+      17.699999999254942,
+      32.30000000074506,
+      33.29999999888241,
+      33.30000000074506,
+      33.5,
+      16.59999999962747,
+      33.40000000037253,
+      17.5,
+      32.40000000037253,
+      16.59999999962747,
+      33.30000000074506,
+      33.399999998509884,
+      16.600000001490116,
+      33.399999998509884,
+      16.700000001117587,
+      16.59999999962747,
+      33.30000000074506,
+      16.699999999254942,
+      33.5,
+      16.59999999962747,
+      33.30000000074506,
+      33.29999999888241,
+      16.700000001117587,
+      33.5,
+      16.40000000037253,
+      33.5,
+      16.59999999962747,
+      16.5,
+      33.40000000037253,
+      16.799999998882413,
+      16.5,
+      16.700000001117587,
+      33.399999998509884,
+      16.600000001490116,
+      33.29999999888241,
+      16.59999999962747,
+      33.70000000111759,
+      21.09999999962747,
+      28.59999999962747,
+      16.59999999962747,
+      33.600000001490116,
+      33.29999999888241,
+      33.40000000037253,
+      16.59999999962747,
+      16.700000001117587,
+      16.399999998509884,
+      33.5,
+      16.600000001490116,
+      33.29999999888241,
+      16.90000000037253,
+      33.19999999925494,
+      16.700000001117587,
+      16.5,
+      16.699999999254942,
+      16.700000001117587,
+      33.29999999888241,
+      16.800000000745058,
+      33.29999999888241,
+      33.30000000074506,
+      16.59999999962747,
+      33.5,
+      16.59999999962747,
+      16.600000001490116,
+      33.399999998509884,
+      33.30000000074506,
+      16.699999999254942,
+      33.40000000037253,
+      16.5,
+      34.20000000111759,
+      29.09999999962747,
+      20,
+      16.59999999962747,
+      18.90000000037253,
+      31.199999999254942,
+      33.40000000037253,
+      33.40000000037253,
+      33.40000000037253,
+      16.5,
+      16.59999999962747,
+      33.59999999962747,
+      16.5,
+      33.30000000074506,
+      16.59999999962747,
+      33.5,
+      16.5,
+      33.29999999888241,
+      16.800000000745058,
+      33.59999999962747,
+      16.40000000037253,
+      33.40000000037253,
+      16.5,
+      33.5,
+      33.29999999888241,
+      16.5,
+      17.40000000037253,
+      32.80000000074506,
+      16.59999999962747,
+      33.30000000074506,
+      16.699999999254942,
+      16.5,
+      33.5,
+      16.59999999962747,
+      16.59999999962747,
+      33.5,
+      33.30000000074506,
+      33.40000000037253,
+      33.29999999888241,
+      33.20000000111759,
+      16.699999999254942,
+      16.59999999962747,
+      16.800000000745058,
+      16.59999999962747,
+      33.30000000074506,
+      16.799999998882413,
+      16.5,
+      16.800000000745058,
+      33.30000000074506,
+      16.59999999962747,
+      16.90000000037253,
+      16.5,
+      33.399999998509884,
+      16.5,
+      33.80000000074506,
+      18.59999999962747,
+      31.09999999962747,
+      16.700000001117587,
+      16.5,
+      33.40000000037253,
+      33.29999999888241,
+      33.40000000037253,
+      16.59999999962747,
+      33.40000000037253,
+      17.300000000745058,
+      17.59999999962747,
+      31.799999998882413,
+      16.5,
+      16.700000001117587,
+      33.40000000037253,
+      33.29999999888241,
+      16.59999999962747,
+      33.40000000037253,
+      16.700000001117587,
+      16.59999999962747,
+      16.699999999254942,
+      16.800000000745058,
+      23.09999999962747,
+      26.800000000745058,
+      16.699999999254942,
+      16.699999999254942,
+      33.30000000074506,
+      25,
+      10.199999999254942,
+      31.40000000037253,
+      33.30000000074506,
+      28.59999999962747,
+      21.199999999254942,
+      33.600000001490116,
+      33.399999998509884,
+      16.5,
+      16.600000001490116,
+      16.799999998882413,
+      33.30000000074506,
+      16.59999999962747,
+      33.5,
+      16.699999999254942,
+      22.5,
+      27.300000000745058,
+      16.800000000745058,
+      16.59999999962747,
+      33.29999999888241,
+      33.5,
+      16.5,
+      16.700000001117587,
+      16.59999999962747,
+      33.5,
+      33.30000000074506,
+      16.5,
+      16.699999999254942,
+      33.5,
+      16.5,
+      16.699999999254942,
+      33.30000000074506,
+      16.59999999962747,
+      33.5,
+      33.5,
+      33.30000000074506,
+      19.90000000037253,
+      30.09999999962747,
+      33.29999999888241,
+      16.600000001490116,
+      33.19999999925494,
+      16.800000000745058,
+      16.5,
+      16.799999998882413,
+      33.40000000037253,
+      16.5,
+      33.30000000074506,
+      16.799999998882413,
+      16.59999999962747,
+      32.70000000111759,
+      17.199999999254942,
+      33.59999999962747,
+      16.5,
+      33.5,
+      19.800000000745058,
+      13.300000000745058,
+      33.399999998509884,
+      16.800000000745058,
+      33.09999999962747,
+      16.700000001117587,
+      16.699999999254942,
+      33.30000000074506,
+      33.5,
+      16.5,
+      33.5,
+      16.59999999962747,
+      33.69999999925494,
+      32.90000000037253,
+      33.40000000037253,
+      33.69999999925494,
+      16.09999999962747,
+      34.100000001490116,
+      16,
+      33.79999999888241,
+      33.40000000037253,
+      16.199999999254942,
+      16.700000001117587,
+      33.40000000037253,
+      33.399999998509884,
+      16.90000000037253,
+      32.90000000037253,
+      33.40000000037253,
+      16.5,
+      16.699999999254942,
+      33.59999999962747,
+      16.600000001490116,
+      33.29999999888241,
+      34.80000000074506,
+      15.299999998882413,
+      33.30000000074506,
+      16.5,
+      16.59999999962747,
+      33.59999999962747,
+      16.600000001490116,
+      23.799999998882413,
+      26.09999999962747,
+      16.800000000745058,
+      16.5,
+      33.5,
+      22.699999999254942,
+      10.600000001490116,
+      33.19999999925494,
+      33.40000000037253,
+      16.5,
+      33.5,
+      33.29999999888241,
+      16.600000001490116,
+      33.399999998509884,
+      16.600000001490116,
+      16.699999999254942,
+      33.40000000037253,
+      17.299999998882413,
+      32.70000000111759,
+      33.5,
+      16.199999999254942,
+      33.70000000111759,
+      33.19999999925494,
+      16.699999999254942,
+      30.700000001117587,
+      12.900000000372529,
+      22.899999998509884,
+      16.700000001117587,
+      16.799999998882413,
+      33.600000001490116,
+      16.299999998882413,
+      33.40000000037253,
+      33.5,
+      16.40000000037253,
+      33.59999999962747,
+      16.5,
+      33.40000000037253,
+      16.59999999962747,
+      16.800000000745058,
+      33.399999998509884,
+      16.40000000037253,
+      16.700000001117587,
+      16.699999999254942,
+      34,
+      33,
+      18.800000000745058,
+      14.199999999254942,
+      33.30000000074506,
+      33.399999998509884,
+      16.800000000745058,
+      17.199999999254942,
+      32.70000000111759,
+      16.5,
+      16.699999999254942,
+      33.40000000037253,
+      33.30000000074506,
+      33.5,
+      16.399999998509884,
+      33.600000001490116,
+      33.29999999888241,
+      16.5,
+      33.59999999962747,
+      33.20000000111759,
+      17.199999999254942,
+      32.70000000111759,
+      33.5,
+      33.5,
+      33.09999999962747,
+      16.5,
+      16.699999999254942,
+      33.30000000074506,
+      33.69999999925494,
+      33.20000000111759,
+      16.399999998509884,
+      33.70000000111759,
+      16.40000000037253,
+      33.5,
+      16.5,
+      16.59999999962747,
+      33.59999999962747,
+      16.5,
+      16.699999999254942,
+      33.30000000074506,
+      16.59999999962747,
+      33.59999999962747,
+      33.20000000111759,
+      16.699999999254942,
+      33.40000000037253,
+      16.300000000745058,
+      33.69999999925494,
+      33.19999999925494,
+      33.40000000037253,
+      33.20000000111759,
+      29.799999998882413,
+      20.300000000745058,
+      33.5,
+      33.40000000037253,
+      18.299999998882413,
+      31.40000000037253,
+      19,
+      14.199999999254942,
+      33.5,
+      18.100000001490116,
+      15,
+      33.5,
+      33.399999998509884,
+      17.5,
+      16.600000001490116,
+      32.59999999962747,
+      35.19999999925494,
+      14.5,
+      17,
+      21.90000000037253,
+      28.09999999962747,
+      33.20000000111759,
+      33.69999999925494,
+      16.300000000745058,
+      33.69999999925494,
+      145.5,
+      20.800000000745058,
+      16.59999999962747,
+      16.699999999254942,
+      33.70000000111759,
+      16.299999998882413,
+      16.700000001117587,
+      33.5,
+      16.59999999962747,
+      16.59999999962747,
+      33.30000000074506,
+      33.399999998509884,
+      34.90000000037253,
+      14.900000000372529,
+      18.90000000037253,
+      14.599999999627471,
+      33.69999999925494,
+      17.100000001490116,
+      32.79999999888241,
+      33.09999999962747,
+      33.20000000111759,
+      16.799999998882413,
+      16.40000000037253,
+      33.90000000037253,
+      16.300000000745058,
+      16.59999999962747,
+      33.5,
+      16.40000000037253,
+      33.5,
+      16.59999999962747,
+      33.40000000037253,
+      33.29999999888241,
+      16.59999999962747,
+      17.100000001490116,
+      33,
+      33.399999998509884,
+      16.40000000037253,
+      33.59999999962747,
+      18.100000001490116,
+      31.799999998882413,
+      33.40000000037253,
+      16.5,
+      16.90000000037253,
+      33.40000000037253,
+      16.5,
+      16.59999999962747,
+      33.5,
+      16.699999999254942,
+      16.40000000037253,
+      16.59999999962747,
+      33.90000000037253,
+      43.30000000074506,
+      13.399999998509884,
+      26.40000000037253,
+      16.59999999962747,
+      33.600000001490116,
+      35,
+      14.5,
+      33.399999998509884,
+      18.5,
+      31.600000001490116,
+      33.5,
+      16.699999999254942,
+      33.19999999925494,
+      33.30000000074506,
+      33.59999999962747,
+      16.300000000745058,
+      16.59999999962747,
+      33.69999999925494,
+      33.40000000037253,
+      16.300000000745058,
+      16.799999998882413,
+      33.20000000111759,
+      33.29999999888241,
+      33.40000000037253,
+      16.5,
+      16.700000001117587,
+      16.59999999962747,
+      33.59999999962747,
+      16.699999999254942,
+      16.40000000037253,
+      18.700000001117587,
+      31.399999998509884,
+      16.700000001117587,
+      33.59999999962747,
+      33.09999999962747,
+      33.40000000037253,
+      16.59999999962747,
+      33.30000000074506,
+      16.799999998882413,
+      16.600000001490116,
+      33.399999998509884,
+      36.5,
+      16.300000000745058,
+      30.40000000037253,
+      16.59999999962747,
+      33.59999999962747,
+      16.40000000037253,
+      16.59999999962747,
+      17.40000000037253,
+      32.69999999925494,
+      16.600000001490116,
+      33.5,
+      33.29999999888241,
+      16.90000000037253,
+      33.09999999962747,
+      16.40000000037253,
+      33.5,
+      33.5,
+      33.30000000074506,
+      33.29999999888241,
+      16.5,
+      33.5,
+      16.40000000037253,
+      16.800000000745058,
+      33.399999998509884,
+      33.5,
+      16.5,
+      16.40000000037253,
+      16.700000001117587,
+      35.5,
+      31.299999998882413,
+      16.5,
+      33.59999999962747,
+      16.40000000037253,
+      16.800000000745058,
+      33.5,
+      33.19999999925494,
+      33.90000000037253,
+      16.09999999962747,
+      16.700000001117587,
+      33.29999999888241,
+      33.5,
+      33.20000000111759,
+      33.5,
+      33.19999999925494,
+      16.59999999962747,
+      16.59999999962747,
+      33.5,
+      17,
+      32.90000000037253,
+      16.700000001117587
+    ],
+    "tickSamplesMs": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0,
+      0.10000000149011612,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.10000000149011612,
+      0.09999999962747097,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.2000000011175871,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.10000000149011612,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0.10000000149011612,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0.10000000149011612,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      2.400000000372529,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0.10000000149011612,
+      0.09999999962747097,
+      0,
+      0.7000000011175871,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.19999999925494194,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0.10000000149011612,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.30000000074505806,
+      0,
+      0.10000000149011612,
+      0,
+      0.09999999962747097,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0.10000000149011612,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.10000000149011612,
+      0,
+      0,
+      0,
+      0.09999999962747097,
+      0,
+      0,
+      0,
+      0.19999999925494194,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0.09999999962747097
+    ],
+    "correctionSamplesWorld": [
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      12,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      6,
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      6,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      6,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6,
+      0,
+      0,
+      6
+    ]
+  },
+  "debug": {
+    "state": "running",
+    "pauseReasons": [],
+    "tick": 718,
+    "tickRate": 30,
+    "hash": "5d204b3e",
+    "backlogMs": 32.46666666741016,
+    "ticksThisFrame": 0
+  }
+}

@@ -1,6 +1,6 @@
 # MOBA 设计决策记录
 
-版本：0.1.1。日期：2026-10-01。当前阶段：M0。
+版本：0.1.1。日期：2026-10-01。当前阶段：M1；规则基线 0.1.1，工程 0.2.0。
 
 accepted 表示采用的架构约束而非已实现；proposed 表示需验证的候选；provisional baseline 表示后续实现暂用但尚未接受为最终选择；deferred 表示当前不实施。技术资料只核实平台行为，预算/探针提案不等于性能和手感事实。
 
@@ -28,7 +28,7 @@ accepted 表示采用的架构约束而非已实现；proposed 表示需验证�
 
 状态：固定 Tick/表现解耦原则 accepted；30 Hz 为首选默认候选和 provisional baseline，最终 Tick 率未决、未实测。
 
-选择：当前基线 30 Hz、渲染可 30/60 FPS，Session 锁定 tickRate，持续时间按率转换、攻击保留余数。前台四步/250 ms 过载策略仍是基线；不在运行中动态改率。本轮不改 60 Hz、不创建探针源码。
+选择：当前基线 30 Hz、渲染可 30/60 FPS，Session 锁定 tickRate，持续时间按率转换、攻击保留余数。前台四步/250 ms 过载策略仍是基线；不在运行中动态改率。M1 已实现参数化驱动与 A/B 几何探针；运行基线仍为 30 Hz。60 Hz 仅用于 headless 同率回放测试，尚未形成 C 真机测量。
 
 依据与代价：降低每秒模拟次数可能有 CPU/电耗收益，但这是待测假设。约 33.3 ms 的步长和接近一 Tick 的常规插值延迟可能影响摇杆/瞄准/释放反馈，不能由理论帧率证明可接受。
 
@@ -36,7 +36,7 @@ M1/M3 比较 A：30 Hz Simulation + 60 Hz Rendering + 当前插值；B：30 Hz S
 
 接受最终 30 Hz 的条件：有非旗舰/高档参考的 touch→UI、视觉移动、权威移动结果及手感评估，CPU/每秒成本、电量/热量记录或明确缺口；说明是否采用 B、预测范围和纠正误差，为什么响应可接受。A/B 不达目标、精度或成本需要对照时完成 C。M3 决策记录前不大量制作正式英雄/内容；没有证据继续标记 provisional baseline。
 
-决策证据状态：A 未测；B 未测；C 必要性待 M1/M3 评估、未测。当前没有“30 Hz 手感已通过”结论。后续改率需重编时间/容量证书、更新内容与存档兼容，不把 30/60 Hz 不同离散步长要求成逐 Tick hash 相等。
+决策证据状态：A/B 已具备软件采集与桌面 Chromium 自动采样入口，原始数据见 reports/software-probe；Android A/B 未测，C 必要性待真机/M3 评估、未测。当前没有“30 Hz 手感已通过”结论。后续改率需重编时间/容量证书、更新内容与存档兼容，不把 30/60 Hz 不同离散步长要求成逐 Tick hash 相等。
 
 ## ADR 004 单机后台与严重过载暂停
 
@@ -130,7 +130,7 @@ M1/M3 比较 A：30 Hz Simulation + 60 Hz Rendering + 当前插值；B：30 Hz S
 
 状态：accepted 的范围，地图具体形式 proposed。
 
-选择：M3 战斗验证、M6 单线对局 MVP、M7 单机十席 5v5 MVP、M10 稳定离线发行。当前仅 M0，不实现任何游戏系统。
+选择：M3 战斗验证、M6 单线对局 MVP、M7 单机十席 5v5 MVP、M10 稳定离线发行。当前 M1，仅实现空外壳、最小实体及几何响应 fixture，正式游戏系统仍未实现。
 
 候选正式地图为三线加野区，两队各五席；正式大小、波次、目标、复活、助攻窗和平衡数值在 M4/M5/M7 按 Ruleset 定义。MVP 的基础英雄可重复填席位，原创英雄按完整原稿在 M8 实施。
 
@@ -161,3 +161,33 @@ M1/M3 比较 A：30 Hz Simulation + 60 Hz Rendering + 当前插值；B：30 Hz S
 UI/音频/小地图不决定权限，Bot 使用同席位过滤结果；不提供隐藏原始事实、精确声源参数或可关联私有 ID。声音/信息授权不自动使单位可选，队伍分享不能放大授权。持续信息/公开事件有期限、去重、保存和输出工作量证书。
 
 理由：空间不可见仍可有合法信息，避免“所有声音和小地图都等同视野”阻止游戏设计。代价：要维护字段/精度/接收者矩阵、授权组合和隐私回归。复审：M4 权限矩阵，M5 恢复/到期，M6/M7 Bot 和队伍信息，M9 所有表现通道与匿名方向音频。
+
+## ADR 017 M1 骨架、工程门禁与依赖锁定
+
+状态：accepted 的 M1 实施范围；Android 能力与最终 Tick 率仍未验收。
+
+选择：Phaser 3.90.0、TypeScript 5.9.3、Vite 7.3.1、Vitest 3.2.4、ESLint 9.39.1 / typescript-eslint 8.48.1、Playwright 1.56.1。具体版本经 npm 元数据与安装树核实，唯一 package-lock.json；不声称使用当日最新版本。Node 实测 24.19.0，生产转换目标 Chromium 107，浏览器最低能力仍是候选。选择已知 Phaser 3 API 和 Vite 7 分支，升级必须另做回归。
+
+application 显式创建 Session、Simulation、ProbeController、Phaser 与平台监听器。Simulation 私有 World 通过冻结 facade 隔离，表现仅得到复制冻结的授权 DTO，没有 World 指针。EntityRef 维持 index/generation；Kernel 访问通过额外的 session scope，外部 Command 通过 matchId 隔离。调用方必须为新 Session 提供新的 ID；组合根使用单调 session token，不能复用。
+
+参数化 FixedTick 接收外部单调时间脉冲；Phaser 的 Scene.update 只调用这一入口，忽略平滑 delta。4 步 / 250 ms 过载规则和明确恢复不补时间已落实。纯编译边界使用 ES2022 lib、types=[]；AST 导入扫描检查别名、type-only、再导出、动态 import、SCC 和内部功能域白名单；单独的反例测试证明拒绝能力。
+
+代价：M1 的调试 hash 使用有界命令历史和确定顺序，包含 Tick、探针状态、实体 generation、队列、去重窗口；FNV32 仅用于诊断，不是存档/安全校验和。未来 Checkpoint 与严格 replay 格式仍在 M5，M1 不伪造保存恢复。fault 不可直接解除，当前只能重建 Session。
+
+validate:content 在 M1 只确认正式内容目录为空，输出 NOT_APPLICABLE_M1；发现正式内容直接失败。未实现 Schema/属性 DAG/容量证明/权限编译，不能宣称内容校验已通过。
+
+复审：M2 建正式 content 编译及 CapacityCertificate，M3 替换响应 fixture 为通用 Movement/Actions 并复测，M5 完整存档。M1 真机出口缺口见 docs/M1_ACCEPTANCE.md。
+
+## ADR 018 响应 fixture 与测量边界
+
+状态：accepted 的 M1 探针方法；手感结论 provisional。
+
+响应 fixture 是一个公开的、归本地调试席位所有的几何点，速度 180 world units/s，无碰撞、地图、资源、生命、技能、敌人和隐藏信息。debugProbeDirection 不是正式 MoveCommand，正式功能目录只留空位置，不注册战斗 Operation/Hook。empty 模式没有实体且 Observation/RenderDelta 为空。这个例外只服务 M1 已授权的移动响应探测，M3 必须改为正式通用系统，不向正式内容开放。
+
+A 使用 previous/current 插值；B 使用立即触控标记及 presentation 私有 VisualProxy，预测只参考已授权本地样本和本地意图，时长 clamp 到一个 step，下一权威样本重基准。取消、失焦、暂停、拒绝、Session 变化取消代理；discontinuity 禁止插值/预测。M1 无控制/死亡系统，这些取消入口的实景验收到 M3，不能称已验证。A 的一般 Pointer 标记也在帧内显示，比较主要是视觉代理，不人为延迟 A 的普通 UI。
+
+采集统一用 platform.performance.now。输入原始事件采集、控制器入队、完成 P3/P9 边界、Phaser POST_RENDER 分开记录。权威位置提交的时间用完成 step 的外层时间估计，包含当前空 P4–P9 开销，未来 phase tracing 再细化。POST_RENDER 只证明软件渲染提交，未测 GPU 合成/屏幕发光。Tick CPU 单独包围 simulation.step；帧 CPU 为 Scene.update 至 POST_RENDER 区间（含模拟/表现/Debug，不含区间外浏览器/合成器），每秒成本按采集会话 wall time 统计，包含暂停时间。
+
+每指每帧只标记实际绘制的最新样本；Controller 按 Tick 只消费最新移动意图，缺失/合并样本通过 captured 与各指标 count 区分，不能伪造每个事件都有权威位移。begin/end 通常零方向，权威接受时间与真正移动延迟分别列出；没有位置变化则不计为移动成功。所有日志/采样缓冲有界（2000），命令重试历史 512，过窗重复明确拒绝。
+
+桌面自动化固定生产 dist，通过 CDP 输入，不使用 HMR 运行作测量，避免测试中源码重载污染；三轮交替 A/B 各 100 次手势。数据仅用于软件测量基线，不能支持 Android 电耗/温度/最终 30 Hz 决策。需 Android 真机按 PERFORMANCE_BUDGET 3.3 补齐非旗舰与高档参考、物理误差与热态记录。C 的真机必要性仍待数据；M1 当前没有接受最终率。
