@@ -1,6 +1,6 @@
 # Android HTML5 MOBA 技术架构
 
-版本：0.1.3。日期：2026-10-02。状态：M1 已收口；M2 headless 内核已实施，软件出口见 docs/M2_ACCEPTANCE.md。
+版本：0.1.4。日期：2026-10-02。当前：M3 0.4.1 软件候选；M2 0.3.1 已由用户确认独立复核/远端 main PASS；真机证据等待，不进入 M4。
 
 本项目面向 Android Chromium 横屏，使用 Phaser、TypeScript、Vite 和 HTML5/WebGL。最终目标是 5v5，玩家控制一名英雄，其余席位由 Bot 控制；先完成可持续扩展的单机游戏，再评估真人联网。M1 的纯模拟外壳、Session、实体与几何响应探针保留。M2 增加内容编译、属性 DAG、资源/状态/战斗、受控 Hook/Replacement、Fact 队列和容量证书；尚无英雄、技能动作、地图或 Bot。本文同时约束已实现骨架与后续系统；实现状态见 M1_IMPLEMENTATION.md，阶段出口见 M1_ACCEPTANCE.md。
 
@@ -467,3 +467,9 @@ content 与 simulation 仍不互相 import；CompiledCatalog DTO 通过 applicat
 M2 实施矩阵、容量/成本与不支持机制见 M2_IMPLEMENTATION.md、M2_ACCEPTANCE.md。属性缓存仅保存可重建派生值，失效依赖显式 Status version，不进入权威 hash。30 Hz provisional、A 默认/B 实验/C 暂不触发的 ADR 003 结论保持。
 
 M2 0.3.1 容量修订（ADR 023）：definition、certificate、Entity 和 attribute trace 的查找由 Session 私有索引解析，索引不进入 CompiledCatalog DTO/contentHash 或权威顺序。保留的集合遍历逐遍计 scans；lookups/structure 与 startup/command 各有证明/profile 验证。精确单位及固定工作界见 M2_WORK_ACCOUNTING.md。0.3.0 最终收口已撤回，0.3.1 为待独立复核候选；不进入 M3。
+
+## M3 0.4.1 当前实施与边界
+
+通用 Action/资源 reservation、Movement intent/step Operation、有限 grid queries、relative swept Projectile、Area 与 public debug arena/触屏适配已实现，全部使用既有 executeRoot/Operation/Hook/Fact/CapacityCertificate。实现与明确阶段规则见 [M3_IMPLEMENTATION.md](M3_IMPLEMENTATION.md)，新 producer/计账上界见 [M3_WORK_ACCOUNTING.md](M3_WORK_ACCOUNTING.md)，软件门禁见 [M3_TEST_REPORT.md](M3_TEST_REPORT.md)，Android/ADR 019 当前硬门禁见 [M3_ACCEPTANCE.md](M3_ACCEPTANCE.md)。正式决策见 ADR 024。
+
+logical maximum capacity 与 representative gameplay performance 分开。30 Hz provisional、A 默认、B experimental、C 未触发；缺第二档/热态证据不接受最终率、最低设备、Android 性能或最终手感。M3 软件候选不代表 M3 整体通过，不进入 M4。

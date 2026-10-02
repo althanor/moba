@@ -1,0 +1,1608 @@
+{
+  "status": "PASS",
+  "contentHash": "f166a531",
+  "certificate": {
+    "id": "b1434902",
+    "engineVersion": "0.4.1",
+    "compilerVersion": "m3-bounded-v2",
+    "contentHash": "f166a531",
+    "tickRate": 30,
+    "rulesetId": "debug-battle-m3",
+    "roots": [
+      {
+        "effect": "attack",
+        "work": {
+          "operations": 1362,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 909,
+          "formula": 454,
+          "scans": 1440542,
+          "facts": 9534,
+          "lookups": 331422,
+          "structure": 114368048
+        },
+        "limit": {
+          "operations": 2048,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1024,
+          "formula": 512,
+          "scans": 2097152,
+          "facts": 16384,
+          "lookups": 524288,
+          "structure": 134217728
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 3,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "attack",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "boltHit",
+        "work": {
+          "operations": 2724,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 2271,
+          "formula": 908,
+          "scans": 2881084,
+          "facts": 19068,
+          "lookups": 662842,
+          "structure": 228736096
+        },
+        "limit": {
+          "operations": 4096,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 4096,
+          "formula": 1024,
+          "scans": 4194304,
+          "facts": 32768,
+          "lookups": 1048576,
+          "structure": 268435456
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 6,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "boltHit",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "boltSpawn",
+        "work": {
+          "operations": 3,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 2,
+          "formula": 1,
+          "scans": 3171,
+          "facts": 21,
+          "lookups": 732,
+          "structure": 251912
+        },
+        "limit": {
+          "operations": 4,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 2,
+          "formula": 1,
+          "scans": 4096,
+          "facts": 32,
+          "lookups": 1024,
+          "structure": 262144
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 3,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "dash",
+        "work": {
+          "operations": 3,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 2,
+          "formula": 1,
+          "scans": 68683,
+          "facts": 21,
+          "lookups": 57154,
+          "structure": 251912
+        },
+        "limit": {
+          "operations": 4,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 2,
+          "formula": 1,
+          "scans": 131072,
+          "facts": 32,
+          "lookups": 65536,
+          "structure": 262144
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 3,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "fieldSpawn",
+        "work": {
+          "operations": 3,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 2,
+          "formula": 1,
+          "scans": 3171,
+          "facts": 21,
+          "lookups": 732,
+          "structure": 251912
+        },
+        "limit": {
+          "operations": 4,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 2,
+          "formula": 1,
+          "scans": 4096,
+          "facts": 32,
+          "lookups": 1024,
+          "structure": 262144
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 3,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.basic.commit",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.basic.refund",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.basic.release",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.basic.reserve",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.basic.spend",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.bolt.commit",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.bolt.refund",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.bolt.release",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.bolt.reserve",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.bolt.spend",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.dash.commit",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.dash.refund",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.dash.release",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.dash.reserve",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.dash.spend",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.field.commit",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.field.refund",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.field.release",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.field.reserve",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.field.spend",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.mend.commit",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.mend.refund",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.mend.release",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.mend.reserve",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.mend.spend",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.push.commit",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.push.refund",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.push.release",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.push.reserve",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.cost.push.spend",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 1,
+          "scans": 1311,
+          "facts": 19,
+          "lookups": 169,
+          "structure": 25384
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 1,
+          "scans": 2048,
+          "facts": 32,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.move.intent",
+        "work": {
+          "operations": 3,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 2,
+          "formula": 1,
+          "scans": 3171,
+          "facts": 21,
+          "lookups": 732,
+          "structure": 251912
+        },
+        "limit": {
+          "operations": 4,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 2,
+          "formula": 1,
+          "scans": 4096,
+          "facts": 32,
+          "lookups": 1024,
+          "structure": 262144
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 3,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "m3.move.step",
+        "work": {
+          "operations": 3,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 2,
+          "formula": 1,
+          "scans": 68683,
+          "facts": 21,
+          "lookups": 57154,
+          "structure": 251912
+        },
+        "limit": {
+          "operations": 4,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 2,
+          "formula": 1,
+          "scans": 131072,
+          "facts": 32,
+          "lookups": 65536,
+          "structure": 262144
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 3,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "mend",
+        "work": {
+          "operations": 2724,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 2271,
+          "formula": 908,
+          "scans": 2881084,
+          "facts": 19068,
+          "lookups": 662842,
+          "structure": 228736096
+        },
+        "limit": {
+          "operations": 4096,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 4096,
+          "formula": 1024,
+          "scans": 4194304,
+          "facts": 32768,
+          "lookups": 1048576,
+          "structure": 268435456
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 6,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "mend",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "pulse",
+        "work": {
+          "operations": 1362,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 909,
+          "formula": 454,
+          "scans": 1440542,
+          "facts": 9534,
+          "lookups": 331422,
+          "structure": 114368048
+        },
+        "limit": {
+          "operations": 2048,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1024,
+          "formula": 512,
+          "scans": 2097152,
+          "facts": 16384,
+          "lookups": 524288,
+          "structure": 134217728
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 3,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "pulse",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "push",
+        "work": {
+          "operations": 3,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 2,
+          "formula": 1,
+          "scans": 68683,
+          "facts": 21,
+          "lookups": 57154,
+          "structure": 251912
+        },
+        "limit": {
+          "operations": 4,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 2,
+          "formula": 1,
+          "scans": 131072,
+          "facts": 32,
+          "lookups": 65536,
+          "structure": 262144
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 3,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      }
+    ],
+    "producers": [
+      {
+        "id": "fixture",
+        "provenEffects": [
+          "attack",
+          "boltHit",
+          "boltSpawn",
+          "pulse",
+          "fieldSpawn",
+          "mend",
+          "dash",
+          "push"
+        ],
+        "kind": "fixture",
+        "maxInstances": 10,
+        "rootsPerInstancePerTick": 2,
+        "maxRoots": 20,
+        "work": {
+          "operations": 54480,
+          "hooks": 0,
+          "queries": 20,
+          "ast": 45420,
+          "formula": 18160,
+          "scans": 57621680,
+          "facts": 381360,
+          "lookups": 13256840,
+          "structure": 4574721920
+        }
+      },
+      {
+        "id": "m3.action",
+        "provenEffects": [
+          "attack",
+          "boltSpawn",
+          "fieldSpawn",
+          "mend",
+          "dash",
+          "push",
+          "m3.cost.basic.reserve",
+          "m3.cost.basic.spend",
+          "m3.cost.basic.commit",
+          "m3.cost.basic.release",
+          "m3.cost.basic.refund",
+          "m3.cost.bolt.reserve",
+          "m3.cost.bolt.spend",
+          "m3.cost.bolt.commit",
+          "m3.cost.bolt.release",
+          "m3.cost.bolt.refund",
+          "m3.cost.field.reserve",
+          "m3.cost.field.spend",
+          "m3.cost.field.commit",
+          "m3.cost.field.release",
+          "m3.cost.field.refund",
+          "m3.cost.mend.reserve",
+          "m3.cost.mend.spend",
+          "m3.cost.mend.commit",
+          "m3.cost.mend.release",
+          "m3.cost.mend.refund",
+          "m3.cost.dash.reserve",
+          "m3.cost.dash.spend",
+          "m3.cost.dash.commit",
+          "m3.cost.dash.release",
+          "m3.cost.dash.refund",
+          "m3.cost.push.reserve",
+          "m3.cost.push.spend",
+          "m3.cost.push.commit",
+          "m3.cost.push.release",
+          "m3.cost.push.refund"
+        ],
+        "kind": "action",
+        "maxInstances": 454,
+        "rootsPerInstancePerTick": 8,
+        "maxRoots": 3632,
+        "work": {
+          "operations": 9893568,
+          "hooks": 0,
+          "queries": 3632,
+          "ast": 8248272,
+          "formula": 3297856,
+          "scans": 10464097088,
+          "facts": 69254976,
+          "lookups": 2407442144,
+          "structure": 830769500672
+        }
+      },
+      {
+        "id": "m3.area",
+        "provenEffects": [
+          "pulse"
+        ],
+        "kind": "area",
+        "maxInstances": 64,
+        "rootsPerInstancePerTick": 8,
+        "maxRoots": 512,
+        "work": {
+          "operations": 697344,
+          "hooks": 0,
+          "queries": 512,
+          "ast": 465408,
+          "formula": 232448,
+          "scans": 737557504,
+          "facts": 4881408,
+          "lookups": 169688064,
+          "structure": 58556440576
+        }
+      },
+      {
+        "id": "m3.movement",
+        "provenEffects": [
+          "m3.move.intent",
+          "m3.move.step"
+        ],
+        "kind": "movement",
+        "maxInstances": 454,
+        "rootsPerInstancePerTick": 3,
+        "maxRoots": 1362,
+        "work": {
+          "operations": 4086,
+          "hooks": 0,
+          "queries": 1362,
+          "ast": 2724,
+          "formula": 1362,
+          "scans": 93546246,
+          "facts": 28602,
+          "lookups": 77843748,
+          "structure": 343104144
+        }
+      },
+      {
+        "id": "m3.projectile",
+        "provenEffects": [
+          "boltHit"
+        ],
+        "kind": "projectile",
+        "maxInstances": 128,
+        "rootsPerInstancePerTick": 1,
+        "maxRoots": 128,
+        "work": {
+          "operations": 348672,
+          "hooks": 0,
+          "queries": 128,
+          "ast": 290688,
+          "formula": 116224,
+          "scans": 368778752,
+          "facts": 2440704,
+          "lookups": 84843776,
+          "structure": 29278220288
+        }
+      }
+    ],
+    "maintenance": {
+      "operations": 10826,
+      "hooks": 0,
+      "queries": 1100,
+      "ast": 0,
+      "formula": 0,
+      "scans": 221074470,
+      "facts": 10826,
+      "lookups": 63355182,
+      "structure": 13612441136
+    },
+    "maintenanceEnvelope": {
+      "modifierEvents": 3632,
+      "shieldEvents": 3632,
+      "resourceUpdates": 908,
+      "deathEvents": 454
+    },
+    "tick": {
+      "operations": 11008976,
+      "hooks": 0,
+      "queries": 6754,
+      "ast": 9052512,
+      "formula": 3666050,
+      "scans": 11942675740,
+      "facts": 76997876,
+      "lookups": 2816429754,
+      "structure": 937134428736
+    },
+    "limit": {
+      "operations": 16777216,
+      "hooks": 1,
+      "queries": 8192,
+      "ast": 16777216,
+      "formula": 4194304,
+      "scans": 17179869184,
+      "facts": 134217728,
+      "lookups": 4294967296,
+      "structure": 1099511627776
+    },
+    "rootCount": 5654,
+    "rootCountLimit": 8192,
+    "maxHookDepth": 1,
+    "maxUnits": 454,
+    "maxStatusesGlobal": 3632,
+    "factQueue": 1,
+    "factQueueLimit": 1,
+    "startup": {
+      "operations": 0,
+      "hooks": 0,
+      "queries": 0,
+      "ast": 0,
+      "formula": 0,
+      "scans": 629883,
+      "facts": 0,
+      "lookups": 84444,
+      "structure": 5241694166
+    },
+    "startupLimit": {
+      "operations": 1,
+      "hooks": 1,
+      "queries": 1,
+      "ast": 1,
+      "formula": 1,
+      "scans": 1048576,
+      "facts": 1,
+      "lookups": 131072,
+      "structure": 8589934592
+    },
+    "command": {
+      "operations": 0,
+      "hooks": 0,
+      "queries": 0,
+      "ast": 0,
+      "formula": 0,
+      "scans": 576574,
+      "facts": 0,
+      "lookups": 514,
+      "structure": 10699776
+    },
+    "commandLimit": {
+      "operations": 1,
+      "hooks": 1,
+      "queries": 1,
+      "ast": 1,
+      "formula": 1,
+      "scans": 1048576,
+      "facts": 1,
+      "lookups": 1024,
+      "structure": 16777216
+    },
+    "scanModel": {
+      "version": "element-read-v2",
+      "attributePass": 36,
+      "leafPass": 1292,
+      "maintenancePass": 148001406,
+      "factStructure": 1336,
+      "maxStringLength": 400
+    }
+  },
+  "profile": {
+    "id": "m3-debug-logical-v1",
+    "capacity": {
+      "operations": 16777216,
+      "hooks": 1,
+      "queries": 8192,
+      "ast": 16777216,
+      "formula": 4194304,
+      "scans": 17179869184,
+      "facts": 134217728,
+      "lookups": 4294967296,
+      "structure": 1099511627776
+    },
+    "startup": {
+      "operations": 1,
+      "hooks": 1,
+      "queries": 1,
+      "ast": 1,
+      "formula": 1,
+      "scans": 1048576,
+      "facts": 1,
+      "lookups": 131072,
+      "structure": 8589934592
+    },
+    "command": {
+      "operations": 1,
+      "hooks": 1,
+      "queries": 1,
+      "ast": 1,
+      "formula": 1,
+      "scans": 1048576,
+      "facts": 1,
+      "lookups": 1024,
+      "structure": 16777216
+    },
+    "roots": 8192,
+    "queryTargets": 454,
+    "hookDepth": 1,
+    "units": 454,
+    "statuses": 3632,
+    "factQueue": 1
+  }
+}

@@ -28,3 +28,7 @@ The current damage vocabulary applies the raw formula, explicit Pre scale/cancel
 
 
 0.3.1 repair (ADR 023): the 0.3.0 scan proof was incomplete. Definition/Entity/attribute-trace indexes are private and never alter contentHash or authority ordering. All dynamic collection passes use element-read accounting; lookups and structure have separate finite certificates, including startup and command scopes. Guard begin binds producer.provenEffects before root registration. Immutable diagnostic participant copies prevent later eligible Hooks from mutating an already published Fact. Detailed model and fixed-work bounds: docs/M2_WORK_ACCOUNTING.md. Compiler m2-indexed-v2 /profile m2-headless-v2. All 11 candidate software gates were rerun and passed (98 tests); final M2 closure awaits independent review. No M3 or main push.
+
+## 后续状态说明（2026-10-02）
+
+用户已确认 M2 0.3.1 完成独立源码复核并正式推送 althanor/moba main c57fa8caadb2afc2eb98d85246e156d76e942949，软件出口 PASS、对应 Actions/Pages 全绿。以上候选/等待复核/不进入 M3 描述作为历史记录保留；M3 已获本轮明确授权，软件候选见 M3_TEST_REPORT.md，Android 真机门禁见 M3_ACCEPTANCE.md。原 M2 极限 fixture、索引与计账证明继续作为不可削弱的回归。

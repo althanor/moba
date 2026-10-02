@@ -1,5 +1,5 @@
 import { finite } from '../../foundation/index';
-import type { CombatFact, CompiledCatalog, DamageBreakdown, FormulaStage, Operation } from '../../contracts/index';
+import type { CombatFact, CompiledCatalog, DamageBreakdown, EffectNode, EntityRef, FormulaStage, Operation } from '../../contracts/index';
 import type { CapacityGuard } from '../kernel/capacity-guard';
 import { damagePlan } from '../features/combat/settlement';
 import { attribute, refresh, statusDefs, traces } from './combat-state';
@@ -11,6 +11,7 @@ import type { RuntimeEntity } from './combat-state';
 import { evaluateExpression } from '../shared/formulas/registry';
 
 export interface DispatchContext {
+  readonly gameplay?: { dispatch(op:Operation):string|null; afterOperation(op:Operation):void; targets(node:Extract<EffectNode,{kind:'spatialTargets'}>,source:EntityRef,aim:Operation['aim']):readonly EntityRef[] };
   readonly definitions: RuntimeDefinitions; readonly entityIndex: RuntimeEntityIndex; readonly catalog: CompiledCatalog; readonly entities: readonly RuntimeEntity[]; readonly guard: CapacityGuard;
   readonly nextInstance: () => number;
   readonly emit: (fact: Omit<CombatFact, 'eventId' | 'tick' | 'phase'>) => void;
@@ -59,6 +60,10 @@ export function dispatch(context: DispatchContext, operation: Operation, target:
   const hp = target.resources.get(r.health).current;
   const emit = (kind: string, before: number, after: number, reason: string | null = null, breakdown: DamageBreakdown | null = null): void => context.emit({ kind, operation, target: target.ref, before, after, reason, breakdown });
   switch (payload.kind) {
+    case 'movementIntent':case 'movementStep':case 'actionCost': case 'displace': case 'spawnProjectile': case 'spawnArea': {
+      if (!context.gameplay) return guard.fault('GAMEPLAY_DISABLED', payload.kind);
+      const reason = context.gameplay.dispatch(operation); emit(reason ? 'OperationRejected' : payload.kind === 'actionCost' ? 'ActionCostResolved' : 'GameplayOperationResolved', 0, reason ? 0 : 1, reason); return reason === null;
+    }
     case 'damage': {
       const statuses = statusDefs(definitions, target, guard), immune = statuses.some(s => { scan('status', 1); return s.definition.tags.some(tag => { scan('status', 1); return tag === 'invulnerable' || tag === `immune:${payload.damageType}`; }); });
       if (immune) { emit('OperationRejected', hp, hp, 'immune', blockedBreakdown(raw, 'immune', participants, inputStages, scan)); return false; }

@@ -55,12 +55,14 @@ export interface PresentationFrame {
   readonly localSampleId: number | null;
   readonly authoritativeSampleId: number | null;
   readonly inputEnabled: boolean;
+  readonly releaseSampleIds?:readonly number[];
+  readonly aimPreview?: { readonly point:Vec2;readonly radiusWorld:number;readonly cancel:boolean;readonly sampleId:number };
 }
-export type DebugAction = 'pause' | 'resume' | 'step' | 'recreate' | 'modeA' | 'modeB' | 'export' | 'empty' | 'probe';
+export type DebugAction = 'pause' | 'resume' | 'step' | 'recreate' | 'modeA' | 'modeB' | 'export' | 'empty' | 'probe' | 'control';
 export interface PresentationHost {
   nowMs(): number;
   frame(nowMs: number): PresentationFrame;
-  input(sample: RawInput, widthCss: number): void;
+  input(sample: RawInput, widthCss: number, heightCss?:number): void;
   clearInput(): void;
   debug(action: DebugAction): void;
   markUI(sampleId: number, atMs: number): void;

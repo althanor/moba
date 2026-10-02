@@ -1,3 +1,4 @@
+import type { GameplayAim } from '../../contracts/index';
 import { ordered, visits } from '../shared/work';
 import { compareId } from '../../foundation/index';
 import type { ContentId, EffectNode, EntityRef, FormulaStage, HookDef, Operation } from '../../contracts/index';
@@ -7,7 +8,7 @@ import type { DispatchContext } from './operation-dispatch';
 
 export interface RootIntent {
   readonly rootId: string; readonly effect: ContentId; readonly producer: ContentId; readonly sourceRef: EntityRef;
-  readonly targets: readonly EntityRef[]; readonly sourceSequence: number;
+  readonly targets: readonly EntityRef[]; readonly sourceSequence: number; readonly aim?: GameplayAim;readonly parent?:Pick<Operation,'opId'|'depth'|'chain'>;
 }
 interface Frame {
   readonly node: EffectNode; readonly effect: ContentId; readonly target: EntityRef; readonly depth: number;
@@ -15,11 +16,12 @@ interface Frame {
   readonly repeatsLeft?: number;
 }
 interface HookInstance { readonly definition: HookDef; readonly instanceId: number; readonly key: string }
-export function executeRoot(context: DispatchContext, root: RootIntent, nextOperation: () => number): void {
+export function executeRoot(context: DispatchContext, root: RootIntent, nextOperation: () => number): boolean {
+  let committed = true;
   const { catalog, entities, guard, definitions, entityIndex } = context, scan = guard.scan.bind(guard);
   const source = entityIndex.resolve(root.sourceRef, guard);
   const rootNode = definitions.effects.get(root.effect, guard).node;
-  const stack: Frame[] = [{ node: rootNode, effect: root.effect, target: root.targets[0] ?? root.sourceRef, depth: 0, parentId: null, chain: [] }];
+  const stack: Frame[] = [{ node: rootNode, effect: root.effect, target: root.targets[0] ?? root.sourceRef, depth: root.parent?.depth??0, parentId: root.parent?.opId??null, chain: root.parent?.chain??[] }];
   const triggers = new Map<string, number>();
 
   function expansion(hook: HookInstance, op: Operation, frame: Frame): Frame {
@@ -39,6 +41,12 @@ export function executeRoot(context: DispatchContext, root: RootIntent, nextOper
       if (remaining > 0) { stack.push({ ...frame, repeatsLeft: remaining - 1 }); const { repeatsLeft: _remaining, ...child } = frame; void _remaining; stack.push({ ...child, node: node.child }); }
       continue;
     }
+    if (node.kind === 'spatialTargets') {
+      if(!context.gameplay)guard.fault('GAMEPLAY_DISABLED',node.kind);
+      const targets=context.gameplay?.targets(node,root.sourceRef,root.aim)??[];
+      for(let i=targets.length-1;i>=0;i--){guard.scan('query');const target=targets[i];if(target)stack.push({...frame,node:node.child,target});}
+      continue;
+    }
     if (node.kind === 'targets') {
       guard.charge('queries');
       const targets = node.selector === 'source' ? [root.sourceRef] : node.selector === 'all' ? entities.map(e => { guard.scan('query'); return e.ref; }) : root.targets;
@@ -47,13 +55,13 @@ export function executeRoot(context: DispatchContext, root: RootIntent, nextOper
     }
     const target = entityIndex.resolve(frame.target, guard);
     if (node.kind === 'conditional') { const value = (traces(catalog, definitions, target, guard), attribute(target, node.attribute, guard)); stack.push({ ...frame, node: value >= node.atLeast ? node.yes : node.no }); continue; }
-    const op: Operation = { opId: `${root.rootId}:op:${nextOperation()}`, rootId: root.rootId, parentId: frame.parentId, producer: root.producer, effect: frame.effect, sourceRef: root.sourceRef, sourceOwnerRef: root.sourceRef, targetRef: target.ref, depth: frame.depth, chain: frame.chain, payload: node, tags: definitions.effects.get(frame.effect, guard).tags };
+    const op: Operation = { opId: `${root.rootId}:op:${nextOperation()}`, rootId: root.rootId, parentId: frame.parentId, producer: root.producer, effect: frame.effect, sourceRef: root.sourceRef, sourceOwnerRef: root.sourceRef, targetRef: target.ref, depth: frame.depth, chain: frame.chain, payload: node, tags: definitions.effects.get(frame.effect, guard).tags, ...(root.aim ? { aim: root.aim } : {}) };
     guard.operation = op; guard.charge('operations');
     const hp = target.resources.get(catalog.document.ruleset.health).current;
     let inputStages: readonly FormulaStage[] = [];
     const emitReason = (kind: string, reason: string, raw = 0, participants: readonly string[] = []): void => context.emit({ kind, operation: op, target: target.ref, before: hp, after: hp, reason, breakdown: node.kind === 'damage' ? blockedBreakdown(raw, reason, participants, inputStages, scan) : null });
     if (!guard.deduplicate(op)) { emitReason('OperationDuplicate', 'duplicateOpId'); continue; }
-    if (target.vitality.life !== 'alive') { emitReason('OperationRejected', 'notAlive'); continue; }
+    if (target.vitality.life !== 'alive' && !(node.kind === 'actionCost' && (node.mode === 'release' || node.mode === 'refund'))) { emitReason('OperationRejected', 'notAlive'); committed = false; continue; }
     const input = numericInput(context, op, source, target); inputStages = input.stages; const raw = input.value;
     const candidates: HookInstance[] = [];
     for (const s of visits(target.statuses.snapshot(), scan, 'status')) for (const h of visits(definitions.modifiers.get(s.definition, guard).hooks, scan, 'hook')) if (h.match === node.kind) candidates.push({ definition: h, instanceId: s.instanceId, key: `${h.id}:${s.instanceId}` });
@@ -75,13 +83,15 @@ export function executeRoot(context: DispatchContext, root: RootIntent, nextOper
       if (a.kind === 'scale') scale *= a.factor;
       if (a.kind === 'replace') { emitReason('OperationReplaced', h.key, raw, participants); stack.push(expansion(h, op, frame)); replaced = true; break; }
     }
-    if (replaced || cancelled) continue;
-    if (!dispatch(context, op, target, raw, scale, participants, inputStages)) continue;
+    if (replaced || cancelled) { committed = false; continue; }
+    if (!dispatch(context, op, target, raw, scale, participants, inputStages)) { committed = false; continue; }
+    context.gameplay?.afterOperation(op);
     const derived: Frame[] = [];
     // A death-save can unregister a status in this same transaction; its Post hook must not survive removal.
     const liveIds = new Set<number>(); for (const s of visits(target.statuses.snapshot(), scan, 'status')) liveIds.add(s.instanceId);
     for (const h of visits(hooks, scan, 'hook')) if (h.definition.stage === 'post' && liveIds.has(h.instanceId) && eligible(h)) derived.push(expansion(h, op, frame));
     for (let i = derived.length - 1; i >= 0; i--) { guard.scan('hook'); const child = derived[i]; if (child) stack.push(child); }
   }
+  return committed;
 }
 export function sameRef(a: EntityRef, b: EntityRef): boolean { return a.index === b.index && a.generation === b.generation; }

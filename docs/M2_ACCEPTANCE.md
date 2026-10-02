@@ -52,3 +52,7 @@ summary 只限制可选调试归档：每条 Fact 仍完整生成、消费和计
 ## 0.3.1 修订出口
 
 PASS：definition/certificate/entity/trace 索引、逐遍 scans、lookups/structure/startup/command 证明、producer.provenEffects 最终绑定；4096×三类目录反例、454叶解析、手算conservation、大Tag/盾类型/公式读取、深冻结与诊断副本均通过。完整原峰值仍4,574,049 Operation /9,135,386 Fact，全部454实体独立oracle通过。详细证书/actual/limit/profile及旧/新成本见 M2_TEST_REPORT /M2_WORK_ACCOUNTING。没有已知软件门禁失败；最终收口候选等待独立复核。
+
+## 后续状态说明（2026-10-02）
+
+用户已确认 M2 0.3.1 完成独立源码复核并正式推送 althanor/moba main c57fa8caadb2afc2eb98d85246e156d76e942949，软件出口 PASS、对应 Actions/Pages 全绿。以上候选/等待复核/不进入 M3 描述作为历史记录保留；M3 已获本轮明确授权，软件候选见 M3_TEST_REPORT.md，Android 真机门禁见 M3_ACCEPTANCE.md。原 M2 极限 fixture、索引与计账证明继续作为不可削弱的回归。

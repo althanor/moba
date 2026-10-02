@@ -1,5 +1,21 @@
 # MOBA 变更记录
 
+## 0.4.1 — M3 software repair candidate（等待再次独立复核）
+
+- 修正 CSS→world 向量独立轴缩放，保留屏幕摇杆 analog magnitude；aim preview 在同时移动时跟随当前授权源位置。
+- Movement 独立 penetration recovery，ignore 明确包含 path+endpoint，projectile 原始 t=0 overlap 命中语义保留。
+- root/docs MILESTONES 当前状态唯一；check:docs 增加当前阶段矛盾/历史标记门禁，build/docs/check 共用 source phase。
+- 原 131 tests 保留，新增 aspect、penetration/replay 和 semantic status；全 11 门禁重新执行，engine/compiler 重新绑定证书。
+- 0.4.0 最终软件出口声明因独立复核阻塞撤回；复核前禁止 main/Pages/正式 Android A/B/M4；A 默认、B experimental、30 Hz provisional，C 不因这轮 bug 触发。
+
+## 0.4.0 — M3 software candidate（真机等待）
+
+- 基于用户确认正式收口的 M2 0.3.1/main c57fa8c，重新读取最新规范和全部 ADR。
+- 通用 Action/cost/refund/charge/cooldown、movement intent/step Operation、collision/grid/spatial、swept Projectile、Area，均接既有结算链。
+- 数据基础英雄、极简触屏战斗场、多指/瞄准/取消/锁定/控制挑战、A/B 软件测量、原 ?probe 入口。
+- 更新所有 M3 producer/certificate/profile；保留 M2 合法极限与全回归；正常 gameplay profile 与 logical maximum 分列。
+- Android gameplay/第二档/持续冷热态/电量/温度/降频 BLOCKED；30 Hz provisional、A 默认、B experimental、C 未触发，不进入 M4。
+
 ## 0.3.1 2026-10-02 M2 scan accounting 修订候选
 
 0.3.0 最终软件收口撤回：4096 个合法 constant formula 的反例揭示未计账 Array.find，不能以旧 scans 证明全部非 Operation 工作。ADR 023 记录反例、受影响不变量和修订。

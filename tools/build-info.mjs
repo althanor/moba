@@ -1,6 +1,6 @@
 // Build provenance is debug metadata; it never enters Simulation or its hash.
 export function createBuildInfo(env, localCommit, workingTreeDirty, version, phase = 'M1') {
-  if (!['M1', 'M2'].includes(phase)) throw new Error('invalid build phase');
+  if (!['M1', 'M2', 'M3'].includes(phase)) throw new Error('invalid build phase');
   const actions = env.GITHUB_ACTIONS === 'true';
   const commit = actions ? env.GITHUB_SHA : localCommit;
   const validCommit = typeof commit === 'string' && /^[a-f0-9]{40}$/.test(commit);

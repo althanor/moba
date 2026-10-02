@@ -1,6 +1,6 @@
 # MOBA 战斗结算流水线
 
-版本：0.1.3。日期：2026-10-02。状态：M2 headless 核心流水线已实现；后续动作/空间/经济规则仍按阶段推进。
+版本：0.1.4。日期：2026-10-02。当前：M3 0.4.1 软件候选；M2 0.3.1 已由用户确认独立复核/远端 main PASS；真机证据等待，不进入 M4。
 
 此文是 Tick 阶段、战斗顺序与因果关系的唯一规范来源。所有英雄、兵、野怪、塔、装备、Modifier 和 Debug 操作使用同一结算入口。表现动画、Phaser 碰撞回调、UI 和 Bot 不能决定命中或生命变化。正式数值在 Ruleset 中确定；下列默认公式和边界行为作为实现基线，变更须更新决策、文档和测试。
 
@@ -280,3 +280,23 @@ M2 的精确内容语义、profile 和缺口见 [M2_IMPLEMENTATION.md](M2_IMPLEM
 同 opId 同内容重复只计尝试，不再提交；同 ID 不同内容是故障。状态变动失效属性缓存，下一 Operation 前完成刷新。Override 处于乘法后、转换前，优先级降序/definitionId/instanceId 稳定选择；转换读 pre 时读 override 后值，读 final 时遵从 DAG。最大资源下降保留绝对量并 Clamp，不算伤害；breakdown 与 ResourceClamped 分开记录。
 
 FactQueue 同步非重入交接给 M2 内部诊断消费者，每条 Fact produced=consumed，最大待交接数证明为 1；总 Fact 工作仍受根/Tick 证书限制。full 模式保留全部逐条记录；summary 模式保留全部种类计数及最近 2000 条调试记录，明确标注 produced/consumed/retained。这是诊断归档模式，不减少任何结算、Hook、Replacement 或目标，两个模式的 World/hash 必须相同。Information/Disclosure 消费者在 M4 注册，届时重审输出工作量。
+
+## M3 0.4.1 当前实施与边界
+
+通用 Action/资源 reservation、Movement intent/step Operation、有限 grid queries、relative swept Projectile、Area 与 public debug arena/触屏适配已实现，全部使用既有 executeRoot/Operation/Hook/Fact/CapacityCertificate。实现与明确阶段规则见 [M3_IMPLEMENTATION.md](M3_IMPLEMENTATION.md)，新 producer/计账上界见 [M3_WORK_ACCOUNTING.md](M3_WORK_ACCOUNTING.md)，软件门禁见 [M3_TEST_REPORT.md](M3_TEST_REPORT.md)，Android/ADR 019 当前硬门禁见 [M3_ACCEPTANCE.md](M3_ACCEPTANCE.md)。正式决策见 ADR 024。
+
+logical maximum capacity 与 representative gameplay performance 分开。30 Hz provisional、A 默认、B experimental、C 未触发；缺第二档/热态证据不接受最终率、最低设备、Android 性能或最终手感。M3 软件候选不代表 M3 整体通过，不进入 M4。
+
+## 0.4.1 输入坐标与 penetration recovery 修订
+
+CSS 点与向量使用不同契约：点独立缩放 X/Y 后加 arena.min；向量只乘 worldPerCssX=arenaWidth/widthCss、worldPerCssY=arenaHeight/heightCss，再归一化。Joystick magnitude=min(1,screenDragLength/48)，单独保留屏幕拖距力度；方向用转换后的 world unit vector。技能 deadzone/cancel/按钮 hit test 仍使用 CSS，direction/point drag 的 world direction 经过同一转换；投影 preview 随当前授权 actor snapshot 重定位，松手重新从当前 snapshot 构造 Command，preview 不决定命中。目标 tap 的点映射保留。
+
+Movement 有独立 movementCircleTOI/movementRectTOI，不修改 projectile 的 circleTOI/rectTOI。已重叠圆：候选位移非零且 (from-center)·delta≥0 时允许，该条件保证整条线段 squared separation 不减并增加；同心从任意非零方向都可脱离，圆切向二阶分离亦允许。向更深处移动阻止，即便端点已穿到另一边。未重叠和 touching 状态继续用原 sweep：接触向外/切向不新增碰撞，向内阻止。
+
+已穿入 rectangle 的单位用 signed separation：内部是到最近边的负距离，外部是到 rectangle 最近点的欧氏距离。内部同时考虑所有并列最近边；外部使用最近点法向。初始分离导数不负且候选端点 separation 严格增加，才开放这一个已重叠 blocker；向更深处阻止。穿入平边的纯切向短步若没有分离进展则阻止，可用最近边向外方向离开；恰好 touching 的切向仍可行。其他 wall/unit blockers 仍可截短候选线段，没有自动位置修正、额外 depenetration Tick 或绕过 Operation 写坐标。
+
+wall:ignore / units:ignore 明确忽略对应的 path + endpoint collision，允许 penetration endpoint；后续 stop 移动按上述恢复规则。teleport 的 stop 策略仍检查目的地，ignore 则允许重叠目的地。Arena 永远不 ignore：spawn 必须在 radius margin 内，所有位移端点 clamp 到该范围，因此合法路径不会产生 arena penetration；边界向外 clamp、向内/切向移动可行。解算顺序 forced/dash/ordinary 与 EntityRef 稳定顺序不变，仍以最新已提交单位位置判阻。
+
+新增 helper 均是固定数量标量算术，不新增动态集合、candidate query、元素遍历、lookup 或结构快照。每个原 candidate/obstacle 仍恰好读取一次；本次重新生成 engine=0.4.1/compiler=m3-bounded-v2 的证书并验证全部 scope，work 上界/profile 数值保持，不能复用旧版本证书 ID。Projectile 起点重叠依旧 t=0 命中，命中/结束/expiry 不重复。
+
+本次只修复本地 M3 软件候选。自动门禁通过不等于最终软件出口已被再次独立复核；复核前不推送 main、不部署 Pages、不开始正式 Android A/B、不进入 M4。A 默认、B experimental、30 Hz provisional；此次坐标/碰撞 bug 不自动触发 C。

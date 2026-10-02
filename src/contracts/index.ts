@@ -6,3 +6,7 @@ export * from './content/catalog';
 export { zeroWork, addWork, scaleWork, maxWork, limitWork, M2_COMMAND_LIMITS } from './content/work';
 export { validateProfile } from './content/profile';
 export type { CombatConfig, EffectCommand, Operation, FormulaStage, DamageBreakdown, CombatFact, AttributeTrace, ResourceSnapshot, StatusSnapshot, CombatEntitySnapshot, CapacityActual, CombatBoundary, CombatFaultDiagnostic, CombatDebugPort, CombatRuntime, FactDelivery } from './events/combat';
+
+export type { ActionDef, ProjectileDef, AreaDef, GameplayDef, RectWorld, TargetRelation, ActionInstance, GameplayAim } from './content/gameplay';
+export type { GameplayCommand } from './commands/gameplay';
+export type { BattleView, BattleUnitView } from './observations/battle';

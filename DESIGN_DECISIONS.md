@@ -1,6 +1,6 @@
 # MOBA 设计决策记录
 
-版本：0.1.3。日期：2026-10-02。当前阶段：M2 headless 内核；工程 0.3.0；不进入 M3。
+版本：0.1.4。日期：2026-10-02。当前：M3 0.4.0 软件候选；M2 0.3.1 已由用户确认正式收口；真机验收独立，不进入 M4。
 
 accepted 表示采用的架构约束而非已实现；proposed 表示需验证的候选；provisional baseline 表示后续实现暂用但尚未接受为最终选择；deferred 表示当前不实施。技术资料只核实平台行为，预算/探针提案不等于性能和手感事实。
 
@@ -253,3 +253,39 @@ producer certificate 保存 provenEffects，CapacityGuard.begin 直接校验 pro
 代价：增加私有索引空间、显式计账及保守结构成本；容量正确性与性能分别验证。0.3.0 主场景 4,574,049 Operation /9,135,386 Fact 作为不可降低的回归基线。Android 性能仍未认证；不进入 M3，不推送 main。
 
 ADR 023 补充：诊断 participant 采用独立不可变副本；两个 Pre Hook 燃料不同、前一个已不合格而后一个仍合法时，不能因 Fact 冻结借用数组而阻断后一个 Hook。复制成本包含 H 与诊断长度的联合上界。容量 guard 的内部计数采用私有可变记录，所有对外快照复制/冻结；没有 type assertion 绕过契约。
+
+## ADR 024 M3 有界动作/空间运行时与统一移动 Operation
+
+状态：accepted for M3 0.4.1 repair candidate；0.4.0 最终软件出口声明因独立复核阻塞撤回，修复需再次独立复核；Android 尚未正式开始；日期 2026-10-02。
+
+基线：用户确认 M2 0.3.1 已独立复核并正式推送 main c57fa8caadb2afc2eb98d85246e156d76e942949，原软件门禁/Actions/Pages PASS，授权 M3，不进入 M4。ADR 003/019/021/022/023 的率、设备延期、容量、索引、完整结算约束继续有效。
+
+最小反例：M2 的 debugEffect 只有 source/targets、没有 aim/reservation 或位置生命周期；直接在 P3 owner 方法写坐标虽归 Simulation，却不能为普通移动提供一条 Operation/Fact 因果链。把所有位移都解释为任意 setPosition 又无法区分 sweep、forced priority 与 teleport discontinuity。M2 的 all selector 只能证明有限全体 fixture，不能给局部空间查询证明候选 bucket 工作。
+
+决定：只扩展既有 contracts/compiler/runtime。增加静态类型化 aim、intrinsic actionCost、movementIntent/movementStep、displace、spawnProjectile/spawnArea、spatialTargets；新 root 仍通过既有 executeRoot/dispatch/guard/FactQueue。动作成本与坐标写入由各自 owner 执行，UI、Phaser 或内容 callback 没有写 World 端口。intrinsic leaves 由编译器生成，不能由 authored Effect/Hook/producer 引用保留命名空间。普通 P3 step 和中性 intent 清理也要执行 Operation，不能作为无 Fact 的便捷坐标写入。
+
+空间选择 bounded uniform grid，最多 256 cells、454 units，每 moving-target swept AABB 至多占 256 cells；所有候选读取/去重 membership/直接 index 访问计入 scan/lookup。radius/cone/segment/relative sweep 明确稳定排序，最大 fanout=454。至多 128 projectile、64 Area，P0 expiry 先释放槽再处理新 action release；同 Tick expiry/新实例/延后 death exit 联合证明。拒绝未证明异步 spawner 及 Hook spawner，不加复杂 ECS physics、正式地图、导航或原创英雄规则。
+
+runtime 使用固定内部 owner/诊断端口；这些函数只能连接静态注册的引擎实现，不是 authored callback，也不接受未知内容程序。CC/clamp 引发的 inline cost 清理保留原 root/producer/parent/depth/chain，计入原 leaf 的一次 active-action cancellation surcharge。
+
+Application 可批准 public-debug-arena-v1 的 BattleView；它公开调试场，不能作为未来正式信息策略的替代。唯一新增资产边界是 Platform 的固定 battle-assets.ts，白名单只允许注册的 m3-battle.json/m3-profile.json；Application 编译/验证，Simulation 接收 compiled catalog，不从外部取配置。依赖检查仍拒绝其他 product→仓库外代码 import。
+
+A 默认 previous/current；B 只对授权本地普通移动做 ≤1 Tick 表现代理，control/death/action/discontinuity 禁止预测；projectile 不做预测。30 Hz 继续 provisional。只有实际 authority 响应/精度问题才触发 C；B 的纠正或无收益不能单独触发 C。
+
+复审 ADR 019：空壳阶段的延期理由已经结束。M3 软件可以单独 PASS，但第二档约 4 GB Android 与 A/B 各约 20 分钟代表性冷热态/电量/温度/降频证据在本轮环境不可执行，列 BLOCKED/awaiting-device；它们阻塞 M3 的真机/最终率/最低设备/最终手感出口，不静默递延到 M4。M7 低档 45 分钟完整对局、M10 发布矩阵的原硬门禁仍保留。
+
+代价：新的状态、root、query、scan、lookup、snapshot/hash 节点增加保守 logical maximum certificate。逻辑容量正确性与代表性正常 gameplay CPU profile 分开；不删除 M2 极限合法结算、不削减 454、不截 Hook/Operation/Fact。每次 producer/内容/率改变重新编译，回归见 M3_WORK_ACCOUNTING.md/M3_TEST_REPORT.md/M3_ACCEPTANCE.md。
+
+## 0.4.1 输入坐标与 penetration recovery 修订
+
+CSS 点与向量使用不同契约：点独立缩放 X/Y 后加 arena.min；向量只乘 worldPerCssX=arenaWidth/widthCss、worldPerCssY=arenaHeight/heightCss，再归一化。Joystick magnitude=min(1,screenDragLength/48)，单独保留屏幕拖距力度；方向用转换后的 world unit vector。技能 deadzone/cancel/按钮 hit test 仍使用 CSS，direction/point drag 的 world direction 经过同一转换；投影 preview 随当前授权 actor snapshot 重定位，松手重新从当前 snapshot 构造 Command，preview 不决定命中。目标 tap 的点映射保留。
+
+Movement 有独立 movementCircleTOI/movementRectTOI，不修改 projectile 的 circleTOI/rectTOI。已重叠圆：候选位移非零且 (from-center)·delta≥0 时允许，该条件保证整条线段 squared separation 不减并增加；同心从任意非零方向都可脱离，圆切向二阶分离亦允许。向更深处移动阻止，即便端点已穿到另一边。未重叠和 touching 状态继续用原 sweep：接触向外/切向不新增碰撞，向内阻止。
+
+已穿入 rectangle 的单位用 signed separation：内部是到最近边的负距离，外部是到 rectangle 最近点的欧氏距离。内部同时考虑所有并列最近边；外部使用最近点法向。初始分离导数不负且候选端点 separation 严格增加，才开放这一个已重叠 blocker；向更深处阻止。穿入平边的纯切向短步若没有分离进展则阻止，可用最近边向外方向离开；恰好 touching 的切向仍可行。其他 wall/unit blockers 仍可截短候选线段，没有自动位置修正、额外 depenetration Tick 或绕过 Operation 写坐标。
+
+wall:ignore / units:ignore 明确忽略对应的 path + endpoint collision，允许 penetration endpoint；后续 stop 移动按上述恢复规则。teleport 的 stop 策略仍检查目的地，ignore 则允许重叠目的地。Arena 永远不 ignore：spawn 必须在 radius margin 内，所有位移端点 clamp 到该范围，因此合法路径不会产生 arena penetration；边界向外 clamp、向内/切向移动可行。解算顺序 forced/dash/ordinary 与 EntityRef 稳定顺序不变，仍以最新已提交单位位置判阻。
+
+新增 helper 均是固定数量标量算术，不新增动态集合、candidate query、元素遍历、lookup 或结构快照。每个原 candidate/obstacle 仍恰好读取一次；本次重新生成 engine=0.4.1/compiler=m3-bounded-v2 的证书并验证全部 scope，work 上界/profile 数值保持，不能复用旧版本证书 ID。Projectile 起点重叠依旧 t=0 命中，命中/结束/expiry 不重复。
+
+本次只修复本地 M3 软件候选。自动门禁通过不等于最终软件出口已被再次独立复核；复核前不推送 main、不部署 Pages、不开始正式 Android A/B、不进入 M4。A 默认、B experimental、30 Hz provisional；此次坐标/碰撞 bug 不自动触发 C。

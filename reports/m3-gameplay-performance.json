@@ -1,0 +1,201 @@
+{
+  "status": "PASS",
+  "scope": "desktop Node software diagnostic; representative scripted commands, not Android performance/handfeel acceptance",
+  "logicalMaximumSeparate": true,
+  "profiles": [
+    {
+      "id": "debug-battle-4",
+      "units": 4,
+      "activeControllers": 4,
+      "tickRate": 30,
+      "warmupTicks": 60,
+      "measuredTicks": 300,
+      "runs": [
+        {
+          "run": 0,
+          "startupMs": 26.10535299999998,
+          "tickCpuMs": {
+            "count": 300,
+            "p50": 1.2260890000000018,
+            "p95": 2.2195259999999735,
+            "p99": 3.0357870000000275,
+            "max": 3.5712649999999826
+          },
+          "simulationCpuMsPerSecond": 40.693821799999895,
+          "commandIngressMsAcross12SimSeconds": 10.696344000000579,
+          "maxWork": {
+            "operations": 29,
+            "hooks": 0,
+            "queries": 11,
+            "ast": 17,
+            "formula": 3,
+            "scans": 941,
+            "facts": 29,
+            "lookups": 681,
+            "structure": 170585
+          },
+          "maxRoots": 15,
+          "maxProjectiles": 1,
+          "maxAreas": 4,
+          "damageResolved": 34,
+          "finalHash": "5716d35d"
+        },
+        {
+          "run": 1,
+          "startupMs": 5.505040999999892,
+          "tickCpuMs": {
+            "count": 300,
+            "p50": 1.142712999999958,
+            "p95": 1.8388830000000098,
+            "p99": 2.7548739999999725,
+            "max": 5.901668999999856
+          },
+          "simulationCpuMsPerSecond": 37.13770309999986,
+          "commandIngressMsAcross12SimSeconds": 6.798483999999235,
+          "maxWork": {
+            "operations": 29,
+            "hooks": 0,
+            "queries": 11,
+            "ast": 17,
+            "formula": 3,
+            "scans": 941,
+            "facts": 29,
+            "lookups": 681,
+            "structure": 170585
+          },
+          "maxRoots": 15,
+          "maxProjectiles": 1,
+          "maxAreas": 4,
+          "damageResolved": 34,
+          "finalHash": "5716d35d"
+        },
+        {
+          "run": 2,
+          "startupMs": 6.549706000000015,
+          "tickCpuMs": {
+            "count": 300,
+            "p50": 1.1887229999999818,
+            "p95": 1.7464330000000245,
+            "p99": 2.4153309999999237,
+            "max": 3.748491999999942
+          },
+          "simulationCpuMsPerSecond": 37.66511530000007,
+          "commandIngressMsAcross12SimSeconds": 7.069416000000729,
+          "maxWork": {
+            "operations": 29,
+            "hooks": 0,
+            "queries": 11,
+            "ast": 17,
+            "formula": 3,
+            "scans": 941,
+            "facts": 29,
+            "lookups": 681,
+            "structure": 170585
+          },
+          "maxRoots": 15,
+          "maxProjectiles": 1,
+          "maxAreas": 4,
+          "damageResolved": 34,
+          "finalHash": "5716d35d"
+        }
+      ]
+    },
+    {
+      "id": "representative-64-eight-active",
+      "units": 64,
+      "activeControllers": 8,
+      "tickRate": 30,
+      "warmupTicks": 60,
+      "measuredTicks": 300,
+      "runs": [
+        {
+          "run": 0,
+          "startupMs": 10.914768000000095,
+          "tickCpuMs": {
+            "count": 300,
+            "p50": 5.990372000000207,
+            "p95": 10.691701000000194,
+            "p99": 11.334479999999985,
+            "max": 12.736163000000033
+          },
+          "simulationCpuMsPerSecond": 197.9362423000003,
+          "commandIngressMsAcross12SimSeconds": 34.254681000004894,
+          "maxWork": {
+            "operations": 183,
+            "hooks": 0,
+            "queries": 20,
+            "ast": 49,
+            "formula": 18,
+            "scans": 5501,
+            "facts": 183,
+            "lookups": 3968,
+            "structure": 559991
+          },
+          "maxRoots": 32,
+          "maxProjectiles": 2,
+          "maxAreas": 6,
+          "damageResolved": 594,
+          "finalHash": "1130166b"
+        },
+        {
+          "run": 1,
+          "startupMs": 8.41271500000039,
+          "tickCpuMs": {
+            "count": 300,
+            "p50": 5.95823399999972,
+            "p95": 9.598812999999609,
+            "p99": 11.083050999999614,
+            "max": 12.935754000000088
+          },
+          "simulationCpuMsPerSecond": 188.38293479999965,
+          "commandIngressMsAcross12SimSeconds": 30.442605000002004,
+          "maxWork": {
+            "operations": 183,
+            "hooks": 0,
+            "queries": 20,
+            "ast": 49,
+            "formula": 18,
+            "scans": 5501,
+            "facts": 183,
+            "lookups": 3968,
+            "structure": 559991
+          },
+          "maxRoots": 32,
+          "maxProjectiles": 2,
+          "maxAreas": 6,
+          "damageResolved": 594,
+          "finalHash": "1130166b"
+        },
+        {
+          "run": 2,
+          "startupMs": 9.393733999999313,
+          "tickCpuMs": {
+            "count": 300,
+            "p50": 6.0711949999986246,
+            "p95": 9.602224000000206,
+            "p99": 11.054771000000073,
+            "max": 12.075689999999668
+          },
+          "simulationCpuMsPerSecond": 193.0115692000014,
+          "commandIngressMsAcross12SimSeconds": 31.133219000005738,
+          "maxWork": {
+            "operations": 183,
+            "hooks": 0,
+            "queries": 20,
+            "ast": 49,
+            "formula": 18,
+            "scans": 5501,
+            "facts": 183,
+            "lookups": 3968,
+            "structure": 559991
+          },
+          "maxRoots": 32,
+          "maxProjectiles": 2,
+          "maxAreas": 6,
+          "damageResolved": 594,
+          "finalHash": "1130166b"
+        }
+      ]
+    }
+  ]
+}

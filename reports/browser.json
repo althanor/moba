@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "/workspace/scratch/2e1a4f8502af/moba/playwright.config.ts",
-    "rootDir": "/workspace/scratch/2e1a4f8502af/moba/tests/browser",
+    "configFile": "/workspace/scratch/258450a66912/moba/playwright.config.ts",
+    "rootDir": "/workspace/scratch/258450a66912/moba/tests/browser",
     "forbidOnly": false,
     "fullyParallel": false,
     "globalSetup": null,
@@ -33,15 +33,31 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "/workspace/scratch/2e1a4f8502af/moba/test-results",
+        "outputDir": "/workspace/scratch/258450a66912/moba/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
           "actualWorkers": 1
         },
-        "id": "",
-        "name": "",
-        "testDir": "/workspace/scratch/2e1a4f8502af/moba/tests/browser",
+        "id": "software-regression",
+        "name": "software-regression",
+        "testDir": "/workspace/scratch/258450a66912/moba/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/workspace/scratch/258450a66912/moba/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "gameplay-measurement",
+        "name": "gameplay-measurement",
+        "testDir": "/workspace/scratch/258450a66912/moba/tests/browser",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -53,7 +69,7 @@
     "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
     "version": "1.56.1",
-    "workers": 4,
+    "workers": 1,
     "webServer": {
       "command": "npx vite build --base=/moba/ --outDir node_modules/.cache/m1-pages-dist && npm run preview -- --base=/moba/ --outDir node_modules/.cache/m1-pages-dist --port 4173 --strictPort",
       "url": "http://127.0.0.1:4173/moba/",
@@ -61,6 +77,252 @@
     }
   },
   "suites": [
+    {
+      "title": "battle.spec.ts",
+      "file": "battle.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "public debug battle composes attacks, projectile, healing/shield, Area and dash via real pointer input",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3556,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T14:03:43.484Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-7a19c35916494eeab86b",
+          "file": "battle.spec.ts",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "target lock uses authoritative refs; clearing a held joystick on export or lost capture stops intent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2315,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T14:03:47.110Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-da4f047f229be783d74c",
+          "file": "battle.spec.ts",
+          "line": 56,
+          "column": 1
+        },
+        {
+          "title": "two CDP touch contacts move and aim/cast; cancellation never spends; pointer loss cleans both contacts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1588,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T14:03:49.446Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-15a69a8d1476db9395a7",
+          "file": "battle.spec.ts",
+          "line": 138,
+          "column": 1
+        },
+        {
+          "title": "M3 pause/orientation/blur, explicit resume, 20 recreations and gameplay measurement export",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2129,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T14:03:51.045Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-f80e57afbcb6c9108857",
+          "file": "battle.spec.ts",
+          "line": 211,
+          "column": 1
+        },
+        {
+          "title": "ultrawide 1503x536 gameplay A: rendered diagonal movement and multi-touch aim line follow CSS finger vectors",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1403,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T14:03:53.184Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-f62d0cfdefe72aa2dff3",
+          "file": "battle.spec.ts",
+          "line": 277,
+          "column": 32
+        },
+        {
+          "title": "ultrawide 1503x536 gameplay B: rendered diagonal movement and multi-touch aim line follow CSS finger vectors",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1395,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T14:03:54.596Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-3495e7e6b7fad0365393",
+          "file": "battle.spec.ts",
+          "line": 277,
+          "column": 32
+        },
+        {
+          "title": "three alternating gameplay A/B pairs: turns, blocking, dash, projectile, cancel, CC and multitouch; exports software metrics",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "gameplay-measurement",
+              "projectName": "gameplay-measurement",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 26968,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T14:04:01.367Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-b46d5ecd4a3131977607",
+          "file": "battle.spec.ts",
+          "line": 362,
+          "column": 1
+        }
+      ]
+    },
     {
       "title": "probe.spec.ts",
       "file": "probe.spec.ts",
@@ -76,19 +338,19 @@
               "timeout": 30000,
               "annotations": [],
               "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
               "results": [
                 {
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 967,
+                  "duration": 877,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T03:46:08.445Z",
+                  "startTime": "2026-10-02T14:03:56.007Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -96,7 +358,7 @@
               "status": "expected"
             }
           ],
-          "id": "9223f0ac28d4fb57516f-77e0139818006c5e99cd",
+          "id": "9223f0ac28d4fb57516f-83f196e8744745d62dd0",
           "file": "probe.spec.ts",
           "line": 7,
           "column": 1
@@ -110,19 +372,19 @@
               "timeout": 30000,
               "annotations": [],
               "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
               "results": [
                 {
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 827,
+                  "duration": 987,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T03:46:09.479Z",
+                  "startTime": "2026-10-02T14:03:56.892Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -130,7 +392,7 @@
               "status": "expected"
             }
           ],
-          "id": "9223f0ac28d4fb57516f-a25b2c4e9fc87765aa1d",
+          "id": "9223f0ac28d4fb57516f-e1547835ff57f1f35a70",
           "file": "probe.spec.ts",
           "line": 54,
           "column": 1
@@ -144,19 +406,19 @@
               "timeout": 30000,
               "annotations": [],
               "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
               "results": [
                 {
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1860,
+                  "duration": 2149,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T03:46:10.316Z",
+                  "startTime": "2026-10-02T14:03:57.888Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -164,7 +426,7 @@
               "status": "expected"
             }
           ],
-          "id": "9223f0ac28d4fb57516f-8e7b80766c7f033d0241",
+          "id": "9223f0ac28d4fb57516f-92a8095c54e1d87238f2",
           "file": "probe.spec.ts",
           "line": 103,
           "column": 1
@@ -178,19 +440,19 @@
               "timeout": 30000,
               "annotations": [],
               "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
               "results": [
                 {
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 663,
+                  "duration": 640,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T03:46:12.189Z",
+                  "startTime": "2026-10-02T14:04:00.049Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -198,7 +460,7 @@
               "status": "expected"
             }
           ],
-          "id": "9223f0ac28d4fb57516f-65e43f6a38446c59406c",
+          "id": "9223f0ac28d4fb57516f-0a63eae7cbe707cfa964",
           "file": "probe.spec.ts",
           "line": 150,
           "column": 1
@@ -208,9 +470,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-02T03:46:02.049Z",
-    "duration": 10847.571,
-    "expected": 4,
+    "startTime": "2026-10-02T14:03:36.862Z",
+    "duration": 51593.221000000005,
+    "expected": 11,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

@@ -1,6 +1,7 @@
-import type { Brand } from '../../foundation/index';
+import type { GameplayDef } from './gameplay';
+import type { ContentId } from './id';
+export type { ContentId } from './id';
 
-export type ContentId = Brand<string, 'ContentId'>;
 export type Unit = 'scalar' | 'points';
 export type AttributeStage = 'pre' | 'final';
 export type Expression =
@@ -18,12 +19,18 @@ export interface Contribution {
 }
 export type DamageType = 'physical' | 'magic' | 'true';
 export type Leaf =
+  | { readonly kind:'movementIntent' | 'movementStep' }
+  | { readonly kind: 'actionCost'; readonly resource: ContentId; readonly amount: number; readonly mode: 'reserve' | 'spend' | 'commit' | 'release' | 'refund' }
+  | { readonly kind: 'spawnProjectile'; readonly definition: ContentId }
+  | { readonly kind: 'spawnArea'; readonly definition: ContentId }
+  | { readonly kind: 'displace'; readonly mode: 'dash' | 'forced' | 'direct' | 'teleport'; readonly distanceWorld: number; readonly speedWorldPerSecond: number; readonly wall: 'stop' | 'ignore'; readonly units: 'stop' | 'ignore' }
   | { readonly kind: 'damage'; readonly formula: ContentId; readonly damageType: DamageType }
   | { readonly kind: 'heal'; readonly formula: ContentId }
   | { readonly kind: 'shield'; readonly formula: ContentId; readonly durationTicks: number; readonly priority: number; readonly damageTypes: readonly DamageType[] }
   | { readonly kind: 'resource'; readonly resource: ContentId; readonly formula: ContentId; readonly mode: 'spend' | 'gain' }
   | { readonly kind: 'applyStatus' | 'removeStatus'; readonly modifier: ContentId };
 export type EffectNode = Leaf
+  | { readonly kind: 'spatialTargets'; readonly shape: 'radius' | 'cone' | 'segment'; readonly center: 'source' | 'aim'; readonly radiusWorld: number; readonly lengthWorld: number; readonly cosine: number; readonly relation: 'enemy' | 'ally' | 'any'; readonly child: EffectNode }
   | { readonly kind: 'sequence'; readonly children: readonly EffectNode[] }
   | { readonly kind: 'repeat'; readonly count: number; readonly child: EffectNode }
   | { readonly kind: 'targets'; readonly selector: 'primary' | 'all' | 'source'; readonly child: EffectNode }
@@ -47,7 +54,7 @@ export interface ResourceDef {
   readonly id: ContentId; readonly maximumAttribute: ContentId; readonly initial: number; readonly regenPerSecond: number;
 }
 export interface ProducerDef {
-  readonly id: ContentId; readonly kind: 'fixture' | 'statusPulse' | 'statusEnd';
+  readonly id: ContentId; readonly kind: 'fixture' | 'statusPulse' | 'statusEnd' | 'action' | 'projectile' | 'area' | 'movement';
   readonly maxInstances: number; readonly rootsPerInstancePerTick: number; readonly effects: readonly ContentId[];
 }
 export interface RulesetDef {
@@ -59,7 +66,7 @@ export interface RulesetDef {
 export interface ContentDocument {
   readonly schemaVersion: 1; readonly attributes: readonly AttributeDef[]; readonly formulas: readonly FormulaDef[];
   readonly resources: readonly ResourceDef[]; readonly modifiers: readonly ModifierDef[];
-  readonly effects: readonly EffectDef[]; readonly ruleset: RulesetDef;
+  readonly effects: readonly EffectDef[]; readonly ruleset: RulesetDef; readonly gameplay?: GameplayDef;
 }
 export const WORK_KEYS = ['operations', 'hooks', 'queries', 'ast', 'formula', 'scans', 'facts', 'lookups', 'structure'] as const;
 export type WorkKey = typeof WORK_KEYS[number];

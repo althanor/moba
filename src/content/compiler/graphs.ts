@@ -49,6 +49,7 @@ export function validateExpression(expr: Expression, document: ContentDocument, 
   return visit(expr);
 }
 export function validateGraphs(document: ContentDocument): readonly ContentId[] {
+  if(!document.gameplay&&document.ruleset.producers.some(p=>['action','projectile','area','movement'].includes(p.kind)))throw new ContentError('GAMEPLAY','$.ruleset.producers','gameplay producer requires compiled gameplay');
   for (const [name, items] of Object.entries({ attributes: document.attributes, formulas: document.formulas, resources: document.resources, modifiers: document.modifiers, effects: document.effects, producers: document.ruleset.producers })) {
     const ids = items.map(item => item.id); if (new Set(ids).size !== ids.length) throw new ContentError('DUPLICATE_ID', name, 'duplicate stable ID');
   }
@@ -80,6 +81,7 @@ export function validateGraphs(document: ContentDocument): readonly ContentId[] 
   if (requireId(document.attributes, health.maximumAttribute, 'ruleset.health').min <= 0) throw new ContentError('HEALTH_RANGE', health.id, 'Health maximum must stay positive');
   requireId(document.attributes, document.ruleset.armor, 'ruleset.armor'); requireId(document.attributes, document.ruleset.magicResistance, 'ruleset.magicResistance');
   function node(n: EffectNode, path: string): void {
+    if (['spatialTargets','displace','spawnArea','spawnProjectile'].includes(n.kind) && !document.gameplay) throw new ContentError('GAMEPLAY',path,'requires gameplay envelope');
     if ('formula' in n) {
       const f = requireId(document.formulas, n.formula, path);
       if (f.unit !== 'points') throw new ContentError('UNIT', path, 'resource amounts require points');
@@ -101,7 +103,7 @@ export function validateGraphs(document: ContentDocument): readonly ContentId[] 
     if (!p.effects.length) throw new ContentError('PRODUCER', p.id, 'producer needs supported Effects');
     for (const id of p.effects) requireId(document.effects, id, p.id);
     if (p.kind === 'fixture' && p.maxInstances > r.maxUnits) throw new ContentError('PRODUCER', p.id, 'fixture instances exceed unit envelope');
-    if (p.kind !== 'fixture' && (p.maxInstances < r.maxStatusesGlobal || p.rootsPerInstancePerTick < 1)) throw new ContentError('PRODUCER', p.id, 'status producer must cover simultaneous global instances');
+    if ((p.kind === 'statusPulse' || p.kind === 'statusEnd') && (p.maxInstances < r.maxStatusesGlobal || p.rootsPerInstancePerTick < 1)) throw new ContentError('PRODUCER', p.id, 'status producer must cover simultaneous global instances');
   }
   for (const m of document.modifiers) {
     for (const c of m.contributions) requireId(document.attributes, c.attribute, m.id);

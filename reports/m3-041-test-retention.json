@@ -1,0 +1,161 @@
+{
+  "status": "PASS",
+  "scope": "all original 0.4.0 test files retained; every original test/it/describe/afterEach call AST retained including assertions; original 131 executions rerun in final check",
+  "files": [
+    {
+      "file": "architecture/dependencies.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 8
+    },
+    {
+      "file": "browser/battle.spec.ts",
+      "exactBytes": false,
+      "originalTestCallExpressionsRetained": 7
+    },
+    {
+      "file": "browser/probe.spec.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 4
+    },
+    {
+      "file": "capacity/capacity.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 8
+    },
+    {
+      "file": "capacity/indexed-work.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 7
+    },
+    {
+      "file": "capacity/m3-capacity.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 3
+    },
+    {
+      "file": "content/catalog.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 10
+    },
+    {
+      "file": "content/m3.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 3
+    },
+    {
+      "file": "fixtures/m2.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 0
+    },
+    {
+      "file": "fixtures/m3.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 0
+    },
+    {
+      "file": "performance/capacity.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 3
+    },
+    {
+      "file": "performance/m3-gameplay.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 1
+    },
+    {
+      "file": "property/combat-conservation.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 1
+    },
+    {
+      "file": "replay/combat.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 2
+    },
+    {
+      "file": "replay/frame-rate.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 3
+    },
+    {
+      "file": "replay/m3.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 2
+    },
+    {
+      "file": "simulation/combat-fault.whitebox.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 6
+    },
+    {
+      "file": "simulation/combat.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 16
+    },
+    {
+      "file": "simulation/m3-actions.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 5
+    },
+    {
+      "file": "simulation/m3-interrupt.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 7
+    },
+    {
+      "file": "simulation/m3-projectile-area.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 3
+    },
+    {
+      "file": "simulation/m3-space.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 5
+    },
+    {
+      "file": "simulation/session.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 7
+    },
+    {
+      "file": "simulation/shell.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 7
+    },
+    {
+      "file": "unit/attributes.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 3
+    },
+    {
+      "file": "unit/build-info.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 4
+    },
+    {
+      "file": "unit/clock.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 4
+    },
+    {
+      "file": "unit/entity-store.whitebox.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 4
+    },
+    {
+      "file": "unit/foundation.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 6
+    },
+    {
+      "file": "unit/input.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 4
+    },
+    {
+      "file": "unit/presentation-fps.test.ts",
+      "exactBytes": true,
+      "originalTestCallExpressionsRetained": 1
+    }
+  ]
+}

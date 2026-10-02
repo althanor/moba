@@ -1,5 +1,5 @@
 import { direction, integer } from '../../foundation/index';
-import type { CommandResult, DebugSnapshot, Observation, PauseReason, ProbeCommand, RenderDelta, SessionState, ShellConfig, SimulationPort, TickOutput } from '../../contracts/index';
+import type { CommandResult, GameplayCommand, DebugSnapshot, Observation, PauseReason, ProbeCommand, RenderDelta, SessionState, ShellConfig, SimulationPort, TickOutput } from '../../contracts/index';
 import type { Vec2 } from '../../foundation/index';
 import { FixedTick } from './fixed-tick';
 
@@ -41,6 +41,12 @@ export class Session {
     const command: ProbeCommand = { matchId: this.config.matchId, controllerId: 'probe-player', sequence: this.#sequence,
       targetTick: (this.#observation.tick + 1) as ProbeCommand['targetTick'], actorRef, kind: 'debugProbeDirection', payload: intent };
     return this.#simulation.enqueue(command);
+  }
+  submit(request:Pick<GameplayCommand,'kind'|'payload'>,seat?:Pick<GameplayCommand,'actorRef'|'controllerId'>):CommandResult|null {
+    const actorRef=seat?.actorRef??this.#observation.battle?.player;
+    if(!actorRef||(this.#state!=='running'&&!this.#stepping))return null;
+    this.#sequence=integer(this.#sequence+1,'sequence',1);
+    return this.#simulation.enqueue({matchId:this.config.matchId,controllerId:seat?.controllerId??'player',sequence:this.#sequence,targetTick:this.#observation.tick+1,actorRef,kind:request.kind,payload:request.payload});
   }
   pause(reason: PauseReason): void {
     if (this.#state === 'disposed' || this.#state === 'ended') return;
@@ -96,7 +102,7 @@ export class Session {
     if (this.#stepping) { this.#pendingDispose = true; return; }
     this.#hooks.clearInput(); this.#clock.reset(); this.#simulation.dispose(); this.#reasons.clear();
     this.#state = 'disposed'; this.#delta = null;
-    this.#observation = Object.freeze({ ...this.#observation, entities: Object.freeze([]) });
+    const {battle:_battle,...observation}=this.#observation;void _battle;this.#observation = Object.freeze({ ...observation, entities: Object.freeze([]) });
   }
 }
 export const NEUTRAL = direction(0, 0);

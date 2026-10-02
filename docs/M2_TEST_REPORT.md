@@ -147,3 +147,7 @@ Operation独立预期 `20×454×(454+4)+453×(1+454×2)+1+907+1816+908=4,574,049
 PASS：本轮M2软件修订门禁/证书/全部完整结算。BLOCKED：最终M2收口仍等待本轮独立复核；当前没有已知软件门禁失败。DEFERRED：Android M2性能、第二档约4GB、20分钟冷热态/电量/降频，ADR019的M3复审/M7/M10后续门禁保留。NOT_APPLICABLE：M3及以后正式动作/移动/碰撞/投射物/空间/地图/Bot/经济/装备/UI/VFX，当前均未进入。
 
 未覆盖机制继续明确：ExtraHealthLayer、一般ResourceRoute、reservations/refunds、完整驱散、复活/奖励、Information/Disclosure和M5完整Checkpoint；schema拒绝不支持字段。30Hz provisional、A默认/B实验/C未触发保持。远端基线成功Actions仅证明实施前0.2.1，不是本地0.3.1的远端CI/deploy证据。
+
+## 后续状态说明（2026-10-02）
+
+用户已确认 M2 0.3.1 完成独立源码复核并正式推送 althanor/moba main c57fa8caadb2afc2eb98d85246e156d76e942949，软件出口 PASS、对应 Actions/Pages 全绿。以上候选/等待复核/不进入 M3 描述作为历史记录保留；M3 已获本轮明确授权，软件候选见 M3_TEST_REPORT.md，Android 真机门禁见 M3_ACCEPTANCE.md。原 M2 极限 fixture、索引与计账证明继续作为不可削弱的回归。

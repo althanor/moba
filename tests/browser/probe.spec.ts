@@ -5,7 +5,7 @@ async function tickIndex(page: Page): Promise<number> {
   return Number((await page.locator('#status').textContent())?.match(/Tick (\d+) @/)?.[1] ?? -1);
 }
 test('Phaser shell, pause/single-step/resume, report download and no page errors', async ({ page }) => {
-  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message)); await page.goto('./');
+  const errors: string[] = []; page.on('pageerror', error => errors.push(error.message)); await page.goto('./?probe');
   await expect(page.locator('#status')).toContainText('running'); await expect(page.locator('canvas')).toHaveCount(1);
   await page.getByRole('button', { name: '暂停', exact: true }).click(); await expect(page.locator('#status')).toContainText('paused');
   const before = await tickIndex(page); await page.getByRole('button', { name: '单步', exact: true }).click();
@@ -16,7 +16,7 @@ test('Phaser shell, pause/single-step/resume, report download and no page errors
   const file = await result.path(); if (!file) throw new Error('missing measurement download');
   const report = JSON.parse(fs.readFileSync(file, 'utf8'));
   const version = JSON.parse(fs.readFileSync('package.json', 'utf8')).version;
-  expect(report.build).toMatchObject({ version, phase: 'M2', repository: 'althanor/moba' });
+  expect(report.build).toMatchObject({ version, phase: 'M3', repository: 'althanor/moba' });
   expect(report.build.commit).toMatch(/^[a-f0-9]{40}$/);
   expect(report).not.toHaveProperty('androidAcceptance');
   const metadata = await page.request.get('build-info.json'); expect(metadata.ok()).toBe(true);
@@ -24,7 +24,7 @@ test('Phaser shell, pause/single-step/resume, report download and no page errors
   expect(errors).toEqual([]); await expect(page.locator('#error')).toBeEmpty();
 });
 test('two real CDP touch contacts, touchcancel, blur and explicit focus recovery', async ({ page, context }) => {
-  await page.goto('./'); await expect(page.locator('#status')).toContainText('running');
+  await page.goto('./?probe'); await expect(page.locator('#status')).toContainText('running');
   const cdp = await context.newCDPSession(page);
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 160, y: 300, id: 1 }, { x: 760, y: 300, id: 2 }] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: 220, y: 300, id: 1 }, { x: 760, y: 320, id: 2 }] });
@@ -36,7 +36,7 @@ test('two real CDP touch contacts, touchcancel, blur and explicit focus recovery
   await page.getByRole('button', { name: '恢复', exact: true }).click(); await expect(page.locator('#status')).toContainText('running');
 });
 test('portrait pause keeps Session; empty shell, A/B and 20 recreations keep one canvas', async ({ page }) => {
-  await page.goto('./'); await expect(page.locator('#status')).toContainText('running');
+  await page.goto('./?probe'); await expect(page.locator('#status')).toContainText('running');
   await page.setViewportSize({ width: 540, height: 960 }); await expect(page.locator('#status')).toContainText('orientation');
   const before = await tickIndex(page); await page.setViewportSize({ width: 960, height: 540 });
   await expect(page.locator('#status')).toContainText('paused'); expect(await tickIndex(page)).toBe(before);
@@ -49,7 +49,7 @@ test('portrait pause keeps Session; empty shell, A/B and 20 recreations keep one
   await expect(page.locator('#status')).toContainText('A · running');
 });
 test('WebGL context loss pauses the same Session and restoration still needs explicit resume', async ({ page }) => {
-  await page.goto('./'); await expect(page.locator('#status')).toContainText('running');
+  await page.goto('./?probe'); await expect(page.locator('#status')).toContainText('running');
   const extension = await page.evaluateHandle(() => {
     const canvas = document.querySelector('canvas'); const gl = canvas?.getContext('webgl');
     const extension = gl?.getExtension('WEBGL_lose_context'); if (!extension) throw new Error('missing context-loss test capability'); return extension;

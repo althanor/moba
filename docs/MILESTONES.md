@@ -1,8 +1,8 @@
 # MOBA 开发阶段与验收标准
 
-版本：0.1.3。日期：2026-10-02。状态：M0/M1 已结束；M2 已实施，软件出口见 M2_ACCEPTANCE.md。
+版本：0.1.4。日期：2026-10-02。当前：M3 0.4.1 软件修复候选；M2 0.3.1 已完成独立复核、远端 main/Actions/Pages PASS；M3 已获授权，整体尚未通过；软件修复等待再次独立复核，真机证据等待，不进入 M4。
 
-M0 已完成；M1 按修订后的阶段标准正式收口。用户已明确授权 M2，本轮只实施 M2，不进入 M3。最终单机目标为 Android 横屏 5v5、一个玩家和九个 Bot；MVP 也要形成可维护工程，阶段性简化的内容不能变成绕过架构的特殊代码。
+M0 已完成；M1 按修订后的阶段标准正式收口。M2 0.3.1 已收口，M3 已获明确授权；当前只修复 M3 软件候选，不开始正式 Android A/B，不推送 main 或部署 M3 Pages，不进入 M4。最终单机目标为 Android 横屏 5v5、一个玩家和九个 Bot；MVP 也要形成可维护工程，阶段性简化的内容不能变成绕过架构的特殊代码。
 
 依赖规范：[总架构](ARCHITECTURE.md)、[战斗流水线](COMBAT_PIPELINE.md)、[编码和测试](CODING_RULES.md)、[性能预算](PERFORMANCE_BUDGET.md)。时间不按聊天轮数或天数承诺，各阶段依据验收结果推进。
 
@@ -153,4 +153,10 @@ M1 历史出口决策：高档参考基础验收 PASS；A 默认、B 实验、C 
 
 重要跨阶段选择回写 DESIGN_DECISIONS：例如从 30 Hz 改 60 Hz、更换导航结构、扩展硬规模、改伤害路由或存档兼容。先评估测试、内容时间精度和性能再修改，不能只改一个配置数字。
 
-当前 M1 已收口，M2 软件出口见 M2_ACCEPTANCE.md；未实施 M3。M1 空壳/高档参考的结果不代替未来容量编译、技能/墙体/CC、低档 Android、代表性热态和完整 5v5 发行验收。历史版本要求以 CHANGELOG 保留；阶段调整必须有 ADR、明确 DEFERRED 项和未来门禁。
+M1 已收口；M2 0.3.1 已由用户独立复核并推送远端 main，Actions/Pages PASS；M3 已实施通用能力并进入 0.4.1 软件修复候选，整体尚未通过，软件修复与真机各有独立门禁。M1 空壳/高档参考的结果不代替未来容量编译、技能/墙体/CC、低档 Android、代表性热态和完整 5v5 发行验收。历史版本要求以 CHANGELOG 保留；阶段调整必须有 ADR、明确 DEFERRED 项和未来门禁。
+
+## M3 0.4.1 当前实施与边界
+
+通用 Action/资源 reservation、Movement intent/step Operation、有限 grid queries、relative swept Projectile、Area 与 public debug arena/触屏适配已实现，全部使用既有 executeRoot/Operation/Hook/Fact/CapacityCertificate。实现与明确阶段规则见 [M3_IMPLEMENTATION.md](M3_IMPLEMENTATION.md)，新 producer/计账上界见 [M3_WORK_ACCOUNTING.md](M3_WORK_ACCOUNTING.md)，软件门禁见 [M3_TEST_REPORT.md](M3_TEST_REPORT.md)，Android/ADR 019 当前硬门禁见 [M3_ACCEPTANCE.md](M3_ACCEPTANCE.md)。正式决策见 ADR 024。
+
+logical maximum capacity 与 representative gameplay performance 分开。30 Hz provisional、A 默认、B experimental、C 未触发；缺第二档/热态证据不接受最终率、最低设备、Android 性能或最终手感。M3 软件候选不代表 M3 整体通过，不进入 M4。

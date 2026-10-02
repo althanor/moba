@@ -1,6 +1,6 @@
 import { stableMergeSort } from '../../foundation/index';
 /** One scan unit is one element read in a semantic collection pass. */
-export type ScanKind = 'status' | 'hook' | 'shield' | 'resource' | 'query' | 'attribute' | 'diagnostic' | 'maintenance' | 'ordering' | 'fact' | 'scheduler';
+export type ScanKind = 'status' | 'hook' | 'shield' | 'resource' | 'query' | 'attribute' | 'diagnostic' | 'maintenance' | 'ordering' | 'fact' | 'scheduler' | 'action' | 'movement' | 'spatial' | 'projectile' | 'area';
 export type Scan = (kind: ScanKind, count: number) => void;
 export const noScan: Scan = () => {};
 export function* visits<T>(items: readonly T[], scan: Scan, kind: ScanKind): Generator<T> {

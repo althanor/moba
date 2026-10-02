@@ -40,7 +40,7 @@ export function snapshot(catalog: CompiledCatalog, definitions: RuntimeDefinitio
   const value = { ref: { ...entity.ref }, life: entity.vitality.life, deathSequence: entity.vitality.deathSequence, resources: entity.resources.snapshot(), statuses, shields, attributes: traces(catalog, definitions, entity, guard), controlTags, capabilities: controlCapabilities(controlDefs, scan) };
   return guard ? guard.freeze(value) : deepFreeze(value);
 }
-export function createRoster(config: CombatConfig, store: EntityStore, definitions = buildDefinitionIndex(config.catalog), scan: Scan = noScan, guard: CapacityGuard | null = null): readonly RuntimeEntity[] {
+export function createRoster(config: CombatConfig, store: EntityStore, definitions = buildDefinitionIndex(config.catalog), scan: Scan = noScan, guard: CapacityGuard | null = null,lookup:()=>void=()=>{}): readonly RuntimeEntity[] {
   if (config.roster.length > config.catalog.document.ruleset.maxUnits) throw new Error('roster capacity');
   const output: RuntimeEntity[] = [];
   for (const input of visits(config.roster, scan, 'maintenance')) {
@@ -49,7 +49,7 @@ export function createRoster(config: CombatConfig, store: EntityStore, definitio
     const ref = store.create(() => scan('maintenance', 1)).ref;
     const values = calculateAttributes(config.catalog, input.level, input.base, [], (kind, n) => kind === 'scans' ? scan('attribute', n) : guard?.charge(kind, n), definitions.attributes);
     const attributes = new AttributeCache(); scan('attribute', values.length); attributes.update(0, values);
-    output.push({ ref, level: input.level, base: deepFreeze({ ...input.base }), resources: new ResourceStore(config.catalog.document.resources, id => { guard?.charge('lookups'); return attributes.read(id).final; }, scan), statuses: new StatusStore(scan), vitality: new VitalityStore(scan), attributes });
+    output.push({ ref, level: input.level, base: deepFreeze({ ...input.base }), resources: new ResourceStore(config.catalog.document.resources, id => { guard?.charge('lookups'); return attributes.read(id).final; }, scan,lookup), statuses: new StatusStore(scan), vitality: new VitalityStore(scan), attributes });
   }
   return output;
 }

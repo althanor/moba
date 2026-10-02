@@ -5,7 +5,7 @@ export class ContentError extends Error {
   constructor(readonly code: string, readonly path: string, message: string) { super(message); }
 }
 function fail(path: string, message: string): never { throw new ContentError('SCHEMA', path, message); }
-function object(value: unknown, path: string, keys: readonly string[]): Record<string, unknown> {
+export function object(value: unknown, path: string, keys: readonly string[]): Record<string, unknown> {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return fail(path, 'expected object');
   const result: Record<string, unknown> = {};
   for (const [key, child] of Object.entries(value)) {
@@ -13,19 +13,19 @@ function object(value: unknown, path: string, keys: readonly string[]): Record<s
   }
   return result;
 }
-function list<T>(value: unknown, path: string, parse: (value: unknown, path: string) => T): T[] {
+export function list<T>(value: unknown, path: string, parse: (value: unknown, path: string) => T): T[] {
   if (!Array.isArray(value) || value.length > 4096) return fail(path, 'expected bounded array <=4096');
   return value.map((child: unknown, i: number) => parse(child, `${path}[${i}]`));
 }
-function text(value: unknown, path: string): string {
+export function text(value: unknown, path: string): string {
   if (typeof value !== 'string' || !/^[a-zA-Z0-9_.:-]{1,96}$/.test(value)) return fail(path, 'expected stable identifier'); return value;
 }
-function id(value: unknown, path: string): ContentId { return text(value, path) as ContentId; }
-function number(value: unknown, path: string, min = -Number.MAX_VALUE, max = Number.MAX_VALUE): number {
+export function id(value: unknown, path: string): ContentId { return text(value, path) as ContentId; }
+export function number(value: unknown, path: string, min = -Number.MAX_VALUE, max = Number.MAX_VALUE): number {
   if (typeof value !== 'number' || !Number.isFinite(value) || value < min || value > max) return fail(path, `expected finite number in [${min},${max}]`); return value;
 }
-function count(value: unknown, path: string, min = 0, max = Number.MAX_SAFE_INTEGER): number { return integer(number(value, path, min, max), path, min); }
-function choice<T extends string>(value: unknown, path: string, options: readonly T[]): T {
+export function count(value: unknown, path: string, min = 0, max = Number.MAX_SAFE_INTEGER): number { return integer(number(value, path, min, max), path, min); }
+export function choice<T extends string>(value: unknown, path: string, options: readonly T[]): T {
   for (const option of options) if (value === option) return option; return fail(path, `expected ${options.join('|')}`);
 }
 const units: readonly Unit[] = ['scalar', 'points'];
@@ -40,11 +40,15 @@ function expression(value: unknown, path: string, depth = 0): Expression {
 }
 function effectNode(value: unknown, path: string, tickRate: number, depth = 0): EffectNode {
   if (depth > 16) fail(path, 'Effect exceeds depth 16');
-  const o = object(value, path, ['kind', 'formula', 'damageType', 'resource', 'mode', 'modifier', 'children', 'count', 'child', 'selector', 'attribute', 'atLeast', 'yes', 'no', 'durationMs', 'priority', 'damageTypes']);
-  const kind = choice(o['kind'], path, ['damage', 'heal', 'shield', 'resource', 'applyStatus', 'removeStatus', 'sequence', 'repeat', 'targets', 'conditional']);
-  const fields: Record<typeof kind, readonly string[]> = { damage: ['kind', 'formula', 'damageType'], heal: ['kind', 'formula'], shield: ['kind', 'formula', 'durationMs', 'priority', 'damageTypes'], resource: ['kind', 'resource', 'formula', 'mode'], applyStatus: ['kind', 'modifier'], removeStatus: ['kind', 'modifier'], sequence: ['kind', 'children'], repeat: ['kind', 'count', 'child'], targets: ['kind', 'selector', 'child'], conditional: ['kind', 'attribute', 'atLeast', 'yes', 'no'] };
+  const o = object(value, path, ['kind', 'formula', 'damageType', 'resource', 'mode', 'modifier', 'children', 'count', 'child', 'selector', 'attribute', 'atLeast', 'yes', 'no', 'durationMs', 'priority', 'damageTypes', 'definition', 'amount', 'distanceWorld', 'speedWorldPerSecond', 'wall', 'units', 'shape', 'center', 'radiusWorld', 'lengthWorld', 'cosine', 'relation']);
+  const kind = choice(o['kind'], path, ['damage', 'heal', 'shield', 'resource', 'applyStatus', 'removeStatus', 'sequence', 'repeat', 'targets', 'conditional', 'spawnProjectile', 'spawnArea', 'displace', 'actionCost', 'spatialTargets']);
+  const fields: Record<typeof kind, readonly string[]> = { spatialTargets: ['kind','shape','center','radiusWorld','lengthWorld','cosine','relation','child'], spawnProjectile: ['kind','definition'], spawnArea: ['kind','definition'], displace: ['kind','mode','distanceWorld','speedWorldPerSecond','wall','units'], actionCost: ['kind','resource','amount','mode'], damage: ['kind', 'formula', 'damageType'], heal: ['kind', 'formula'], shield: ['kind', 'formula', 'durationMs', 'priority', 'damageTypes'], resource: ['kind', 'resource', 'formula', 'mode'], applyStatus: ['kind', 'modifier'], removeStatus: ['kind', 'modifier'], sequence: ['kind', 'children'], repeat: ['kind', 'count', 'child'], targets: ['kind', 'selector', 'child'], conditional: ['kind', 'attribute', 'atLeast', 'yes', 'no'] };
   object(value, path, fields[kind]);
   switch (kind) {
+    case 'spatialTargets': return { kind, shape:choice(o['shape'],path,['radius','cone','segment']),center:choice(o['center'],path,['source','aim']),radiusWorld:number(o['radiusWorld'],path,0,4096),lengthWorld:number(o['lengthWorld'],path,0,4096),cosine:number(o['cosine'],path,-1,1),relation:choice(o['relation'],path,['enemy','ally','any']),child:effectNode(o['child'],path,tickRate,depth+1) };
+    case 'spawnProjectile': case 'spawnArea': return { kind, definition: id(o['definition'], path) };
+    case 'actionCost': return fail(path, 'action costs are compiler-owned');
+    case 'displace': return { kind, mode: choice(o['mode'], path, ['dash','forced','direct','teleport']), distanceWorld: number(o['distanceWorld'], path, 0, 4096), speedWorldPerSecond: number(o['speedWorldPerSecond'], path, 1, 30000), wall: choice(o['wall'], path, ['stop','ignore']), units: choice(o['units'], path, ['stop','ignore']) };
     case 'damage': return { kind, formula: id(o['formula'], path), damageType: choice(o['damageType'], path, ['physical', 'magic', 'true']) };
     case 'heal': return { kind, formula: id(o['formula'], path) };
     case 'shield': return { kind, formula: id(o['formula'], path), durationTicks: integer(durationTicks(number(o['durationMs'], path, 0), tickRate), path, 1), priority: number(o['priority'], path), damageTypes: list<DamageType>(o['damageTypes'], path, (v, p) => choice(v, p, ['physical', 'magic', 'true'])) };
@@ -74,7 +78,7 @@ function hook(value: unknown, path: string): HookDef {
   return { id: id(o['id'], path), stage, match, priority: number(o['priority'], path), maxTriggersPerRootTarget: count(o['maxTriggersPerRootTarget'], path, 1), action };
 }
 export function parseDocument(value: unknown, tickRate: number): ContentDocument {
-  const o = object(value, '$', ['schemaVersion', 'attributes', 'formulas', 'resources', 'modifiers', 'effects', 'ruleset']);
+  const o = object(value, '$', ['schemaVersion', 'attributes', 'formulas', 'resources', 'modifiers', 'effects', 'ruleset', 'gameplay']);
   if (o['schemaVersion'] !== 1) fail('$.schemaVersion', 'requires version 1');
   const attributes = list<AttributeDef>(o['attributes'], '$.attributes', (v, p) => {
     const a = object(v, p, ['id', 'unit', 'base', 'growthPerLevel', 'min', 'max', 'conversion']);
@@ -91,7 +95,7 @@ export function parseDocument(value: unknown, tickRate: number): ContentDocument
   });
   const effects = list(o['effects'], '$.effects', (v, p) => { const a = object(v, p, ['id', 'node', 'tags']); return { id: id(a['id'], p), node: effectNode(a['node'], `${p}.node`, tickRate), tags: a['tags'] === undefined ? [] : list(a['tags'], `${p}.tags`, text) }; });
   const r = object(o['ruleset'], '$.ruleset', ['id', 'maxUnits', 'queryCapacity', 'maxStatusesPerEntity', 'maxStatusesGlobal', 'maxShieldsPerEntity', 'maxHookDepth', 'health', 'armor', 'magicResistance', 'producers']);
-  const producers = list<ProducerDef>(r['producers'], '$.ruleset.producers', (v, p) => { const a = object(v, p, ['id', 'kind', 'maxInstances', 'rootsPerInstancePerTick', 'effects']); return { id: id(a['id'], p), kind: choice(a['kind'], p, ['fixture', 'statusPulse', 'statusEnd']), maxInstances: count(a['maxInstances'], p, 1), rootsPerInstancePerTick: count(a['rootsPerInstancePerTick'], p, 1), effects: list(a['effects'], p, id) }; });
+  const producers = list<ProducerDef>(r['producers'], '$.ruleset.producers', (v, p) => { const a = object(v, p, ['id', 'kind', 'maxInstances', 'rootsPerInstancePerTick', 'effects']); return { id: id(a['id'], p), kind: choice(a['kind'], p, ['fixture', 'statusPulse', 'statusEnd', 'action', 'projectile', 'area','movement']), maxInstances: count(a['maxInstances'], p, 1), rootsPerInstancePerTick: count(a['rootsPerInstancePerTick'], p, 1), effects: list(a['effects'], p, id) }; });
   const ruleset: RulesetDef = { id: id(r['id'], '$.ruleset'), maxUnits: count(r['maxUnits'], '$.ruleset.maxUnits', 1, 454), queryCapacity: count(r['queryCapacity'], '$.ruleset.queryCapacity', 1, 512), maxStatusesPerEntity: count(r['maxStatusesPerEntity'], '$.ruleset', 0, 64), maxStatusesGlobal: count(r['maxStatusesGlobal'], '$.ruleset', 0, 4096), maxShieldsPerEntity: count(r['maxShieldsPerEntity'], '$.ruleset', 0, 64), maxHookDepth: count(r['maxHookDepth'], '$.ruleset', 0, 8), health: id(r['health'], '$.ruleset'), armor: id(r['armor'], '$.ruleset'), magicResistance: id(r['magicResistance'], '$.ruleset'), producers };
   finite(tickRate, 'tick rate');
   return { schemaVersion: 1, attributes, formulas, resources, modifiers, effects, ruleset };

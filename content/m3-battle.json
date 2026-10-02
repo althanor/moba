@@ -1,0 +1,508 @@
+{
+  "schemaVersion": 1,
+  "attributes": [
+    {
+      "id": "maxHealth",
+      "unit": "points",
+      "base": 1000,
+      "growthPerLevel": 0,
+      "min": 1,
+      "max": 1000000,
+      "conversion": null
+    },
+    {
+      "id": "maxMana",
+      "unit": "points",
+      "base": 200,
+      "growthPerLevel": 0,
+      "min": 0,
+      "max": 1000000,
+      "conversion": null
+    },
+    {
+      "id": "armor",
+      "unit": "points",
+      "base": 0,
+      "growthPerLevel": 0,
+      "min": -100,
+      "max": 10000,
+      "conversion": null
+    },
+    {
+      "id": "mr",
+      "unit": "points",
+      "base": 0,
+      "growthPerLevel": 0,
+      "min": -100,
+      "max": 10000,
+      "conversion": null
+    },
+    {
+      "id": "speed",
+      "unit": "points",
+      "base": 180,
+      "growthPerLevel": 0,
+      "min": 0,
+      "max": 30000,
+      "conversion": null
+    }
+  ],
+  "formulas": [
+    {
+      "id": "attackDamage",
+      "unit": "points",
+      "expression": {
+        "kind": "constant",
+        "value": 30,
+        "unit": "points"
+      }
+    },
+    {
+      "id": "boltDamage",
+      "unit": "points",
+      "expression": {
+        "kind": "constant",
+        "value": 80,
+        "unit": "points"
+      }
+    },
+    {
+      "id": "areaDamage",
+      "unit": "points",
+      "expression": {
+        "kind": "constant",
+        "value": 10,
+        "unit": "points"
+      }
+    },
+    {
+      "id": "healValue",
+      "unit": "points",
+      "expression": {
+        "kind": "constant",
+        "value": 100,
+        "unit": "points"
+      }
+    },
+    {
+      "id": "shieldValue",
+      "unit": "points",
+      "expression": {
+        "kind": "constant",
+        "value": 100,
+        "unit": "points"
+      }
+    }
+  ],
+  "resources": [
+    {
+      "id": "health",
+      "maximumAttribute": "maxHealth",
+      "initial": 1000,
+      "regenPerSecond": 0
+    },
+    {
+      "id": "mana",
+      "maximumAttribute": "maxMana",
+      "initial": 200,
+      "regenPerSecond": 3
+    }
+  ],
+  "modifiers": [
+    {
+      "id": "stun",
+      "durationMs": 600,
+      "maxInstancesPerEntity": 8,
+      "contributions": [],
+      "tags": [],
+      "hooks": [],
+      "control": "stun",
+      "deathSaveHealth": null,
+      "pulse": null,
+      "end": null
+    }
+  ],
+  "effects": [
+    {
+      "id": "attack",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "damage",
+          "formula": "attackDamage",
+          "damageType": "physical"
+        }
+      }
+    },
+    {
+      "id": "boltHit",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "sequence",
+          "children": [
+            {
+              "kind": "damage",
+              "formula": "boltDamage",
+              "damageType": "magic"
+            },
+            {
+              "kind": "applyStatus",
+              "modifier": "stun"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "boltSpawn",
+      "node": {
+        "kind": "spawnProjectile",
+        "definition": "bolt"
+      }
+    },
+    {
+      "id": "pulse",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "damage",
+          "formula": "areaDamage",
+          "damageType": "magic"
+        }
+      }
+    },
+    {
+      "id": "fieldSpawn",
+      "node": {
+        "kind": "spawnArea",
+        "definition": "field"
+      }
+    },
+    {
+      "id": "mend",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "sequence",
+          "children": [
+            {
+              "kind": "heal",
+              "formula": "healValue"
+            },
+            {
+              "kind": "shield",
+              "formula": "shieldValue",
+              "durationMs": 2000,
+              "priority": 0,
+              "damageTypes": [
+                "physical",
+                "magic",
+                "true"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dash",
+      "node": {
+        "kind": "displace",
+        "mode": "dash",
+        "distanceWorld": 160,
+        "speedWorldPerSecond": 1200,
+        "wall": "stop",
+        "units": "stop"
+      }
+    },
+    {
+      "id": "push",
+      "node": {
+        "kind": "displace",
+        "mode": "forced",
+        "distanceWorld": 100,
+        "speedWorldPerSecond": 600,
+        "wall": "stop",
+        "units": "stop"
+      }
+    }
+  ],
+  "ruleset": {
+    "id": "debug-battle-m3",
+    "maxUnits": 454,
+    "queryCapacity": 512,
+    "maxStatusesPerEntity": 8,
+    "maxStatusesGlobal": 3632,
+    "maxShieldsPerEntity": 8,
+    "maxHookDepth": 1,
+    "health": "health",
+    "armor": "armor",
+    "magicResistance": "mr",
+    "producers": [
+      {
+        "id": "fixture",
+        "kind": "fixture",
+        "maxInstances": 10,
+        "rootsPerInstancePerTick": 2,
+        "effects": [
+          "attack",
+          "boltHit",
+          "boltSpawn",
+          "pulse",
+          "fieldSpawn",
+          "mend",
+          "dash",
+          "push"
+        ]
+      }
+    ]
+  },
+  "gameplay": {
+    "speedAttribute": "speed",
+    "radiusWorld": 12,
+    "arena": {
+      "minX": -480,
+      "minY": -240,
+      "maxX": 480,
+      "maxY": 240
+    },
+    "cellSizeWorld": 64,
+    "obstacles": [
+      {
+        "minX": -10,
+        "minY": -70,
+        "maxX": 10,
+        "maxY": 70
+      }
+    ],
+    "maxProjectiles": 128,
+    "maxAreas": 64,
+    "actions": [
+      {
+        "id": "basic",
+        "basic": true,
+        "target": "unit",
+        "relation": "enemy",
+        "rangeWorld": 85,
+        "radiusWorld": 0,
+        "windupMs": 100,
+        "castMs": 0,
+        "activeMs": 0,
+        "recoveryMs": 200,
+        "cooldownMs": 500,
+        "cooldownStart": "release",
+        "cancelCooldownMs": 0,
+        "maxCharges": 1,
+        "rechargeMs": 500,
+        "cost": {
+          "resource": "mana",
+          "amount": 0,
+          "policy": "release",
+          "refundFraction": 1
+        },
+        "cancelBeforeRelease": true,
+        "cancelRecovery": true,
+        "interruptOnControl": true,
+        "effect": "attack",
+        "delivery": "instant"
+      },
+      {
+        "id": "bolt",
+        "basic": false,
+        "target": "direction",
+        "relation": "enemy",
+        "rangeWorld": 500,
+        "radiusWorld": 0,
+        "windupMs": 100,
+        "castMs": 0,
+        "activeMs": 0,
+        "recoveryMs": 100,
+        "cooldownMs": 1000,
+        "cooldownStart": "release",
+        "cancelCooldownMs": 0,
+        "maxCharges": 2,
+        "rechargeMs": 1000,
+        "cost": {
+          "resource": "mana",
+          "amount": 15,
+          "policy": "release",
+          "refundFraction": 1
+        },
+        "cancelBeforeRelease": true,
+        "cancelRecovery": true,
+        "interruptOnControl": true,
+        "effect": "boltSpawn",
+        "delivery": "projectile"
+      },
+      {
+        "id": "field",
+        "basic": false,
+        "target": "point",
+        "relation": "enemy",
+        "rangeWorld": 350,
+        "radiusWorld": 110,
+        "windupMs": 100,
+        "castMs": 100,
+        "activeMs": 0,
+        "recoveryMs": 100,
+        "cooldownMs": 1500,
+        "cooldownStart": "release",
+        "cancelCooldownMs": 0,
+        "maxCharges": 1,
+        "rechargeMs": 1500,
+        "cost": {
+          "resource": "mana",
+          "amount": 20,
+          "policy": "release",
+          "refundFraction": 1
+        },
+        "cancelBeforeRelease": true,
+        "cancelRecovery": true,
+        "interruptOnControl": true,
+        "effect": "fieldSpawn",
+        "delivery": "area"
+      },
+      {
+        "id": "mend",
+        "basic": false,
+        "target": "self",
+        "relation": "ally",
+        "rangeWorld": 0,
+        "radiusWorld": 0,
+        "windupMs": 100,
+        "castMs": 0,
+        "activeMs": 0,
+        "recoveryMs": 100,
+        "cooldownMs": 1000,
+        "cooldownStart": "release",
+        "cancelCooldownMs": 0,
+        "maxCharges": 1,
+        "rechargeMs": 1000,
+        "cost": {
+          "resource": "mana",
+          "amount": 15,
+          "policy": "release",
+          "refundFraction": 1
+        },
+        "cancelBeforeRelease": true,
+        "cancelRecovery": true,
+        "interruptOnControl": true,
+        "effect": "mend",
+        "delivery": "instant"
+      },
+      {
+        "id": "dash",
+        "basic": false,
+        "target": "direction",
+        "relation": "any",
+        "rangeWorld": 160,
+        "radiusWorld": 0,
+        "windupMs": 0,
+        "castMs": 0,
+        "activeMs": 140,
+        "recoveryMs": 60,
+        "cooldownMs": 1000,
+        "cooldownStart": "release",
+        "cancelCooldownMs": 0,
+        "maxCharges": 1,
+        "rechargeMs": 1000,
+        "cost": {
+          "resource": "mana",
+          "amount": 10,
+          "policy": "release",
+          "refundFraction": 1
+        },
+        "cancelBeforeRelease": true,
+        "cancelRecovery": true,
+        "interruptOnControl": true,
+        "effect": "dash",
+        "delivery": "displacement"
+      },
+      {
+        "id": "push",
+        "basic": false,
+        "target": "unit",
+        "relation": "enemy",
+        "rangeWorld": 200,
+        "radiusWorld": 0,
+        "windupMs": 100,
+        "castMs": 0,
+        "activeMs": 0,
+        "recoveryMs": 100,
+        "cooldownMs": 1000,
+        "cooldownStart": "release",
+        "cancelCooldownMs": 0,
+        "maxCharges": 1,
+        "rechargeMs": 1000,
+        "cost": {
+          "resource": "mana",
+          "amount": 10,
+          "policy": "release",
+          "refundFraction": 1
+        },
+        "cancelBeforeRelease": true,
+        "cancelRecovery": true,
+        "interruptOnControl": true,
+        "effect": "push",
+        "delivery": "displacement"
+      }
+    ],
+    "projectiles": [
+      {
+        "id": "bolt",
+        "speedWorldPerSecond": 3600,
+        "radiusWorld": 5,
+        "lifetimeMs": 1000,
+        "hits": "multi",
+        "relation": "enemy",
+        "effect": "boltHit",
+        "sourcePolicy": "impactAttributesContinueAfterDeath"
+      }
+    ],
+    "areas": [
+      {
+        "id": "field",
+        "radiusWorld": 110,
+        "durationMs": 2000,
+        "intervalMs": 300,
+        "firstPulse": "activation",
+        "relation": "enemy",
+        "enter": null,
+        "pulse": "pulse",
+        "exit": null,
+        "expiry": null
+      }
+    ],
+    "spawns": [
+      {
+        "xWorld": -170,
+        "yWorld": 0,
+        "team": 0,
+        "controller": "player"
+      },
+      {
+        "xWorld": -95,
+        "yWorld": 0,
+        "team": 1,
+        "controller": "target"
+      },
+      {
+        "xWorld": 110,
+        "yWorld": -90,
+        "team": 1,
+        "controller": null
+      },
+      {
+        "xWorld": 170,
+        "yWorld": -90,
+        "team": 1,
+        "controller": null
+      }
+    ]
+  }
+}

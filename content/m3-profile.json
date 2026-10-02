@@ -1,0 +1,42 @@
+{
+  "id": "m3-debug-logical-v1",
+  "capacity": {
+    "operations": 16777216,
+    "hooks": 1,
+    "queries": 8192,
+    "ast": 16777216,
+    "formula": 4194304,
+    "scans": 17179869184,
+    "facts": 134217728,
+    "lookups": 4294967296,
+    "structure": 1099511627776
+  },
+  "startup": {
+    "operations": 1,
+    "hooks": 1,
+    "queries": 1,
+    "ast": 1,
+    "formula": 1,
+    "scans": 1048576,
+    "facts": 1,
+    "lookups": 131072,
+    "structure": 8589934592
+  },
+  "command": {
+    "operations": 1,
+    "hooks": 1,
+    "queries": 1,
+    "ast": 1,
+    "formula": 1,
+    "scans": 1048576,
+    "facts": 1,
+    "lookups": 1024,
+    "structure": 16777216
+  },
+  "roots": 8192,
+  "queryTargets": 454,
+  "hookDepth": 1,
+  "units": 454,
+  "statuses": 3632,
+  "factQueue": 1
+}

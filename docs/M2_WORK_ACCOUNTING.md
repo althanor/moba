@@ -49,3 +49,7 @@ startup 包含逐根/逐 Work 维度的 profile 验证、六种 definition 索�
 增添 4091 个未引用 constant formula，使 ten 排在第 4094 位附近，同时将 effects/modifiers 补到 4096：startup 证明增加，原 executable roots/Tick 证书和 runtime Work 保持一致。测试在两个完整 runtime 的 step 期间禁止 Array.find，并独立核对 454 个实体资源。producer.provenEffects 在 begin 重新验证；不匹配组合在任何 root/Operation 登记前拒绝并报告尝试的 root/producer。
 
 这些是逻辑工作/容量证明，不能解释为 Android CPU、内存、热态或实时性能 PASS。完整原主压力场景必须继续结算 4,574,049 Operation /9,135,386 Fact。新增消费者、schema、工作维度、机制或合法组合必须重编译并回归；不进入 M3。
+
+## 后续状态说明（2026-10-02）
+
+用户已确认 M2 0.3.1 完成独立源码复核并正式推送 althanor/moba main c57fa8caadb2afc2eb98d85246e156d76e942949，软件出口 PASS、对应 Actions/Pages 全绿。以上候选/等待复核/不进入 M3 描述作为历史记录保留；M3 已获本轮明确授权，软件候选见 M3_TEST_REPORT.md，Android 真机门禁见 M3_ACCEPTANCE.md。原 M2 极限 fixture、索引与计账证明继续作为不可削弱的回归。

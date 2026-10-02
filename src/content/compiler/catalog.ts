@@ -2,12 +2,13 @@ import { compareId, dataHash, deepFreeze, integer } from '../../foundation/index
 import type { CompileResult } from '../../contracts/index';
 import { ContentError, parseDocument } from '../validation/schema';
 import { boundedTriggerCycles, validateGraphs } from './graphs';
+import { compileGameplay } from './gameplay';
 import { proveCapacity } from './capacity';
 
 export function compileContent(value: unknown, tickRate: number): CompileResult {
   try {
     integer(tickRate, 'tickRate', 1);
-    const parsed = parseDocument(value, tickRate);
+    const parsed = compileGameplay(value, parseDocument(value, tickRate), tickRate);
     const sort = <T extends { readonly id: string }>(items: readonly T[]): T[] => items.slice().sort((a, b) => compareId(a.id, b.id));
     const document = { ...parsed, attributes: sort(parsed.attributes), formulas: sort(parsed.formulas), resources: sort(parsed.resources), effects: sort(parsed.effects), modifiers: sort(parsed.modifiers).map(m => ({ ...m, hooks: sort(m.hooks) })), ruleset: { ...parsed.ruleset, producers: sort(parsed.ruleset.producers) } };
     const attributeOrder = validateGraphs(document);

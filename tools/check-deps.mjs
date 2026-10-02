@@ -87,6 +87,7 @@ export function inspect(root) {
         if (target.startsWith('src/') && !target.endsWith('/index.ts') && target !== 'src/presentation/probe.ts' && !whitebox.has(from)) errors.push(`${from}: tests/tools must use public entry ${target}`);
         continue;
       }
+      if (from === 'src/platform/browser/battle-assets.ts' && ['content/m3-battle.json', 'content/m3-profile.json'].includes(target)) continue;
       if (!target.startsWith('src/')) { errors.push(`${from}: product imports tests/tools ${target}`); continue; }
       if (owner !== dependency) {
         if (!(allowed[owner] ?? []).includes(dependency)) errors.push(`${from}: whitelist forbids ${target}`);

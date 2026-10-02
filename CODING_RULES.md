@@ -1,6 +1,6 @@
 # MOBA 工程编码与验证规范
 
-版本：0.1.3。日期：2026-10-02。状态：M1/M2 软件门禁已落实；后续阶段规则持续有效。
+版本：0.1.4。日期：2026-10-02。当前：M3 0.4.1 软件候选；M2 0.3.1 已由用户确认独立复核/远端 main PASS；真机证据等待，不进入 M4。
 
 本规范约束后续 Phaser、TypeScript、Vite 工程的实现与修改。M1 可构建工程与相应门禁已落实；本文中正式内容、玩法和持久化要求按里程碑实施。
 
@@ -168,3 +168,9 @@ CHANGELOG 写用户可理解的行为与验证，不只列“优化/修复”。
 类型要求参考：[TypeScript strict 官方说明](https://www.typescriptlang.org/tsconfig/strict.html)。具体配置适配所锁定版本，不依赖本文未指定的版本号。
 
 M2 0.3.1 计账规则：新增动态集合读取/副本/筛选/排序必须同步更新 actual 入口、compiler 成本模型和 conservation 测试。固定字段/协议工作需列出有限次数证明；不得只引用 schema 最大长度。热路径 definition/Entity/trace 不得 Array.find；索引必须私有且保留冻结内容/原迭代顺序。见 ADR 023 和 M2_WORK_ACCOUNTING.md。
+
+## M3 0.4.1 当前实施与边界
+
+通用 Action/资源 reservation、Movement intent/step Operation、有限 grid queries、relative swept Projectile、Area 与 public debug arena/触屏适配已实现，全部使用既有 executeRoot/Operation/Hook/Fact/CapacityCertificate。实现与明确阶段规则见 [M3_IMPLEMENTATION.md](M3_IMPLEMENTATION.md)，新 producer/计账上界见 [M3_WORK_ACCOUNTING.md](M3_WORK_ACCOUNTING.md)，软件门禁见 [M3_TEST_REPORT.md](M3_TEST_REPORT.md)，Android/ADR 019 当前硬门禁见 [M3_ACCEPTANCE.md](M3_ACCEPTANCE.md)。正式决策见 ADR 024。
+
+logical maximum capacity 与 representative gameplay performance 分开。30 Hz provisional、A 默认、B experimental、C 未触发；缺第二档/热态证据不接受最终率、最低设备、Android 性能或最终手感。M3 软件候选不代表 M3 整体通过，不进入 M4。

@@ -7,7 +7,9 @@ import { bindLifecycle, downloadJSON, environmentReport, monotonicNowMs } from '
 import { Session } from '../session/session';
 import { ProbeRecorder } from '../debug/probe-recorder';
 
-export function boot(): () => void {
+import { bootBattle } from './battle';
+export function boot(): () => void { return new URLSearchParams(window.location.search).has('probe') ? bootProbe() : bootBattle(); }
+function bootProbe(): () => void {
   let serial = 0;
   let mode: ProbeMode = 'A';
   let shellMode: ShellConfig['mode'] = 'response-probe';

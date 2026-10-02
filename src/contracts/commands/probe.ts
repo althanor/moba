@@ -10,7 +10,7 @@ export interface ProbeCommand {
   readonly kind: 'debugProbeDirection';
   readonly payload: Vec2;
 }
-export type RejectReason = 'schema' | 'wrongMatch' | 'wrongController' | 'invalidActor' | 'staleTick' | 'futureTick' | 'queueFull' | 'seatLimit' | 'sequenceConflict' | 'sequenceExpired' | 'inputCleared' | 'disposed' | 'content' | 'producerLimit' | 'targetCapacity' | 'fault';
+export type RejectReason = 'schema' | 'wrongMatch' | 'wrongController' | 'invalidActor' | 'staleTick' | 'futureTick' | 'queueFull' | 'seatLimit' | 'sequenceConflict' | 'sequenceExpired' | 'inputCleared' | 'disposed' | 'content' | 'producerLimit' | 'targetCapacity' | 'fault' | 'busy' | 'cooldown' | 'charges' | 'controlled' | 'target' | 'range' | 'resource' | 'cancelForbidden';
 export interface CommandResult {
   readonly sequence: number;
   readonly tick: TickIndex;

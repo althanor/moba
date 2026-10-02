@@ -3,8 +3,8 @@ import { WORK_KEYS, M2_COMMAND_LIMITS, addWork, limitWork, maxWork, scaleWork, z
 import type { CapacityCertificate, ContentDocument, ContentId, EffectNode, Expression, Work } from '../../contracts/index';
 import { expressionNodes, requireId } from './graphs';
 
-export const ENGINE_VERSION = '0.3.1';
-export const COMPILER_VERSION = 'm2-indexed-v2';
+export const ENGINE_VERSION = '0.4.1';
+export const COMPILER_VERSION = 'm3-bounded-v2';
 /** Bound for the explicit stable merge sort in simulation/shared/work.ts. */
 export function sortCost(n: number): number { return n ? checkedMultiply(n, 1 + 2 * Math.ceil(Math.log2(n))) : 0; }
 export function attributeCost(d: ContentDocument): { readonly formula: number; readonly scans: number; readonly lookups: number } {
@@ -21,7 +21,17 @@ export function proveCapacity(d: ContentDocument, contentHash: string, tickRate:
   const readsAttribute = (expr: Expression): boolean => expr.kind === 'attribute' || ('left' in expr && (readsAttribute(expr.left) || readsAttribute(expr.right)));
   const A = d.attributes.length, S = r.maxStatusesPerEntity, Q = r.maxShieldsPerEntity, R = d.resources.length;
   const C = Math.max(0, ...d.modifiers.map(m => m.contributions.length)), T = Math.max(0, ...d.modifiers.map(m => m.tags.length));
-  const H = hookInstances;
+  const H = hookInstances, g = d.gameplay;
+  // M3 grid has <=256 cells. A moving target occupies every cell in its
+  // swept AABB, so each query reads at most 256*U references, then U unique
+  // candidates, and a measured stable sort. No typical-distance discount.
+  const U=r.maxUnits, cells=g ? Math.ceil((g.arena.maxX-g.arena.minX)/g.cellSizeWorld)*Math.ceil((g.arena.maxY-g.arena.minY)/g.cellSizeWorld) : 0;
+  const abilityCount=g?.actions.length??0,P=g?.maxProjectiles??0,G=g?.maxAreas??0;
+  const spatialQueryScans=cells+cells*U+4*U+sortCost(U);
+  const spatialQueryLookups=cells+cells*U+4*U+4;
+  const controlPass=4*S+S*T;
+  const gameplayQueries=g?2*U+P+G:0;
+  const gameplayNodes=g?U*(80+8*abilityCount)+P*(40+U)+G*(32+4*U)+G*(24+4*U):0;
   let effectTags = 0, shieldTypes = 0;
   function shape(n: EffectNode): void {
     if (n.kind === 'shield') shieldTypes = Math.max(shieldTypes, n.damageTypes.length);
@@ -40,7 +50,7 @@ export function proveCapacity(d: ContentDocument, contentHash: string, tickRate:
   // Maximum immutable Fact tree: outer record, Operation fields/Refs/tags/
   // chain/payload, and breakdown scalars/arrays/formula+attribute stages.
   const stageCount = maxFormula + 12 * A + 10, participantCount = H + 3 * S;
-  const factNodes = 13 + 24 + effectTags + r.maxHookDepth + 8 + shieldTypes + 14 + 3 * stageCount + 4 + participantCount;
+  const factNodes = (g ? 30 : 0) + 13 + 24 + effectTags + r.maxHookDepth + 8 + shieldTypes + 14 + 3 * stageCount + 4 + participantCount;
   const factStructure = checkedMultiply(4, factNodes); // two reads per unfrozen edge + P9 frozen-record visit + archive delivery.
   const maxStringLength = 96 + 16 + 96 + 16 + 32 + 16 + 16 * 8; // match/producer/safe-integer IDs, suffixes, deepest formula path.
   interface Parts { readonly base: number; readonly replacement: number; readonly derived: number }
@@ -55,9 +65,10 @@ export function proveCapacity(d: ContentDocument, contentHash: string, tickRate:
     const zero: Parts = { base: 0, replacement: 0, derived: 0 };
     if (n.kind === 'sequence') return n.children.reduce((p, child) => addParts(p, partsNode(child, depth)), zero);
     if (n.kind === 'repeat') return multiplyParts(partsNode(n.child, depth), n.count);
+    if (n.kind === 'spatialTargets') return multiplyParts(partsNode(n.child,depth),r.maxUnits);
     if (n.kind === 'targets') return multiplyParts(partsNode(n.child, depth), n.selector === 'source' ? 1 : r.maxUnits);
     if (n.kind === 'conditional') { const a = partsNode(n.yes, depth), b = partsNode(n.no, depth); return { base: Math.max(a.base, b.base), replacement: Math.max(a.replacement, b.replacement), derived: Math.max(a.derived, b.derived) }; }
-    let result: Parts = { ...zero, base: 1 };
+    let result: Parts = { ...zero, base: g && n.kind !== 'actionCost' ? 3 : 1 };
     if (depth < r.maxHookDepth) for (const m of d.modifiers) for (const h of m.hooks) if (h.match === n.kind && 'effect' in h.action) {
       const child = partsEffect(h.action.effect, depth + 1), total = checkedAdd(child.base, checkedAdd(child.replacement, child.derived));
       const expansion: Parts = h.action.kind === 'replace' ? { base: 0, replacement: checkedAdd(child.base, child.replacement), derived: child.derived } : { base: 0, replacement: 0, derived: total };
@@ -76,6 +87,7 @@ export function proveCapacity(d: ContentDocument, contentHash: string, tickRate:
     switch (n.kind) {
       case 'sequence': result = { ...result, scans: n.children.length }; for (const child of n.children) result = addWork(result, node(child, depth)); return result;
       case 'repeat': return addWork({ ...result, ast: checkedAdd(1, n.count) }, scaleWork(node(n.child, depth), n.count));
+      case 'spatialTargets': return addWork({...result,queries:1,scans:spatialQueryScans+2*U,lookups:spatialQueryLookups+4},scaleWork(node(n.child,depth),U));
       case 'targets': {
         const fanout = n.selector === 'source' ? 1 : r.maxUnits;
         return addWork({ ...result, queries: 1, scans: 2 * fanout }, scaleWork(node(n.child, depth), fanout));
@@ -87,6 +99,16 @@ export function proveCapacity(d: ContentDocument, contentHash: string, tickRate:
           lookups: checkedAdd(8 + maxFormula + 6 * S + 2 * A + 4 * R, checkedMultiply(4, cost.lookups)),
           structure: checkedMultiply(facts, factStructure), facts };
 
+        if(g&&(n.kind==='displace'||n.kind==='movementStep'))result=addWork(result,{...zeroWork(),queries:1,scans:spatialQueryScans+U+16,lookups:spatialQueryLookups+2});
+        if (g && n.kind !== 'actionCost') {
+          // A committed leaf can interrupt at most its target's one active
+          // action. Inline release/refund remains in the original root; one
+          // intrinsic cost leaf plus one ActionInterrupted event, no Hook.
+          result=addWork(result,{...zeroWork(),operations:2,facts:2,ast:1,
+            scans:leafPass+2*controlPass+4*cells+abilityCount+16,
+            lookups:24+4*cells+2*S+4*A+cost.lookups,
+            structure:4*factStructure+512*(maxStringLength+32)});
+        }
         if (depth < r.maxHookDepth) for (const m of d.modifiers) for (const h of m.hooks.filter(h => h.match === n.kind)) {
           const instances = Math.min(m.maxInstancesPerEntity, r.maxStatusesPerEntity);
           result = addWork(result, { ...zeroWork(), hooks: instances });
@@ -100,6 +122,7 @@ export function proveCapacity(d: ContentDocument, contentHash: string, tickRate:
     const work = effect(e.id, 0), parts = partsEffect(e.id, 0), F_e = e.node.kind === 'targets' && e.node.selector !== 'source' ? r.maxUnits : 1;
     const fanoutSegments: { path: string; selector: string; maximumTargets: number }[] = [];
     function segments(n: EffectNode, path: string): void {
+      if (n.kind === 'spatialTargets') fanoutSegments.push({path,selector:n.shape,maximumTargets:r.maxUnits});
       if (n.kind === 'targets') fanoutSegments.push({ path, selector: n.selector, maximumTargets: n.selector === 'source' ? 1 : r.maxUnits });
       if ('child' in n) segments(n.child, `${path}.child`);
       if ('children' in n) n.children.forEach((child, i) => segments(child, `${path}[${i}]`));
@@ -121,18 +144,27 @@ export function proveCapacity(d: ContentDocument, contentHash: string, tickRate:
   const E = M2_COMMAND_LIMITS, commandNodes = 12 + 3 * E.targets;
   const commandOrdering = sortCost(E.history + 1) + sortCost(E.targets);
   const ingressScans = (E.history + 1) * (E.pending + 1) + commandOrdering + 6 * E.pending + 3 * E.targets + 9;
-  const command = { ...zeroWork(), scans: ingressScans, lookups: 2 + E.targets, structure: 8 * commandNodes * (maxStringLength + 32) };
+  const command = { ...zeroWork(), scans: ingressScans * (g ? 2 : 1), lookups: 2 + E.targets, structure: (g ? 16 : 8) * commandNodes * (maxStringLength + 32) };
   // P0/P6/P9 entity and component passes, removals may coincide. P1 queue/
   // history scheduling is bounded independently of root work; root ordering is
   // n copy + at most 2n reads per merge level, never uncharged native sort.
   const maintenancePass = checkedAdd(2 * r.maxUnits * (cost.scans + R),
     r.maxUnits * (4 + 8 * S + 2 * S * S + 3 * S * T + sortCost(S * (T + 1)) + 4 * Q + Q * Q + 2 * Q * shieldTypes + R) +
     2 * operations + sortCost(rootCount) + 2 * rootCount + E.pending * ingressScans + 4 * E.pending);
-  const maintenance: Work = { ...zeroWork(), operations, facts: operations, formula: 2 * r.maxUnits * cost.formula, scans: maintenancePass,
+  let maintenance: Work = { ...zeroWork(), operations, facts: operations, formula: 2 * r.maxUnits * cost.formula, scans: maintenancePass,
     lookups: 2 * rootCount + r.maxUnits * (2 * cost.lookups + 6 * S + 2 * R + 1),
     structure: checkedAdd(operations * factStructure, checkedAdd(
       (r.maxUnits * entityNodes + 2 * E.pending * commandNodes + rootCount * (8 + 2 * WORK_KEYS.length) + producers.length * 4 + 64) * 4 * (maxStringLength + 32),
       E.pending * command.structure)) };
+  if(g) {
+    const gameplayEvents=4*U+2*P+2*G;
+    const gameplayMaintenance:Work={...zeroWork(),operations:gameplayEvents,facts:gameplayEvents,
+      queries:gameplayQueries,
+      scans:gameplayQueries*spatialQueryScans+8*(cells+U*(cells+1))+4*U*cells+16*U*controlPass+12*U*abilityCount+24*U+2*U*Q+12*G*U+4*P*U+512*8,
+      lookups:24*U+8*U*S+4*U*abilityCount+4*P+8*G+gameplayQueries*spatialQueryLookups+12*U*cells+10*G*U+4*P*U+8*U*R+1024,
+      structure:(8*gameplayNodes+512*40)*4*(maxStringLength+32)+gameplayEvents*factStructure};
+    maintenance=addWork(maintenance,gameplayMaintenance);
+  }
   const tick = producers.reduce((work, p) => addWork(work, p.work), maintenance);
   const data = { engineVersion: ENGINE_VERSION, compilerVersion: COMPILER_VERSION, contentHash, tickRate, rulesetId: r.id, roots, producers, maintenance, maintenanceEnvelope: { modifierEvents: r.maxStatusesGlobal, shieldEvents: shieldGlobal, resourceUpdates, deathEvents: r.maxUnits }, tick, limit: limitWork(tick), rootCount, rootCountLimit: powerOfTwo(rootCount), maxHookDepth: r.maxHookDepth, maxUnits: r.maxUnits, maxStatusesGlobal: r.maxStatusesGlobal, factQueue: 1, factQueueLimit: 1 };
   const definitions = d.effects.length + d.formulas.length + d.modifiers.length + A + R + producers.length;
@@ -146,8 +178,8 @@ export function proveCapacity(d: ContentDocument, contentHash: string, tickRate:
   dataHash({ ...data, startup: widestWork, startupLimit: widestWork, command, commandLimit: limitWork(command), scanModel }, n => bindingWork += n);
   // Deep verification/freezing of the actual catalog cannot trust a shallow frozen DTO.
   deepFreeze({ document: d, certificate: { ...data, startup: widestWork, startupLimit: widestWork, command, commandLimit: limitWork(command), scanModel } }, n => bindingWork += n, false);
-  const startup = { ...zeroWork(), scans: definitions + (1 + WORK_KEYS.length) * d.effects.length + producers.reduce((n, p) => n + p.provenEffects.length + 1, 0) + r.maxUnits * (cost.scans + A + R + entityNodes + r.maxUnits), formula: r.maxUnits * cost.formula,
-    lookups: r.maxUnits * (cost.lookups + 2 * A + R), structure: bindingWork + 2 * r.maxUnits * entityNodes * 4 * (maxStringLength + 32) };
+  const startup = { ...zeroWork(), scans: (g ? cells+U*(cells+1)+16*U+8*U*abilityCount+16*U*controlPass+abilityCount+(g.projectiles.length+g.areas.length) : 0) + definitions + (1 + WORK_KEYS.length) * d.effects.length + producers.reduce((n, p) => n + p.provenEffects.length + 1, 0) + r.maxUnits * (cost.scans + A + R + entityNodes + r.maxUnits), formula: r.maxUnits * cost.formula,
+    lookups: (g ? U*(9+cells+2*S+abilityCount) : 0) + r.maxUnits * (cost.lookups + 2 * A + R), structure: bindingWork + (g ? 8*gameplayNodes*4*(maxStringLength+32) : 0) + 2 * r.maxUnits * entityNodes * 4 * (maxStringLength + 32) };
   const extra = { startup, startupLimit: limitWork(startup), command, commandLimit: limitWork(command), scanModel };
   const complete = { ...data, ...extra };
   return { id: dataHash(complete), ...complete };

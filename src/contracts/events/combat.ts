@@ -1,3 +1,4 @@
+import type { GameplayAim } from '../content/gameplay';
 import type { MatchId, SessionId } from '../../foundation/index';
 import type { EntityRef } from '../components/entity';
 import type { CompiledCatalog, ContentId, EngineCapacityProfile, Leaf, Work } from '../content/catalog';
@@ -17,7 +18,7 @@ export interface Operation {
   readonly opId: string; readonly rootId: string; readonly parentId: string | null; readonly producer: ContentId;
   readonly effect: ContentId; readonly sourceRef: EntityRef; readonly sourceOwnerRef: EntityRef; readonly targetRef: EntityRef;
   readonly depth: number; readonly chain: readonly string[]; readonly payload: Leaf;
-  readonly tags: readonly string[];
+  readonly tags: readonly string[]; readonly aim?: GameplayAim;
 }
 export interface FormulaStage { readonly stage: string; readonly value: number }
 export interface DamageBreakdown {
@@ -26,7 +27,7 @@ export interface DamageBreakdown {
   readonly stages: readonly FormulaStage[]; readonly reasons: readonly string[]; readonly participants: readonly string[];
 }
 export interface CombatFact {
-  readonly eventId: string; readonly tick: number; readonly phase: 'P0' | 'P5' | 'P6'; readonly kind: string;
+  readonly eventId: string; readonly tick: number; readonly phase: 'P0' | 'P2' | 'P3' | 'P4' | 'P5' | 'P6' | 'P7' | 'P8' | 'P9'; readonly kind: string;
   readonly operation: Operation | null; readonly target: EntityRef; readonly before: number; readonly after: number;
   readonly reason: string | null; readonly breakdown: DamageBreakdown | null;
 }
@@ -64,6 +65,6 @@ export interface CombatFaultDiagnostic {
   readonly chain: readonly string[]; readonly actual: number | null; readonly certificate: number | null; readonly limit: number | null;
 }
 export interface CombatDebugPort {
-  boundary(): CombatBoundary; fault(): CombatFaultDiagnostic | null;
+  boundary(): CombatBoundary; commandCapacity():CapacityActual|null; fault(): CombatFaultDiagnostic | null;
 }
 export interface CombatRuntime { readonly simulation: SimulationPort; readonly debug: CombatDebugPort }

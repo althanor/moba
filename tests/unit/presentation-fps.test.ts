@@ -4,6 +4,7 @@ import { createPresentation } from '../../src/presentation/index';
 const game = vi.hoisted(() => vi.fn(function () { throw new Error('configuration captured'); }));
 vi.mock('phaser', () => ({ default: { Game: game, WEBGL: 2, Scale: { FIT: 3, CENTER_BOTH: 1 } } }));
 vi.mock('../../src/presentation/phaser/scenes/probe-scene', () => ({ ProbeScene: class {} }));
+vi.mock('../../src/presentation/phaser/scenes/battle-scene', () => ({ BattleScene: class {} }));
 afterEach(() => { vi.unstubAllGlobals(); game.mockClear(); });
 it('constructs the actual Phaser Game without a second 60 FPS limiter (Android regression)', () => {
   vi.stubGlobal('window', { innerWidth: 960, innerHeight: 540 });

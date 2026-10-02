@@ -2,7 +2,8 @@ export type Brand<T, Name extends string> = T & { readonly __brand: Name };
 export type TickIndex = Brand<number, 'TickIndex'>;
 export type SessionId = Brand<string, 'SessionId'>;
 export type MatchId = Brand<string, 'MatchId'>;
-export interface Vec2 { readonly xWorld: number; readonly yWorld: number }
+import type { Vec2 } from './vector';
+export type { Vec2 } from './vector';
 
 export function finite(value: number, label: string): number {
   if (!Number.isFinite(value)) throw new RangeError(`${label} must be finite`);
@@ -67,3 +68,8 @@ export class RingBuffer<T> {
 export { checkedAdd, checkedMultiply, powerOfTwo, deepFreeze, canonical, dataHash, compareId } from './data';
 
 export { stableMergeSort } from './order';
+
+export { circleTOI, rectTOI, movementCircleTOI, movementRectTOI, distance, unit, along, subtract, lengthSquared } from './geometry';
+export { touchLayout } from './touch-layout';
+export { cssVectorToWorld, cssPointToWorld } from './screen-space';
+export type { CssVector } from './screen-space';
