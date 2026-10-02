@@ -2,8 +2,8 @@
   "status": "PASS",
   "scope": "independently compiled 454-unit M3 joint fixture; not representative performance",
   "certificate": {
-    "id": "6f511e6b",
-    "engineVersion": "0.4.1",
+    "id": "06c72880",
+    "engineVersion": "0.4.2",
     "compilerVersion": "m3-bounded-v2",
     "contentHash": "737006bb",
     "tickRate": 30,

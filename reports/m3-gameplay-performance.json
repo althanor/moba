@@ -13,16 +13,16 @@
       "runs": [
         {
           "run": 0,
-          "startupMs": 26.10535299999998,
+          "startupMs": 24.864501999999987,
           "tickCpuMs": {
             "count": 300,
-            "p50": 1.2260890000000018,
-            "p95": 2.2195259999999735,
-            "p99": 3.0357870000000275,
-            "max": 3.5712649999999826
+            "p50": 1.104329000000007,
+            "p95": 1.616692999999941,
+            "p99": 2.012512000000015,
+            "max": 3.3757909999999924
           },
-          "simulationCpuMsPerSecond": 40.693821799999895,
-          "commandIngressMsAcross12SimSeconds": 10.696344000000579,
+          "simulationCpuMsPerSecond": 34.75917029999994,
+          "commandIngressMsAcross12SimSeconds": 8.718323999999967,
           "maxWork": {
             "operations": 29,
             "hooks": 0,
@@ -42,16 +42,16 @@
         },
         {
           "run": 1,
-          "startupMs": 5.505040999999892,
+          "startupMs": 6.537317999999914,
           "tickCpuMs": {
             "count": 300,
-            "p50": 1.142712999999958,
-            "p95": 1.8388830000000098,
-            "p99": 2.7548739999999725,
-            "max": 5.901668999999856
+            "p50": 1.0808929999999464,
+            "p95": 1.8927400000000034,
+            "p99": 2.3543879999999717,
+            "max": 4.533530999999925
           },
-          "simulationCpuMsPerSecond": 37.13770309999986,
-          "commandIngressMsAcross12SimSeconds": 6.798483999999235,
+          "simulationCpuMsPerSecond": 35.5159907000001,
+          "commandIngressMsAcross12SimSeconds": 6.449366000000396,
           "maxWork": {
             "operations": 29,
             "hooks": 0,
@@ -71,16 +71,16 @@
         },
         {
           "run": 2,
-          "startupMs": 6.549706000000015,
+          "startupMs": 6.828549000000066,
           "tickCpuMs": {
             "count": 300,
-            "p50": 1.1887229999999818,
-            "p95": 1.7464330000000245,
-            "p99": 2.4153309999999237,
-            "max": 3.748491999999942
+            "p50": 1.1268319999999221,
+            "p95": 1.8498259999998936,
+            "p99": 2.772559999999885,
+            "max": 3.1783929999999145
           },
-          "simulationCpuMsPerSecond": 37.66511530000007,
-          "commandIngressMsAcross12SimSeconds": 7.069416000000729,
+          "simulationCpuMsPerSecond": 36.85795710000002,
+          "commandIngressMsAcross12SimSeconds": 7.107979000001706,
           "maxWork": {
             "operations": 29,
             "hooks": 0,
@@ -110,16 +110,16 @@
       "runs": [
         {
           "run": 0,
-          "startupMs": 10.914768000000095,
+          "startupMs": 10.759017999999969,
           "tickCpuMs": {
             "count": 300,
-            "p50": 5.990372000000207,
-            "p95": 10.691701000000194,
-            "p99": 11.334479999999985,
-            "max": 12.736163000000033
+            "p50": 6.005924999999934,
+            "p95": 7.307170999999926,
+            "p99": 8.617811999999958,
+            "max": 9.993650999999772
           },
-          "simulationCpuMsPerSecond": 197.9362423000003,
-          "commandIngressMsAcross12SimSeconds": 34.254681000004894,
+          "simulationCpuMsPerSecond": 182.89270809999988,
+          "commandIngressMsAcross12SimSeconds": 32.62004599999909,
           "maxWork": {
             "operations": 183,
             "hooks": 0,
@@ -139,16 +139,16 @@
         },
         {
           "run": 1,
-          "startupMs": 8.41271500000039,
+          "startupMs": 8.802521999999954,
           "tickCpuMs": {
             "count": 300,
-            "p50": 5.95823399999972,
-            "p95": 9.598812999999609,
-            "p99": 11.083050999999614,
-            "max": 12.935754000000088
+            "p50": 5.6490960000001,
+            "p95": 6.776099000000613,
+            "p99": 7.148212000000058,
+            "max": 9.57362699999976
           },
-          "simulationCpuMsPerSecond": 188.38293479999965,
-          "commandIngressMsAcross12SimSeconds": 30.442605000002004,
+          "simulationCpuMsPerSecond": 172.24187669999975,
+          "commandIngressMsAcross12SimSeconds": 28.10090300000229,
           "maxWork": {
             "operations": 183,
             "hooks": 0,
@@ -168,16 +168,16 @@
         },
         {
           "run": 2,
-          "startupMs": 9.393733999999313,
+          "startupMs": 10.236096999999972,
           "tickCpuMs": {
             "count": 300,
-            "p50": 6.0711949999986246,
-            "p95": 9.602224000000206,
-            "p99": 11.054771000000073,
-            "max": 12.075689999999668
+            "p50": 5.6852600000001985,
+            "p95": 7.827178000000458,
+            "p99": 11.714712999999392,
+            "max": 13.294849999999315
           },
-          "simulationCpuMsPerSecond": 193.0115692000014,
-          "commandIngressMsAcross12SimSeconds": 31.133219000005738,
+          "simulationCpuMsPerSecond": 181.57029220000032,
+          "commandIngressMsAcross12SimSeconds": 32.093668999995316,
           "maxWork": {
             "operations": 183,
             "hooks": 0,

@@ -1,0 +1,1 @@
+export { bindToolbarAction } from './toolbar';

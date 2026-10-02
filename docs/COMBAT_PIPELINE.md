@@ -1,10 +1,10 @@
 # MOBA 战斗结算流水线
 
-版本：0.1.4。日期：2026-10-02。当前：M3 0.4.1 软件候选；M2 0.3.1 已由用户确认独立复核/远端 main PASS；真机证据等待，不进入 M4。
+版本：0.1.4。日期：2026-10-03。当前：M3 0.4.2 toolbar multitouch 软件修复候选，等待独立源码复核；0.4.1 软件出口已由用户确认独立复核通过并推送 main c95a6d76f34a9f8621586a9bd84160f71061170d；Android A/B 因真机 toolbar multitouch blocker 暂停；M3 整体未通过，不进入 M4。
 
 此文是 Tick 阶段、战斗顺序与因果关系的唯一规范来源。所有英雄、兵、野怪、塔、装备、Modifier 和 Debug 操作使用同一结算入口。表现动画、Phaser 碰撞回调、UI 和 Bot 不能决定命中或生命变化。正式数值在 Ruleset 中确定；下列默认公式和边界行为作为实现基线，变更须更新决策、文档和测试。
 
-关联：[总架构](ARCHITECTURE.md)、[编码与测试规则](CODING_RULES.md)、[设计决策](DESIGN_DECISIONS.md)。
+关联：[总架构](ARCHITECTURE.md)、[编码与测试规则](CODING_RULES.md)、[设计决策](../DESIGN_DECISIONS.md)。
 
 ## 1 时间与全局顺序
 
@@ -281,7 +281,7 @@ M2 的精确内容语义、profile 和缺口见 [M2_IMPLEMENTATION.md](M2_IMPLEM
 
 FactQueue 同步非重入交接给 M2 内部诊断消费者，每条 Fact produced=consumed，最大待交接数证明为 1；总 Fact 工作仍受根/Tick 证书限制。full 模式保留全部逐条记录；summary 模式保留全部种类计数及最近 2000 条调试记录，明确标注 produced/consumed/retained。这是诊断归档模式，不减少任何结算、Hook、Replacement 或目标，两个模式的 World/hash 必须相同。Information/Disclosure 消费者在 M4 注册，届时重审输出工作量。
 
-## M3 0.4.1 当前实施与边界
+## M3 0.4.2 当前实施与边界
 
 通用 Action/资源 reservation、Movement intent/step Operation、有限 grid queries、relative swept Projectile、Area 与 public debug arena/触屏适配已实现，全部使用既有 executeRoot/Operation/Hook/Fact/CapacityCertificate。实现与明确阶段规则见 [M3_IMPLEMENTATION.md](M3_IMPLEMENTATION.md)，新 producer/计账上界见 [M3_WORK_ACCOUNTING.md](M3_WORK_ACCOUNTING.md)，软件门禁见 [M3_TEST_REPORT.md](M3_TEST_REPORT.md)，Android/ADR 019 当前硬门禁见 [M3_ACCEPTANCE.md](M3_ACCEPTANCE.md)。正式决策见 ADR 024。
 
@@ -299,4 +299,4 @@ wall:ignore / units:ignore 明确忽略对应的 path + endpoint collision，允
 
 新增 helper 均是固定数量标量算术，不新增动态集合、candidate query、元素遍历、lookup 或结构快照。每个原 candidate/obstacle 仍恰好读取一次；本次重新生成 engine=0.4.1/compiler=m3-bounded-v2 的证书并验证全部 scope，work 上界/profile 数值保持，不能复用旧版本证书 ID。Projectile 起点重叠依旧 t=0 命中，命中/结束/expiry 不重复。
 
-本次只修复本地 M3 软件候选。自动门禁通过不等于最终软件出口已被再次独立复核；复核前不推送 main、不部署 Pages、不开始正式 Android A/B、不进入 M4。A 默认、B experimental、30 Hz provisional；此次坐标/碰撞 bug 不自动触发 C。
+历史 0.4.1 坐标/碰撞修订已通过独立复核；本轮 0.4.2 仅修复 toolbar/debug input，等待新独立复核和 Android blocker 复测，不推送 main、不部署 Pages、不进入 M4。A 默认、B experimental、30 Hz provisional，C 未触发。

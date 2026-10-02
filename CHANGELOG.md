@@ -1,5 +1,17 @@
 # MOBA 变更记录
 
+## 0.4.2 — M3 Android toolbar multitouch repair candidate（等待独立源码复核）
+
+- 基线 main c95a6d76f34a9f8621586a9bd84160f71061170d/0.4.1；此前软件出口已独立复核，Android A/B 因真实 toolbar blocker 暂停。
+- touch/pen 主按钮 pointerdown 接第二触点；按 click provenance 去重，鼠标/键盘/可访问性保留，不依赖计时窗口。
+- control 不 clear input，其他九种 action 保留清理；CC 结束重采仍 held 的 contacts，经原正式 Command 恢复意图。
+- 新增真实 CDP Canvas+DOM 双/三指、停止/恢复、逐 action count、一次重建/切模式/下载与 unit 事件模型回归；原163 tests保留。
+- 升版并重新绑定证书；authority/content/profile 数值不变；完整软件门禁和成本以本轮报告为准。
+- 保留用户已有 Android A/B 功能事实；竖屏因设备操作时防转屏保护为 UNAVAILABLE；移动中 control/B prediction→control 结论 pending。
+- 不推送 main、不部署 Pages；M3 整体/Android未PASS，30 Hz provisional、A默认/Bexperimental/C未触发，不进入M4。
+
+后续状态：下方 0.4.1 当时的候选措辞是历史；用户现已确认它通过独立复核并推送 c95a6d76，正式真机验收已开始但被新 blocker 暂停。
+
 ## 0.4.1 — M3 software repair candidate（等待再次独立复核）
 
 - 修正 CSS→world 向量独立轴缩放，保留屏幕摇杆 analog magnitude；aim preview 在同时移动时跟随当前授权源位置。

@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import type { PresentationHost } from '../contracts/index';
 import { BattleScene } from './phaser/scenes/battle-scene';
 import { ProbeScene } from './phaser/scenes/probe-scene';
+import { bindToolbarAction } from './input/index';
 export function createPresentation(host: PresentationHost, kind: 'probe' | 'battle' = 'probe'): Readonly<{ canvas: HTMLCanvasElement; clearInput(): void; dispose(): void }> {
   const size = (): { width: number; height: number } => {
     const aspect = window.innerWidth / Math.max(1, window.innerHeight);
@@ -17,9 +18,8 @@ export function createPresentation(host: PresentationHost, kind: 'probe' | 'batt
   const actions = ['pause', 'resume', 'step', 'recreate', 'modeA', 'modeB', 'export', 'empty', 'probe','control'] as const;
   const listeners: Array<() => void> = [];
   for (const action of actions) {
-    const element = document.querySelector(`[data-action="${action}"]`);
-    const callback = (): void => { host.clearInput(); scene.clearInput(); host.debug(action); };
-    element?.addEventListener('click', callback); listeners.push(() => element?.removeEventListener('click', callback));
+    const element = document.querySelector<HTMLButtonElement>(`[data-action="${action}"]`);
+    if (element) listeners.push(bindToolbarAction(element, action, host, () => scene.clearInput()));
   }
   let disposed = false;
   return Object.freeze({ canvas: game.canvas, clearInput: () => scene.clearInput(), dispose: () => {

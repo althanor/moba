@@ -3,8 +3,8 @@
   "scope": "software capacity correctness; one diagnostic desktop run, not Android performance acceptance",
   "contentHash": "c4c6dfa0",
   "certificate": {
-    "id": "2b321672",
-    "engineVersion": "0.4.1",
+    "id": "903b6947",
+    "engineVersion": "0.4.2",
     "compilerVersion": "m3-bounded-v2",
     "contentHash": "c4c6dfa0",
     "tickRate": 30,
@@ -8204,9 +8204,9 @@
   "retainedFacts": 1655282,
   "expectedOperations": 829457,
   "cost": {
-    "durationMs": 15125.375977,
-    "beforeHeapBytes": 26903184,
-    "afterHeapBytes": 1560481416
+    "durationMs": 14207.323459,
+    "beforeHeapBytes": 27081784,
+    "afterHeapBytes": 1529893984
   },
   "noTruncation": true
 }

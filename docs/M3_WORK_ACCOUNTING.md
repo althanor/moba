@@ -1,12 +1,12 @@
-# M3 0.4.1 工作计账与容量证明
+# M3 0.4.2 工作计账与容量证明
 
 基线 M2 实例化规则、完整 Hook/Replacement 深度 fuel、动态遍历 scans、索引 lookups、immutable/canonical/hash structure、startup/command 独立预算仍保留。M3 使用相同 executeRoot/CapacityGuard/FactQueue；没有另一套战斗队列或 Phaser authority。
 
 ## 注册内容/profile
 
-`content/m2-fixture.json` 与 `m2-profile.json` 保持原内容；`m3-battle.json` 与 `m3-profile.json` 是显式注册的新 Ruleset/profile pair。validate:content 拒绝遗漏的新 JSON。M2 contentHash 4302def2 不变；engine/compiler 升为 0.4.1/m3-bounded-v2，重新生成 M2 与 M3 certificate。
+`content/m2-fixture.json` 与 `m2-profile.json` 保持原内容；`m3-battle.json` 与 `m3-profile.json` 是显式注册的新 Ruleset/profile pair。validate:content 拒绝遗漏的新 JSON。M2 contentHash 4302def2 不变；engine/compiler 为 0.4.2/m3-bounded-v2，重新生成 M2 与 M3 certificate。
 
-M3 contentHash `f166a531`，certificate `b1434902`，profile `m3-debug-logical-v1`，30 Hz。maxUnits=454、statusesGlobal=3632、projectilePool=128、AreaPool=64、gridCells≤256、actions≤16、obstacles≤16、query result≤454。
+M3 contentHash `f166a531`，certificate `af8e1f05`，profile `m3-debug-logical-v1`，30 Hz。maxUnits=454、statusesGlobal=3632、projectilePool=128、AreaPool=64、gridCells≤256、actions≤16、obstacles≤16、query result≤454。
 
 | tick work | certificate | fault limit | configured profile |
 |---|---:|---:|---:|
@@ -55,3 +55,9 @@ Grid update 的 private member slot map 消除全 roster 删除扫描；每 cell
 M2 454×454、20-root、4096 indexed cardinality、producer mismatch、完整 Fact delivery 都保留。逻辑最大 profile 是有限性的保守上界，数值很大，不代表 realtime 或承诺每秒能处理它。正常玩法另见 reports/m3-gameplay-performance.json，4-unit 与 64-unit/8-active 两个脚本、三轮、60 Tick warmup、300 Tick measurement、所有 hash 一致。Android A/B 与热态单独等待，不能从桌面成本宣布 Android PASS。
 
 0.4.1 修复的 CSS 变换在 controller/presentation，Movement recovery 在每个既有 obstacle/candidate 的固定标量计算中；没有新增 query/集合访问/lookup/结构快照，完整 work/profile 数值保持。engine/compiler 语义版本重新绑定，证书由 fa762b92 变为 b1434902；全部 scope 与原 M2 极限再次回归。
+
+## 0.4.2 authority work unchanged 证明
+
+基线 main c95a6d76 的已复核 0.4.1。authority 源码只改 compiler ENGINE_VERSION 和 runtime 的 engine binding literal 为 0.4.2；内容四份 JSON、全部 producers/effects、空间与扫描/lookup/structure 成本模型、Action/Movement/Projectile/Area owner、guard 和 Tick 调度逐字未改。toolbar 去重/计数、held contact 重采只在 presentation；输入仍经原 controller/Session/command scope，单次恢复至多一个 held joystick latest move，不新增 authority producer/root 类别或同 Tick root envelope。
+
+重新编译 certificate af8e1f05，旧 b1434902 不再用于 0.4.2；contentHash f166a531、profile m3-debug-logical-v1、全部 root/producer/maintenance/Tick/startup/command 数值与 0.4.1 一致。固定 454/128/64 envelope、scan conservation、producer binding、actual≤certificate≤fault≤configured profile 必须在本轮完整 check 再次实测；报告不从 0.4.1 复制。presentation/debug 观察数据不进入权威结构或 hash。

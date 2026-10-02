@@ -1,6 +1,6 @@
 # MOBA 工程编码与验证规范
 
-版本：0.1.4。日期：2026-10-02。当前：M3 0.4.1 软件候选；M2 0.3.1 已由用户确认独立复核/远端 main PASS；真机证据等待，不进入 M4。
+版本：0.1.4。日期：2026-10-03。当前：M3 0.4.2 toolbar multitouch 软件修复候选，等待独立源码复核；0.4.1 软件出口已由用户确认独立复核通过并推送 main c95a6d76f34a9f8621586a9bd84160f71061170d；Android A/B 因真机 toolbar multitouch blocker 暂停；M3 整体未通过，不进入 M4。
 
 本规范约束后续 Phaser、TypeScript、Vite 工程的实现与修改。M1 可构建工程与相应门禁已落实；本文中正式内容、玩法和持久化要求按里程碑实施。
 
@@ -8,13 +8,13 @@
 
 ## 1 每次开发任务的流程
 
-1. 先阅读相关源文件、公开接口、测试、[ARCHITECTURE.md](ARCHITECTURE.md)、对应规则和 [DESIGN_DECISIONS.md](DESIGN_DECISIONS.md)。查明状态所有者和依赖路径。
+1. 先阅读相关源文件、公开接口、测试、[ARCHITECTURE.md](ARCHITECTURE.md)、对应规则和 [DESIGN_DECISIONS.md](../DESIGN_DECISIONS.md)。查明状态所有者和依赖路径。
 2. 实现前说明影响哪些系统、改变哪些行为、哪些接口或数据版本可能受影响。若发现规则冲突，先记录明确选择，不静默改变。
 3. 在已有边界内增量实现。新增复杂机制先定义 Operation/Component/Hook/Schema 和结算阶段，再增加数据实例。
 4. 运行与修改相关的测试和内容校验，必要时增补数学/交互回归。测试失败先解决原因，不靠修改期望掩盖错误。
 5. 运行类型检查、lint、依赖检查和生产构建。声明每项实际运行结果，未运行须写原因。
 6. 完成受影响系统的回归；需要 Android 行为或性能证据时执行真机检查。
-7. 更新规范、设计决策及 [CHANGELOG.md](CHANGELOG.md)，报告修改、文件、原因、验证、已知问题和下一步。
+7. 更新规范、设计决策及 [CHANGELOG.md](../CHANGELOG.md)，报告修改、文件、原因、验证、已知问题和下一步。
 
 禁止悄悄删除功能、测试、资源或内容规则。重构必须保留行为或明确记录行为变更。不因为某阶段尚未完成而伪造测试、性能和 build 通过。
 
@@ -169,7 +169,7 @@ CHANGELOG 写用户可理解的行为与验证，不只列“优化/修复”。
 
 M2 0.3.1 计账规则：新增动态集合读取/副本/筛选/排序必须同步更新 actual 入口、compiler 成本模型和 conservation 测试。固定字段/协议工作需列出有限次数证明；不得只引用 schema 最大长度。热路径 definition/Entity/trace 不得 Array.find；索引必须私有且保留冻结内容/原迭代顺序。见 ADR 023 和 M2_WORK_ACCOUNTING.md。
 
-## M3 0.4.1 当前实施与边界
+## M3 0.4.2 当前实施与边界
 
 通用 Action/资源 reservation、Movement intent/step Operation、有限 grid queries、relative swept Projectile、Area 与 public debug arena/触屏适配已实现，全部使用既有 executeRoot/Operation/Hook/Fact/CapacityCertificate。实现与明确阶段规则见 [M3_IMPLEMENTATION.md](M3_IMPLEMENTATION.md)，新 producer/计账上界见 [M3_WORK_ACCOUNTING.md](M3_WORK_ACCOUNTING.md)，软件门禁见 [M3_TEST_REPORT.md](M3_TEST_REPORT.md)，Android/ADR 019 当前硬门禁见 [M3_ACCEPTANCE.md](M3_ACCEPTANCE.md)。正式决策见 ADR 024。
 

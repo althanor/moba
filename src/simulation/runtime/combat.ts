@@ -21,7 +21,7 @@ export function createCombatRuntime(input: CombatConfig, options: { readonly fac
   const config = { ...input };
   const { catalog } = config, r = catalog.document.ruleset, c = catalog.certificate;
   if (config.matchId.length > 96 || config.sessionId.length > 96 || config.roster.length > r.maxUnits) throw new Error('runtime identity/roster envelope');
-  if (c.engineVersion !== '0.4.1' || c.compilerVersion !== 'm3-bounded-v2' || c.contentHash !== catalog.contentHash || c.tickRate !== config.tickRate || c.rulesetId !== r.id) throw new Error('catalog/certificate binding');
+  if (c.engineVersion !== '0.4.2' || c.compilerVersion !== 'm3-bounded-v2' || c.contentHash !== catalog.contentHash || c.tickRate !== config.tickRate || c.rulesetId !== r.id) throw new Error('catalog/certificate binding');
   let profileReads = 0; const errors = validateProfile(c, config.profile, () => profileReads++); if (errors.length) throw new Error(`profile rejected:${errors.join(',')}`);
   const startup = new CapacityGuard(c, config.profile, 0, 'startup'); startup.scan('maintenance', profileReads); let active: CapacityGuard | null = startup;
   const scan = (kind: Parameters<CapacityGuard['scan']>[0], n: number): void => active?.scan(kind, n);

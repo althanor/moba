@@ -16,6 +16,7 @@ export class BattleScene extends Phaser.Scene {
   #sampleSequence = 0;
   #lastPosition: Vec2 | null = null;
   #lastSession = '';
+  #lastCanMove: boolean | null = null;
   #lastUIAtMs = 0;
   #disposeInput: (() => void) | null = null;
   #pendingUI = new Set<number>();
@@ -57,7 +58,7 @@ export class BattleScene extends Phaser.Scene {
     for (const sample of this.#tracker.samples) {
       if (this.game.canvas.hasPointerCapture(sample.pointerId)) this.game.canvas.releasePointerCapture(sample.pointerId);
     }
-    this.#tracker.clear(); this.#feedback.clear(); this.#proxy.clear(); this.#lastPosition = null; this.#pendingUI.clear(); this.#pendingVisual.clear();
+    this.#tracker.clear(); this.#feedback.clear(); this.#proxy.clear(); this.#lastPosition = null; this.#lastCanMove = null; this.#pendingUI.clear(); this.#pendingVisual.clear();
   }
   #drawGrid(): void {
     const grid = this.#grid; if (!grid) return;
@@ -75,6 +76,19 @@ export class BattleScene extends Phaser.Scene {
     const frame = this.#host.frame(nowMs);
     if (!frame.inputEnabled || frame.observation.sessionId !== this.#lastSession) this.clearInput();
     this.#lastSession = frame.observation.sessionId;
+    const player = frame.observation.battle?.units[0];
+    if (frame.inputEnabled && player?.alive && player.canMove && this.#lastCanMove === false) {
+      // CC cleared authority intent. A stationary held contact is still input:
+      // resample once at the observed capability transition, never synthesize
+      // begin/end or mutate authority. Cleared/lost contacts cannot be restored.
+      const bounds = this.game.canvas.getBoundingClientRect();
+      for (const held of this.#tracker.samples) {
+        const sample: RawInput = Object.freeze({ ...held, phase: 'move', sampleId: ++this.#sampleSequence, capturedAtMs: nowMs });
+        this.#tracker.accept(sample); this.#feedback.set(sample.pointerId, sample);
+        this.#host.input(sample, bounds.width, bounds.height);
+      }
+    }
+    this.#lastCanMove = frame.inputEnabled && player ? player.canMove : null;
     this.#render(frame, nowMs);
   }
   #render(frame: PresentationFrame, nowMs: number): void {
@@ -88,6 +102,11 @@ export class BattleScene extends Phaser.Scene {
     for(const a of view.areas)circle(a.position,a.radiusWorld,0x8e73d7);
     const player=view.units[0];if(!player)return;
     const enabled=frame.inputEnabled&&frame.probeMode==='B'&&player.alive&&player.canMove&&player.phase==='ready';
+    // Public debug arena input diagnostics only; excluded from Simulation/hash.
+    this.game.canvas.dataset.inputState=JSON.stringify({sessionId:frame.observation.sessionId,tick:frame.debug.tick,
+      state:frame.debug.state,pointerIds:this.#tracker.samples.map(s=>s.pointerId),canMove:player.canMove,
+      position:player.position,health:player.health,enemyBoltCharges:view.units[1]?.cooldowns.find(c=>c.id==='bolt')?.charges,
+      projectileIds:view.projectiles.map(p=>p.id),predicting:enabled&&(frame.localDirection.xWorld!==0||frame.localDirection.yWorld!==0)});
     const motion={ref:player.ref,previous:player.previous,current:player.position,discontinuity:player.discontinuity};
     let local=this.#proxy.position({...frame.observation,entities:[motion]},frame.alpha,nowMs,frame.localDirection,enabled,1000/frame.debug.tickRate,player.speedWorldPerSecond);
     if(local&&enabled){let toi=1;for(const o of view.obstacles){const t=movementRectTOI(player.position,local,o,12);if(t!==null)toi=Math.min(toi,t);}local=along(player.position,local,toi);}

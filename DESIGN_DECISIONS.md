@@ -1,6 +1,6 @@
 # MOBA 设计决策记录
 
-版本：0.1.4。日期：2026-10-02。当前：M3 0.4.0 软件候选；M2 0.3.1 已由用户确认正式收口；真机验收独立，不进入 M4。
+版本：0.1.4。日期：2026-10-03。当前：M3 0.4.2 toolbar multitouch 软件修复候选，等待独立源码复核；0.4.1 软件出口已由用户确认独立复核通过并推送 main c95a6d76f34a9f8621586a9bd84160f71061170d；Android A/B 因真机 toolbar multitouch blocker 暂停；M3 整体未通过，不进入 M4。
 
 accepted 表示采用的架构约束而非已实现；proposed 表示需验证的候选；provisional baseline 表示后续实现暂用但尚未接受为最终选择；deferred 表示当前不实施。技术资料只核实平台行为，预算/探针提案不等于性能和手感事实。
 
@@ -256,7 +256,7 @@ ADR 023 补充：诊断 participant 采用独立不可变副本；两个 Pre Hoo
 
 ## ADR 024 M3 有界动作/空间运行时与统一移动 Operation
 
-状态：accepted for M3 0.4.1 repair candidate；0.4.0 最终软件出口声明因独立复核阻塞撤回，修复需再次独立复核；Android 尚未正式开始；日期 2026-10-02。
+状态：M3 0.4.1 软件已由用户确认独立复核通过并推送 main c95a6d76；0.4.2 toolbar repair candidate 等待独立复核。Android A/B 已开始，因本次真机输入 blocker 暂停；日期 2026-10-03。
 
 基线：用户确认 M2 0.3.1 已独立复核并正式推送 main c57fa8caadb2afc2eb98d85246e156d76e942949，原软件门禁/Actions/Pages PASS，授权 M3，不进入 M4。ADR 003/019/021/022/023 的率、设备延期、容量、索引、完整结算约束继续有效。
 
@@ -276,7 +276,7 @@ A 默认 previous/current；B 只对授权本地普通移动做 ≤1 Tick 表现
 
 代价：新的状态、root、query、scan、lookup、snapshot/hash 节点增加保守 logical maximum certificate。逻辑容量正确性与代表性正常 gameplay CPU profile 分开；不删除 M2 极限合法结算、不削减 454、不截 Hook/Operation/Fact。每次 producer/内容/率改变重新编译，回归见 M3_WORK_ACCOUNTING.md/M3_TEST_REPORT.md/M3_ACCEPTANCE.md。
 
-## 0.4.1 输入坐标与 penetration recovery 修订
+### ADR 024：0.4.1 输入坐标与 penetration recovery（已通过独立复核）
 
 CSS 点与向量使用不同契约：点独立缩放 X/Y 后加 arena.min；向量只乘 worldPerCssX=arenaWidth/widthCss、worldPerCssY=arenaHeight/heightCss，再归一化。Joystick magnitude=min(1,screenDragLength/48)，单独保留屏幕拖距力度；方向用转换后的 world unit vector。技能 deadzone/cancel/按钮 hit test 仍使用 CSS，direction/point drag 的 world direction 经过同一转换；投影 preview 随当前授权 actor snapshot 重定位，松手重新从当前 snapshot 构造 Command，preview 不决定命中。目标 tap 的点映射保留。
 
@@ -288,4 +288,20 @@ wall:ignore / units:ignore 明确忽略对应的 path + endpoint collision，允
 
 新增 helper 均是固定数量标量算术，不新增动态集合、candidate query、元素遍历、lookup 或结构快照。每个原 candidate/obstacle 仍恰好读取一次；本次重新生成 engine=0.4.1/compiler=m3-bounded-v2 的证书并验证全部 scope，work 上界/profile 数值保持，不能复用旧版本证书 ID。Projectile 起点重叠依旧 t=0 命中，命中/结束/expiry 不重复。
 
-本次只修复本地 M3 软件候选。自动门禁通过不等于最终软件出口已被再次独立复核；复核前不推送 main、不部署 Pages、不开始正式 Android A/B、不进入 M4。A 默认、B experimental、30 Hz provisional；此次坐标/碰撞 bug 不自动触发 C。
+历史 0.4.1 坐标/碰撞修订已通过独立复核；本轮 0.4.2 仅修复 toolbar/debug input，等待新独立复核和 Android blocker 复测，不推送 main、不部署 Pages、不进入 M4。A 默认、B experimental、30 Hz provisional，C 未触发。
+
+### ADR 024：0.4.2 toolbar multitouch 输入契约
+
+真机已确认：Canvas 摇杆 contact 持续时，第二指点击 DOM control/pause 在 A/B 都无响应；单独 toolbar 点击及 Canvas 内部双指移动+技能正常。根因是 toolbar 依赖合成 click，不能作为非 primary touch 的可靠 activation，且所有 action 统一 clearInput 错误清掉 control 所需的 held contacts。
+
+选择：touch/pen 的主按钮 pointerdown（button=0，不限制 isPrimary）立即 activation；鼠标 pointerdown 不 activation，普通 mouse click 保留；键盘 Enter/Space、可访问性/程序化 click 保留。PointerEvent click 的 touch/pen provenance 不再 activation；旧 Chromium MouseEvent 的 sourceCapabilities.firesTouchEvents=true 同样忽略。preventDefault 不是唯一去重手段；没有 UA 分支、计时窗口、延迟或重试。pointerup/cancel 不再执行 action；touch/pen press 在按下时已经生效，后续取消不反向撤销调试动作。未知非 touch/pen click 沿用原 fallback。
+
+control 唯一不调用 host.clearInput / scene.clearInput；保留 joystick 与 skill pointer、捕获和预览。其原 host.debug(control) 继续经 Session.submit → enemy bolt Action → Projectile → Effect/Operation → Status 产生 CC。pause/resume/step/recreate/modeA/modeB/export/empty/probe 九种动作保留原清理调用；export 仍清 held joystick。
+
+CC 的原权威语义会清 movement intent。表现层在稳定 Session、inputEnabled、alive 且观察到 canMove false→true 时，对仍存在的 Canvas contacts 各重采一次 move，经原 host.input/GameplayController/Session.submit 重新提交意图；不合成 begin/end，不扣资源或放技能。失指针/暂停/后台/重建清空 tracker 与该观察状态，因此不能恢复已清 contacts。重采 capturedAtMs 是软件重采时刻，不冒充新的物理 touch 时间。普通 CSS/world direction、analog magnitude、aim 和权威控制/移动/碰撞规则不变。
+
+每按钮 data-activation-count/source 和 Canvas data-input-state 是 presentation-only/debug-only 观察计数，直接证明一次 activation；从不进入 Simulation/权威 hash/内容/证书。正式浏览器回归使用 CDP active touch set，同时 Canvas 与 DOM contacts；touchEnd 显式指定 toolbar contact 释放，保留第一 contact 的完整事件流，再验证 CC 前移动、受控停步、结束自动恢复和三指保留技能。原 1503×536 A/B 回归不变。鼠标/键盘、一次 recreate/mode/export/下载另有去重断言。
+
+版本 0.4.2 只重新绑定 engineVersion；authority producers、Effect/Action/Movement/Projectile/Area/Hook/查询和所有 work 算法不变，contentHash 和 profile 数值不变。旧版本证书不得复用；当前证书/完整门禁以本轮 M3_TEST_REPORT/M3_WORK_ACCOUNTING 和生成报告为准。
+
+输入事件契约参考：[W3C Pointer Events §4.2.12](https://www.w3.org/TR/pointerevents3/#the-click-auxclick-and-contextmenu-events)。浏览器支持以本项目生产构建 CDP 回归和待执行 Android blocker 复测为准。

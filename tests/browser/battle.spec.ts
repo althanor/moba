@@ -65,3 +65,67 @@ test('three alternating gameplay A/B pairs: turns, blocking, dash, projectile, c
  }
  fs.mkdirSync('reports',{recursive:true});fs.writeFileSync('reports/m3-gameplay-ab.json',JSON.stringify({status:'PASS',scope:'desktop headless Chromium / software submission timing; human handfeel and Android thermal unavailable',tickRate:30,A:'previous/current default',B:'presentation-only <=1 Tick experimental',C:'NOT_APPLICABLE: no 30 Hz authority defect demonstrated',pairs},null,2)+'\n');
 });
+
+interface InputState { sessionId:string;tick:number;state:string;pointerIds:number[];canMove:boolean;position:{xWorld:number;yWorld:number};health:number;enemyBoltCharges:number;projectileIds:number[];predicting:boolean }
+async function inputState(page:Page):Promise<InputState>{return JSON.parse(await page.locator('canvas').getAttribute('data-input-state')??'{}') as InputState;}
+async function actionCount(page:Page,action:string):Promise<number>{return Number(await page.locator(`[data-action="${action}"]`).getAttribute('data-activation-count'));}
+async function buttonPoint(page:Page,action:string){const box=await page.locator(`[data-action="${action}"]`).boundingBox();if(!box)throw new Error(action);return{x:box.x+box.width/2,y:box.y+box.height/2,id:2};}
+for(const mode of ['A','B'])test(`toolbar multitouch ${mode}: held joystick + control once, authority CC stops and held contact resumes`,async({page,context})=>{
+ await start(page);await page.locator(`[data-action="mode${mode}"]`).click();await expect(page.locator('#status')).toContainText(`${mode} · running`);
+ const cdp=await context.newCDPSession(page),b=await page.locator('canvas').boundingBox();if(!b)throw new Error('canvas');
+ const origin={x:b.x+64,y:b.y+b.height-64,id:1},held={...origin,x:origin.x-12},control=await buttonPoint(page,'control');
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[origin]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[held]});await expect.poll(async()=>(await inputState(page)).position.xWorld).toBeLessThan(-170);
+ const before=await inputState(page),count=await actionCount(page,'control');expect(before.pointerIds).toHaveLength(1);
+ // Observe every rendered authoritative sample, including the short release/hit window.
+ await page.evaluate(()=>{const c=document.querySelector('canvas');if(!c)throw new Error('canvas');const rows:string[]=[];const observer=new MutationObserver(()=>{const s=c.dataset.inputState;if(s&&rows[rows.length-1]!==s)rows.push(s);});observer.observe(c,{attributes:true,attributeFilter:['data-input-state']});Object.assign(window,{toolbarTrace:rows,toolbarObserver:observer});});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[held,control]});
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[control]});
+ await expect.poll(async()=>actionCount(page,'control')).toBe(count+1);await expect(page.locator('[data-action="control"]')).toHaveAttribute('data-activation-source','touch');
+ await expect.poll(async()=>(await inputState(page)).canMove).toBe(false);const stopped=await inputState(page);expect(stopped.pointerIds).toEqual(before.pointerIds);expect(stopped.enemyBoltCharges).toBe(1);expect(stopped.health).toBe(920);expect(stopped.predicting).toBe(false);
+ await expect.poll(async()=>(await inputState(page)).tick).toBeGreaterThan(stopped.tick+3);expect((await inputState(page)).position).toEqual(stopped.position);
+ await expect.poll(async()=>(await inputState(page)).canMove).toBe(true);
+ // No further touchMove/start occurs: the original contact must resume by itself.
+ await expect.poll(async()=>(await inputState(page)).position.xWorld).toBeLessThan(stopped.position.xWorld);
+ const after=await inputState(page);expect(after.pointerIds).toEqual(before.pointerIds);expect(after.health).toBe(920);expect(after.enemyBoltCharges).toBeGreaterThanOrEqual(1);expect(await actionCount(page,'control')).toBe(count+1);
+ const trace=await page.evaluate(()=>{const w=window as unknown as {toolbarTrace:string[];toolbarObserver:MutationObserver};w.toolbarObserver.disconnect();return w.toolbarTrace;});const frames=trace.map(s=>JSON.parse(s) as InputState);
+ expect(frames.some(f=>f.canMove&&f.health===1000&&f.position.xWorld<before.position.xWorld)).toBe(true);
+ expect(Math.min(...frames.map(f=>f.enemyBoltCharges))).toBe(1);const projectileIds=new Set(frames.flatMap(f=>f.projectileIds));expect(projectileIds.size).toBeLessThanOrEqual(1);expect(frames.every(f=>f.pointerIds.join(',')===before.pointerIds.join(','))).toBe(true);
+ if(mode==='B'){expect(frames.some(f=>f.predicting&&f.health===1000)).toBe(true);expect(after.predicting).toBe(true);}
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});await cdp.detach();await expect(page.locator('#status')).toContainText('指针 0');await expect(page.locator('#error')).toBeEmpty();
+});
+test('toolbar multitouch: held joystick + pause clears pointers, freezes Tick and resumes with neutral intent',async({page,context})=>{
+ await start(page);const cdp=await context.newCDPSession(page),b=await page.locator('canvas').boundingBox();if(!b)throw new Error('canvas');const origin={x:b.x+64,y:b.y+b.height-64,id:1},held={...origin,x:origin.x-24};
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[origin]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[held]});await expect.poll(async()=>(await inputState(page)).position.xWorld).toBeLessThan(-170);
+ const pause=await buttonPoint(page,'pause');await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[held,pause]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[pause]});
+ await expect(page.locator('#status')).toContainText('paused');await expect(page.locator('#status')).toContainText('指针 0');expect(await actionCount(page,'pause')).toBe(1);
+ const paused=await inputState(page);await page.waitForTimeout(150);expect(await inputState(page)).toEqual(paused);
+ // Release only the toolbar touch for resume; the cleared old Canvas contact is still physically held.
+ const resume=await buttonPoint(page,'resume');await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[held,resume]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[resume]});await expect(page.locator('#status')).toContainText('running');await expect.poll(async()=>(await inputState(page)).tick).toBeGreaterThan(paused.tick+4);
+ expect((await inputState(page)).position).toEqual(paused.position);expect((await inputState(page)).pointerIds).toEqual([]);expect(await actionCount(page,'resume')).toBe(1);
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});await cdp.detach();await expect(page.locator('#error')).toBeEmpty();
+});
+test('toolbar touch activation counts recreate/mode/export exactly once and emits one download',async({page,context})=>{
+ await start(page);const cdp=await context.newCDPSession(page),downloads:string[]=[];page.on('download',d=>downloads.push(d.suggestedFilename()));
+ for(const action of ['recreate','modeB','modeA','export']){const before=await inputState(page),count=await actionCount(page,action),p=await buttonPoint(page,action);await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await expect.poll(async()=>actionCount(page,action)).toBe(count+1);
+ if(action!=='export'){await expect.poll(async()=>(await inputState(page)).sessionId).not.toBe(before.sessionId);expect(Number((await inputState(page)).sessionId.split('-')[1])).toBe(Number(before.sessionId.split('-')[1])+1);}else await expect.poll(()=>downloads.length).toBe(1);
+ }
+ await page.waitForTimeout(150);expect(downloads).toHaveLength(1);for(const a of ['recreate','modeB','modeA','export'])expect(await actionCount(page,a)).toBe(1);await cdp.detach();await expect(page.locator('#error')).toBeEmpty();
+});
+test('toolbar desktop and keyboard/accessibility click each activate once; solo control still uses enemy action',async({page})=>{
+ await start(page);const downloads:string[]=[];page.on('download',d=>downloads.push(d.suggestedFilename()));
+ for(const a of ['recreate','modeB','modeA']){const before=await inputState(page);await page.locator(`[data-action="${a}"]`).click();await expect.poll(async()=>(await inputState(page)).sessionId).not.toBe(before.sessionId);expect(Number((await inputState(page)).sessionId.split('-')[1])).toBe(Number(before.sessionId.split('-')[1])+1);expect(await actionCount(page,a)).toBe(1);}
+ await page.locator('[data-action="control"]').click();await expect.poll(async()=>(await inputState(page)).canMove).toBe(false);expect((await inputState(page)).health).toBe(920);expect((await inputState(page)).enemyBoltCharges).toBe(1);expect(await actionCount(page,'control')).toBe(1);
+ await page.locator('[data-action="export"]').click();await expect.poll(()=>downloads.length).toBe(1);expect(await actionCount(page,'export')).toBe(1);
+ const pause=page.locator('[data-action="pause"]');await pause.focus();await page.keyboard.press('Enter');await expect(page.locator('#status')).toContainText('paused');expect(await actionCount(page,'pause')).toBe(1);
+ const resume=page.locator('[data-action="resume"]');await resume.focus();await page.keyboard.press('Space');await expect(page.locator('#status')).toContainText('running');expect(await actionCount(page,'resume')).toBe(1);
+ await pause.evaluate(e=>(e as HTMLButtonElement).click());await expect(page.locator('#status')).toContainText('paused');expect(await actionCount(page,'pause')).toBe(2);expect(downloads).toHaveLength(1);
+});
+test('toolbar control preserves held joystick and skill contacts through a third CDP touch, without casting the held skill',async({page,context})=>{
+ await start(page);const cdp=await context.newCDPSession(page),b=await page.locator('canvas').boundingBox();if(!b)throw new Error('canvas');const origin={x:b.x+64,y:b.y+b.height-64,id:1},held={...origin,x:origin.x-12},aim={...await skill(page,'bolt'),id:2},control={...await buttonPoint(page,'control'),id:3};
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[origin,aim]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[held,{...aim,y:aim.y-24}]});await expect(page.locator('#status')).toContainText('指针 2');const before=await inputState(page);
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[held,{...aim,y:aim.y-24},control]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[control]});
+ await expect.poll(async()=>(await inputState(page)).canMove).toBe(false);expect((await inputState(page)).pointerIds).toEqual(before.pointerIds);await expect(page.locator('canvas')).toHaveAttribute('data-aim-line-css',/.+/);expect((await state(page)).units[0]?.cooldowns.find(c=>c.id==='bolt')?.charges).toBe(2);
+ const stopped=(await inputState(page)).position;await expect.poll(async()=>(await inputState(page)).canMove).toBe(true);await expect.poll(async()=>(await inputState(page)).position.xWorld).toBeLessThan(stopped.xWorld);expect((await inputState(page)).pointerIds).toEqual(before.pointerIds);expect(await actionCount(page,'control')).toBe(1);
+ // End the skill contact only after CC expires; its normal release still works.
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[{...aim,y:aim.y-24}]});await expect.poll(async()=>(await state(page)).units[0]?.cooldowns.find(c=>c.id==='bolt')?.charges).toBe(1);await expect(page.locator('#status')).toContainText('指针 1');await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});await cdp.detach();await expect(page.locator('#error')).toBeEmpty();
+});

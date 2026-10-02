@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "/workspace/scratch/258450a66912/moba/playwright.config.ts",
-    "rootDir": "/workspace/scratch/258450a66912/moba/tests/browser",
+    "configFile": "/workspace/scratch/258450a66912/moba-042/playwright.config.ts",
+    "rootDir": "/workspace/scratch/258450a66912/moba-042/tests/browser",
     "forbidOnly": false,
     "fullyParallel": false,
     "globalSetup": null,
@@ -33,7 +33,7 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "/workspace/scratch/258450a66912/moba/test-results",
+        "outputDir": "/workspace/scratch/258450a66912/moba-042/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -41,7 +41,7 @@
         },
         "id": "software-regression",
         "name": "software-regression",
-        "testDir": "/workspace/scratch/258450a66912/moba/tests/browser",
+        "testDir": "/workspace/scratch/258450a66912/moba-042/tests/browser",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -49,7 +49,7 @@
         "timeout": 30000
       },
       {
-        "outputDir": "/workspace/scratch/258450a66912/moba/test-results",
+        "outputDir": "/workspace/scratch/258450a66912/moba-042/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -57,7 +57,7 @@
         },
         "id": "gameplay-measurement",
         "name": "gameplay-measurement",
-        "testDir": "/workspace/scratch/258450a66912/moba/tests/browser",
+        "testDir": "/workspace/scratch/258450a66912/moba-042/tests/browser",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -99,12 +99,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3556,
+                  "duration": 3589,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T14:03:43.484Z",
+                  "startTime": "2026-10-02T16:55:20.199Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -133,12 +133,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2315,
+                  "duration": 2296,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T14:03:47.110Z",
+                  "startTime": "2026-10-02T16:55:23.879Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -167,12 +167,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1588,
+                  "duration": 1591,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T14:03:49.446Z",
+                  "startTime": "2026-10-02T16:55:26.192Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -201,12 +201,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2129,
+                  "duration": 2150,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T14:03:51.045Z",
+                  "startTime": "2026-10-02T16:55:27.807Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -235,12 +235,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1403,
+                  "duration": 1331,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T14:03:53.184Z",
+                  "startTime": "2026-10-02T16:55:29.968Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -269,12 +269,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1395,
+                  "duration": 1196,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T14:03:54.596Z",
+                  "startTime": "2026-10-02T16:55:31.310Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -286,6 +286,210 @@
           "file": "battle.spec.ts",
           "line": 277,
           "column": 32
+        },
+        {
+          "title": "toolbar multitouch A: held joystick + control once, authority CC stops and held contact resumes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1985,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T16:55:32.518Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-5ac32d7b6a4d6f49b3cb",
+          "file": "battle.spec.ts",
+          "line": 505,
+          "column": 32
+        },
+        {
+          "title": "toolbar multitouch B: held joystick + control once, authority CC stops and held contact resumes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1715,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T16:55:34.516Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-2c72fb4c99d7964d92b4",
+          "file": "battle.spec.ts",
+          "line": 505,
+          "column": 32
+        },
+        {
+          "title": "toolbar multitouch: held joystick + pause clears pointers, freezes Tick and resumes with neutral intent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1167,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T16:55:36.241Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-1073cbc5ded760c48aaf",
+          "file": "battle.spec.ts",
+          "line": 604,
+          "column": 1
+        },
+        {
+          "title": "toolbar touch activation counts recreate/mode/export exactly once and emits one download",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 944,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T16:55:37.417Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-a684ba62b8b2a0d18c30",
+          "file": "battle.spec.ts",
+          "line": 667,
+          "column": 1
+        },
+        {
+          "title": "toolbar desktop and keyboard/accessibility click each activate once; solo control still uses enemy action",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1260,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T16:55:38.372Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-299f252397d472c216dc",
+          "file": "battle.spec.ts",
+          "line": 699,
+          "column": 1
+        },
+        {
+          "title": "toolbar control preserves held joystick and skill contacts through a third CDP touch, without casting the held skill",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2115,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-02T16:55:39.642Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-e50ce0db76e76a209526",
+          "file": "battle.spec.ts",
+          "line": 735,
+          "column": 1
         },
         {
           "title": "three alternating gameplay A/B pairs: turns, blocking, dash, projectile, cancel, CC and multitouch; exports software metrics",
@@ -303,12 +507,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 26968,
+                  "duration": 25868,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T14:04:01.367Z",
+                  "startTime": "2026-10-02T16:55:46.227Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -345,12 +549,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 877,
+                  "duration": 806,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T14:03:56.007Z",
+                  "startTime": "2026-10-02T16:55:41.772Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -379,12 +583,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 987,
+                  "duration": 717,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T14:03:56.892Z",
+                  "startTime": "2026-10-02T16:55:42.586Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -413,12 +617,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2149,
+                  "duration": 1571,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T14:03:57.888Z",
+                  "startTime": "2026-10-02T16:55:43.312Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -447,12 +651,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 640,
+                  "duration": 756,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T14:04:00.049Z",
+                  "startTime": "2026-10-02T16:55:44.890Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -470,9 +674,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-02T14:03:36.862Z",
-    "duration": 51593.221000000005,
-    "expected": 11,
+    "startTime": "2026-10-02T16:55:13.680Z",
+    "duration": 58523.238,
+    "expected": 17,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

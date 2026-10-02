@@ -1,6 +1,6 @@
 # Android MOBA 性能预算与测量方案
 
-版本：0.1.4。日期：2026-10-02。当前：M3 0.4.1 软件候选；M2 0.3.1 已由用户确认独立复核/远端 main PASS；真机证据等待，不进入 M4。
+版本：0.1.4。日期：2026-10-03。当前：M3 0.4.2 toolbar multitouch 软件修复候选，等待独立源码复核；0.4.1 软件出口已由用户确认独立复核通过并推送 main c95a6d76f34a9f8621586a9bd84160f71061170d；Android A/B 因真机 toolbar multitouch blocker 暂停；M3 整体未通过，不进入 M4。
 
 本预算用于控制长期 5v5 HTML5 项目的规模与 Android 成本。正文预算数值仍是计划目标或故障上限；M1 高档参考 S0/A/B 实测结果单列于 M1_ACCEPTANCE.md，不将空壳成绩推广到 5v5。以非旗舰设备可稳定运行作为门槛，旗舰设备只作为上限参考；最终最低机型和 Chromium 版本在后续低档真机/代表性玩法及 M7 数据后确定；M1 高档参考不能证明最低能力。
 
@@ -223,7 +223,7 @@ M2 的 m2-headless-v2 是逻辑工作/队列支持 profile，具体 certificate/
 
 0.3.1 将所有保留遍历逐遍计 scans，直接解析计 lookups，归档/hash 等计 structure，startup/command 单独证明。旧 scans 值漏计，不能作为同单位成本比较。桌面旧/新成本均保留在 M2_TEST_REPORT；索引化不自动代表性能改善或 Android PASS。
 
-## M3 0.4.1 当前实施与边界
+## M3 0.4.2 当前实施与边界
 
 通用 Action/资源 reservation、Movement intent/step Operation、有限 grid queries、relative swept Projectile、Area 与 public debug arena/触屏适配已实现，全部使用既有 executeRoot/Operation/Hook/Fact/CapacityCertificate。实现与明确阶段规则见 [M3_IMPLEMENTATION.md](M3_IMPLEMENTATION.md)，新 producer/计账上界见 [M3_WORK_ACCOUNTING.md](M3_WORK_ACCOUNTING.md)，软件门禁见 [M3_TEST_REPORT.md](M3_TEST_REPORT.md)，Android/ADR 019 当前硬门禁见 [M3_ACCEPTANCE.md](M3_ACCEPTANCE.md)。正式决策见 ADR 024。
 

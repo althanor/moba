@@ -1,0 +1,742 @@
+{
+  "status": "PASS",
+  "repository": "althanor/moba",
+  "baseCommit": "c95a6d76f34a9f8621586a9bd84160f71061170d",
+  "candidateVersion": "0.4.2",
+  "mainRefVerified": "c95a6d76f34a9f8621586a9bd84160f71061170d",
+  "reads": [
+    {
+      "path": "ARCHITECTURE.md",
+      "gitBlobSha": "e817f372ef604e9a1062e465068c3a2cd12e877b",
+      "sha256": "626de64492ab36ac7f7928a72a6c01d6a63437a26ed03905bbb2a541fceb2cd7"
+    },
+    {
+      "path": "COMBAT_PIPELINE.md",
+      "gitBlobSha": "cd227c5172b5a53cab1fa4fab81fda820195b679",
+      "sha256": "c639f0ed8e511f46b112908400bf20b4f7430f8c25a649807e81603140107f1e"
+    },
+    {
+      "path": "CODING_RULES.md",
+      "gitBlobSha": "518d01e22ffd2880c4f78591467aabfcaff79ec6",
+      "sha256": "e9172eec7905d09d98bc464988a4410f660c4666db12124c815c94c86d406d8a"
+    },
+    {
+      "path": "MILESTONES.md",
+      "gitBlobSha": "b7e8303126e12382a50acc755051b77c5c4fc2ea",
+      "sha256": "ddc4fb8468f39e94aba6b21808276a473ee32235255570f72a2f8ae63ed5b11a"
+    },
+    {
+      "path": "PERFORMANCE_BUDGET.md",
+      "gitBlobSha": "b2e09fd74140a9ea7589344f6bfe0cde370576f2",
+      "sha256": "2c325880b9cdf8c5f286fd614ac9e044f59ccef9e38f69c768468716b01a5080"
+    },
+    {
+      "path": "DESIGN_DECISIONS.md",
+      "gitBlobSha": "e1f68f1d86bd8625e6a3311f0783420630e10128",
+      "sha256": "ec7fb32ac3bc94efa88ed24e023220917344de2d1ca7aaf936615521d78d416a"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "gitBlobSha": "8cfaa75ae5808844ae2be3529f024afda2e70a0e",
+      "sha256": "5402dd7baa18d5011036955db8ad49caea6c914bdeea15846ca91eebdf8af358"
+    },
+    {
+      "path": "README.md",
+      "gitBlobSha": "697e02cd03462c0fa7d1dfd368ed633da6ad6b71",
+      "sha256": "564618fd5e714a4d715b6be1fbf151815a08780e198545573942b2e9bc642c42"
+    },
+    {
+      "path": "M3_IMPLEMENTATION.md",
+      "gitBlobSha": "a22f8eb2bd89b0434325b8870bba201fb8a72010",
+      "sha256": "4aaee127fcc7bbad149d1c6aaf87f9a2afcd874c316c737ef2f73e795c734e3a"
+    },
+    {
+      "path": "M3_TEST_REPORT.md",
+      "gitBlobSha": "e5f25259c971c01a56f4f8c607f9b696402c4500",
+      "sha256": "7b74c8825d452145a3dcab485235babce5081230f049d6e74d1cc182ebc430d0"
+    },
+    {
+      "path": "M3_WORK_ACCOUNTING.md",
+      "gitBlobSha": "327e5356e8860f54cf52bf5aff5cd14618dcbff8",
+      "sha256": "5dea9a3469ead71f1125951cd6b6c6282959a504b7e006289ec94479dd199f92"
+    },
+    {
+      "path": "M3_ACCEPTANCE.md",
+      "gitBlobSha": "a0393e0744c5ca29e00cdfe8b204fb897bd9988f",
+      "sha256": "6e162f33d00969515fcd7742c56a94001a9647f44d7505b14393a663e80454f6"
+    },
+    {
+      "path": "docs/M1_ACCEPTANCE.md",
+      "gitBlobSha": "631cb7a03152e170d8bd3c2c3e3d737b57085658",
+      "sha256": "5e7d76d58fa31d97b66c27fc4fa36f604649153585cff127643bf81ca15977eb"
+    },
+    {
+      "path": "docs/M2_ACCEPTANCE.md",
+      "gitBlobSha": "e71dae7bf0be9e7de7afee0af8a63bd90014c7d9",
+      "sha256": "960f6a3b7ef18dbe06a61ca9015ae2fed6229ff9f40470efca5c7bbd9565a6a2"
+    },
+    {
+      "path": "src/presentation/index.ts",
+      "gitBlobSha": "f0978258fe1fb4f3977ea3019bf81b0e99f92128",
+      "sha256": "d0abade32461d5364010e73e3ba6523c43c5276bea9b4351e901cab4b1cf901d"
+    },
+    {
+      "path": "src/presentation/phaser/scenes/battle-scene.ts",
+      "gitBlobSha": "00acd32981afff7e63b163533abf2b6b06810389",
+      "sha256": "e2d2eda13bb21982b7c71532558fff44b669030b17c93ff4018df4706aaab2c6"
+    },
+    {
+      "path": "tests/browser/battle.spec.ts",
+      "gitBlobSha": "b3aa348bb118a43ed5a88ce33cb837874f47ef53",
+      "sha256": "c44e42025fae24a6d1025dee18ddf28062334a6ed4659cdb16e9792f3e63bd8c"
+    },
+    {
+      "path": "src/style.css",
+      "gitBlobSha": "fb9f731c94e707ab3bb634232565509165659364",
+      "sha256": "eec6d6140e0507de878d6c77e89d8c8540eb664f8d176c4f43c14e3aca5b58dc"
+    },
+    {
+      "path": "index.html",
+      "gitBlobSha": "83c1c0635a1502e5d0a9f1e5157e6ad0629adde1",
+      "sha256": "7dc2e367b0ab2d6d259e6859c165748811828614809b14c9b2a1d3df20d5d510"
+    }
+  ],
+  "allADRs": "DESIGN_DECISIONS.md ADR 001 through 024, fully read",
+  "originalTests": 163,
+  "newTests": 21,
+  "originalTestSources": [
+    {
+      "path": "tests/architecture/dependencies.test.ts",
+      "originalSha256": "fc3c74faac2e2325fa26fa42e48f9f11a3ef23685d6954cfa8de170bb83e102c",
+      "originalBytes": 4156,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/browser/battle.spec.ts",
+      "originalSha256": "c44e42025fae24a6d1025dee18ddf28062334a6ed4659cdb16e9792f3e63bd8c",
+      "originalBytes": 13492,
+      "preservedBytesExactly": true,
+      "method": "original entire source prefix"
+    },
+    {
+      "path": "tests/browser/probe.spec.ts",
+      "originalSha256": "35f6d7e670d57f46f67ce8d604436d06c183d190265963b2280bef5d50f84b94",
+      "originalBytes": 5656,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/capacity/capacity.test.ts",
+      "originalSha256": "1455a2804eb4719fddd0d0e4e2ea333587597e2048dd50e3f575caf943aa4522",
+      "originalBytes": 6056,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/capacity/indexed-work.test.ts",
+      "originalSha256": "0f46bce2c282e0c5ac2f3e1919174402ad4766fef5d13f33edf3621c0c90b418",
+      "originalBytes": 8762,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/capacity/m3-capacity.test.ts",
+      "originalSha256": "05cac626377c1cae4e649a17d34c9d120c52a5e841c05bd56c9d7a5cc764ab83",
+      "originalBytes": 5440,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/content/catalog.test.ts",
+      "originalSha256": "e6a4e7f2ac02d9587499d785cddedc185181e2ab5f1cc5962c19dd47d49d84d6",
+      "originalBytes": 5097,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/content/m3.test.ts",
+      "originalSha256": "45737a46af08490b2652143408ffb57a100dff301547e7d9687b6ca8d02e2379",
+      "originalBytes": 2612,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/performance/capacity.test.ts",
+      "originalSha256": "98a419dd4fdc567a52c86a237af583e8faca02c9880c60552c0586a543806d8d",
+      "originalBytes": 9520,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/performance/m3-gameplay.test.ts",
+      "originalSha256": "afd4c3665821d4294b67a4dfba9308e71fe6a431e0eb7958086ec9732fdadd87",
+      "originalBytes": 3145,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/property/combat-conservation.test.ts",
+      "originalSha256": "3e6b0bf3a2762044ca6304919b6be5c1fd18ed67e89c6e1dee1de4e24293bd7c",
+      "originalBytes": 1378,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/replay/combat.test.ts",
+      "originalSha256": "6e7bc27755c9a6a78356b34f7333a52550bd6ce1a5c0c07b7980cfb770ce3243",
+      "originalBytes": 2047,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/replay/frame-rate.test.ts",
+      "originalSha256": "504896681a081a188493a237ef829d034e72cbb8468971748f45b3e35bf18f6e",
+      "originalBytes": 2070,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/replay/m3.test.ts",
+      "originalSha256": "a9cf02fe273a04281799df4c4cfeee8dcc5381e7a3663c0a724d31b21efa1631",
+      "originalBytes": 2244,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/simulation/combat-fault.whitebox.test.ts",
+      "originalSha256": "1721444d40ff454bde6bea34d5202c1d664ad9bbafaaf9bd83897974d2983fdc",
+      "originalBytes": 6760,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/simulation/combat.test.ts",
+      "originalSha256": "405ebaa1bd80fc9f3e2a46c2170999d570991f8b02e45419182821e57bfeeea1",
+      "originalBytes": 13890,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/simulation/m3-actions.test.ts",
+      "originalSha256": "3b696fb0858808c8ff3631fb3d7bb05f8410e53c584abbab5c3c042f5eb74174",
+      "originalBytes": 2647,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/simulation/m3-interrupt.test.ts",
+      "originalSha256": "1feb44e7325adb45a45d5cecdbebd6d4ef21cd4d1498e012b01135d763670b23",
+      "originalBytes": 5656,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/simulation/m3-penetration.test.ts",
+      "originalSha256": "026dae171225b9abd03d14a65fd51105dad672b8b2c110e1f7b7ccf5f8124607",
+      "originalBytes": 9973,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/simulation/m3-projectile-area.test.ts",
+      "originalSha256": "33ba685b7586653726967caa59dbeed58066f833cb9a99298db08b72142257c7",
+      "originalBytes": 2687,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/simulation/m3-space.test.ts",
+      "originalSha256": "3fce1db8a03dda3d4e8e8352339994fec9cf33c914e99bbb2052890ea0325693",
+      "originalBytes": 4393,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/simulation/session.test.ts",
+      "originalSha256": "3aef4496079b18315de6b70a232bd0cf377613b1902e1b31c4c05cddb69588cb",
+      "originalBytes": 4006,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/simulation/shell.test.ts",
+      "originalSha256": "742bbac1ed1c5e06fb373e0dd06b7f4ac8ed5c600133b73ff9e815b3ccffa1cb",
+      "originalBytes": 6218,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/unit/attributes.test.ts",
+      "originalSha256": "c26e0474138eb2e2da4604059aaa15677398767f0290b3cfd9ebdbd5e5fa3af0",
+      "originalBytes": 1762,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/unit/build-info.test.ts",
+      "originalSha256": "026f6e3557cdb9624ac88f93eee818a374db85b8dcee009f0cf468b0193efe24",
+      "originalBytes": 1645,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/unit/clock.test.ts",
+      "originalSha256": "b3e0743cd33f9d0b24d012df383bcc9be11ad7894084184b413477427b507d4d",
+      "originalBytes": 1311,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/unit/entity-store.whitebox.test.ts",
+      "originalSha256": "402db69d1b982129bf81229d8f0d1061113262f777da1f1ff19bacaa4724bc5a",
+      "originalBytes": 1598,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/unit/foundation.test.ts",
+      "originalSha256": "14fdd894a95484e458c53aef93c82a778957dc587bf461b61a1ee8e9a87c7b21",
+      "originalBytes": 1673,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/unit/gameplay-input.test.ts",
+      "originalSha256": "76577bc5176eaaf9fe44eac1ef4cd32efcef74e78aabd5c7c8fb744c68cd528b",
+      "originalBytes": 5480,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/unit/input.test.ts",
+      "originalSha256": "43befaa17d870c334c3cd9a3a41bf37d81e4562c3408479e98760de0bf2a868a",
+      "originalBytes": 2129,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/unit/milestone-status.test.ts",
+      "originalSha256": "7f8c4141925979b6415214f47a1e0631bb8659f441df9f10d2138b4ccf6ad017",
+      "originalBytes": 1599,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    },
+    {
+      "path": "tests/unit/presentation-fps.test.ts",
+      "originalSha256": "78c167e4981f09732062d64c3d567d60fc5603bbe49b66bc261fec93aaef47db",
+      "originalBytes": 1243,
+      "preservedBytesExactly": true,
+      "method": "entire source byte equality"
+    }
+  ],
+  "authoritySources": [
+    {
+      "path": "content/m2-fixture.json",
+      "baselineSha256": "cc63b8584a6aacb86fc48e7ff8ad103253e06a27ed559f5195ad5148af503755",
+      "candidateSha256": "cc63b8584a6aacb86fc48e7ff8ad103253e06a27ed559f5195ad5148af503755",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "content/m2-profile.json",
+      "baselineSha256": "79bf2a20c581f9ce36efec38020012fa84e35687cb511cde3b342e9bfd6283b5",
+      "candidateSha256": "79bf2a20c581f9ce36efec38020012fa84e35687cb511cde3b342e9bfd6283b5",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "content/m3-battle.json",
+      "baselineSha256": "21851af7462c14e35a3a577052989f03e79a095dbbf1ec70236f8bdd5cae72c8",
+      "candidateSha256": "21851af7462c14e35a3a577052989f03e79a095dbbf1ec70236f8bdd5cae72c8",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "content/m3-profile.json",
+      "baselineSha256": "516bd96b292139511742a2893de30e6a97b25e9814f0d7fbe2be5c958c1b335d",
+      "candidateSha256": "516bd96b292139511742a2893de30e6a97b25e9814f0d7fbe2be5c958c1b335d",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/application/composition/battle.ts",
+      "baselineSha256": "8473fe7b2b590754d17f6779f09589f799c6e09f33d6b67e570157f41a5256b1",
+      "candidateSha256": "8473fe7b2b590754d17f6779f09589f799c6e09f33d6b67e570157f41a5256b1",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/application/composition/boot.ts",
+      "baselineSha256": "5350ad30abfac13873079b8488522410fe9c9685bf51dd20375fca830d30af28",
+      "candidateSha256": "5350ad30abfac13873079b8488522410fe9c9685bf51dd20375fca830d30af28",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/application/composition/headless.ts",
+      "baselineSha256": "5e338670e0f97182c2e146217834d09f66cd0180a5c0edcc1fa96d48df876ee4",
+      "candidateSha256": "5e338670e0f97182c2e146217834d09f66cd0180a5c0edcc1fa96d48df876ee4",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/application/debug/probe-recorder.ts",
+      "baselineSha256": "d71a4104c73e3ee0f62f451790a6647dbc8bc569f57dce7961f3c517d106eb97",
+      "candidateSha256": "d71a4104c73e3ee0f62f451790a6647dbc8bc569f57dce7961f3c517d106eb97",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/application/index.ts",
+      "baselineSha256": "87ca26e9309d0ee2e64a12be5237f5f4fa1a54a80488f3f8ed83c5f35b96adb1",
+      "candidateSha256": "87ca26e9309d0ee2e64a12be5237f5f4fa1a54a80488f3f8ed83c5f35b96adb1",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/application/session/fixed-tick.ts",
+      "baselineSha256": "caa901d7f6b4c5d0f36e5b0240b6f079c09747ea8abb367f3e701882b29ee778",
+      "candidateSha256": "caa901d7f6b4c5d0f36e5b0240b6f079c09747ea8abb367f3e701882b29ee778",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/application/session/session.ts",
+      "baselineSha256": "17cb87deb121d2452ce96f3b9470f64d4b390b9ab739208d1cf92545824c4a10",
+      "candidateSha256": "17cb87deb121d2452ce96f3b9470f64d4b390b9ab739208d1cf92545824c4a10",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/content/compiler/capacity.ts",
+      "baselineSha256": "f5238964bceb37fdbfed71fa6eb32a2c5b312ce5c1fa6031b032654f5c186219",
+      "candidateSha256": "3d6b1bfeb2ce05713de7370b325a499deaf0ab8b457de703a28ddc1d99d24299",
+      "onlyEngineVersionBindingChange": true
+    },
+    {
+      "path": "src/content/compiler/catalog.ts",
+      "baselineSha256": "33e98ee6dae190f5a244cecf669972f7f6f7109e9d1739fe4e44cf224beaa389",
+      "candidateSha256": "33e98ee6dae190f5a244cecf669972f7f6f7109e9d1739fe4e44cf224beaa389",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/content/compiler/gameplay.ts",
+      "baselineSha256": "1a721f22037f14d779afd5e63a89eb33f878e6faff8d5d33b4a7f3f25477f0d4",
+      "candidateSha256": "1a721f22037f14d779afd5e63a89eb33f878e6faff8d5d33b4a7f3f25477f0d4",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/content/compiler/graphs.ts",
+      "baselineSha256": "1e087ac07cb50bc542973617bee2e0daf65ce69053d3d91eea66c57e56453db6",
+      "candidateSha256": "1e087ac07cb50bc542973617bee2e0daf65ce69053d3d91eea66c57e56453db6",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/content/index.ts",
+      "baselineSha256": "e810db77a5027e9aef177d623d00409ce3c54a18c3e1c609a073757b599c0143",
+      "candidateSha256": "e810db77a5027e9aef177d623d00409ce3c54a18c3e1c609a073757b599c0143",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/content/validation/schema.ts",
+      "baselineSha256": "5836c75c73201f3c54ad2ec5df0e9212b765590f46928e70ed052bf8d022e085",
+      "candidateSha256": "5836c75c73201f3c54ad2ec5df0e9212b765590f46928e70ed052bf8d022e085",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/commands/gameplay.ts",
+      "baselineSha256": "5453afc2f35abc711c020d45aa20d5b4e7becadc3f846c9a635855309f39c8f9",
+      "candidateSha256": "5453afc2f35abc711c020d45aa20d5b4e7becadc3f846c9a635855309f39c8f9",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/commands/probe.ts",
+      "baselineSha256": "2aff2371f9465d0eca079036d0864d2c07fba620f373fd37e9eaf1107351edc3",
+      "candidateSha256": "2aff2371f9465d0eca079036d0864d2c07fba620f373fd37e9eaf1107351edc3",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/components/entity.ts",
+      "baselineSha256": "4de258d610d95b3bae43513e4871de5eb9fd4bc2d716fdfbdf84b287db2a51bb",
+      "candidateSha256": "4de258d610d95b3bae43513e4871de5eb9fd4bc2d716fdfbdf84b287db2a51bb",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/content/catalog.ts",
+      "baselineSha256": "65e38b2683b1b6ebd2768d68036aa995ee9dd0a711901cf5d58a8d12f36ddbfb",
+      "candidateSha256": "65e38b2683b1b6ebd2768d68036aa995ee9dd0a711901cf5d58a8d12f36ddbfb",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/content/gameplay.ts",
+      "baselineSha256": "79b58e63d6d273ace99d0cfa109445b8074d5ebd09bdb0d380eb800bb5ff8932",
+      "candidateSha256": "79b58e63d6d273ace99d0cfa109445b8074d5ebd09bdb0d380eb800bb5ff8932",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/content/id.ts",
+      "baselineSha256": "5b4e977090b7b3b3f71753af58acebda0c2243cc3a7ee007667a0a6572293819",
+      "candidateSha256": "5b4e977090b7b3b3f71753af58acebda0c2243cc3a7ee007667a0a6572293819",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/content/profile.ts",
+      "baselineSha256": "ff228da6187b04e55e7eeb084265797a04adb6614b5791e3c72d9c401d64af43",
+      "candidateSha256": "ff228da6187b04e55e7eeb084265797a04adb6614b5791e3c72d9c401d64af43",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/content/work.ts",
+      "baselineSha256": "f76d4067ebda46d12eeb916d97be3b83fd7edd30f2f214a3970f3f245e25e8b0",
+      "candidateSha256": "f76d4067ebda46d12eeb916d97be3b83fd7edd30f2f214a3970f3f245e25e8b0",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/events/combat.ts",
+      "baselineSha256": "07b2bee54b4c714cc086cc05df474f2ec28c03df681afa55e9b5dae9cf3d7c30",
+      "candidateSha256": "07b2bee54b4c714cc086cc05df474f2ec28c03df681afa55e9b5dae9cf3d7c30",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/index.ts",
+      "baselineSha256": "90fd2a16d2796eb7f5f70a2b996c6c7301cce9925051c800ef21ab4ea31aaeb5",
+      "candidateSha256": "90fd2a16d2796eb7f5f70a2b996c6c7301cce9925051c800ef21ab4ea31aaeb5",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/observations/battle.ts",
+      "baselineSha256": "3f63fe99c5e3d1346432090ae6ad18ba0f3a17a4984ff5a2a0a510aaf2d55adf",
+      "candidateSha256": "3f63fe99c5e3d1346432090ae6ad18ba0f3a17a4984ff5a2a0a510aaf2d55adf",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/observations/shell.ts",
+      "baselineSha256": "d8899bf098d3bda2a512aac3a8c40fde88ed494bdabe1acac283a3a424bf19f6",
+      "candidateSha256": "d8899bf098d3bda2a512aac3a8c40fde88ed494bdabe1acac283a3a424bf19f6",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/contracts/ports/shell.ts",
+      "baselineSha256": "7ff19a864241366649032e973bd37049e149ee0eccc1bb4be70109f69bd12b1f",
+      "candidateSha256": "7ff19a864241366649032e973bd37049e149ee0eccc1bb4be70109f69bd12b1f",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/controllers/index.ts",
+      "baselineSha256": "db887126992da97e31e67f28fb3a69ce64d44748259030b02e227563e644a342",
+      "candidateSha256": "db887126992da97e31e67f28fb3a69ce64d44748259030b02e227563e644a342",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/controllers/player/gameplay-controller.ts",
+      "baselineSha256": "049768e87eb4d934d0040d41ef8ed5d63e858a6cd16371ecc5c3d93bcaabf98d",
+      "candidateSha256": "049768e87eb4d934d0040d41ef8ed5d63e858a6cd16371ecc5c3d93bcaabf98d",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/controllers/player/probe-controller.ts",
+      "baselineSha256": "8e6bf832a7800d734d5eb6e59255cda93f5824bd5b02232781f55f5f9dedd6cb",
+      "candidateSha256": "8e6bf832a7800d734d5eb6e59255cda93f5824bd5b02232781f55f5f9dedd6cb",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/foundation/data.ts",
+      "baselineSha256": "d6640f6f7970802d64545d37f74709109bdabed20f3381eb4f9b36a9acd1529d",
+      "candidateSha256": "d6640f6f7970802d64545d37f74709109bdabed20f3381eb4f9b36a9acd1529d",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/foundation/geometry.ts",
+      "baselineSha256": "fb8839eec827b888729e183a130e88f78c5fbff6a65ee42509307f041e2ef4ec",
+      "candidateSha256": "fb8839eec827b888729e183a130e88f78c5fbff6a65ee42509307f041e2ef4ec",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/foundation/index.ts",
+      "baselineSha256": "3446bc1e5e1afe39f635b8cd06b91fa35206eb644be411f30bc433be0ded532d",
+      "candidateSha256": "3446bc1e5e1afe39f635b8cd06b91fa35206eb644be411f30bc433be0ded532d",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/foundation/order.ts",
+      "baselineSha256": "84794a4269b131875154beaddaf234afcc37ef879e286c4e087a01bc43d456df",
+      "candidateSha256": "84794a4269b131875154beaddaf234afcc37ef879e286c4e087a01bc43d456df",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/foundation/screen-space.ts",
+      "baselineSha256": "9051a6bb734a8be78a72c546969debc509ee1394b89341cfa0adbf7679f2635e",
+      "candidateSha256": "9051a6bb734a8be78a72c546969debc509ee1394b89341cfa0adbf7679f2635e",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/foundation/touch-layout.ts",
+      "baselineSha256": "22cc15a7b8978d5dddc5d2e10ad41c241cc0d4817d7c2517c4bdde7d885f50f1",
+      "candidateSha256": "22cc15a7b8978d5dddc5d2e10ad41c241cc0d4817d7c2517c4bdde7d885f50f1",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/foundation/vector.ts",
+      "baselineSha256": "f347ca3ff950f3f85c3d5f56f0dfedd5416b526c395d96b89b13e0392364aee9",
+      "candidateSha256": "f347ca3ff950f3f85c3d5f56f0dfedd5416b526c395d96b89b13e0392364aee9",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/features/actions/store.ts",
+      "baselineSha256": "98075003b262f6f636c49589403b912b9f1a656436c6a0f9aafa631608fe3840",
+      "candidateSha256": "98075003b262f6f636c49589403b912b9f1a656436c6a0f9aafa631608fe3840",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/features/areas/store.ts",
+      "baselineSha256": "608c19e1b1efe3758e59eb7413921361768b6ad31618b404076f73edd27f42dd",
+      "candidateSha256": "608c19e1b1efe3758e59eb7413921361768b6ad31618b404076f73edd27f42dd",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/features/attributes/evaluate.ts",
+      "baselineSha256": "d5507adfe12554716dc15bf1b3cf8fbe053079c7883c4dd36da051feefdb5213",
+      "candidateSha256": "d5507adfe12554716dc15bf1b3cf8fbe053079c7883c4dd36da051feefdb5213",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/features/combat/settlement.ts",
+      "baselineSha256": "ef09a6993513840bdf9904685b9349a58673b7968430a4c9425328b870e86208",
+      "candidateSha256": "ef09a6993513840bdf9904685b9349a58673b7968430a4c9425328b870e86208",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/features/movement/store.ts",
+      "baselineSha256": "6594cc39cec73d3d2ea4a1eb970828c3be2e47fe0cd9ced23775e3816d948973",
+      "candidateSha256": "6594cc39cec73d3d2ea4a1eb970828c3be2e47fe0cd9ced23775e3816d948973",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/features/projectiles/store.ts",
+      "baselineSha256": "ab6f278c92ea3eb8e15c0688b17817e0a5f434af6339bd0e97b0047624677da4",
+      "candidateSha256": "ab6f278c92ea3eb8e15c0688b17817e0a5f434af6339bd0e97b0047624677da4",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/features/resources/store.ts",
+      "baselineSha256": "d0425673cd3b449b52a7750abc54803315c0853704f43055c61f550bc58ebe0b",
+      "candidateSha256": "d0425673cd3b449b52a7750abc54803315c0853704f43055c61f550bc58ebe0b",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/features/status/store.ts",
+      "baselineSha256": "f93c6341599213ef534301babb51ace9d6e8a15ff3273daf2c2382ba16acaee7",
+      "candidateSha256": "f93c6341599213ef534301babb51ace9d6e8a15ff3273daf2c2382ba16acaee7",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/index.ts",
+      "baselineSha256": "45ae09428fb7f6ec803297eb0ec704021832b09a6540aec039c1ca913027a862",
+      "candidateSha256": "45ae09428fb7f6ec803297eb0ec704021832b09a6540aec039c1ca913027a862",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/kernel/capacity-guard.ts",
+      "baselineSha256": "cf9752f0cfd2db9c1ab9d5348092204d07849b82958ca37815ad747a83815a7c",
+      "candidateSha256": "cf9752f0cfd2db9c1ab9d5348092204d07849b82958ca37815ad747a83815a7c",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/kernel/definition-index.ts",
+      "baselineSha256": "296c0ff250b78b8b4e20afa068c00b6ebdf22d6752770842095ee30f8b4d34ce",
+      "candidateSha256": "296c0ff250b78b8b4e20afa068c00b6ebdf22d6752770842095ee30f8b4d34ce",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/kernel/entity-store.ts",
+      "baselineSha256": "4123d232c3210d3b42a430f9b41e610d72a4a7b33c8c5095af4327114a2b6af0",
+      "candidateSha256": "4123d232c3210d3b42a430f9b41e610d72a4a7b33c8c5095af4327114a2b6af0",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/kernel/fact-queue.ts",
+      "baselineSha256": "452419f264bc684792b82d1cfde2c40380483c759a9cac81646e6e0129eca730",
+      "candidateSha256": "452419f264bc684792b82d1cfde2c40380483c759a9cac81646e6e0129eca730",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/runtime/combat-command.ts",
+      "baselineSha256": "eaf688be32c6838c397f2a0f016ac1dc9339a19a7c644b03b04c0bceb4e8fd6c",
+      "candidateSha256": "eaf688be32c6838c397f2a0f016ac1dc9339a19a7c644b03b04c0bceb4e8fd6c",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/runtime/combat-state.ts",
+      "baselineSha256": "7a3ae8519a19447a9f8f768dc6f2893c576507ea64128d196e40045413ffb8e1",
+      "candidateSha256": "7a3ae8519a19447a9f8f768dc6f2893c576507ea64128d196e40045413ffb8e1",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/runtime/combat.ts",
+      "baselineSha256": "c13b3722cd876e6d47206c230a605f02f26fba7dd31688acd3b91463566e7ed3",
+      "candidateSha256": "a2640e17d6001d10ad29ca7406f54e8971d12d28d2e8d602bc78583bf7680f2f",
+      "onlyEngineVersionBindingChange": true
+    },
+    {
+      "path": "src/simulation/runtime/effect-executor.ts",
+      "baselineSha256": "687772b5aaae5a7665ad20c39e46b8775f618d9b1866837772264e2370e967c4",
+      "candidateSha256": "687772b5aaae5a7665ad20c39e46b8775f618d9b1866837772264e2370e967c4",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/runtime/entity-index.ts",
+      "baselineSha256": "e2f048296bd43be5486b7f0dcb91142bec0ec027a009dadb876689cb197da47d",
+      "candidateSha256": "e2f048296bd43be5486b7f0dcb91142bec0ec027a009dadb876689cb197da47d",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/runtime/gameplay-command.ts",
+      "baselineSha256": "66a821495bb5b8350f62824907051495125c2e469465c3d50dc0672618129e86",
+      "candidateSha256": "66a821495bb5b8350f62824907051495125c2e469465c3d50dc0672618129e86",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/runtime/gameplay-ingress.ts",
+      "baselineSha256": "1950f6edbc01a6abfd5ba451eb933a69f3ca83cf713efaf91fb2b7b9b7db604b",
+      "candidateSha256": "1950f6edbc01a6abfd5ba451eb933a69f3ca83cf713efaf91fb2b7b9b7db604b",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/runtime/gameplay.ts",
+      "baselineSha256": "1c507745115b76b049c6491473c0aae45d3e6c28e9c72ae2f3b881cdf1564beb",
+      "candidateSha256": "1c507745115b76b049c6491473c0aae45d3e6c28e9c72ae2f3b881cdf1564beb",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/runtime/operation-dispatch.ts",
+      "baselineSha256": "10ef7bb960bf0c985f98f91ea84df9a128f844d6fcbcb4aabe36922cbb9a84a9",
+      "candidateSha256": "10ef7bb960bf0c985f98f91ea84df9a128f844d6fcbcb4aabe36922cbb9a84a9",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/runtime/shell.ts",
+      "baselineSha256": "06dca9a4e5d045e64cb57024eca26d3476f498372cfcb3176f83789aeb93e29b",
+      "candidateSha256": "06dca9a4e5d045e64cb57024eca26d3476f498372cfcb3176f83789aeb93e29b",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/shared/formulas/registry.ts",
+      "baselineSha256": "f80433f301705967d38bb40aeb1852d61676846689eb2109dbdbe8d65fdd634f",
+      "candidateSha256": "f80433f301705967d38bb40aeb1852d61676846689eb2109dbdbe8d65fdd634f",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/shared/queries/grid.ts",
+      "baselineSha256": "3c22ffa5800aaa29f028535130e4de738b9ab4bdf264431eb41e880854bb6db1",
+      "candidateSha256": "3c22ffa5800aaa29f028535130e4de738b9ab4bdf264431eb41e880854bb6db1",
+      "onlyEngineVersionBindingChange": false
+    },
+    {
+      "path": "src/simulation/shared/work.ts",
+      "baselineSha256": "ead818f2ea961c501ca94dbaea0fb25d930d265c0336ce852d496bdcd1f21a89",
+      "candidateSha256": "ead818f2ea961c501ca94dbaea0fb25d930d265c0336ce852d496bdcd1f21a89",
+      "onlyEngineVersionBindingChange": false
+    }
+  ],
+  "capacityComparison": {
+    "contentHash": "f166a531",
+    "oldCertificateId": "b1434902",
+    "newCertificateId": "af8e1f05",
+    "engineVersion": "0.4.2",
+    "compilerVersion": "m3-bounded-v2",
+    "profile": "m3-debug-logical-v1",
+    "allNumericalCertificateFieldsEqual": true,
+    "configuredProfileEqual": true
+  },
+  "excludedFromAuthority": "toolbar counters/input resampling/debug DOM observations"
+}

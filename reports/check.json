@@ -1,83 +1,83 @@
 {
-  "engineVersion": "0.4.1",
+  "engineVersion": "0.4.2",
   "phase": "M3",
-  "softwareExit": "pending independent source review; no main/Pages/formal Android A/B/M4 before approval",
+  "softwareExit": "M3 0.4.2 toolbar multitouch software repair candidate; pending independent source review; Android blocker retest pending; no main/Pages/M4",
   "validationScope": "software only; Android gameplay/hot-state evidence separate; see docs/M3_ACCEPTANCE.md",
   "results": [
     {
       "command": "npm run typecheck",
       "exitCode": 0,
-      "durationMs": 4010.507195,
+      "durationMs": 3471.274189,
       "stage": "applicable",
       "status": "PASS"
     },
     {
       "command": "npm run lint",
       "exitCode": 0,
-      "durationMs": 1952.4018320000005,
+      "durationMs": 1847.3975500000001,
       "stage": "applicable",
       "status": "PASS"
     },
     {
       "command": "npm run check:deps",
       "exitCode": 0,
-      "durationMs": 572.6169579999996,
+      "durationMs": 526.7800319999997,
       "stage": "applicable",
       "status": "PASS"
     },
     {
       "command": "npm run check:docs",
       "exitCode": 0,
-      "durationMs": 166.0959159999993,
+      "durationMs": 168.74350099999992,
       "stage": "applicable",
       "status": "PASS"
     },
     {
       "command": "npm run validate:content",
       "exitCode": 0,
-      "durationMs": 947.331099,
+      "durationMs": 888.7603339999996,
       "stage": "applicable",
       "status": "PASS"
     },
     {
       "command": "npm run test:unit",
       "exitCode": 0,
-      "durationMs": 2460.695893,
+      "durationMs": 2441.6501959999996,
       "stage": "applicable",
       "status": "PASS"
     },
     {
       "command": "npm run test:content",
       "exitCode": 0,
-      "durationMs": 1597.6337910000002,
+      "durationMs": 1516.3257300000005,
       "stage": "applicable",
       "status": "PASS"
     },
     {
       "command": "npm run test:sim",
       "exitCode": 0,
-      "durationMs": 3526.3478859999996,
+      "durationMs": 3234.5192960000004,
       "stage": "applicable",
       "status": "PASS"
     },
     {
       "command": "npm run test:capacity",
       "exitCode": 0,
-      "durationMs": 106379.63018400001,
+      "durationMs": 95260.14157,
       "stage": "applicable",
       "status": "PASS"
     },
     {
       "command": "npm run build",
       "exitCode": 0,
-      "durationMs": 8675.756592000005,
+      "durationMs": 8091.043351,
       "stage": "applicable",
       "status": "PASS"
     },
     {
       "command": "npm run test:browser",
       "exitCode": 0,
-      "durationMs": 52335.52190899999,
+      "durationMs": 59254.064433999985,
       "stage": "applicable",
       "status": "PASS"
     }

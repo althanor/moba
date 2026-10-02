@@ -1,6 +1,6 @@
-# M3 0.4.1 第一轮实现
+# M3 0.4.2 toolbar multitouch 修复实施
 
-基线：`althanor/moba` main `c57fa8caadb2afc2eb98d85246e156d76e942949`，M2 0.3.1。开始前按远端树逐 blob SHA 核对源码，重新读取架构、流水线、编码、阶段、性能、决策、变更、README、M2 三份报告及 M1/M2 验收；全部 23 个既有 ADR 位于 DESIGN_DECISIONS.md。M2 独立复核、推送及 Actions/Pages 通过状态来自用户确认。本轮是本地 M3 软件候选，不代表 M3 远端部署或 Android 验收。
+当前基线：`althanor/moba` main `c95a6d76f34a9f8621586a9bd84160f71061170d`，engine 0.4.1 / phase M3；软件出口已通过独立复核（用户确认）。下列通用能力始于 M2 0.3.1/c57fa8c 上的 M3 实施历史。开始前按远端树逐 blob SHA 核对源码，重新读取架构、流水线、编码、阶段、性能、决策、变更、README、M2 三份报告及 M1/M2 验收；全部 23 个既有 ADR 位于 DESIGN_DECISIONS.md。M2 独立复核、推送及 Actions/Pages 通过状态来自用户确认。本轮 0.4.2 为本地 toolbar 修复候选；0.4.1 已推送，Android 验收因新 blocker 暂停。
 
 ## 已实现纵切面
 
@@ -52,7 +52,7 @@ Ordinary Observation 的 BattleView 是批准的 public-debug-arena-v1：全部�
 
 Phaser 只绘制 authoritative snapshots；B 只预测本地普通移动、最多 1 Tick，control/death/action/discontinuity 不预测；projectile 始终 snapshot interpolation，无预测 projectile correction 指标。B 的位置/错误不进入 hash。软件导出分列 input/UI、visual、acceptance、release、首次 authority movement、Tick CPU、frame CPU、CPU/sec、prediction error 与公共 gameplay 事件。physical touch-to-photon、玩家手感、温度和电量仍需人工记录。
 
-0.4.0 独立复核发现三项阻塞，最终软件出口声明撤回。当前 0.4.1 修复候选已经通过全部 11 自动门禁和 163 tests，仍等待再次独立复核；正式 Android A/B 尚不开始。软件门禁结果见 M3_TEST_REPORT.md，证明见 M3_WORK_ACCOUNTING.md，真机硬门禁见 M3_ACCEPTANCE.md。停在 M3，不进入 M4。
+历史 0.4.0 三项阻塞已在 0.4.1 修复，全部 11 门禁/163 tests 并通过独立复核。当前 0.4.2 只修复真机发现的 toolbar blocker，等待独立源码复核；正式 Android A/B 暂停，复核后优先复测 blocker。软件门禁结果见 M3_TEST_REPORT.md，证明见 M3_WORK_ACCOUNTING.md，真机硬门禁见 M3_ACCEPTANCE.md。停在 M3，不进入 M4。
 
 ## 0.4.1 输入坐标与 penetration recovery 修订
 
@@ -66,4 +66,18 @@ wall:ignore / units:ignore 明确忽略对应的 path + endpoint collision，允
 
 新增 helper 均是固定数量标量算术，不新增动态集合、candidate query、元素遍历、lookup 或结构快照。每个原 candidate/obstacle 仍恰好读取一次；本次重新生成 engine=0.4.1/compiler=m3-bounded-v2 的证书并验证全部 scope，work 上界/profile 数值保持，不能复用旧版本证书 ID。Projectile 起点重叠依旧 t=0 命中，命中/结束/expiry 不重复。
 
-本次只修复本地 M3 软件候选。自动门禁通过不等于最终软件出口已被再次独立复核；复核前不推送 main、不部署 Pages、不开始正式 Android A/B、不进入 M4。A 默认、B experimental、30 Hz provisional；此次坐标/碰撞 bug 不自动触发 C。
+0.4.1 修订已由用户确认独立复核通过。本轮 0.4.2 等待新独立复核，不推送 main/Pages，不进入 M4；A 默认、B experimental、30 Hz provisional、C 未触发。
+
+## 0.4.2 toolbar multitouch 输入契约
+
+真机已确认：Canvas 摇杆 contact 持续时，第二指点击 DOM control/pause 在 A/B 都无响应；单独 toolbar 点击及 Canvas 内部双指移动+技能正常。根因是 toolbar 依赖合成 click，不能作为非 primary touch 的可靠 activation，且所有 action 统一 clearInput 错误清掉 control 所需的 held contacts。
+
+选择：touch/pen 的主按钮 pointerdown（button=0，不限制 isPrimary）立即 activation；鼠标 pointerdown 不 activation，普通 mouse click 保留；键盘 Enter/Space、可访问性/程序化 click 保留。PointerEvent click 的 touch/pen provenance 不再 activation；旧 Chromium MouseEvent 的 sourceCapabilities.firesTouchEvents=true 同样忽略。preventDefault 不是唯一去重手段；没有 UA 分支、计时窗口、延迟或重试。pointerup/cancel 不再执行 action；touch/pen press 在按下时已经生效，后续取消不反向撤销调试动作。未知非 touch/pen click 沿用原 fallback。
+
+control 唯一不调用 host.clearInput / scene.clearInput；保留 joystick 与 skill pointer、捕获和预览。其原 host.debug(control) 继续经 Session.submit → enemy bolt Action → Projectile → Effect/Operation → Status 产生 CC。pause/resume/step/recreate/modeA/modeB/export/empty/probe 九种动作保留原清理调用；export 仍清 held joystick。
+
+CC 的原权威语义会清 movement intent。表现层在稳定 Session、inputEnabled、alive 且观察到 canMove false→true 时，对仍存在的 Canvas contacts 各重采一次 move，经原 host.input/GameplayController/Session.submit 重新提交意图；不合成 begin/end，不扣资源或放技能。失指针/暂停/后台/重建清空 tracker 与该观察状态，因此不能恢复已清 contacts。重采 capturedAtMs 是软件重采时刻，不冒充新的物理 touch 时间。普通 CSS/world direction、analog magnitude、aim 和权威控制/移动/碰撞规则不变。
+
+每按钮 data-activation-count/source 和 Canvas data-input-state 是 presentation-only/debug-only 观察计数，直接证明一次 activation；从不进入 Simulation/权威 hash/内容/证书。正式浏览器回归使用 CDP active touch set，同时 Canvas 与 DOM contacts；touchEnd 显式指定 toolbar contact 释放，保留第一 contact 的完整事件流，再验证 CC 前移动、受控停步、结束自动恢复和三指保留技能。原 1503×536 A/B 回归不变。鼠标/键盘、一次 recreate/mode/export/下载另有去重断言。
+
+版本 0.4.2 只重新绑定 engineVersion；authority producers、Effect/Action/Movement/Projectile/Area/Hook/查询和所有 work 算法不变，contentHash 和 profile 数值不变。旧版本证书不得复用；当前证书/完整门禁以本轮 M3_TEST_REPORT/M3_WORK_ACCOUNTING 和生成报告为准。
