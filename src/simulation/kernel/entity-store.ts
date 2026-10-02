@@ -7,10 +7,10 @@ export class EntityStore {
   #slots: Slot[] = [];
   #disposed = false;
   constructor(readonly sessionId: SessionId, readonly maxGeneration = 0xffffffff) { integer(maxGeneration, 'maxGeneration', 1); }
-  create(): ScopedEntityRef {
+  create(visit: () => void = () => {}): ScopedEntityRef {
     if (this.#disposed) throw new Error('store disposed');
     // Stable lowest free slot; retired generations never wrap.
-    let index = this.#slots.findIndex(slot => !slot.active && !slot.retired);
+    let index = this.#slots.findIndex(slot => { visit(); return !slot.active && !slot.retired; });
     if (index < 0) { index = this.#slots.length; this.#slots.push({ generation: 0, active: false, pending: false, retired: false }); }
     const slot = this.#slots[index];
     if (!slot) throw new Error('slot invariant');
@@ -28,11 +28,11 @@ export class EntityStore {
     if (!slot) throw new Error('slot invariant');
     slot.pending = true; return true;
   }
-  commitStructure(): void {
-    for (const slot of this.#slots) if (slot.pending) {
+  commitStructure(visit: () => void = () => {}): void {
+    for (const slot of this.#slots) { visit(); if (slot.pending) {
       slot.active = false; slot.pending = false;
       if (slot.generation >= this.maxGeneration) slot.retired = true;
-    }
+    } }
   }
   refs(): readonly EntityRef[] {
     return Object.freeze(this.#slots.flatMap((slot, index) => slot.active && !slot.pending ? [Object.freeze({ index, generation: slot.generation })] : []));

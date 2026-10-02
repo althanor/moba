@@ -1,6 +1,6 @@
 # MOBA 战斗结算流水线
 
-版本：0.1.2。日期：2026-10-01。状态：M1 空阶段骨架已实现；正式战斗流水线待 M2+。
+版本：0.1.3。日期：2026-10-02。状态：M2 headless 核心流水线已实现；后续动作/空间/经济规则仍按阶段推进。
 
 此文是 Tick 阶段、战斗顺序与因果关系的唯一规范来源。所有英雄、兵、野怪、塔、装备、Modifier 和 Debug 操作使用同一结算入口。表现动画、Phaser 碰撞回调、UI 和 Bot 不能决定命中或生命变化。正式数值在 Ruleset 中确定；下列默认公式和边界行为作为实现基线，变更须更新决策、文档和测试。
 
@@ -194,7 +194,7 @@ N_k 必须覆盖所有根生产者：施法/普攻和充能释放、兵/野怪/�
 
 定义 roundUpPow2(x) 为覆盖 max(1,x) 的最小二次幂。容量不变量是：每次查询合法目标数 ≤F_e≤Qmax；每根实际 Operation ≤Croot(e)≤Lroot(e)；每 Tick 实际 Operation ≤Ctick≤Ltick；根数实际值 ≤CrootCount≤LrootCount。其中 Lroot(e)=roundUpPow2(Croot(e))、Ltick=roundUpPow2(Ctick)、LrootCount=roundUpPow2(CrootCount)，是初始故障限额推导策略，不是一次性分配相同大小的数组。
 
-编译报告输出每根与每生产者上界、深度、工作量证书、全 Tick 上界及上述 L 值。EngineCapacityProfile 给出当前实现能支持的 Operation/队列/工作量容量；必须覆盖这些 L 值才能开局。profile 的最终数值待 M2/M7 测量确定，当前不填未经依据的替代常数。逻辑容量证明与 CPU/内存达标是两道门，证明有限不等于移动端能在预算内完成。
+编译报告输出每根与每生产者上界、深度、工作量证书、全 Tick 上界及上述 L 值。EngineCapacityProfile 给出当前实现能支持的 Operation/队列/工作量容量；必须覆盖这些 L 值才能开局。M2 逻辑测试 profile 取编译推导的 L 值，具体值见 M2_TEST_REPORT.md；正式性能 profile 仍待 M3/M7 内容与测量确定。逻辑容量证明与 CPU/内存达标是两道门，证明有限不等于移动端能在预算内完成。
 
 运行时先校验分支/扇出/Replacement/Hook fuel envelope，再在每次尝试前计数，并校验 producer、root、tick 和工作量证书。完整目标查询可用分块缓冲和迭代工作栈，但不重置 root 计数、不把一个合法大范围根拆成新根绕限制，也不跨 Tick 延后其中目标的伤害。根预留最多按 Croot(e) 计算，不能把 Lroot(e) 当每个并发根的必耗量；证书允许的并发组合必须可接纳，不足表示编译/profile 契约错误。
 
@@ -206,13 +206,19 @@ N_k 必须覆盖所有根生产者：施法/普攻和充能释放、兵/野怪/�
 | 重复触发键 | rootId+hookInstance+triggerGroupKey+targetRef，按声明 once 或有限次数 | 拦截本来不合法的重复；不能阻止定义允许的多目标触发 |
 | 非 Operation 工作 | Hook、查询、AST、事实与信息扇出都有证书 | 空转/输出失控也会停止，不等待 Operation 溢出 |
 
-叶子 Operation 仍是原子事务，整个根或 Tick 默认不自动回滚。guard 违约/异常时冻结诊断，已提交操作不反向撤销，半 Tick 状态不能保存；只能加载最近完整兼容 Checkpoint。经证明的合法工作不因这些计数限额 fault；设备耗时超预算仍按 overload 暂停，这与内容计数违约不同。当前尚无内容编译器或正式 Ruleset，因此这里定义未来必须满足的证明契约，未声称运行验证已经通过。
+叶子 Operation 仍是原子事务，整个根或 Tick 默认不自动回滚。guard 违约/异常时冻结诊断，已提交操作不反向撤销，半 Tick 状态不能保存；只能加载最近完整兼容 Checkpoint。经证明的合法工作不因这些计数限额 fault；设备耗时超预算仍按 overload 暂停，这与内容计数违约不同。M2 有实际内容编译与测试 Ruleset 证书，见 M2_ACCEPTANCE.md 和 M2_IMPLEMENTATION.md；没有声称正式 5v5 Ruleset 或设备性能已认证。
 
 ### 6.4 容量算例
 
 以下是人工算例，不是最终 Ruleset 上限或实测。假设一个根能影响 F_e=454 个单位，每目标 B_e=3 个基础操作、R_e=1 个替换尝试、D_e=4 个完整派生操作，共享 S_e=2：Croot=2+454×(3+1+4)=3634，Lroot=4096。即使无任何 Hook，454 个 Damage 也已超过旧单根限额。
 
 再假设该算例 profile 最多两个此类根同 Tick 出现，全部其他根和维护工作联合上界为 1200：Ctick=2×3634+1200=8468，Ltick=16384。这里的“两个”和“1200”仅是算例前提，不能拿它限制正常十席施法；真实 Ruleset 要重新证明所有合法并发。guard 的数值因此来自组合工作量，而非把旧 128 随意改大。
+
+### 6.5 M2 0.3.1 工作计账修订
+
+ADR 023 的最小反例撤回 0.3.0 的完整非 Operation 证明。运行时必须使用私有 definition/Entity/attribute-trace 索引；所有剩余权威集合元素访问逐遍计 scans，固定索引访问计 lookups，结构复制/冻结/序列化/hash 有独立 structure 界。startup 与 command 入口各有单独证书/profile 门禁。规则顺序仍来自原稳定数组，不来自索引迭代。producer 与 provenEffects 在最终 guard 绑定。
+
+精确工作单位、遍历清单、有限结构/固定工作证明和成本推导见 [M2 工作计账](M2_WORK_ACCOUNTING.md)；编译器版本 m2-indexed-v2，profile m2-headless-v2。实际类别总和必须等于 scans；不能只计成功匹配项。
 
 ## 7 死亡 归因 奖励与复活
 
@@ -266,3 +272,11 @@ ShopCommand 包含 transaction sequence 和 itemId，模拟验证金币、六格
 | 后台恢复/超时/overflow | 不补后台战斗、不跳 Tick，fault 不存半 Tick |
 
 每次新增 Effect、Hook 或改公式都要增加至少一个正常用例和对应边界/交互回归。此清单中的正式战斗/持久化用例仍是后续测试设计；M1 同率帧率、实体、生命周期与预测隔离用例已执行，详见 M1_TEST_REPORT.md。
+
+## 11 M2 已实现的有限内核
+
+M2 的精确内容语义、profile 和缺口见 [M2_IMPLEMENTATION.md](M2_IMPLEMENTATION.md)、[M2_ACCEPTANCE.md](M2_ACCEPTANCE.md)。测试目标选择器 primary/all/source 不提供空间查询。Pre 在 D4 执行，Post 只在叶 Operation 提交后派生工作栈子树，普通拒绝无 Post；有限触发环明确受每根/目标 fuel、替换链 once 与 maxHookDepth 约束，耗尽发布诊断。Effect 描述不执行 JS。
+
+同 opId 同内容重复只计尝试，不再提交；同 ID 不同内容是故障。状态变动失效属性缓存，下一 Operation 前完成刷新。Override 处于乘法后、转换前，优先级降序/definitionId/instanceId 稳定选择；转换读 pre 时读 override 后值，读 final 时遵从 DAG。最大资源下降保留绝对量并 Clamp，不算伤害；breakdown 与 ResourceClamped 分开记录。
+
+FactQueue 同步非重入交接给 M2 内部诊断消费者，每条 Fact produced=consumed，最大待交接数证明为 1；总 Fact 工作仍受根/Tick 证书限制。full 模式保留全部逐条记录；summary 模式保留全部种类计数及最近 2000 条调试记录，明确标注 produced/consumed/retained。这是诊断归档模式，不减少任何结算、Hook、Replacement 或目标，两个模式的 World/hash 必须相同。Information/Disclosure 消费者在 M4 注册，届时重审输出工作量。

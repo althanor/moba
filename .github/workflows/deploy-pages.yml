@@ -34,7 +34,7 @@ jobs:
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Run M1 validation
+      - name: Run M1 regression and M2 validation
         run: npm run check
 
       - name: Build GitHub Pages version

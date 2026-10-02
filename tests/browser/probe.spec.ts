@@ -15,7 +15,8 @@ test('Phaser shell, pause/single-step/resume, report download and no page errors
   const result = await download; expect(result.suggestedFilename()).toMatch(/M1-A/);
   const file = await result.path(); if (!file) throw new Error('missing measurement download');
   const report = JSON.parse(fs.readFileSync(file, 'utf8'));
-  expect(report.build).toMatchObject({ version: '0.2.1', phase: 'M1', repository: 'althanor/moba' });
+  const version = JSON.parse(fs.readFileSync('package.json', 'utf8')).version;
+  expect(report.build).toMatchObject({ version, phase: 'M2', repository: 'althanor/moba' });
   expect(report.build.commit).toMatch(/^[a-f0-9]{40}$/);
   expect(report).not.toHaveProperty('androidAcceptance');
   const metadata = await page.request.get('build-info.json'); expect(metadata.ok()).toBe(true);

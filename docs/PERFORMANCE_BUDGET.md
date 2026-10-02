@@ -1,6 +1,6 @@
 # Android MOBA 性能预算与测量方案
 
-版本：0.1.2。日期：2026-10-01。状态：M1 高档参考真机基线已测；正式玩法预算及低档能力仍待验证。
+版本：0.1.3。日期：2026-10-02。状态：M1 高档真机基线保留；M2 容量已测，桌面成本不等于 Android 性能通过。
 
 本预算用于控制长期 5v5 HTML5 项目的规模与 Android 成本。正文预算数值仍是计划目标或故障上限；M1 高档参考 S0/A/B 实测结果单列于 M1_ACCEPTANCE.md，不将空壳成绩推广到 5v5。以非旗舰设备可稳定运行作为门槛，旗舰设备只作为上限参考；最终最低机型和 Chromium 版本在后续低档真机/代表性玩法及 M7 数据后确定；M1 高档参考不能证明最低能力。
 
@@ -55,7 +55,7 @@
 
 R_e/D_e 包括合法所有装备、Modifier 实例、二次扇出和有限循环；N_k 包括技能/单位/区域/周期/延迟死亡等生产者最坏重合；Mmax 包括 P0～P8 维护与奖励/到期，不只算伤害。普通派生深度候选 8，需更深的合法能力在编译和 profile 中声明。不能用平均 Hook 次数/概率/常规场景代替合法最坏上界。
 
-EngineCapacityProfile 必须覆盖编译输出的全部 L/工作量证书，才可开局；具体 Operation 容量要由 M2/M7 的内容证明和实现成本推导，当前没有最终数值。人工算例 F_e=454、B_e=3、R_e=1、D_e=4、S_e=2 得 Croot=3634、Lroot=4096；仅在“同 Tick 最多两个此根且其他全部工作≤1200”的算例前提下，Ctick=8468、Ltick=16384。该例不是正常十席 Ruleset 的并发限制或性能成绩。
+EngineCapacityProfile 必须覆盖编译输出的全部 L/工作量证书，才可开局；具体 Operation 容量要由 M2/M7 的内容证明和实现成本推导，M2 逻辑 profile 数值见 M2_TEST_REPORT.md，正式设备 profile 仍无最终数值。人工算例 F_e=454、B_e=3、R_e=1、D_e=4、S_e=2 得 Croot=3634、Lroot=4096；仅在“同 Tick 最多两个此根且其他全部工作≤1200”的算例前提下，Ctick=8468、Ltick=16384。该例不是正常十席 Ruleset 的并发限制或性能成绩。
 
 合法最大工作量必须在已认证 profile 内完整结算；超 envelope、无法证明的动态扩张和失控循环属于契约故障，guard 保留。逻辑容量认证和 Android CPU/内存验证分开：更大的证书不代表支持设备上足够快；超性能预算先优化/重审 profile，不在运行中剪目标、跨 Tick 推迟部分范围结算或删除功能。
 
@@ -214,3 +214,11 @@ S1～S3 固定 contentHash、seed、命令脚本、地图和画质。S2 压力�
 自动画质降级仅调整表现成本，可以逐档减少装饰；不降低模拟 Tick/AI 频率，不删逻辑对象。持续 CPU 超载按规范暂停单机，提供恢复入口；发布前反复触发 overload 即该设备/场景未达标。
 
 M1 核实能力/测量方法及 A/B 基础、必要 C；M3 复测技能响应并记录 Tick 决策；M2/M4/M5/M7 逐步证明内容/地图/维护与真实 5v5 容量，M4 校准空间/信息/路径，M9 校准资源表现，M10 记录发布预算。改变时更新 ADR/CHANGELOG 和证书/查询/存档容量。M1 高档参考 S0/基础生命周期与三轮 A/B 已测，不据此证明低档可运行。ADR 019 明确延期冷热态/电量/降频和第二档设备；45 分钟完整对局、最低设备和发布兼容性要求保持。
+
+## 9 M2 profile 成本记录
+
+M2 的 m2-headless-v2 是逻辑工作/队列支持 profile，具体 certificate/actual/limit 和桌面单次诊断成本见 reports/m2-content.json、reports/m2-capacity-peak.json、reports/m2-main-capacity-peak.json。它不是已达 CPU/heap 预算的 Android profile。主 Ruleset 20 根并发与完整 454 目标子树、维护/到期重合必须完整结算；summary 只限制可选调试归档，全部 Fact 经过有界队列消费，结果与 full 相同。
+
+完整详细 tracing 的内存/CPU 成本很高，峰值不能据容量 PASS 标记性能 PASS。M3 实时玩法使用前要选择诊断策略、测代表性成本；M1 的第二档、冷热态与最低能力延期依旧适用。
+
+0.3.1 将所有保留遍历逐遍计 scans，直接解析计 lookups，归档/hash 等计 structure，startup/command 单独证明。旧 scans 值漏计，不能作为同单位成本比较。桌面旧/新成本均保留在 M2_TEST_REPORT；索引化不自动代表性能改善或 Android PASS。

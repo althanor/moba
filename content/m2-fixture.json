@@ -1,0 +1,498 @@
+{
+  "schemaVersion": 1,
+  "attributes": [
+    {
+      "id": "maxHealth",
+      "unit": "points",
+      "base": 1000000,
+      "growthPerLevel": 0,
+      "min": 1,
+      "max": 1000000,
+      "conversion": null
+    },
+    {
+      "id": "maxMana",
+      "unit": "points",
+      "base": 100,
+      "growthPerLevel": 0,
+      "min": 0,
+      "max": 1000,
+      "conversion": null
+    },
+    {
+      "id": "armor",
+      "unit": "points",
+      "base": 100,
+      "growthPerLevel": 0,
+      "min": -1000,
+      "max": 10000,
+      "conversion": null
+    },
+    {
+      "id": "magicResistance",
+      "unit": "points",
+      "base": 50,
+      "growthPerLevel": 0,
+      "min": -1000,
+      "max": 10000,
+      "conversion": null
+    },
+    {
+      "id": "power",
+      "unit": "points",
+      "base": 20,
+      "growthPerLevel": 0,
+      "min": 0,
+      "max": 10000,
+      "conversion": null
+    },
+    {
+      "id": "derivedPower",
+      "unit": "points",
+      "base": 0,
+      "growthPerLevel": 0,
+      "min": 0,
+      "max": 10000,
+      "conversion": {
+        "kind": "multiply",
+        "left": {
+          "kind": "attribute",
+          "id": "power",
+          "stage": "final",
+          "subject": "source"
+        },
+        "right": {
+          "kind": "constant",
+          "value": 0.5,
+          "unit": "scalar"
+        }
+      }
+    }
+  ],
+  "formulas": [
+    {
+      "id": "ten",
+      "unit": "points",
+      "expression": {
+        "kind": "constant",
+        "value": 10,
+        "unit": "points"
+      }
+    },
+    {
+      "id": "one",
+      "unit": "points",
+      "expression": {
+        "kind": "constant",
+        "value": 1,
+        "unit": "points"
+      }
+    },
+    {
+      "id": "two",
+      "unit": "points",
+      "expression": {
+        "kind": "constant",
+        "value": 2,
+        "unit": "points"
+      }
+    },
+    {
+      "id": "zero",
+      "unit": "points",
+      "expression": {
+        "kind": "constant",
+        "value": 0,
+        "unit": "points"
+      }
+    },
+    {
+      "id": "lethal",
+      "unit": "points",
+      "expression": {
+        "kind": "constant",
+        "value": 2000000,
+        "unit": "points"
+      }
+    }
+  ],
+  "resources": [
+    {
+      "id": "health",
+      "maximumAttribute": "maxHealth",
+      "initial": 1000000,
+      "regenPerSecond": 0
+    },
+    {
+      "id": "mana",
+      "maximumAttribute": "maxMana",
+      "initial": 50,
+      "regenPerSecond": 30
+    }
+  ],
+  "modifiers": [
+    {
+      "id": "replace",
+      "durationMs": 100,
+      "maxInstancesPerEntity": 1,
+      "contributions": [],
+      "tags": [],
+      "hooks": [
+        {
+          "id": "replaceDamage",
+          "stage": "pre",
+          "match": "damage",
+          "priority": 0,
+          "maxTriggersPerRootTarget": 1,
+          "action": {
+            "kind": "replace",
+            "effect": "heal_one"
+          }
+        }
+      ],
+      "control": "none",
+      "deathSaveHealth": null,
+      "pulse": null,
+      "end": null
+    },
+    {
+      "id": "derive",
+      "durationMs": 100,
+      "maxInstancesPerEntity": 1,
+      "contributions": [],
+      "tags": [],
+      "hooks": [
+        {
+          "id": "healSecondary",
+          "stage": "post",
+          "match": "heal",
+          "priority": 0,
+          "maxTriggersPerRootTarget": 1,
+          "action": {
+            "kind": "derive",
+            "effect": "secondary"
+          }
+        }
+      ],
+      "control": "none",
+      "deathSaveHealth": null,
+      "pulse": null,
+      "end": null
+    },
+    {
+      "id": "save",
+      "durationMs": 100,
+      "maxInstancesPerEntity": 1,
+      "contributions": [],
+      "tags": [],
+      "hooks": [],
+      "control": "none",
+      "deathSaveHealth": 1,
+      "pulse": null,
+      "end": null
+    },
+    {
+      "id": "stun",
+      "durationMs": 100,
+      "maxInstancesPerEntity": 2,
+      "contributions": [
+        {
+          "attribute": "power",
+          "bucket": "flat",
+          "value": 5,
+          "priority": 0
+        }
+      ],
+      "tags": [],
+      "hooks": [],
+      "control": "stun",
+      "deathSaveHealth": null,
+      "pulse": null,
+      "end": null
+    },
+    {
+      "id": "pulsing",
+      "durationMs": 100,
+      "maxInstancesPerEntity": 1,
+      "contributions": [],
+      "tags": [],
+      "hooks": [],
+      "control": "none",
+      "deathSaveHealth": null,
+      "pulse": {
+        "intervalMs": 33,
+        "effect": "pulse",
+        "producer": "periodic"
+      },
+      "end": {
+        "effect": "end",
+        "producer": "expiry"
+      }
+    }
+  ],
+  "effects": [
+    {
+      "id": "damage_all",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "damage",
+          "formula": "ten",
+          "damageType": "physical"
+        }
+      }
+    },
+    {
+      "id": "damage_true",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "damage",
+          "formula": "ten",
+          "damageType": "true"
+        }
+      }
+    },
+    {
+      "id": "lethal",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "damage",
+          "formula": "lethal",
+          "damageType": "true"
+        }
+      }
+    },
+    {
+      "id": "heal_one",
+      "node": {
+        "kind": "heal",
+        "formula": "one"
+      }
+    },
+    {
+      "id": "heal_all",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "heal",
+          "formula": "ten"
+        }
+      }
+    },
+    {
+      "id": "secondary",
+      "node": {
+        "kind": "targets",
+        "selector": "all",
+        "child": {
+          "kind": "damage",
+          "formula": "one",
+          "damageType": "true"
+        }
+      }
+    },
+    {
+      "id": "multi_all",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "sequence",
+          "children": [
+            {
+              "kind": "damage",
+              "formula": "ten",
+              "damageType": "physical"
+            },
+            {
+              "kind": "resource",
+              "resource": "mana",
+              "formula": "two",
+              "mode": "gain"
+            },
+            {
+              "kind": "heal",
+              "formula": "one"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "shield_all",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "shield",
+          "formula": "ten",
+          "durationMs": 100,
+          "priority": 0,
+          "damageTypes": [
+            "physical",
+            "magic",
+            "true"
+          ]
+        }
+      }
+    },
+    {
+      "id": "spend_all",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "resource",
+          "resource": "mana",
+          "formula": "ten",
+          "mode": "spend"
+        }
+      }
+    },
+    {
+      "id": "pulse",
+      "node": {
+        "kind": "resource",
+        "resource": "mana",
+        "formula": "two",
+        "mode": "gain"
+      }
+    },
+    {
+      "id": "end",
+      "node": {
+        "kind": "heal",
+        "formula": "one"
+      }
+    },
+    {
+      "id": "apply_replace",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "applyStatus",
+          "modifier": "replace"
+        }
+      }
+    },
+    {
+      "id": "apply_derive",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "applyStatus",
+          "modifier": "derive"
+        }
+      }
+    },
+    {
+      "id": "apply_save",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "applyStatus",
+          "modifier": "save"
+        }
+      }
+    },
+    {
+      "id": "apply_control",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "applyStatus",
+          "modifier": "stun"
+        }
+      }
+    },
+    {
+      "id": "apply_pulse",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "applyStatus",
+          "modifier": "pulsing"
+        }
+      }
+    },
+    {
+      "id": "remove_control",
+      "node": {
+        "kind": "targets",
+        "selector": "primary",
+        "child": {
+          "kind": "removeStatus",
+          "modifier": "stun"
+        }
+      }
+    }
+  ],
+  "ruleset": {
+    "id": "headless-m2",
+    "maxUnits": 454,
+    "queryCapacity": 512,
+    "maxStatusesPerEntity": 4,
+    "maxStatusesGlobal": 1816,
+    "maxShieldsPerEntity": 4,
+    "maxHookDepth": 2,
+    "health": "health",
+    "armor": "armor",
+    "magicResistance": "magicResistance",
+    "producers": [
+      {
+        "id": "fixture",
+        "kind": "fixture",
+        "maxInstances": 10,
+        "rootsPerInstancePerTick": 2,
+        "effects": [
+          "damage_all",
+          "damage_true",
+          "lethal",
+          "heal_one",
+          "heal_all",
+          "secondary",
+          "multi_all",
+          "shield_all",
+          "spend_all",
+          "pulse",
+          "end",
+          "apply_replace",
+          "apply_derive",
+          "apply_save",
+          "apply_control",
+          "apply_pulse",
+          "remove_control"
+        ]
+      },
+      {
+        "id": "periodic",
+        "kind": "statusPulse",
+        "maxInstances": 1816,
+        "rootsPerInstancePerTick": 1,
+        "effects": [
+          "pulse"
+        ]
+      },
+      {
+        "id": "expiry",
+        "kind": "statusEnd",
+        "maxInstances": 1816,
+        "rootsPerInstancePerTick": 1,
+        "effects": [
+          "end"
+        ]
+      }
+    ]
+  }
+}

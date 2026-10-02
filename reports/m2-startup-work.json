@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "certificateId": "0fd8aab0",
+  "actual": {
+    "scope": "startup",
+    "scanKinds": {
+      "maintenance": 105331,
+      "attribute": 10896,
+      "resource": 1816
+    },
+    "tick": {
+      "operations": 0,
+      "hooks": 0,
+      "queries": 0,
+      "ast": 0,
+      "formula": 1362,
+      "scans": 118043,
+      "facts": 0,
+      "lookups": 9534,
+      "structure": 1235488
+    },
+    "roots": [],
+    "producers": [
+      {
+        "id": "expiry",
+        "roots": 0
+      },
+      {
+        "id": "fixture",
+        "roots": 0
+      },
+      {
+        "id": "periodic",
+        "roots": 0
+      }
+    ],
+    "rootCount": 0
+  },
+  "certificate": {
+    "operations": 0,
+    "hooks": 0,
+    "queries": 0,
+    "ast": 0,
+    "formula": 1362,
+    "scans": 311674,
+    "facts": 0,
+    "lookups": 17706,
+    "structure": 219703790
+  },
+  "limit": {
+    "operations": 1,
+    "hooks": 1,
+    "queries": 1,
+    "ast": 1,
+    "formula": 2048,
+    "scans": 524288,
+    "facts": 1,
+    "lookups": 32768,
+    "structure": 268435456
+  },
+  "configured": {
+    "operations": 1,
+    "hooks": 1,
+    "queries": 1,
+    "ast": 1,
+    "formula": 2048,
+    "scans": 524288,
+    "facts": 1,
+    "lookups": 32768,
+    "structure": 268435456
+  }
+}

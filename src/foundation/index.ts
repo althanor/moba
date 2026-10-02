@@ -64,3 +64,6 @@ export class RingBuffer<T> {
   clear(): void { this.#items = []; this.#cursor = 0; }
   get size(): number { return this.#items.length; }
 }
+export { checkedAdd, checkedMultiply, powerOfTwo, deepFreeze, canonical, dataHash, compareId } from './data';
+
+export { stableMergeSort } from './order';

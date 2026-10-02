@@ -1,1 +1,1 @@
-M1 正式内容为空。validate:content 只落实阶段 guard，NOT_APPLICABLE_M1。Schema、引用、DAG、CapacityCertificate、披露/显形编译从 M2+ 建立，当前不得放入正式英雄/技能/装备/地图。
+M2 有真实编译样例 m2-fixture.json 与锁定的逻辑容量 profile m2-profile.json。它们只是 headless 规则 fixtures，不是英雄、技能动作、装备或地图。validate:content 实际运行 Schema、引用、量纲/有限范围、属性 DAG、触发环/fuel、联合容量和 profile 校验；失败退出非零。Information/Disclosure 仍属 M4，不能用本阶段的空普通输出冒充权限系统实现。

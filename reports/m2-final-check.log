@@ -1,0 +1,150 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 check
+> node tools/check.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 typecheck
+> tsc -p tsconfig.json --noEmit && tsc -p tsconfig.core.json --noEmit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 lint
+> eslint .
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 check:deps
+> node tools/check-deps.mjs
+
+Dependencies PASS: 79 files, 236 edges; whitelist, SCC, aliases, public entry, pinned versions.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 check:docs
+> node tools/check-docs.mjs
+
+Documentation PASS: 11 root/docs pairs agree.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 validate:content
+> node tools/validate-content.mjs
+
+Content PASS: schema/reference/units/attribute DAG/finite fuel/capacity/profile; 4302def2
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 test:unit
+> vitest run tests/unit tests/architecture
+
+
+ RUN  v3.2.4 /workspace/scratch/2e1a4f8502af/moba
+
+ ✓ tests/unit/attributes.test.ts (2 tests) 22ms
+ ✓ tests/unit/presentation-fps.test.ts (1 test) 6ms
+ ✓ tests/unit/foundation.test.ts (5 tests) 5ms
+ ✓ tests/unit/clock.test.ts (3 tests) 4ms
+ ✓ tests/unit/build-info.test.ts (3 tests) 4ms
+ ✓ tests/architecture/dependencies.test.ts (7 tests) 861ms
+   ✓ real import graph enforcement > lint actually rejects environment-driven authority and unseeded random  624ms
+ ✓ tests/unit/entity-store.whitebox.test.ts (3 tests) 4ms
+ ✓ tests/unit/input.test.ts (3 tests) 3ms
+
+ Test Files  8 passed (8)
+      Tests  27 passed (27)
+   Start at  20:44:12
+   Duration  1.57s (transform 312ms, setup 0ms, collect 841ms, tests 908ms, environment 1ms, prepare 430ms)
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 test:content
+> vitest run tests/content
+
+
+ RUN  v3.2.4 /workspace/scratch/2e1a4f8502af/moba
+
+ ✓ tests/content/catalog.test.ts (9 tests) 39ms
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  20:44:14
+   Duration  453ms (transform 176ms, setup 0ms, collect 233ms, tests 39ms, environment 0ms, prepare 50ms)
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 test:sim
+> vitest run tests/simulation tests/replay tests/property
+
+
+ RUN  v3.2.4 /workspace/scratch/2e1a4f8502af/moba
+
+ ✓ tests/simulation/combat-fault.whitebox.test.ts (5 tests) 154ms
+ ✓ tests/property/combat-conservation.test.ts (1 test) 139ms
+ ✓ tests/replay/combat.test.ts (2 tests) 694ms
+   ✓ debug archive retention and attribute caching do not change authoritative replay/hash  596ms
+ ✓ tests/simulation/combat.test.ts (15 tests) 93ms
+ ✓ tests/replay/frame-rate.test.ts (4 tests) 43ms
+ ✓ tests/simulation/shell.test.ts (6 tests) 10ms
+ ✓ tests/simulation/session.test.ts (6 tests) 8ms
+
+ Test Files  7 passed (7)
+      Tests  39 passed (39)
+   Start at  20:44:14
+   Duration  1.57s (transform 278ms, setup 0ms, collect 737ms, tests 1.14s, environment 1ms, prepare 335ms)
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 test:capacity
+> vitest run tests/capacity tests/performance
+
+
+ RUN  v3.2.4 /workspace/scratch/2e1a4f8502af/moba
+
+ ✓ tests/capacity/indexed-work.test.ts (5 tests) 2427ms
+   ✓ catalog cardinality and runtime lookup work > keeps executable root and Tick work constant at 4096 formulas/effects/modifiers; only startup grows  2266ms
+ ✓ tests/capacity/capacity.test.ts (11 tests) 1845ms
+   ✓ full legal fanout and simultaneous capacity > includes Hook-derived complete secondary fanout, preserving one root lineage  304ms
+   ✓ full legal fanout and simultaneous capacity > overlaps all certified M2 work classes: full targets, multiple roots, Hook/Replacement, expiry, pulse, shield and regeneration  1018ms
+ ✓ tests/performance/capacity.test.ts (3 tests) 96072ms
+   ✓ settles the full ten-producer fixture envelope: twenty roots x 454 x three Operations  370ms
+   ✓ measures the 454-target joint peak with independent expected work; all Facts and results are retained  14638ms
+   ✓ settles the main Ruleset twenty-root Hook/Replacement/expiry peak using lossless Fact consumption and bounded debug retention  81062ms
+
+ Test Files  3 passed (3)
+      Tests  19 passed (19)
+   Start at  20:44:16
+   Duration  96.53s (transform 208ms, setup 0ms, collect 500ms, tests 100.34s, environment 0ms, prepare 153ms)
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 build
+> npm run typecheck && vite build
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 typecheck
+> tsc -p tsconfig.json --noEmit && tsc -p tsconfig.core.json --noEmit
+
+vite v7.3.1 building client environment for production...
+transforming...
+✓ 45 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.24 kB │ gzip:   0.19 kB
+dist/index.html                     1.21 kB │ gzip:   0.74 kB
+dist/assets/index-BgbeoRFo.css      1.06 kB │ gzip:   0.51 kB
+dist/assets/index-1zfzYvE2.js      25.59 kB │ gzip:   9.17 kB │ map:     84.40 kB
+dist/assets/phaser-DXXWZowi.js  1,208.09 kB │ gzip: 332.21 kB │ map: 10,130.72 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.50s
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 test:browser
+> playwright test
+
+[2m[WebServer] [22m(node:1003) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22mnpm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.

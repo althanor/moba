@@ -1,32 +1,18 @@
-# MOBA Core Engine · M1 / 0.2.1
+# MOBA Core Engine · M2 / 0.3.1
 
-Android横屏优先的Phaser + TypeScript + Vite工程骨架。规范0.1.2保留M0架构不变量，按真机实测修订验收策略。M1可以正式结束，M2就绪但未实施。当前只有空外壳与几何响应探针；没有英雄、伤害、技能、装备、兵线、塔、野怪、Bot、正式地图或美术。
+Android 横屏优先的 Phaser + TypeScript + Vite 工程。规范 0.1.3；M0/M1 已结束，M2 建立可 headless 验证的属性、状态与战斗内核。0.3.0 最终收口已因 scan accounting 缺口撤回，0.3.1 为独立复核候选。阶段出口以 [M2 验收记录](docs/M2_ACCEPTANCE.md) 为准。当前页面仍是 M1 空外壳/几何响应探针，M2 无正式可玩画面。
 
-## Android：GitHub Pages 优先
+## M2 内核
 
-正式真机入口：[https://althanor.github.io/moba/](https://althanor.github.io/moba/)，源码仓库：[althanor/moba](https://github.com/althanor/moba)。GitHub Actions以唯一lockfile安装并运行完整M1门禁，构建`/moba/`产物后部署Pages。
+严格 JSON 内容编译生成冻结的 CompiledCatalog，检查类型、引用、量纲、属性 DAG、数值范围、有限 Hook fuel 和联合 Ruleset CapacityCertificate。profile 不覆盖证书、Tick/内容绑定不一致或动态路径无法证明时，开局前拒绝。
 
-每次测试必须可追溯到完整commit、成功Actions run/attempt与Pages artifact。0.2.1构建提供 [build-info.json](https://althanor.github.io/moba/build-info.json)，JSON测量导出携带同一build信息；本轮收口版本合入部署前页面仍是旧修正版，不能冒称已更新。按 [Android验收记录和具体流程](docs/M1_ACCEPTANCE.md) 核对版本，固定同一构建比较，防止缓存/发布变化污染数据。
+属性按明确依赖和稳定顺序计算；资源、状态、护盾、防死、伤害/治疗通过 Operation 管线提交。Hook 是受控数据，Replacement/派生保留 root、parent、producer 和来源链。Fact 队列完整消费；damage breakdown 可逐阶段诊断。普通 Observation/RenderDelta 不含 raw World；调试端口由 headless application 明确持有。
 
-用户已经完成高档参考Android Edge153的基础生命周期、多指、正式60 FPS三轮A/B和S0。已通过项目不用重做。云端浏览器不能替代Android真机；Pages路径不会降低触控、生命周期和性能要求。
+content/m2-fixture.json 与 content/m2-profile.json 是合法小型测试 Ruleset/profile，不是正式英雄。容量样例包括 129/454 目标、多 Operation、Replacement、完整二次扇出、20 个合法根、维护/到期/周期/资源同时重合和故意失控循环。详细数值、成本、未覆盖机制见 [测试报告](docs/M2_TEST_REPORT.md)；容量通过不等于性能通过。
 
-左半屏拖动为几何响应探针，右半屏支持独立多指。绿色框为权威坐标，实心块为表现坐标。空外壳无实体；暂停、单步、恢复、重建、A/B与导出可触屏操作。后台/竖屏/失焦/context loss暂停清理，解除后显式恢复；fault只可重建。
+没有进入 M3：无正式英雄、技能动作、移动/碰撞、投射物、空间索引、地图、Bot、经济/装备或正式 UI/VFX。
 
-A普通插值为默认；B即时反馈/VisualProxy为实验性presentation-only路径，≤1 Tick，不改World/hash。当前Simulation仍30 Hz provisional baseline，M3以真实技能/墙体/CC/取消窗口重评；当前不触发C，不直接改60 Hz。Phaser保持`fps: { target: 60, limit: 0, smoothStep: false }`，避免额外limiter把60 Hz设备降至约30 FPS；target不是实际刷新保证，高刷新设备另记实际Rendering。
-
-## 本地 preview fallback
-
-已有源码可在可信本地开发机，或Android Termux私有项目目录运行：
-
-```bash
-npm ci
-npm run build
-npm run preview -- --port 4173
-```
-
-同机浏览器打开http://127.0.0.1:4173/；其他设备不能用该loopback访问远端机器。记录local/commit/dirty与构建产物，不能冒充Pages/Actions。不用file://。Android无需为了本次已完成验收再安装Termux或Playwright。
-
-## 开发门禁
+## 开发与门禁
 
 ```bash
 npm ci
@@ -34,16 +20,26 @@ npx playwright install chromium
 npm run check
 ```
 
-check串行运行typecheck、lint、check:deps、check:docs、validate:content、test:unit、test:sim、build、test:browser，失败退出非零，报告在reports/check.json。浏览器门禁为Linux/支持环境的Chromium自动化，缺浏览器真实失败，不跳过伪装成功。check:docs阻止根目录/docs规范副本漂移。
+check 串行执行 typecheck、lint、check:deps、check:docs、validate:content、test:unit、test:content、test:sim、test:capacity、build、test:browser，失败退出非零，结果在 reports/check.json。M1 原有测试保留；浏览器门禁使用 /moba/ 生产构建，缺浏览器真实失败。容量峰值用例会同步执行百万级结算，需要较长时间和足够的测试机内存。
 
-validate:content为NOT_APPLICABLE_M1，只检查正式内容为空；正式Schema/引用/属性DAG/容量/权限编译仍待M2+。固定生产dist的软件测量可运行`npm run probe:software`，只作软件诊断，不替代真机或正式A/B定案。原约30 FPS数据保留诊断用途。
+validate:content 是实际 schema/引用/DAG/容量/profile 门禁，已取消 NOT_APPLICABLE_M1。未登记的内容 JSON 直接失败。check:deps 验证模块/feature 导入 DAG、纯内核边界和 raw combat/debug DTO 权限；check:docs 验证规范/验收副本一致。依赖没有升级，精确版本见 [DEPENDENCIES.md](docs/DEPENDENCIES.md)。
 
-`npm run package`生成完整源码、锁文件、规范、测试、报告和dist的0.2.1压缩包及SHA256 manifest，排除node_modules。依赖没有升级，精确版本见 [DEPENDENCIES.md](docs/DEPENDENCIES.md)。
+npm run package 生成完整源码、唯一锁文件、规范、测试、报告和 dist 的 0.3.1 压缩包及 SHA256 manifest，排除 node_modules。首次执行前运行完整 check。
 
-## 文档与阶段出口
+## Android 与 Pages
 
-- [实现矩阵](docs/M1_IMPLEMENTATION.md)、[验收与正式延期](docs/M1_ACCEPTANCE.md)、[软件测试报告](docs/M1_TEST_REPORT.md)
+正式真机入口：[GitHub Pages](https://althanor.github.io/moba/)，源码：[althanor/moba](https://github.com/althanor/moba)。开始 M2 前核实 main 163df7ee30c92d9c0f7ab6b6374ebe08475d9a4a / 0.2.1：Actions run 36938625773 attempt 1 的门禁、构建、artifact、deploy 均成功，Pages HTTP 200。M2 交付包是该基线上的本地改动，不冒称已部署。
+
+每次真机测试核对 [build-info.json](https://althanor.github.io/moba/build-info.json)、完整 commit、Actions run/attempt 与 artifact；测量导出携带相同构建信息。本地/dirty/unknown 明确标记。M2 构建 phase=M2，保留 M1 probe 的测量用途和命名。
+
+A 普通插值默认；B 为 ≤1 Tick 的实验性 presentation-only VisualProxy；C 暂不触发。Simulation 30 Hz provisional baseline 保持，Phaser 保持 fps={target:60,limit:0,smoothStep:false}。M2 没有重新设计这些路径。左屏几何响应点、右屏独立多指、暂停/单步/恢复/重建/导出及生命周期行为继续使用 M1 实现。
+
+本地 fallback：npm run build 后 npm run preview -- --port 4173，同机浏览器访问 http://127.0.0.1:4173/。不能用 loopback 从其他设备访问远端机器，不用 file://；Android 无需为已完成的 M1 验收重装工具。
+
+高档 Android 已通过的 M1 项见 [M1_ACCEPTANCE](docs/M1_ACCEPTANCE.md)。第二档约 4 GB Android、20 分钟冷热态/电量/温度/降频仍为 DEFERRED；M3 复审和首个代表性负载补测，M7/M10 原性能/发行门禁保留。M2 桌面成本不代表真机性能通过。
+
+## 文档
+
+- [M2 实现契约](docs/M2_IMPLEMENTATION.md)、[M2 验收](docs/M2_ACCEPTANCE.md)、[M2 测试报告](docs/M2_TEST_REPORT.md)
 - [架构](docs/ARCHITECTURE.md)、[流水线](docs/COMBAT_PIPELINE.md)、[编码规则](docs/CODING_RULES.md)、[里程碑](docs/MILESTONES.md)、[性能预算](docs/PERFORMANCE_BUDGET.md)
-- [ADR003/019/020](DESIGN_DECISIONS.md)、[变更](CHANGELOG.md)、[资源许可](ASSET_LICENSES.md)
-
-20分钟冷热态/电量/温度/降频及第二档约4 GB Android是正式DEFERRED / non-blocking performance validation，非PASS。M3复审、首个代表性玩法性能基线补测；M7低档45分钟完整对局和M10最低设备/发布兼容矩阵要求保留。M1无真正出口阻塞，不代表低档支持、热稳定、完整玩法或永久30 Hz已通过。本轮只收口M1。
+- [ADR 015/019/020/021/022/023](DESIGN_DECISIONS.md)、[变更](CHANGELOG.md)、[资源许可](ASSET_LICENSES.md)

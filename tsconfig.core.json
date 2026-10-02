@@ -10,6 +10,7 @@
   "include": [
     "src/foundation",
     "src/contracts",
+    "src/content",
     "src/simulation",
     "src/controllers",
     "src/application/session"

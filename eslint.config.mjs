@@ -6,7 +6,7 @@ export default tseslint.config(
   js.configs.recommended, ...tseslint.configs.recommended,
   { files: ['**/*.mjs'], languageOptions: { globals: { process: 'readonly', console: 'readonly', URL: 'readonly' } } },
   { files: ['**/*.ts'], rules: { '@typescript-eslint/no-non-null-assertion': 'error', '@typescript-eslint/consistent-type-imports': 'error', '@typescript-eslint/no-explicit-any': 'error' } },
-  { files: ['src/foundation/**/*.ts', 'src/contracts/**/*.ts', 'src/simulation/**/*.ts', 'src/controllers/**/*.ts', 'src/application/session/**/*.ts'], rules: {
+  { files: ['src/foundation/**/*.ts', 'src/contracts/**/*.ts', 'src/content/**/*.ts', 'src/simulation/**/*.ts', 'src/controllers/**/*.ts', 'src/application/session/**/*.ts'], rules: {
     'no-restricted-globals': ['error', ...pureGlobals],
     'no-restricted-syntax': ['error', { selector: "MemberExpression[object.name='Math'][property.name='random']", message: 'Use seeded RNG in pure logic.' },
       { selector: "MemberExpression[object.name='globalThis']", message: 'No environment globals in pure logic.' }]

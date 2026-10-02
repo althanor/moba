@@ -1,0 +1,28 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 test:browser
+> playwright test
+
+[2m[WebServer] [22m(node:33) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22mnpm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+[2m[WebServer] [22m(node:46) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m
+[2m[WebServer] [22m(!) Some chunks are larger than 500 kB after minification. Consider:
+[2m[WebServer] [22m- Using dynamic import() to code-split the application
+[2m[WebServer] [22m- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+[2m[WebServer] [22m- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[2m[WebServer] [22m(node:72) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22mnpm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+[2m[WebServer] [22m(node:85) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:106) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:106) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/browser/probe.spec.ts:7:1 › Phaser shell, pause/single-step/resume, report download and no page errors (929ms)

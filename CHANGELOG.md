@@ -1,5 +1,32 @@
 # MOBA 变更记录
 
+## 0.3.1 2026-10-02 M2 scan accounting 修订候选
+
+0.3.0 最终软件收口撤回：4096 个合法 constant formula 的反例揭示未计账 Array.find，不能以旧 scans 证明全部非 Operation 工作。ADR 023 记录反例、受影响不变量和修订。
+
+- 新增 Session 私有 definition/certificate 索引、带 session/generation 校验的直接 Entity lookup、版本绑定 attribute trace 索引；保留原 contentHash/稳定迭代顺序，不向 presentation/controllers 暴露。
+- status/hook/shield/resource/query/diagnostic/maintenance 每一遍元素访问计 scans；稳定合并排序有可移植读取界。lookups/structure、startup/command 证书和 profile 开局验证覆盖固定解析、冻结/序列化/hash/归档，不能移出 scans 后不证明。
+- producer certificate 保存 provenEffects，最终 guard 在任何 Operation 前拒绝 mismatch。诊断 participant 独立复制，避免不合格 Hook 的 Fact 冻结后阻断后续合法 Hook。
+- 增加 4096×三类 definition 反例、454 直接解析、手算 conservation、大 Tag/盾类型/属性读取、深冻结及 producer 负例。原 454×454、20 roots、到期/周期/维护完整峰值和 M1 全部回归保持。
+- compiler m2-indexed-v2 /profile m2-headless-v2，工程与锁文件 0.3.1；依赖不变。最终 11 软件门禁和旧/新成本见 M2_TEST_REPORT 与原始 JSON。
+
+状态为独立复核候选，不宣称最终 M2 收口。Android 性能 DEFERRED，桌面成本不是性能 PASS。不进入 M3，不推送远端 main。
+
+## 0.3.0 2026-10-02 M2 属性、状态与战斗内核
+
+基于远端 main 163df7ee30c92d9c0f7ab6b6374ebe08475d9a4a / 0.2.1。完整读取当前规范和 ADR；Actions run 36938625773 attempt 1 的 validation/build/artifact/deploy 成功后才实施 M2。本地交付未冒称已推送部署，M2 出口及完整门禁状态见 docs/M2_ACCEPTANCE.md。
+
+- 新增 contracts/content、content/compiler/validation、foundation 确定性数据工具；JSON 严格 schema、引用/稳定 ID、量纲/数值范围、属性 DAG、有限 Hook 触发图与冻结 CompiledCatalog。validate:content 正式编译合法 fixture/profile，取消 NOT_APPLICABLE_M1；未登记 JSON 拒绝。
+- 分层实现 attributes/resources/status/combat features、shared formulas、kernel guards/FactQueue 和 runtime 调度；基础/加法/百分比/乘法/Override/转换/Clamp 各阶段可诊断，缓存按状态版本失效。
+- P0 半开区间到期与再生，P5 稳定串行 DFS Operation/Replacement/Post 派生，P6 单次死亡，P9 冻结完成边界。免疫、控制能力入口、独立 Modifier 来源、护盾优先序、防死、资源不足与幂等均使用通用数据。拒绝尝试不触发 Post Hook；无 hero-specific 分支或任意 JS 内容。
+- 联合 CapacityCertificate 覆盖 F/B/R/D/S、完整二次扇出、全部 producer/根并发、Modifier/状态/护盾/资源/死亡维护及非 Operation 工作；推导 next-power-of-two fault limit，profile 开局覆盖。动态无证明路径拒绝开局，运行时定位真实证书/上限违例。
+- Damage breakdown 保留来源链、Operation 时刻的公式节点/属性 DAG 祖先与 Modifier 贡献、抗性/护盾/HP/过量/防死/最大值 Clamp 等阶段与原因；单同步非重入 FactQueue 全量消费。full 归档保留全部记录；summary 保留全量种类计数和最近 2000 条调试记录，produced=consumed，不少结算。raw DTO 不向 presentation/controllers 开放。
+- 新增属性、内容负例、战斗、容量、资源量守恒、同 seed/commands replay、失控 AST 故障与完整 454-target 并发峰值自动化；保留 M1 测试。新增 test:content/test:capacity，完整 check 纳入真实内容与容量门禁。
+- 主 Ruleset 20 根 ×454 主/二次目标并与维护/到期重合：4,574,049 Operation、9,135,386 Fact 完整消费；actual≤certificate≤limit。另有 829,457 Operation /1,655,282 全量归档 Fact 的独立联合 fixture。报告含 profile、证书、实际值和成本，不用削目标/漏 Hook/少结算换通过。
+- 文档规范 0.1.3，新增 ADR 021/022、M2 实现/验收/报告；工程与锁文件 0.3.0，依赖版本不变。构建追溯 phase=M2；M1 30 Hz provisional /A 默认/B 实验/C 未触发和 Phaser 配置保持。
+
+性能缺口：联合峰值单 Tick 为秒级，full trace 约 GiB heap，未满足性能预算；这些是桌面诊断成本，非 Android/热态 PASS。尚不支持 ExtraHealthLayer、一般 ResourceRoute、动作预留/退款、完整驱散类别、复活/奖励、Information/Checkpoint/Bot。schema 拒绝未支持字段。本轮没有进入 M3。
+
 ## 0.2.1 2026-10-01 M1 真机验收收口
 
 M1 按规范0.1.2的正式修订标准可以结束；M2就绪但未实施。规范修订保留0.1.1架构不变量，不降低权威隔离/逻辑正确性，不删除最低设备和长期性能要求。

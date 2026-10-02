@@ -1,12 +1,12 @@
 # Android HTML5 MOBA 技术架构
 
-版本：0.1.2。日期：2026-10-01。状态：M1 工程骨架已验收收口；正式玩法系统仍按后续阶段实现。
+版本：0.1.3。日期：2026-10-02。状态：M1 已收口；M2 headless 内核已实施，软件出口见 docs/M2_ACCEPTANCE.md。
 
-本项目面向 Android Chromium 横屏，使用 Phaser、TypeScript、Vite 和 HTML5/WebGL。最终目标是 5v5，玩家控制一名英雄，其余席位由 Bot 控制；先完成可持续扩展的单机游戏，再评估真人联网。M1 已创建纯模拟外壳、Session、实体与几何响应探针，未实现英雄、战斗、地图或 Bot。本文同时约束已实现骨架与后续系统；实现状态见 M1_IMPLEMENTATION.md，阶段出口见 M1_ACCEPTANCE.md。
+本项目面向 Android Chromium 横屏，使用 Phaser、TypeScript、Vite 和 HTML5/WebGL。最终目标是 5v5，玩家控制一名英雄，其余席位由 Bot 控制；先完成可持续扩展的单机游戏，再评估真人联网。M1 的纯模拟外壳、Session、实体与几何响应探针保留。M2 增加内容编译、属性 DAG、资源/状态/战斗、受控 Hook/Replacement、Fact 队列和容量证书；尚无英雄、技能动作、地图或 Bot。本文同时约束已实现骨架与后续系统；实现状态见 M1_IMPLEMENTATION.md，阶段出口见 M1_ACCEPTANCE.md。
 
 核心方案是独立的固定 Tick 模拟层、单向命令输入、明确顺序的事务结算和经过权威信息披露策略过滤的表现输出。空间视野是策略的重要证据，但不等于全部信息权限。Phaser 不保存权威战斗状态。未来联网可替换命令传输和状态来源，但仍需单独开发服务器、预测、校正与同步协议；本设计不声称单机工程天然具备联网能力。
 
-关联规范：[战斗流水线](COMBAT_PIPELINE.md)、[编码规范](CODING_RULES.md)、[开发阶段](MILESTONES.md)、[性能预算](PERFORMANCE_BUDGET.md)。待定选择及依据保存在 [设计决策](../DESIGN_DECISIONS.md)，变更保存在 [变更记录](../CHANGELOG.md)。
+关联规范：[战斗流水线](COMBAT_PIPELINE.md)、[编码规范](CODING_RULES.md)、[开发阶段](MILESTONES.md)、[性能预算](PERFORMANCE_BUDGET.md)。待定选择及依据保存在 [设计决策](DESIGN_DECISIONS.md)，变更保存在 [变更记录](CHANGELOG.md)。
 
 ## 1 系统边界
 
@@ -448,7 +448,7 @@ index.html                         M1 已创建
 
 系统覆盖核查：英雄/属性/攻击/技能/状态/控制由 Attributes、Actions、Status 管理；伤害/治疗/护盾/资源由 Combat、Resources 管理；移动/位移/投射物由 Movement、Projectiles 管理；空间视野/迷雾/草丛由 Visibility 管理，披露/感知权限由 Information 管理；兵线/野怪/塔/基地由 Map Rules、Match 管理；等级/经验/金币/装备/商店/击杀/助攻由 Progression 管理；死亡/复活由 Life 管理；AI 由 Controllers 管理；小地图/触屏/UI/音频/VFX 由 Presentation 管理。所有类别都有权威所有者和对外边界。
 
-依赖已精确锁定，见 DEPENDENCIES.md。未解决项：最低机型、地图尺寸、正式战斗数值、视野遮挡精度、寻路结构、完整玩家瞄准体验以及未来联网模式，均在 [DESIGN_DECISIONS.md](../DESIGN_DECISIONS.md) 标记；不会将候选选择写成已验证事实。
+依赖已精确锁定，见 DEPENDENCIES.md。未解决项：最低机型、地图尺寸、正式战斗数值、视野遮挡精度、寻路结构、完整玩家瞄准体验以及未来联网模式，均在 [DESIGN_DECISIONS.md](DESIGN_DECISIONS.md) 标记；不会将候选选择写成已验证事实。
 
 ## 14 已核实的平台资料
 
@@ -459,3 +459,11 @@ index.html                         M1 已创建
 - [MDN Pointer Events](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)：多指 pointerId 和取消事件，触屏适配需处理完整生命周期。
 - [MDN 存储配额与清理](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria)：持久化请求不能作为绝对备份保证。
 - [MDN Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)：安全上下文与生命周期；离线外壳不能保证对局在后台持续模拟。
+
+## 15 M2 实施边界
+
+content 与 simulation 仍不互相 import；CompiledCatalog DTO 通过 application 注入。Headless 入口 createHeadlessCombatSession 复用既有 Session/FixedTick；普通 Observation/RenderDelta 保持为空，CombatDebugPort 仅属权威调试。presentation/controllers 导入 raw combat/debug DTO 由依赖门禁拒绝。
+
+M2 实施矩阵、容量/成本与不支持机制见 M2_IMPLEMENTATION.md、M2_ACCEPTANCE.md。属性缓存仅保存可重建派生值，失效依赖显式 Status version，不进入权威 hash。30 Hz provisional、A 默认/B 实验/C 暂不触发的 ADR 003 结论保持。
+
+M2 0.3.1 容量修订（ADR 023）：definition、certificate、Entity 和 attribute trace 的查找由 Session 私有索引解析，索引不进入 CompiledCatalog DTO/contentHash 或权威顺序。保留的集合遍历逐遍计 scans；lookups/structure 与 startup/command 各有证明/profile 验证。精确单位及固定工作界见 M2_WORK_ACCOUNTING.md。0.3.0 最终收口已撤回，0.3.1 为待独立复核候选；不进入 M3。

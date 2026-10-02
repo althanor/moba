@@ -1,6 +1,6 @@
 {
   "name": "moba-core",
-  "version": "0.2.1",
+  "version": "0.3.1",
   "private": true,
   "type": "module",
   "engines": {
@@ -15,12 +15,14 @@
     "check:docs": "node tools/check-docs.mjs",
     "validate:content": "node tools/validate-content.mjs",
     "test:unit": "vitest run tests/unit tests/architecture",
-    "test:sim": "vitest run tests/simulation tests/replay",
+    "test:sim": "vitest run tests/simulation tests/replay tests/property",
     "test:browser": "playwright test",
     "build": "npm run typecheck && vite build",
     "check": "node tools/check.mjs",
     "probe:software": "npm run build && node tools/run-software-probe.mjs",
-    "package": "python3 tools/package-project.py"
+    "package": "python3 tools/package-project.py",
+    "test:content": "vitest run tests/content",
+    "test:capacity": "vitest run tests/capacity tests/performance"
   },
   "dependencies": {
     "phaser": "3.90.0"

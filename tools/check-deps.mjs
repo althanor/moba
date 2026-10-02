@@ -37,7 +37,7 @@ export function inspect(root) {
   const parsed = ts.parseJsonConfigFileContent(config.config, ts.sys, root);
   const files = ['src', 'tests', 'tools'].flatMap(directory => walk(path.join(root, directory)));
   const errors = [], graph = new Map();
-  const whitebox = new Set(['tests/unit/entity-store.whitebox.test.ts']);
+  const whitebox = new Set(['tests/unit/entity-store.whitebox.test.ts', 'tests/simulation/combat-fault.whitebox.test.ts']);
   for (const file of files) {
     const from = path.relative(root, file).replaceAll(path.sep, '/'); graph.set(from, []);
     const source = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
@@ -67,6 +67,21 @@ export function inspect(root) {
       if (!resolved) { errors.push(`${from}: unresolved/case mismatch ${specifier}`); continue; }
       const target = path.relative(root, resolved.resolvedFileName).replaceAll(path.sep, '/'); graph.get(from).push(target);
       const owner = moduleName(from), dependency = moduleName(target);
+      if (from.startsWith('src/') && ['controllers', 'presentation'].includes(owner) && target.endsWith('/contracts/index.ts')) {
+        let namespace = false;
+        function inspectNamespace(node) {
+          if (ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier) && node.moduleSpecifier.text === specifier && node.importClause?.namedBindings && ts.isNamespaceImport(node.importClause.namedBindings)) namespace = true;
+          if (ts.isImportTypeNode(node) && ts.isLiteralTypeNode(node.argument) && ts.isStringLiteral(node.argument.literal) && node.argument.literal.text === specifier) namespace = true;
+          if (ts.isCallExpression(node) && node.expression.kind === ts.SyntaxKind.ImportKeyword && node.arguments[0] && ts.isStringLiteral(node.arguments[0]) && node.arguments[0].text === specifier) namespace = true;
+          ts.forEachChild(node, inspectNamespace);
+        }
+        inspectNamespace(source);
+        if (namespace) errors.push(`${from}: contracts namespace/import-type exposes authority-only combat/debug data`);
+        for (const symbol of ['CombatDebugPort', 'CombatBoundary', 'CombatEntitySnapshot', 'CombatFact', 'CombatRuntime', 'CombatConfig', 'DamageBreakdown', 'CapacityActual', 'FactDelivery', 'CompiledCatalog', 'Operation']) {
+          const importing = source.statements.some(node => ts.isImportDeclaration(node) && node.importClause?.namedBindings && ts.isNamedImports(node.importClause.namedBindings) && node.importClause.namedBindings.elements.some(element => (element.propertyName?.text ?? element.name.text) === symbol));
+          if (importing) errors.push(`${from}: raw combat/debug contract ${symbol} is authority-only`);
+        }
+      }
       if (from === 'src/main.ts') { if (dependency !== 'application') errors.push(`${from}: entry must use application`); continue; }
       if (!from.startsWith('src/')) {
         if (target.startsWith('src/') && !target.endsWith('/index.ts') && target !== 'src/presentation/probe.ts' && !whitebox.has(from)) errors.push(`${from}: tests/tools must use public entry ${target}`);

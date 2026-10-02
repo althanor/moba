@@ -1,0 +1,42 @@
+{
+  "id": "m2-headless-v2",
+  "capacity": {
+    "operations": 16777216,
+    "hooks": 8388608,
+    "queries": 32768,
+    "ast": 16777216,
+    "formula": 268435456,
+    "scans": 34359738368,
+    "facts": 268435456,
+    "lookups": 4294967296,
+    "structure": 274877906944
+  },
+  "roots": 4096,
+  "queryTargets": 512,
+  "hookDepth": 2,
+  "units": 454,
+  "statuses": 1816,
+  "factQueue": 1,
+  "startup": {
+    "operations": 1,
+    "hooks": 1,
+    "queries": 1,
+    "ast": 1,
+    "formula": 2048,
+    "scans": 524288,
+    "facts": 1,
+    "lookups": 32768,
+    "structure": 268435456
+  },
+  "command": {
+    "operations": 1,
+    "hooks": 1,
+    "queries": 1,
+    "ast": 1,
+    "formula": 1,
+    "scans": 524288,
+    "facts": 1,
+    "lookups": 1024,
+    "structure": 8388608
+  }
+}

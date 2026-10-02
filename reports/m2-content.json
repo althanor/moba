@@ -1,0 +1,863 @@
+{
+  "status": "PASS",
+  "contentHash": "4302def2",
+  "certificate": {
+    "id": "0fd8aab0",
+    "engineVersion": "0.3.1",
+    "compilerVersion": "m2-indexed-v2",
+    "contentHash": "4302def2",
+    "tickRate": 30,
+    "rulesetId": "headless-m2",
+    "roots": [
+      {
+        "effect": "apply_control",
+        "work": {
+          "operations": 454,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 455,
+          "formula": 8626,
+          "scans": 649674,
+          "facts": 5902,
+          "lookups": 69464,
+          "structure": 7814248
+        },
+        "limit": {
+          "operations": 512,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 512,
+          "formula": 16384,
+          "scans": 1048576,
+          "facts": 8192,
+          "lookups": 131072,
+          "structure": 8388608
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "apply_control",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "apply_derive",
+        "work": {
+          "operations": 454,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 455,
+          "formula": 8626,
+          "scans": 649674,
+          "facts": 5902,
+          "lookups": 69464,
+          "structure": 7814248
+        },
+        "limit": {
+          "operations": 512,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 512,
+          "formula": 16384,
+          "scans": 1048576,
+          "facts": 8192,
+          "lookups": 131072,
+          "structure": 8388608
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "apply_derive",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "apply_pulse",
+        "work": {
+          "operations": 454,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 455,
+          "formula": 8626,
+          "scans": 649674,
+          "facts": 5902,
+          "lookups": 69464,
+          "structure": 7814248
+        },
+        "limit": {
+          "operations": 512,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 512,
+          "formula": 16384,
+          "scans": 1048576,
+          "facts": 8192,
+          "lookups": 131072,
+          "structure": 8388608
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "apply_pulse",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "apply_replace",
+        "work": {
+          "operations": 454,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 455,
+          "formula": 8626,
+          "scans": 649674,
+          "facts": 5902,
+          "lookups": 69464,
+          "structure": 7814248
+        },
+        "limit": {
+          "operations": 512,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 512,
+          "formula": 16384,
+          "scans": 1048576,
+          "facts": 8192,
+          "lookups": 131072,
+          "structure": 8388608
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "apply_replace",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "apply_save",
+        "work": {
+          "operations": 454,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 455,
+          "formula": 8626,
+          "scans": 649674,
+          "facts": 5902,
+          "lookups": 69464,
+          "structure": 7814248
+        },
+        "limit": {
+          "operations": 512,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 512,
+          "formula": 16384,
+          "scans": 1048576,
+          "facts": 8192,
+          "lookups": 131072,
+          "structure": 8388608
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "apply_save",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "damage_all",
+        "work": {
+          "operations": 207024,
+          "hooks": 908,
+          "queries": 455,
+          "ast": 207479,
+          "formula": 3933456,
+          "scans": 301615354,
+          "facts": 2691312,
+          "lookups": 31676490,
+          "structure": 3563297088
+        },
+        "limit": {
+          "operations": 262144,
+          "hooks": 1024,
+          "queries": 512,
+          "ast": 262144,
+          "formula": 4194304,
+          "scans": 536870912,
+          "facts": 4194304,
+          "lookups": 33554432,
+          "structure": 4294967296
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 1,
+        "D_e": 454,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "damage_all",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "damage_true",
+        "work": {
+          "operations": 207024,
+          "hooks": 908,
+          "queries": 455,
+          "ast": 207479,
+          "formula": 3933456,
+          "scans": 301615354,
+          "facts": 2691312,
+          "lookups": 31676490,
+          "structure": 3563297088
+        },
+        "limit": {
+          "operations": 262144,
+          "hooks": 1024,
+          "queries": 512,
+          "ast": 262144,
+          "formula": 4194304,
+          "scans": 536870912,
+          "facts": 4194304,
+          "lookups": 33554432,
+          "structure": 4294967296
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 1,
+        "D_e": 454,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "damage_true",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "end",
+        "work": {
+          "operations": 909,
+          "hooks": 455,
+          "queries": 1,
+          "ast": 910,
+          "formula": 17271,
+          "scans": 1317575,
+          "facts": 11817,
+          "lookups": 139989,
+          "structure": 15645708
+        },
+        "limit": {
+          "operations": 1024,
+          "hooks": 512,
+          "queries": 1,
+          "ast": 1024,
+          "formula": 32768,
+          "scans": 2097152,
+          "facts": 16384,
+          "lookups": 262144,
+          "structure": 16777216
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 908,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "heal_all",
+        "work": {
+          "operations": 412686,
+          "hooks": 206570,
+          "queries": 455,
+          "ast": 413141,
+          "formula": 7841034,
+          "scans": 598179958,
+          "facts": 5364918,
+          "lookups": 63554100,
+          "structure": 7103151432
+        },
+        "limit": {
+          "operations": 524288,
+          "hooks": 262144,
+          "queries": 512,
+          "ast": 524288,
+          "formula": 8388608,
+          "scans": 1073741824,
+          "facts": 8388608,
+          "lookups": 67108864,
+          "structure": 8589934592
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 908,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "heal_all",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "heal_one",
+        "work": {
+          "operations": 909,
+          "hooks": 455,
+          "queries": 1,
+          "ast": 910,
+          "formula": 17271,
+          "scans": 1317575,
+          "facts": 11817,
+          "lookups": 139989,
+          "structure": 15645708
+        },
+        "limit": {
+          "operations": 1024,
+          "hooks": 512,
+          "queries": 1,
+          "ast": 1024,
+          "formula": 32768,
+          "scans": 2097152,
+          "facts": 16384,
+          "lookups": 262144,
+          "structure": 16777216
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 908,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "lethal",
+        "work": {
+          "operations": 207024,
+          "hooks": 908,
+          "queries": 455,
+          "ast": 207479,
+          "formula": 3933456,
+          "scans": 301615354,
+          "facts": 2691312,
+          "lookups": 31676490,
+          "structure": 3563297088
+        },
+        "limit": {
+          "operations": 262144,
+          "hooks": 1024,
+          "queries": 512,
+          "ast": 262144,
+          "formula": 4194304,
+          "scans": 536870912,
+          "facts": 4194304,
+          "lookups": 33554432,
+          "structure": 4294967296
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 1,
+        "D_e": 454,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "lethal",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "multi_all",
+        "work": {
+          "operations": 620164,
+          "hooks": 207478,
+          "queries": 909,
+          "ast": 621527,
+          "formula": 11783116,
+          "scans": 900444532,
+          "facts": 8062132,
+          "lookups": 95300050,
+          "structure": 10674262768
+        },
+        "limit": {
+          "operations": 1048576,
+          "hooks": 262144,
+          "queries": 1024,
+          "ast": 1048576,
+          "formula": 16777216,
+          "scans": 1073741824,
+          "facts": 8388608,
+          "lookups": 134217728,
+          "structure": 17179869184
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 3,
+        "R_e": 1,
+        "D_e": 1362,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "multi_all",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "pulse",
+        "work": {
+          "operations": 1,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1,
+          "formula": 19,
+          "scans": 1429,
+          "facts": 13,
+          "lookups": 155,
+          "structure": 17212
+        },
+        "limit": {
+          "operations": 1,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 1,
+          "formula": 32,
+          "scans": 2048,
+          "facts": 16,
+          "lookups": 256,
+          "structure": 32768
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 1,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": []
+      },
+      {
+        "effect": "remove_control",
+        "work": {
+          "operations": 454,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 455,
+          "formula": 8626,
+          "scans": 649674,
+          "facts": 5902,
+          "lookups": 69464,
+          "structure": 7814248
+        },
+        "limit": {
+          "operations": 512,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 512,
+          "formula": 16384,
+          "scans": 1048576,
+          "facts": 8192,
+          "lookups": 131072,
+          "structure": 8388608
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "remove_control",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "secondary",
+        "work": {
+          "operations": 207024,
+          "hooks": 908,
+          "queries": 455,
+          "ast": 207479,
+          "formula": 3933456,
+          "scans": 301615354,
+          "facts": 2691312,
+          "lookups": 31676490,
+          "structure": 3563297088
+        },
+        "limit": {
+          "operations": 262144,
+          "hooks": 1024,
+          "queries": 512,
+          "ast": 262144,
+          "formula": 4194304,
+          "scans": 536870912,
+          "facts": 4194304,
+          "lookups": 33554432,
+          "structure": 4294967296
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 1,
+        "D_e": 454,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "secondary",
+            "selector": "all",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "shield_all",
+        "work": {
+          "operations": 454,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 455,
+          "formula": 8626,
+          "scans": 649674,
+          "facts": 5902,
+          "lookups": 69464,
+          "structure": 7814248
+        },
+        "limit": {
+          "operations": 512,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 512,
+          "formula": 16384,
+          "scans": 1048576,
+          "facts": 8192,
+          "lookups": 131072,
+          "structure": 8388608
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "shield_all",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      },
+      {
+        "effect": "spend_all",
+        "work": {
+          "operations": 454,
+          "hooks": 0,
+          "queries": 1,
+          "ast": 455,
+          "formula": 8626,
+          "scans": 649674,
+          "facts": 5902,
+          "lookups": 69464,
+          "structure": 7814248
+        },
+        "limit": {
+          "operations": 512,
+          "hooks": 1,
+          "queries": 1,
+          "ast": 512,
+          "formula": 16384,
+          "scans": 1048576,
+          "facts": 8192,
+          "lookups": 131072,
+          "structure": 8388608
+        },
+        "maxPrimaryTargets": 454,
+        "F_e": 454,
+        "B_e": 1,
+        "R_e": 0,
+        "D_e": 0,
+        "S_e": 0,
+        "fanoutSegments": [
+          {
+            "path": "spend_all",
+            "selector": "primary",
+            "maximumTargets": 454
+          }
+        ]
+      }
+    ],
+    "producers": [
+      {
+        "id": "expiry",
+        "provenEffects": [
+          "end"
+        ],
+        "kind": "statusEnd",
+        "maxInstances": 1816,
+        "rootsPerInstancePerTick": 1,
+        "maxRoots": 1816,
+        "work": {
+          "operations": 1650744,
+          "hooks": 826280,
+          "queries": 1816,
+          "ast": 1652560,
+          "formula": 31364136,
+          "scans": 2392716200,
+          "facts": 21459672,
+          "lookups": 254220024,
+          "structure": 28412605728
+        }
+      },
+      {
+        "id": "fixture",
+        "provenEffects": [
+          "damage_all",
+          "damage_true",
+          "lethal",
+          "heal_one",
+          "heal_all",
+          "secondary",
+          "multi_all",
+          "shield_all",
+          "spend_all",
+          "pulse",
+          "end",
+          "apply_replace",
+          "apply_derive",
+          "apply_save",
+          "apply_control",
+          "apply_pulse",
+          "remove_control"
+        ],
+        "kind": "fixture",
+        "maxInstances": 10,
+        "rootsPerInstancePerTick": 2,
+        "maxRoots": 20,
+        "work": {
+          "operations": 12403280,
+          "hooks": 4149560,
+          "queries": 18180,
+          "ast": 12430540,
+          "formula": 235662320,
+          "scans": 18008890640,
+          "facts": 161242640,
+          "lookups": 1906001000,
+          "structure": 213485255360
+        }
+      },
+      {
+        "id": "periodic",
+        "provenEffects": [
+          "pulse"
+        ],
+        "kind": "statusPulse",
+        "maxInstances": 1816,
+        "rootsPerInstancePerTick": 1,
+        "maxRoots": 1816,
+        "work": {
+          "operations": 1816,
+          "hooks": 0,
+          "queries": 0,
+          "ast": 1816,
+          "formula": 34504,
+          "scans": 2595064,
+          "facts": 23608,
+          "lookups": 281480,
+          "structure": 31256992
+        }
+      }
+    ],
+    "maintenance": {
+      "operations": 4994,
+      "hooks": 0,
+      "queries": 0,
+      "ast": 0,
+      "formula": 2724,
+      "scans": 147857956,
+      "facts": 4994,
+      "lookups": 43170,
+      "structure": 5758937432
+    },
+    "maintenanceEnvelope": {
+      "modifierEvents": 1816,
+      "shieldEvents": 1816,
+      "resourceUpdates": 908,
+      "deathEvents": 454
+    },
+    "tick": {
+      "operations": 14060834,
+      "hooks": 4975840,
+      "queries": 19996,
+      "ast": 14084916,
+      "formula": 267063684,
+      "scans": 20552059860,
+      "facts": 182730914,
+      "lookups": 2160545674,
+      "structure": 247688055512
+    },
+    "limit": {
+      "operations": 16777216,
+      "hooks": 8388608,
+      "queries": 32768,
+      "ast": 16777216,
+      "formula": 268435456,
+      "scans": 34359738368,
+      "facts": 268435456,
+      "lookups": 4294967296,
+      "structure": 274877906944
+    },
+    "rootCount": 3652,
+    "rootCountLimit": 4096,
+    "maxHookDepth": 2,
+    "maxUnits": 454,
+    "maxStatusesGlobal": 1816,
+    "factQueue": 1,
+    "factQueueLimit": 1,
+    "startup": {
+      "operations": 0,
+      "hooks": 0,
+      "queries": 0,
+      "ast": 0,
+      "formula": 1362,
+      "scans": 311674,
+      "facts": 0,
+      "lookups": 17706,
+      "structure": 219703790
+    },
+    "startupLimit": {
+      "operations": 1,
+      "hooks": 1,
+      "queries": 1,
+      "ast": 1,
+      "formula": 2048,
+      "scans": 524288,
+      "facts": 1,
+      "lookups": 32768,
+      "structure": 268435456
+    },
+    "command": {
+      "operations": 0,
+      "hooks": 0,
+      "queries": 0,
+      "ast": 0,
+      "formula": 0,
+      "scans": 288287,
+      "facts": 0,
+      "lookups": 514,
+      "structure": 5349888
+    },
+    "commandLimit": {
+      "operations": 1,
+      "hooks": 1,
+      "queries": 1,
+      "ast": 1,
+      "formula": 1,
+      "scans": 524288,
+      "facts": 1,
+      "lookups": 1024,
+      "structure": 8388608
+    },
+    "scanModel": {
+      "version": "element-read-v2",
+      "attributePass": 84,
+      "leafPass": 1416,
+      "maintenancePass": 147857956,
+      "factStructure": 1324,
+      "maxStringLength": 400
+    }
+  },
+  "profile": {
+    "id": "m2-headless-v2",
+    "capacity": {
+      "operations": 16777216,
+      "hooks": 8388608,
+      "queries": 32768,
+      "ast": 16777216,
+      "formula": 268435456,
+      "scans": 34359738368,
+      "facts": 268435456,
+      "lookups": 4294967296,
+      "structure": 274877906944
+    },
+    "startup": {
+      "operations": 1,
+      "hooks": 1,
+      "queries": 1,
+      "ast": 1,
+      "formula": 2048,
+      "scans": 524288,
+      "facts": 1,
+      "lookups": 32768,
+      "structure": 268435456
+    },
+    "command": {
+      "operations": 1,
+      "hooks": 1,
+      "queries": 1,
+      "ast": 1,
+      "formula": 1,
+      "scans": 524288,
+      "facts": 1,
+      "lookups": 1024,
+      "structure": 8388608
+    },
+    "roots": 4096,
+    "queryTargets": 512,
+    "hookDepth": 2,
+    "units": 454,
+    "statuses": 1816,
+    "factQueue": 1
+  }
+}

@@ -1,0 +1,22 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.3.1 test:capacity
+> vitest run tests/capacity tests/performance
+
+
+ RUN  v3.2.4 /workspace/scratch/2e1a4f8502af/moba
+
+ ✓ tests/capacity/capacity.test.ts (11 tests) 2795ms
+   ✓ full legal fanout and simultaneous capacity > includes Hook-derived complete secondary fanout, preserving one root lineage  390ms
+   ✓ full legal fanout and simultaneous capacity > overlaps all certified M2 work classes: full targets, multiple roots, Hook/Replacement, expiry, pulse, shield and regeneration  1674ms
+ ✓ tests/capacity/indexed-work.test.ts (4 tests) 2290ms
+   ✓ catalog cardinality and runtime lookup work > keeps executable root and Tick work constant at 4096 formulas/effects/modifiers; only startup grows  2176ms
+ ✓ tests/performance/capacity.test.ts (3 tests) 150666ms
+   ✓ settles the full ten-producer fixture envelope: twenty roots x 454 x three Operations  519ms
+   ✓ measures the 454-target joint peak with independent expected work; all Facts and results are retained  21553ms
+   ✓ settles the main Ruleset twenty-root Hook/Replacement/expiry peak using lossless Fact consumption and bounded debug retention  128592ms
+
+ Test Files  3 passed (3)
+      Tests  18 passed (18)
+   Start at  20:00:41
+   Duration  151.08s (transform 214ms, setup 0ms, collect 472ms, tests 155.75s, environment 0ms, prepare 137ms)

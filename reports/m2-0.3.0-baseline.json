@@ -1,0 +1,42 @@
+{
+  "engineVersion": "0.3.0",
+  "contentHash": "4302def2",
+  "certificateId": "67f7833d",
+  "certificate": {
+    "operations": 14060834,
+    "hooks": 4975840,
+    "queries": 19996,
+    "ast": 14084916,
+    "formula": 267063684,
+    "scans": 36306360478,
+    "facts": 182730914
+  },
+  "limit": {
+    "operations": 16777216,
+    "hooks": 8388608,
+    "queries": 32768,
+    "ast": 16777216,
+    "formula": 268435456,
+    "scans": 68719476736,
+    "facts": 268435456
+  },
+  "actual": {
+    "operations": 4574049,
+    "hooks": 224275,
+    "queries": 9553,
+    "ast": 4589051,
+    "formula": 4571780,
+    "scans": 27194223,
+    "facts": 9135386
+  },
+  "mainCost": {
+    "durationMs": 63539.381106,
+    "beforeHeapBytes": 1639720856,
+    "afterHeapBytes": 91208104
+  },
+  "fullCost": {
+    "durationMs": 15296.162889999998,
+    "beforeHeapBytes": 33424288,
+    "afterHeapBytes": 1592916184
+  }
+}

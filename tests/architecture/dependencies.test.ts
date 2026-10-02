@@ -21,6 +21,16 @@ describe('real import graph enforcement', () => {
       expect(inspect(root).errors.join('\n')).toContain('whitelist forbids');
     });
   });
+  it('rejects raw combat/debug contracts imported by presentation or controllers', () => {
+    fixture({ 'src/presentation/index.ts': "import type { CombatFact } from '@/contracts/index';", 'src/contracts/index.ts': 'export interface CombatFact {}' }, root => {
+      expect(inspect(root).errors.join('\n')).toContain('authority-only');
+    });
+    for (const code of ["import type * as Contracts from '@/contracts/index';", "type Raw = import('@/contracts/index').CombatFact;", "const raw = import('@/contracts/index');"]) {
+      fixture({ 'src/controllers/index.ts': code, 'src/contracts/index.ts': 'export interface CombatFact {}' }, root => {
+        expect(inspect(root).errors.join('\n')).toContain('authority-only');
+      });
+    }
+  });
   it('detects cycles across re-exports, dynamic imports and import-type expressions', () => {
     fixture({ 'src/foundation/index.ts': "export * from './second';", 'src/foundation/second.ts': "type A = import('./third').A;", 'src/foundation/third.ts': "export const A = import('./index');" }, root => {
       expect(inspect(root).errors.join('\n')).toContain('dependency cycle');

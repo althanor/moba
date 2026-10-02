@@ -10,7 +10,7 @@ try {
   dirty = execFileSync('git', ['status', '--porcelain'], { encoding: 'utf8' }).trim().length > 0;
 } catch { /* Archive/local builds retain explicit unknown provenance. */ }
 const version: string = JSON.parse(fs.readFileSync(new URL('./package.json', import.meta.url), 'utf8')).version;
-const buildInfo = createBuildInfo(process.env, commit, dirty, version);
+const buildInfo = createBuildInfo(process.env, commit, dirty, version, 'M2');
 export default defineConfig({ base: './', resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   define: { __BUILD_INFO__: JSON.stringify(buildInfo) },
   plugins: [{ name: 'm1-build-provenance', generateBundle() {

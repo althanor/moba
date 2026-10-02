@@ -1,6 +1,6 @@
 # MOBA 设计决策记录
 
-版本：0.1.2。日期：2026-10-01。当前阶段：M1 已收口；M2 就绪但未实施；工程 0.2.1。
+版本：0.1.3。日期：2026-10-02。当前阶段：M2 headless 内核；工程 0.3.0；不进入 M3。
 
 accepted 表示采用的架构约束而非已实现；proposed 表示需验证的候选；provisional baseline 表示后续实现暂用但尚未接受为最终选择；deferred 表示当前不实施。技术资料只核实平台行为，预算/探针提案不等于性能和手感事实。
 
@@ -138,7 +138,7 @@ C 的触发修订：有效响应不达标、短动作精度存在实际问题，
 
 ## ADR 015 联合 Ruleset 容量证明
 
-状态：accepted 的规范；编译器、正式 Ruleset 证书、EngineCapacityProfile 和真机性能尚未实现/验证。
+状态：accepted；M2 已实现测试内容编译、联合证书、逻辑 profile 与运行 guards；正式 5v5 Ruleset 和 Android 性能仍未认证。
 
 修正：旧查询 512/单位 454 与单根 128 Operation 不兼容，旧单 Tick/根数量常数也未证明并发。撤销独立固定 Operation/根上限，以 COMBAT_PIPELINE 第 6.2～6.4 节为公式唯一来源：Croot(e)=S_e+F_e×(B_e+R_e+D_e)，Ctick=Mmax+Σ_k[N_k×max(Croot(e), e 属于 k)]，CrootCount=Σ_k N_k。F_e 覆盖全部合法目标，R/D 包含完整 Replacement/Hook/二次扇出，N/M 包含所有生产者与维护最坏重合。
 
@@ -217,3 +217,39 @@ A 使用 previous/current 插值；B 使用立即触控标记及 presentation �
 构建：Android 正式验收优先 https://althanor.github.io/moba/ ，仓库 althanor/moba，GitHub Actions npm ci/check 后构建 /moba/ artifact 再部署。每次验收记录完整 commit、run/attempt 与构建 JSON；Vite 同时输出 build-info.json，并将同一元数据写入测量导出。本地/压缩包标记 local、dirty/unknown 和无 Actions 信息，不能冒充 Pages 构建。构建追溯缺字段或checkout SHA与GITHUB_SHA不一致时Actions build失败。workingTreeDirty按实际git状态报告，Actions生成报告也可能使其为true，不伪造干净工作树。云端浏览器不能替代 Android，Pages 不降低多指/生命周期/性能要求，本地 preview 为 fallback。
 
 证据局限：本次旧格式真机 JSON 未内嵌 commit；测试采用修正版由用户声明，仓库修复与成功部署链独立核实，两者合并形成收口记录，不声称从每轮原始 JSON 验证 SHA。新字段服务后续追溯；当前新收口构建未另做 Android 验收，不自动套用旧硬件 PASS。
+
+## ADR 021 M2 有限内容、属性与事务词汇
+
+状态：accepted，工程 0.3.1；0.3.0 非 Operation 证明缺口由 ADR 023 修正。保持既有分层、P0/P5/P6/P9、30 Hz 与 presentation 路径。
+
+选择：JSON 严格 schema、引用/量纲/有限范围、属性 DAG、受限 Effect AST 和冻结 CompiledCatalog。公式采用有限 number，保留小数及同构建 replay 保证。Override 在乘法后/转换前，最高优先级，再 definitionId/instanceId；final 转换依赖须拓扑完成，pre 读转换前值；转换在属性所属实体上下文内计算，Effect 公式才区分 Operation source/target。公式节点、读取属性及其 DAG 祖先/Modifier 来源以 Operation 时刻写入 breakdown，诊断遍历纳入非 Operation 工作证明。状态实例有独立来源/到期，缓存用版本失效，控制只提供能力查询入口。
+
+Hook 是数据，Pre D4 可 scale/cancel/replace，Post 在叶 Operation 已提交后可 derive；免疫/资源不足/容量等普通拒绝不触发 Post。显式 maxHookDepth 与 per-root-target fuel 是规则语义，Replacement 链不重用同一 Hook instance。编译识别触发环并附有限 fuel 证据；未证明动态路径拒绝。原操作、替换、取消、重复尝试均计 Operation，来源链/root/parent/producer 可定位。
+
+代价：保守联合证书可能很大；不允许通过缩减合法目标或漏结算处理。M2 不支持 ExtraHealthLayer、ResourceRoute、Action reservations、经济/复活、空间与 Information，schema 拒绝这些字段。它们不是已制作的英雄能力，按后续独立扩展验收。
+
+复审：每次新 producer/Hook/Effect/内容/率改变重新编译；M3/M4/M5 的实际系统必须纳入证书。
+
+## ADR 022 Fact 消费与诊断归档的分离
+
+状态：accepted。最小成本反例：454 个主目标每次导出一个完整 454 目标子树，并与 Replacement/到期重合，会产生百万级 Facts；全部保留复杂对象的诊断归档占用约 GiB，不能把全量 trace 保留成本误作必要规则队列容量，也不能丢结算解决。此反例只补充既有有界日志/同步分阶段队列约束，不改变规则或 M1 展示。
+
+选择：单同步、非重入 FactQueue 逐条交接，待消费 occupancy=1 有执行结构证明，profile 在开局覆盖其 limit；总 records/work 仍按联合证书计数。所有 Fact produced=consumed。full 保留全部逐条诊断；summary 保留全部种类计数和最近 2000 条调试记录，明确报告归档模式与 retained。小型 correctness fixtures 用 full，主 Ruleset 最大并发用 summary 并逐项核对完整结算/Fact 数；同命令输出状态/hash 一致。
+
+代价：summary 不提供完整原始 trace 文件；出现问题可用相同 seed/commands 选择性或 full 重放，当前没有声称实现完整 M5 replay/Checkpoint 存档。Fact 原始数据不交 UI/Bot；M4 添加 Information 等消费者时要重新证明消费/披露工作。桌面耗时和 heap 为成本记录，性能/真机支持尚未 PASS。
+
+## ADR 023 M2 私有索引与完整遍历计账（0.3.1 修订）
+
+状态：accepted for verified software candidate；0.3.0 最终 M2 收口撤回。0.3.1 修订候选已重新通过全部 11 软件门禁/98测试，正式收口等待独立复核。
+
+最小反例：原 fixture 的五个单节点公式前插入 4091 个未引用的单节点合法公式，formulas=4096。maxFormula 不变，原证书不变，但每个 Operation 的 Array.find(ten) 可访问约 4094 个定义；这些访问没有进入 actual.scans。受影响不变量是 actual<=certificate<=limit 对真实可增长的非 Operation 工作必须成立；只计显式 charge 点不能构成证明。状态副本、Hook 筛选、护盾及属性桶的多遍访问也必须逐遍计账。
+
+选择：Session 私有定义索引（effect/formula/modifier/attribute/resource/producer）和按 EntityRef.index 的直接实体索引；实体解析同时校验所属 Session、generation 和 EntityStore.valid。索引不进入 CompiledCatalog DTO/contentHash，不用于规则迭代，不暴露给 controllers/presentation；原排序数组仍是权威遍历顺序。属性 trace 另有版本绑定的私有索引。M2 没有 spawn/despawn；未来结构提交必须更新索引，不能退回每 Operation 扫 roster。
+
+Work.scans 定义为权威集合遍历的元素读取：副本、筛选、聚合、规则排序、query 展开、status/hook/shield/resource、属性桶、诊断祖先和维护每一遍分别计数。排序使用有确定比较/复制边界的稳定合并排序。直接索引访问另由 Work.lookups 计数；序列化/冻结/归档与 hash 的结构遍历由 Work.structure 有限证明，不能以重命名排除。启动索引构建和每次命令入口有独立证书/profile 上界。primitive 固定字段读取由对应 Operation/AST/formula/Fact 次数与明确结构界覆盖。
+
+producer certificate 保存 provenEffects，CapacityGuard.begin 直接校验 producer/effect 关系，然后才登记 root；非法组合在任何 Operation 前 fault。正常规则的 targets、Operation、Hook、Replacement、Fact 数量保持完整。运行计账和编译成本模型共同维护；新增集合遍历必须更新模型和 conservation 测试。旧 profile/编译器版本不能冒充新证明。
+
+代价：增加私有索引空间、显式计账及保守结构成本；容量正确性与性能分别验证。0.3.0 主场景 4,574,049 Operation /9,135,386 Fact 作为不可降低的回归基线。Android 性能仍未认证；不进入 M3，不推送 main。
+
+ADR 023 补充：诊断 participant 采用独立不可变副本；两个 Pre Hook 燃料不同、前一个已不合格而后一个仍合法时，不能因 Fact 冻结借用数组而阻断后一个 Hook。复制成本包含 H 与诊断长度的联合上界。容量 guard 的内部计数采用私有可变记录，所有对外快照复制/冻结；没有 type assertion 绕过契约。

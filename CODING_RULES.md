@@ -1,6 +1,6 @@
 # MOBA 工程编码与验证规范
 
-版本：0.1.2。日期：2026-10-01。状态：M1 工程门禁已落实；后续阶段规则持续有效。
+版本：0.1.3。日期：2026-10-02。状态：M1/M2 软件门禁已落实；后续阶段规则持续有效。
 
 本规范约束后续 Phaser、TypeScript、Vite 工程的实现与修改。M1 可构建工程与相应门禁已落实；本文中正式内容、玩法和持久化要求按里程碑实施。
 
@@ -52,7 +52,7 @@ Vite build 本身不替代 TypeScript 类型检查。M1 定义并实际验证以
 | npm run build | 类型门禁通过后生成 Vite 生产资源 |
 | npm run check | 串行组织必要门禁，失败时退出非零 |
 
-上述脚本已创建并实际运行。M1 的 validate:content 仅执行空内容阶段 guard，输出 NOT_APPLICABLE_M1，不能称正式内容校验通过；check:docs 另检查根目录/docs 副本一致性。
+上述脚本已创建并实际运行。M1 的空内容 guard 是历史阶段行为；M2 validate:content 必须执行真实编译和 profile 验证，不再输出 NOT_APPLICABLE_M1。另有 test:content、test:capacity；check:docs 检查根目录/docs 副本一致性。
 
 ## 4 权威状态和执行语义
 
@@ -166,3 +166,5 @@ Tick 门禁在 M1 基础、M3 技能情景复测，依 PERFORMANCE_BUDGET 第 3.
 CHANGELOG 写用户可理解的行为与验证，不只列“优化/修复”。DESIGN_DECISIONS 的接受条目说明选择、理由、代价、替代方案和复审条件。每次任务报告固定提供：修改内容、涉及文件、设计原因、实际测试结果、已知问题、下一步；纯文档任务说明编译/运行测试不适用。
 
 类型要求参考：[TypeScript strict 官方说明](https://www.typescriptlang.org/tsconfig/strict.html)。具体配置适配所锁定版本，不依赖本文未指定的版本号。
+
+M2 0.3.1 计账规则：新增动态集合读取/副本/筛选/排序必须同步更新 actual 入口、compiler 成本模型和 conservation 测试。固定字段/协议工作需列出有限次数证明；不得只引用 schema 最大长度。热路径 definition/Entity/trace 不得 Array.find；索引必须私有且保留冻结内容/原迭代顺序。见 ADR 023 和 M2_WORK_ACCOUNTING.md。

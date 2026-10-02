@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "/workspace/scratch/12c5dcbf5299/moba-current/playwright.config.ts",
-    "rootDir": "/workspace/scratch/12c5dcbf5299/moba-current/tests/browser",
+    "configFile": "/workspace/scratch/2e1a4f8502af/moba/playwright.config.ts",
+    "rootDir": "/workspace/scratch/2e1a4f8502af/moba/tests/browser",
     "forbidOnly": false,
     "fullyParallel": false,
     "globalSetup": null,
@@ -33,7 +33,7 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "/workspace/scratch/12c5dcbf5299/moba-current/test-results",
+        "outputDir": "/workspace/scratch/2e1a4f8502af/moba/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -41,7 +41,7 @@
         },
         "id": "",
         "name": "",
-        "testDir": "/workspace/scratch/12c5dcbf5299/moba-current/tests/browser",
+        "testDir": "/workspace/scratch/2e1a4f8502af/moba/tests/browser",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -83,12 +83,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 929,
+                  "duration": 967,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-01T16:16:13.514Z",
+                  "startTime": "2026-10-02T03:46:08.445Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -117,12 +117,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 998,
+                  "duration": 827,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-01T16:16:14.520Z",
+                  "startTime": "2026-10-02T03:46:09.479Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -132,7 +132,7 @@
           ],
           "id": "9223f0ac28d4fb57516f-a25b2c4e9fc87765aa1d",
           "file": "probe.spec.ts",
-          "line": 53,
+          "line": 54,
           "column": 1
         },
         {
@@ -151,12 +151,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1861,
+                  "duration": 1860,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-01T16:16:15.528Z",
+                  "startTime": "2026-10-02T03:46:10.316Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -166,7 +166,7 @@
           ],
           "id": "9223f0ac28d4fb57516f-8e7b80766c7f033d0241",
           "file": "probe.spec.ts",
-          "line": 102,
+          "line": 103,
           "column": 1
         },
         {
@@ -185,12 +185,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1076,
+                  "duration": 663,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-01T16:16:17.399Z",
+                  "startTime": "2026-10-02T03:46:12.189Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -200,7 +200,7 @@
           ],
           "id": "9223f0ac28d4fb57516f-65e43f6a38446c59406c",
           "file": "probe.spec.ts",
-          "line": 149,
+          "line": 150,
           "column": 1
         }
       ]
@@ -208,8 +208,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-01T16:16:07.105Z",
-    "duration": 11438.45,
+    "startTime": "2026-10-02T03:46:02.049Z",
+    "duration": 10847.571,
     "expected": 4,
     "skipped": 0,
     "unexpected": 0,

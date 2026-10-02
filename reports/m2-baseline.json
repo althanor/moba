@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "repository": "althanor/moba",
+  "mainCommit": "163df7ee30c92d9c0f7ab6b6374ebe08475d9a4a",
+  "engineVersion": "0.2.1",
+  "runId": 36938625773,
+  "attempt": 1,
+  "actions": "success",
+  "validation": "success",
+  "build": "success",
+  "artifact": "success",
+  "deploy": "success",
+  "pagesHttpStatus": 200,
+  "sourceOfEvidence": "GitHub Actions API jobs/steps and Pages HTTP check; verified before M2 and unchanged on final audit",
+  "scope": "M1 baseline only; M2 local changes not pushed/deployed"
+}
