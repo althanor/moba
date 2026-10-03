@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "scope": "actual check-docs command in isolated documentation fixtures; no product mutation",
+  "cases": [
+    {
+      "case": "valid",
+      "expectedExit": 0,
+      "exitCode": 0,
+      "status": "PASS",
+      "diagnostic": "Documentation PASS: 15 root/docs pairs agree; 23 current declarations match package 0.4.3/M3, blocker/base/status source and historical boundaries; milestone semantics consistent."
+    },
+    {
+      "case": "stale-current-version",
+      "expectedExit": 1,
+      "exitCode": 1,
+      "status": "PASS",
+      "diagnostic": "Error: Current-state declaration mismatch (version/blocker/base/status): README.md"
+    },
+    {
+      "case": "toolbar-pending",
+      "expectedExit": 1,
+      "exitCode": 1,
+      "status": "PASS",
+      "diagnostic": "Error: Current-state declaration mismatch (version/blocker/base/status): M3_ACCEPTANCE.md"
+    },
+    {
+      "case": "history-0.4.2",
+      "expectedExit": 0,
+      "exitCode": 0,
+      "status": "PASS",
+      "diagnostic": "Documentation PASS: 15 root/docs pairs agree; 23 current declarations match package 0.4.3/M3, blocker/base/status source and historical boundaries; milestone semantics consistent."
+    },
+    {
+      "case": "equal-stale-mirrors",
+      "expectedExit": 1,
+      "exitCode": 1,
+      "status": "PASS",
+      "diagnostic": "Error: Current-state declaration mismatch (version/blocker/base/status): ARCHITECTURE.md"
+    },
+    {
+      "case": "old-delivery-base",
+      "expectedExit": 1,
+      "exitCode": 1,
+      "status": "PASS",
+      "diagnostic": "Error: Current-state declaration mismatch (version/blocker/base/status): M3_DELIVERY.md"
+    }
+  ]
+}

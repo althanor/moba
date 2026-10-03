@@ -1,5 +1,8 @@
 # M2 0.3.1 交付说明
 
+历史核实记录：保留原版本/日期证据及契约，不作为当前工程版本、阶段或交付声明；现行状态见 docs/current-status.json。
+
+<!-- historical/superseded:start -->
 基线：althanor/moba main 163df7ee30c92d9c0f7ab6b6374ebe08475d9a4a /0.2.1。完整源码包 MOBA_Core_Engine_M2_v0.3.1.zip；patch MOBA_M2_v0.3.1.patch。两者包含相同最终实现/文档/测试/报告/dist；压缩包额外带完整未改文件。FILE_MANIFEST.json 为包内逐文件SHA256，manifest自身排除以避免自引用。
 
 ## 使用完整源码
@@ -30,3 +33,4 @@ DEFERRED：Android/第二档约4GB/20分钟冷热态/电量/降频，ADR019重�
 详细模块、证书/actual/limit/profile、单次成本、缺口和测试路径见M2_IMPLEMENTATION/M2_ACCEPTANCE/M2_TEST_REPORT与reports/*.json。Simulation30Hz provisional、A默认/B实验/C未触发保持。
 
 新增扫描证明与反例见 M2_WORK_ACCOUNTING /ADR023。patch仍以main 0.2.1为基线，是完整M2交付；不直接叠加到0.3.0已改工作树。0.3.0原交付文件保持用于对照。交付未push远端main。
+<!-- historical/superseded:end -->

@@ -1,0 +1,189 @@
+{
+  "status": "PASS",
+  "scope": "software Chromium real CDP simultaneous Canvas contacts; Android retest pending",
+  "viewport": {
+    "width": 1503,
+    "height": 536
+  },
+  "region": {
+    "minXCss": 1294,
+    "minYCss": 394.890625,
+    "maxXCss": 1492,
+    "maxYCss": 522.890625
+  },
+  "buttons": [
+    {
+      "xCss": 1463,
+      "yCss": 493.890625,
+      "radiusCss": 29
+    },
+    {
+      "xCss": 1393,
+      "yCss": 493.890625,
+      "radiusCss": 29
+    },
+    {
+      "xCss": 1323,
+      "yCss": 493.890625,
+      "radiusCss": 29
+    },
+    {
+      "xCss": 1463,
+      "yCss": 423.890625,
+      "radiusCss": 29
+    },
+    {
+      "xCss": 1393,
+      "yCss": 423.890625,
+      "radiusCss": 29
+    },
+    {
+      "xCss": 1323,
+      "yCss": 423.890625,
+      "radiusCss": 29
+    }
+  ],
+  "gap": {
+    "x": 1428,
+    "y": 493.890625
+  },
+  "androidGap": {
+    "x": 1444.63,
+    "y": 466.04
+  },
+  "mode": "A",
+  "heldPointerIds": [
+    2
+  ],
+  "finalPointerIds": [],
+  "lock": {
+    "index": 2,
+    "generation": 1
+  },
+  "ignored": [
+    {
+      "sample": {
+        "sampleId": 3,
+        "pointerId": 3,
+        "phase": "begin",
+        "screenCssX": 1428,
+        "screenCssY": 493.890625,
+        "capturedAtMs": 711.2000000001863
+      },
+      "interaction": "ignored",
+      "uiAtMs": 719.1000000000931
+    },
+    {
+      "sample": {
+        "sampleId": 4,
+        "pointerId": 3,
+        "phase": "move",
+        "screenCssX": 1429,
+        "screenCssY": 493.890625,
+        "capturedAtMs": 867.8999999999069
+      },
+      "interaction": "ignored",
+      "uiAtMs": 868.8999999999069
+    },
+    {
+      "sample": {
+        "sampleId": 5,
+        "pointerId": 3,
+        "phase": "end",
+        "screenCssX": 1429,
+        "screenCssY": 493.890625,
+        "capturedAtMs": 910
+      },
+      "interaction": "ignored",
+      "uiAtMs": 919
+    },
+    {
+      "sample": {
+        "sampleId": 6,
+        "pointerId": 4,
+        "phase": "begin",
+        "screenCssX": 1444.6300048828125,
+        "screenCssY": 466.0400085449219,
+        "capturedAtMs": 1060.8000000002794
+      },
+      "interaction": "ignored",
+      "uiAtMs": 1068.6000000000931
+    },
+    {
+      "sample": {
+        "sampleId": 7,
+        "pointerId": 4,
+        "phase": "move",
+        "screenCssX": 1445.6300048828125,
+        "screenCssY": 466.0400085449219,
+        "capturedAtMs": 1217.8999999999069
+      },
+      "interaction": "ignored",
+      "uiAtMs": 1219.6000000000931
+    },
+    {
+      "sample": {
+        "sampleId": 8,
+        "pointerId": 4,
+        "phase": "end",
+        "screenCssX": 1445.6300048828125,
+        "screenCssY": 466.0400085449219,
+        "capturedAtMs": 1260.7000000001863
+      },
+      "interaction": "ignored",
+      "uiAtMs": 1268.3000000002794
+    },
+    {
+      "sample": {
+        "sampleId": 11,
+        "pointerId": 6,
+        "phase": "begin",
+        "screenCssX": 1428,
+        "screenCssY": 493.890625,
+        "capturedAtMs": 1594.8999999999069
+      },
+      "interaction": "ignored",
+      "uiAtMs": 1601.7000000001863
+    },
+    {
+      "sample": {
+        "sampleId": 12,
+        "pointerId": 6,
+        "phase": "move",
+        "screenCssX": 1429,
+        "screenCssY": 493.890625,
+        "capturedAtMs": 1751.2000000001863
+      },
+      "interaction": "ignored",
+      "uiAtMs": 1753.3999999999069
+    },
+    {
+      "sample": {
+        "sampleId": 13,
+        "pointerId": 6,
+        "phase": "end",
+        "screenCssX": 1429,
+        "screenCssY": 493.890625,
+        "capturedAtMs": 1794.2000000001863
+      },
+      "interaction": "ignored",
+      "uiAtMs": 1801.7000000001863
+    }
+  ],
+  "targets": [
+    {
+      "sample": {
+        "sampleId": 10,
+        "pointerId": 5,
+        "phase": "end",
+        "screenCssX": 923.71875,
+        "screenCssY": 167.4658203125,
+        "capturedAtMs": 1443.8000000002794
+      },
+      "interaction": "target",
+      "queuedAtMs": 1451.5,
+      "acceptedAtMs": 1452.2000000001863,
+      "uiAtMs": 1452.7000000001863
+    }
+  ]
+}

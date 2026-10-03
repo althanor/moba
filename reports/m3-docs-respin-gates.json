@@ -1,0 +1,140 @@
+{
+  "status": "PASS",
+  "wrapper": {
+    "command": "npm run check",
+    "exitCode": 0
+  },
+  "version": "0.4.3",
+  "phase": "M3",
+  "retainedTests": 200,
+  "newDocsTests": 13,
+  "tests": 213,
+  "browser": 21,
+  "skipped": 0,
+  "flaky": 0,
+  "retry": 0,
+  "gates": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "durationMs": 3508.154825,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "durationMs": 1894.9046270000003,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run check:deps",
+      "exitCode": 0,
+      "durationMs": 571.2229710000001,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run check:docs",
+      "exitCode": 0,
+      "durationMs": 164.49083900000005,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run validate:content",
+      "exitCode": 0,
+      "durationMs": 893.5692989999998,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run test:unit",
+      "exitCode": 0,
+      "durationMs": 2805.536157999999,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 80,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run test:content",
+      "exitCode": 0,
+      "durationMs": 1572.3449839999994,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 12,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run test:sim",
+      "exitCode": 0,
+      "durationMs": 3580.766809999999,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 77,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run test:capacity",
+      "exitCode": 0,
+      "durationMs": 95884.287988,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 23,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "durationMs": 8469.403036999996,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run test:browser",
+      "exitCode": 0,
+      "durationMs": 73561.02738399999,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 21,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    }
+  ],
+  "initialEnvironmentFailure": "Browser launch failed before gameplay because locked Chromium executable absent; preserved initial report/log. After installing build1194, complete npm run check rerun exit0; no test retry."
+}

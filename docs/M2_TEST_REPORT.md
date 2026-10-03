@@ -1,5 +1,8 @@
 # M2 0.3.1 修订软件测试报告
 
+历史阶段记录（historical/superseded）：下方保留原版本当时的状态、证据与结论，不作为当前阶段/交付状态；现行状态见 docs/current-status.json 与 M3 验收。架构约束及未来硬门禁继续有效。
+
+<!-- historical/superseded:start -->
 2026-10-02；基线 althanor/moba main `163df7ee30c92d9c0f7ab6b6374ebe08475d9a4a` /0.2.1。交付状态：**修订候选，软件 PASS；最终 M2 收口等待独立复核**。没有进入 M3，没有推送远端 main。0.3.0 的完整非 Operation 证明和最终收口已撤回。
 
 最终 `npm run check` exit 0：11/11 软件门禁 PASS，98 项自动测试通过（27+9+39+19+4），M1 原 44 项保留。浏览器 4 项全部通过，0 skipped/0 flaky/0 unexpected。
@@ -151,3 +154,4 @@ PASS：本轮M2软件修订门禁/证书/全部完整结算。BLOCKED：最终M2
 ## 后续状态说明（2026-10-02）
 
 用户已确认 M2 0.3.1 完成独立源码复核并正式推送 althanor/moba main c57fa8caadb2afc2eb98d85246e156d76e942949，软件出口 PASS、对应 Actions/Pages 全绿。以上候选/等待复核/不进入 M3 描述作为历史记录保留；M3 已获本轮明确授权，软件候选见 M3_TEST_REPORT.md，Android 真机门禁见 M3_ACCEPTANCE.md。原 M2 极限 fixture、索引与计账证明继续作为不可削弱的回归。
+<!-- historical/superseded:end -->

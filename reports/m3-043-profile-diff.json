@@ -1,0 +1,146 @@
+{
+  "status": "PASS",
+  "baseCommit": "c7ed67a9582f211335d4ed55414595969d696ebf",
+  "scope": "fresh full gate; desktop diagnostic comparison only; CPU fluctuation is not Android/optimization evidence",
+  "representative": [
+    {
+      "id": "debug-battle-4",
+      "baseRuns": [
+        {
+          "p50": 1.104329000000007,
+          "p95": 1.616692999999941,
+          "cpuMsPerSecond": 34.75917029999994
+        },
+        {
+          "p50": 1.0808929999999464,
+          "p95": 1.8927400000000034,
+          "cpuMsPerSecond": 35.5159907000001
+        },
+        {
+          "p50": 1.1268319999999221,
+          "p95": 1.8498259999998936,
+          "cpuMsPerSecond": 36.85795710000002
+        }
+      ],
+      "candidateRuns": [
+        {
+          "p50": 1.1063159999999925,
+          "p95": 1.9189509999999927,
+          "cpuMsPerSecond": 38.07092539999998
+        },
+        {
+          "p50": 1.0588149999999814,
+          "p95": 1.5104159999999638,
+          "cpuMsPerSecond": 32.78302669999994
+        },
+        {
+          "p50": 1.1221499999999196,
+          "p95": 1.8932219999999234,
+          "cpuMsPerSecond": 35.82414339999987
+        }
+      ],
+      "authorityWorkAndHashUnchanged": true,
+      "finalHash": "5716d35d",
+      "maxWork": {
+        "operations": 29,
+        "hooks": 0,
+        "queries": 11,
+        "ast": 17,
+        "formula": 3,
+        "scans": 941,
+        "facts": 29,
+        "lookups": 681,
+        "structure": 170585
+      },
+      "maxRoots": 15,
+      "maxProjectiles": 1,
+      "maxAreas": 4
+    },
+    {
+      "id": "representative-64-eight-active",
+      "baseRuns": [
+        {
+          "p50": 6.005924999999934,
+          "p95": 7.307170999999926,
+          "cpuMsPerSecond": 182.89270809999988
+        },
+        {
+          "p50": 5.6490960000001,
+          "p95": 6.776099000000613,
+          "cpuMsPerSecond": 172.24187669999975
+        },
+        {
+          "p50": 5.6852600000001985,
+          "p95": 7.827178000000458,
+          "cpuMsPerSecond": 181.57029220000032
+        }
+      ],
+      "candidateRuns": [
+        {
+          "p50": 5.874128999999812,
+          "p95": 7.117772000000059,
+          "cpuMsPerSecond": 179.27998639999984
+        },
+        {
+          "p50": 5.685183999999936,
+          "p95": 6.676497000000381,
+          "cpuMsPerSecond": 172.28577669999967
+        },
+        {
+          "p50": 5.7611180000003515,
+          "p95": 6.821845999999823,
+          "cpuMsPerSecond": 175.88326480000086
+        }
+      ],
+      "authorityWorkAndHashUnchanged": true,
+      "finalHash": "1130166b",
+      "maxWork": {
+        "operations": 183,
+        "hooks": 0,
+        "queries": 20,
+        "ast": 49,
+        "formula": 18,
+        "scans": 5501,
+        "facts": 183,
+        "lookups": 3968,
+        "structure": 559991
+      },
+      "maxRoots": 32,
+      "maxProjectiles": 2,
+      "maxAreas": 6
+    }
+  ],
+  "M2extreme": {
+    "workUnchanged": true,
+    "baseDurationMs": 78376.579905,
+    "candidateDurationMs": 77860.45150600001,
+    "actual": {
+      "operations": 4574049,
+      "hooks": 224275,
+      "queries": 9553,
+      "ast": 4589051,
+      "formula": 4571780,
+      "scans": 163705610,
+      "facts": 9135386,
+      "lookups": 35478464,
+      "structure": 809164729
+    }
+  },
+  "M3joint": {
+    "oldCertificate": "06c72880",
+    "newCertificate": "6d8796a9",
+    "releaseAndExpiryActualUnchanged": true,
+    "releaseActual": {
+      "operations": 94634,
+      "hooks": 0,
+      "queries": 646,
+      "ast": 135262,
+      "formula": 50444,
+      "scans": 28184273,
+      "facts": 94896,
+      "lookups": 3428948,
+      "structure": 12001232
+    },
+    "roots": 1100
+  }
+}

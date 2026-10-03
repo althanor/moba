@@ -1,6 +1,22 @@
+<!-- current-state:start -->
 # Android HTML5 MOBA 技术架构
 
-版本：0.1.4。日期：2026-10-03。当前：M3 0.4.2 toolbar multitouch 软件修复候选，等待独立源码复核；0.4.1 软件出口已由用户确认独立复核通过并推送 main c95a6d76f34a9f8621586a9bd84160f71061170d；Android A/B 因真机 toolbar multitouch blocker 暂停；M3 整体未通过，不进入 M4。
+<!-- current-state:json {"schema":"moba-document-current-state-v1","version":"0.4.3","phase":"M3","baseCommit":"c7ed67a9582f211335d4ed55414595969d696ebf","candidate":"输入误锁 documentation-respun repair candidate，等待独立窄复核","productReview":"PASS_SOURCE_REVIEW","documentationReview":"PENDING_NARROW_REVIEW","softwareExitFinal":"NOT_DECLARED","toolbarBlocker":"CLOSED_ON_ANDROID_DEVICE","currentAndroidBlocker":"skill-control interstitial gap → unintended authoritative targetLock","androidGapRetest":"NOT_EXECUTED","overall":"BLOCKED","androidOverall":"BLOCKED","formalAB":"NOT_COMPLETED","thermalBattery20min":"NOT_COMPLETED","secondTier4GB":"NOT_COMPLETED","portrait":"UNAVAILABLE","tickRate":30,"tickRateStatus":"provisional","modeA":"default","modeB":"experimental","modeC":"not-triggered","pushed":false,"deployed":false,"androidAcceptanceResumed":false,"nextPhaseStarted":false,"contentHash":"f166a531","certificate":"6f60c23c","m2Certificate":"74b0fd50","jointCertificate":"6d8796a9","toolbarFixVersion":"0.4.2","nextPhase":"M4"} -->
+
+当前：M3 0.4.3 输入误锁 documentation-respun repair candidate，等待独立窄复核。
+
+基线：`c7ed67a9582f211335d4ed55414595969d696ebf`（althanor/moba main）；version=0.4.3，phase=M3；contentHash=f166a531，certificate=6f60c23c，M2=74b0fd50，joint=6d8796a9。
+
+产品源码独立审核=PASS_SOURCE_REVIEW；本轮文档窄复核=PENDING_NARROW_REVIEW；software-exit final=NOT_DECLARED。
+
+0.4.2 toolbar blocker=CLOSED_ON_ANDROID_DEVICE；后续发现 skill-control interstitial gap → unintended authoritative targetLock；Android gap blocker retest=NOT_EXECUTED。M3 overall=BLOCKED；Android overall=BLOCKED。
+
+formal A/B=NOT_COMPLETED；20min thermal/battery=NOT_COMPLETED；second-tier ~4GB=NOT_COMPLETED；portrait=UNAVAILABLE。30Hz provisional；A=default / B=experimental / C=not-triggered。
+
+push=false；deploy=false；继续 Android 验收=false；进入下一阶段=false（本候选不得进入 M4）。状态源：docs/current-status.json；历史记录不充当当前状态。
+<!-- current-state:end -->
+
+规范版本：0.1.4；当前工程/验收状态由顶部 current-state 声明给出。
 
 本项目面向 Android Chromium 横屏，使用 Phaser、TypeScript、Vite 和 HTML5/WebGL。最终目标是 5v5，玩家控制一名英雄，其余席位由 Bot 控制；先完成可持续扩展的单机游戏，再评估真人联网。M1 的纯模拟外壳、Session、实体与几何响应探针保留。M2 增加内容编译、属性 DAG、资源/状态/战斗、受控 Hook/Replacement、Fact 队列和容量证书；尚无英雄、技能动作、地图或 Bot。本文同时约束已实现骨架与后续系统；实现状态见 M1_IMPLEMENTATION.md，阶段出口见 M1_ACCEPTANCE.md。
 
@@ -468,7 +484,7 @@ M2 实施矩阵、容量/成本与不支持机制见 M2_IMPLEMENTATION.md、M2_A
 
 M2 0.3.1 容量修订（ADR 023）：definition、certificate、Entity 和 attribute trace 的查找由 Session 私有索引解析，索引不进入 CompiledCatalog DTO/contentHash 或权威顺序。保留的集合遍历逐遍计 scans；lookups/structure 与 startup/command 各有证明/profile 验证。精确单位及固定工作界见 M2_WORK_ACCOUNTING.md。历史：0.3.0 最终收口曾撤回；0.3.1 后已由用户确认复核收口，M3 已获授权。
 
-## M3 0.4.2 当前实施与边界
+## 已实现能力与边界
 
 通用 Action/资源 reservation、Movement intent/step Operation、有限 grid queries、relative swept Projectile、Area 与 public debug arena/触屏适配已实现，全部使用既有 executeRoot/Operation/Hook/Fact/CapacityCertificate。实现与明确阶段规则见 [M3_IMPLEMENTATION.md](M3_IMPLEMENTATION.md)，新 producer/计账上界见 [M3_WORK_ACCOUNTING.md](M3_WORK_ACCOUNTING.md)，软件门禁见 [M3_TEST_REPORT.md](M3_TEST_REPORT.md)，Android/ADR 019 当前硬门禁见 [M3_ACCEPTANCE.md](M3_ACCEPTANCE.md)。正式决策见 ADR 024。
 

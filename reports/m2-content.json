@@ -2,8 +2,8 @@
   "status": "PASS",
   "contentHash": "4302def2",
   "certificate": {
-    "id": "04d4c8b9",
-    "engineVersion": "0.4.2",
+    "id": "74b0fd50",
+    "engineVersion": "0.4.3",
     "compilerVersion": "m3-bounded-v2",
     "contentHash": "4302def2",
     "tickRate": 30,

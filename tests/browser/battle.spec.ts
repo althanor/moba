@@ -8,7 +8,7 @@ async function start(page:Page){await page.goto('./');await expect(page.locator(
 async function skill(page:Page,id:string){const view=await state(page),bounds=await page.locator('canvas').boundingBox();if(!bounds)throw new Error('canvas');const index=view.actions.findIndex(a=>a.id===id),b=touchLayout(bounds.width,bounds.height,6).buttons[index];if(!b)throw new Error(id);return {x:bounds.x+b.xCss,y:bounds.y+b.yCss};}
 test('public debug battle composes attacks, projectile, healing/shield, Area and dash via real pointer input',async({page})=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await start(page);
- for(const id of ['basic','bolt','mend','field','dash']){const point=await skill(page,id);await page.mouse.click(point.x,point.y);await expect.poll(async()=> (await state(page)).units[0]?.cooldowns.find(c=>c.id===id)?.charges,{message:id}).toBeLessThan(id==='bolt'?2:1);await page.waitForTimeout(250);}
+ for(const id of ['basic','bolt','mend','field','dash']){const point=await skill(page,id);await page.mouse.click(point.x,point.y);await expect.poll(async()=> (await state(page)).units[0]?.cooldowns.find(c=>c.id===id)?.charges,{message:id}).toBeLessThan(id==='bolt'?2:1);if(id==='mend')expect((await state(page)).units[0]?.shield).toBe(100);await page.waitForTimeout(250);}
  const view=await state(page);expect(view.units[1]?.health).toBeLessThan(1000);expect(view.units[0]?.resource).toBeLessThan(200);expect(view.areas.length).toBe(1);expect(errors).toEqual([]);await expect(page.locator('#error')).toBeEmpty();await page.screenshot({path:'reports/m3-debug-battle.png'});
 });
 test('target lock uses authoritative refs; clearing a held joystick on export or lost capture stops intent',async({page,context})=>{
@@ -128,4 +128,43 @@ test('toolbar control preserves held joystick and skill contacts through a third
  const stopped=(await inputState(page)).position;await expect.poll(async()=>(await inputState(page)).canMove).toBe(true);await expect.poll(async()=>(await inputState(page)).position.xWorld).toBeLessThan(stopped.xWorld);expect((await inputState(page)).pointerIds).toEqual(before.pointerIds);expect(await actionCount(page,'control')).toBe(1);
  // End the skill contact only after CC expires; its normal release still works.
  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[{...aim,y:aim.y-24}]});await expect.poll(async()=>(await state(page)).units[0]?.cooldowns.find(c=>c.id==='bolt')?.charges).toBe(1);await expect(page.locator('#status')).toContainText('指针 1');await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});await cdp.detach();await expect(page.locator('#error')).toBeEmpty();
+});
+
+for(const mode of ['A','B'])test(`skill-control region ${mode}: 1503x536 CDP joystick + interstitial gap ignores targetLock, battlefield tap preserves lock`,async({page,context})=>{
+ await page.setViewportSize({width:1503,height:536});await start(page);await page.locator(`[data-action="mode${mode}"]`).click();
+ const b=await page.locator('canvas').boundingBox();if(!b)throw new Error('canvas');expect(b.width).toBe(1503);expect(b.height).toBeCloseTo(536,0);
+ const layout=touchLayout(b.width,b.height,6),r=layout.skillControl;if(!r)throw new Error('skill control');const left=layout.buttons[1],right=layout.buttons[0];if(!left||!right)throw new Error('buttons');
+ const gap={x:(left.xCss+right.xCss)/2,y:left.yCss};const androidGap={x:1444.63,y:466.04};
+ for(const p of [gap,androidGap]){expect(p.x).toBeGreaterThan(r.minXCss);expect(p.x).toBeLessThan(r.maxXCss);expect(p.y).toBeGreaterThan(r.minYCss);expect(p.y).toBeLessThan(r.maxYCss);for(const button of layout.buttons)expect(Math.hypot(p.x-button.xCss,p.y-button.yCss)).toBeGreaterThan(button.radiusCss);}
+ const cdp=await context.newCDPSession(page),origin={x:b.x+64,y:b.y+b.height-64,id:1},held={...origin,x:origin.x-12};
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[origin]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[held]});await expect.poll(async()=>(await inputState(page)).position.xWorld).toBeLessThan(-170);
+ const ids=(await inputState(page)).pointerIds;expect(ids).toHaveLength(1);expect((await state(page)).units[0]?.lock).toBeNull();
+ const tapGap=async(p:{x:number;y:number})=>{const second={x:b.x+p.x,y:b.y+p.y,id:2},moved={...second,x:second.x+1};const before=(await inputState(page)).position.xWorld;
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[held,second]});await expect.poll(async()=>(await inputState(page)).pointerIds.length).toBe(2);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[held,moved]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[moved]});
+  await expect.poll(async()=>(await inputState(page)).pointerIds).toEqual(ids);await expect.poll(async()=>(await inputState(page)).position.xWorld).toBeLessThan(before);
+ };
+ await tapGap(gap);expect((await state(page)).units[0]?.lock).toBeNull();await tapGap(androidGap);expect((await state(page)).units[0]?.lock).toBeNull();
+ const view=await state(page),enemy=view.units[2];if(!enemy)throw new Error('enemy');const target={x:b.x+(enemy.position.xWorld-view.arena.minX)/(view.arena.maxX-view.arena.minX)*b.width,y:b.y+(enemy.position.yWorld-view.arena.minY)/(view.arena.maxY-view.arena.minY)*b.height,id:2};
+ expect(target.y-b.y).toBeLessThan(r.minYCss);await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[held,target]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[target]});
+ await expect.poll(async()=>(await state(page)).units[0]?.lock).toEqual(enemy.ref);await tapGap(gap);expect((await state(page)).units[0]?.lock).toEqual(enemy.ref);expect((await inputState(page)).pointerIds).toEqual(ids);
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[held]});await expect.poll(async()=>(await inputState(page)).pointerIds).toEqual([]);await cdp.detach();
+ const download=page.waitForEvent('download');await page.locator('[data-action="export"]').click();const file=await(await download).path();if(!file)throw new Error('download');const report=JSON.parse(fs.readFileSync(file,'utf8'));
+ type Trace={interaction:string;sample:{pointerId:number;phase:string;screenCssX:number;screenCssY:number};queuedAtMs?:number;acceptedAtMs?:number};const traces=report.measurement.traces as Trace[],ignored=traces.filter(t=>t.interaction==='ignored');
+ expect(ignored.filter(t=>t.sample.phase==='begin')).toHaveLength(3);expect(ignored.filter(t=>t.sample.phase==='move')).toHaveLength(3);expect(ignored.filter(t=>t.sample.phase==='end')).toHaveLength(3);for(const t of ignored){expect(t.queuedAtMs).toBeUndefined();expect(t.acceptedAtMs).toBeUndefined();}
+ const targets=traces.filter(t=>t.interaction==='target'&&t.sample.phase==='end');expect(targets).toHaveLength(1);expect(targets[0]?.queuedAtMs).toBeDefined();expect(targets[0]?.acceptedAtMs).toBeDefined();expect(report.battle.units[0].lock).toEqual(enemy.ref);
+ fs.writeFileSync(`reports/m3-043-gap-${mode}.json`,JSON.stringify({status:'PASS',scope:'software Chromium real CDP simultaneous Canvas contacts; Android retest pending',viewport:{width:1503,height:536},region:r,buttons:layout.buttons,gap,androidGap,mode,heldPointerIds:ids,finalPointerIds:[],lock:enemy.ref,ignored,targets},null,2)+'\n');await expect(page.locator('#error')).toBeEmpty();
+});
+test('skill-control region: concrete bolt still previews and casts through CDP press/drag/release',async({page,context})=>{
+ await page.setViewportSize({width:1503,height:536});await start(page);const cdp=await context.newCDPSession(page),p={...await skill(page,'bolt'),id:1},drag={...p,x:p.x-24,y:p.y-24};
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[p]});await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[drag]});await expect(page.locator('canvas')).toHaveAttribute('data-aim-line-css',/.+/);expect((await state(page)).units[0]?.cooldowns.find(c=>c.id==='bolt')?.charges).toBe(2);
+ await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[drag]});await expect.poll(async()=>(await state(page)).units[0]?.cooldowns.find(c=>c.id==='bolt')?.charges).toBe(1);await expect.poll(async()=>(await state(page)).units[0]?.resource).toBeLessThan(200);expect((await state(page)).units[0]?.resource).toBeGreaterThanOrEqual(185);await expect.poll(async()=>(await inputState(page)).pointerIds).toEqual([]);await cdp.detach();await expect(page.locator('#error')).toBeEmpty();
+});
+test('mend shield is exactly 100 on release, pauses without expiry, and expires at release + 60 authority Ticks',async({page})=>{
+ await start(page);const p=await skill(page,'mend');await page.mouse.click(p.x,p.y);await expect.poll(async()=>(await state(page)).units[0]?.shield).toBe(100);await page.locator('[data-action="pause"]').click();await expect(page.locator('#status')).toContainText('paused');
+ const player=(await state(page)).units[0],ready=player?.cooldowns.find(c=>c.id==='mend');if(!ready)throw new Error('mend cooldown');const releaseTick=ready.readyTick-30,endTick=releaseTick+60,paused=await inputState(page);expect(paused.tick).toBeLessThan(endTick);expect(player?.shield).toBe(100);
+ await page.waitForTimeout(200);expect((await inputState(page)).tick).toBe(paused.tick);expect((await state(page)).units[0]?.shield).toBe(100);
+ for(let tick=paused.tick+1;tick<endTick;tick++){await page.locator('[data-action="step"]').click();await expect.poll(async()=>(await inputState(page)).tick).toBe(tick);}
+ await expect.poll(async()=>(await state(page)).units[0]?.shield).toBe(100);await page.locator('[data-action="step"]').click();await expect.poll(async()=>(await inputState(page)).tick).toBe(endTick);await expect.poll(async()=>(await state(page)).units[0]?.shield).toBe(0);await expect(page.locator('#status')).toContainText('paused');await expect(page.locator('#error')).toBeEmpty();
+ fs.writeFileSync('reports/m3-043-mend.json',JSON.stringify({status:'PASS',shieldOnRelease:100,releaseTick,expiryTick:endTick,durationTicks:60,pausedTick:paused.tick,pausePreservesShield:true,shieldAtExpiry:0,scope:'real pointer cast; toolbar pause/single-step; authority BattleView'},null,2)+'\n');
 });

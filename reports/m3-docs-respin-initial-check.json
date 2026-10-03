@@ -1,0 +1,85 @@
+{
+  "engineVersion": "0.4.3",
+  "phase": "M3",
+  "softwareExit": "M3 0.4.3 skill-control gap input repair candidate; pending independent source review; Android blocker retest pending; no main/Pages/M4",
+  "validationScope": "software only; Android gameplay/hot-state evidence separate; see docs/M3_ACCEPTANCE.md",
+  "results": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "durationMs": 3674.039455,
+      "stage": "applicable",
+      "status": "PASS"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "durationMs": 1954.4441469999997,
+      "stage": "applicable",
+      "status": "PASS"
+    },
+    {
+      "command": "npm run check:deps",
+      "exitCode": 0,
+      "durationMs": 571.2897860000003,
+      "stage": "applicable",
+      "status": "PASS"
+    },
+    {
+      "command": "npm run check:docs",
+      "exitCode": 0,
+      "durationMs": 163.30622700000004,
+      "stage": "applicable",
+      "status": "PASS"
+    },
+    {
+      "command": "npm run validate:content",
+      "exitCode": 0,
+      "durationMs": 947.1316820000002,
+      "stage": "applicable",
+      "status": "PASS"
+    },
+    {
+      "command": "npm run test:unit",
+      "exitCode": 0,
+      "durationMs": 2799.9954040000002,
+      "stage": "applicable",
+      "status": "PASS"
+    },
+    {
+      "command": "npm run test:content",
+      "exitCode": 0,
+      "durationMs": 1569.980485,
+      "stage": "applicable",
+      "status": "PASS"
+    },
+    {
+      "command": "npm run test:sim",
+      "exitCode": 0,
+      "durationMs": 3587.6089900000006,
+      "stage": "applicable",
+      "status": "PASS"
+    },
+    {
+      "command": "npm run test:capacity",
+      "exitCode": 0,
+      "durationMs": 96967.464993,
+      "stage": "applicable",
+      "status": "PASS"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "durationMs": 8574.339928000001,
+      "stage": "applicable",
+      "status": "PASS"
+    },
+    {
+      "command": "npm run test:browser",
+      "exitCode": 1,
+      "durationMs": 18750.906077999985,
+      "stage": "applicable",
+      "status": "BLOCKED"
+    }
+  ]
+}

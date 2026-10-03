@@ -1,9 +1,28 @@
+<!-- current-state:start -->
 # MOBA 设计决策记录
 
-版本：0.1.4。日期：2026-10-03。当前：M3 0.4.2 toolbar multitouch 软件修复候选，等待独立源码复核；0.4.1 软件出口已由用户确认独立复核通过并推送 main c95a6d76f34a9f8621586a9bd84160f71061170d；Android A/B 因真机 toolbar multitouch blocker 暂停；M3 整体未通过，不进入 M4。
+<!-- current-state:json {"schema":"moba-document-current-state-v1","version":"0.4.3","phase":"M3","baseCommit":"c7ed67a9582f211335d4ed55414595969d696ebf","candidate":"输入误锁 documentation-respun repair candidate，等待独立窄复核","productReview":"PASS_SOURCE_REVIEW","documentationReview":"PENDING_NARROW_REVIEW","softwareExitFinal":"NOT_DECLARED","toolbarBlocker":"CLOSED_ON_ANDROID_DEVICE","currentAndroidBlocker":"skill-control interstitial gap → unintended authoritative targetLock","androidGapRetest":"NOT_EXECUTED","overall":"BLOCKED","androidOverall":"BLOCKED","formalAB":"NOT_COMPLETED","thermalBattery20min":"NOT_COMPLETED","secondTier4GB":"NOT_COMPLETED","portrait":"UNAVAILABLE","tickRate":30,"tickRateStatus":"provisional","modeA":"default","modeB":"experimental","modeC":"not-triggered","pushed":false,"deployed":false,"androidAcceptanceResumed":false,"nextPhaseStarted":false,"contentHash":"f166a531","certificate":"6f60c23c","m2Certificate":"74b0fd50","jointCertificate":"6d8796a9","toolbarFixVersion":"0.4.2","nextPhase":"M4"} -->
+
+当前：M3 0.4.3 输入误锁 documentation-respun repair candidate，等待独立窄复核。
+
+基线：`c7ed67a9582f211335d4ed55414595969d696ebf`（althanor/moba main）；version=0.4.3，phase=M3；contentHash=f166a531，certificate=6f60c23c，M2=74b0fd50，joint=6d8796a9。
+
+产品源码独立审核=PASS_SOURCE_REVIEW；本轮文档窄复核=PENDING_NARROW_REVIEW；software-exit final=NOT_DECLARED。
+
+0.4.2 toolbar blocker=CLOSED_ON_ANDROID_DEVICE；后续发现 skill-control interstitial gap → unintended authoritative targetLock；Android gap blocker retest=NOT_EXECUTED。M3 overall=BLOCKED；Android overall=BLOCKED。
+
+formal A/B=NOT_COMPLETED；20min thermal/battery=NOT_COMPLETED；second-tier ~4GB=NOT_COMPLETED；portrait=UNAVAILABLE。30Hz provisional；A=default / B=experimental / C=not-triggered。
+
+push=false；deploy=false；继续 Android 验收=false；进入下一阶段=false（本候选不得进入 M4）。状态源：docs/current-status.json；历史记录不充当当前状态。
+<!-- current-state:end -->
+
+规范版本：0.1.4；当前工程/验收状态由顶部 current-state 声明给出。
 
 accepted 表示采用的架构约束而非已实现；proposed 表示需验证的候选；provisional baseline 表示后续实现暂用但尚未接受为最终选择；deferred 表示当前不实施。技术资料只核实平台行为，预算/探针提案不等于性能和手感事实。
 
+历史 ADR 阶段状态记录如下；accepted 约束仍有效，现行工程事实以顶部声明及 ADR024 最新修订为准。
+
+<!-- historical/superseded:start -->
 ## ADR 001 独立模拟层与 Phaser 表现
 
 状态：accepted。
@@ -253,10 +272,10 @@ producer certificate 保存 provenEffects，CapacityGuard.begin 直接校验 pro
 代价：增加私有索引空间、显式计账及保守结构成本；容量正确性与性能分别验证。0.3.0 主场景 4,574,049 Operation /9,135,386 Fact 作为不可降低的回归基线。Android 性能仍未认证；不进入 M3，不推送 main。
 
 ADR 023 补充：诊断 participant 采用独立不可变副本；两个 Pre Hook 燃料不同、前一个已不合格而后一个仍合法时，不能因 Fact 冻结借用数组而阻断后一个 Hook。复制成本包含 H 与诊断长度的联合上界。容量 guard 的内部计数采用私有可变记录，所有对外快照复制/冻结；没有 type assertion 绕过契约。
-
+<!-- historical/superseded:end -->
 ## ADR 024 M3 有界动作/空间运行时与统一移动 Operation
 
-状态：M3 0.4.1 软件已由用户确认独立复核通过并推送 main c95a6d76；0.4.2 toolbar repair candidate 等待独立复核。Android A/B 已开始，因本次真机输入 blocker 暂停；日期 2026-10-03。
+状态：0.4.3 产品修复已独立源码审核 PASS；本轮只修文档及文档门禁，等待独立窄复核。现行 Android/阶段/交付状态见顶部声明；以下旧版本修订是历史契约。
 
 基线：用户确认 M2 0.3.1 已独立复核并正式推送 main c57fa8caadb2afc2eb98d85246e156d76e942949，原软件门禁/Actions/Pages PASS，授权 M3，不进入 M4。ADR 003/019/021/022/023 的率、设备延期、容量、索引、完整结算约束继续有效。
 
@@ -276,6 +295,7 @@ A 默认 previous/current；B 只对授权本地普通移动做 ≤1 Tick 表现
 
 代价：新的状态、root、query、scan、lookup、snapshot/hash 节点增加保守 logical maximum certificate。逻辑容量正确性与代表性正常 gameplay CPU profile 分开；不删除 M2 极限合法结算、不削减 454、不截 Hook/Operation/Fact。每次 producer/内容/率改变重新编译，回归见 M3_WORK_ACCOUNTING.md/M3_TEST_REPORT.md/M3_ACCEPTANCE.md。
 
+<!-- historical/superseded:start -->
 ### ADR 024：0.4.1 输入坐标与 penetration recovery（已通过独立复核）
 
 CSS 点与向量使用不同契约：点独立缩放 X/Y 后加 arena.min；向量只乘 worldPerCssX=arenaWidth/widthCss、worldPerCssY=arenaHeight/heightCss，再归一化。Joystick magnitude=min(1,screenDragLength/48)，单独保留屏幕拖距力度；方向用转换后的 world unit vector。技能 deadzone/cancel/按钮 hit test 仍使用 CSS，direction/point drag 的 world direction 经过同一转换；投影 preview 随当前授权 actor snapshot 重定位，松手重新从当前 snapshot 构造 Command，preview 不决定命中。目标 tap 的点映射保留。
@@ -305,3 +325,17 @@ CC 的原权威语义会清 movement intent。表现层在稳定 Session、input
 版本 0.4.2 只重新绑定 engineVersion；authority producers、Effect/Action/Movement/Projectile/Area/Hook/查询和所有 work 算法不变，contentHash 和 profile 数值不变。旧版本证书不得复用；当前证书/完整门禁以本轮 M3_TEST_REPORT/M3_WORK_ACCOUNTING 和生成报告为准。
 
 输入事件契约参考：[W3C Pointer Events §4.2.12](https://www.w3.org/TR/pointerevents3/#the-click-auxclick-and-contextmenu-events)。浏览器支持以本项目生产构建 CDP 回归和待执行 Android blocker 复测为准。
+<!-- historical/superseded:end -->
+### ADR 024：0.4.3 skill-control 输入区域契约
+
+最小反例：1503×536静止点击技能按钮间隙(约1444.63,466.04)，begin未命中按钮就建立held target，end提交正式targetLock并锁enemy index3/generation1。单指摇杆不触发。根因在Controller UI/战场分类，不修改Simulation目标规则、B或坐标变换。
+
+决定：touchLayout以全部button center±radius构造有限闭矩形skillControl，包含按钮间隙；具体按钮→skill、cancel→cancel优先，skillControl内其余begin→ignored且不建held。后续move/end/cancel不能补建target或修改既有lock；矩形外按原joystick/target职责工作。零button为null。CSS geometry不进入authority/hash/certificate，不扩大按钮、不覆盖整个右半屏、不用时间或设备启发式。1503×536 envelope=[1294,1492]×[395,523]只是布局计算结果，不是硬编码规则。
+
+代价：debug技能簇有限矩形内的角/间隙现在明确属于UI surface，不能点战场目标；矩形外保留正常target tap。原0.4.2toolbar exact-once、control保留输入及CC结束重采held intents不变。第一份0.4.3新增unit全事件/六按钮/旧lock及真实CDP A/B多指回归，累计200项；本轮全部冻结保留。mend补shield/60Tick/pause；独立测试fixture分离cooldown/recharge验证两枚charge，正式bolt不适合manual charge区分且content不改。
+
+用户已确认0.4.2 toolbar、A/B held control/恢复、dash中断、basic范围、mend治疗盾真机功能；新gap blocker仍使Android/M3整体BLOCKED。0.4.3产品源码独立审核已PASS，本轮仍等文档窄复核，其后仍需Android gap blocker复测；正式3轮×每情景≥20、20min热态/电量、第二档约4GB未完成，portrait anti-rotation UNAVAILABLE。30Hz provisional、A默认/B实验/C未触发，不进入M4。
+
+### ADR 024：Documentation consistency respin
+
+五份规范的旧current-state和M3_DELIVERY旧基线共同stale；旧check:docs只比镜像与MILESTONES，无法拒绝两份同时错误。当前文档声明由docs/current-status.json集中表达，tools/current-state.mjs验证package.version/phase、canonical声明、blocker/base/验收边界与明确historical区；门禁拒绝未注册声明、缺失/重复/篡改声明及历史区之外的重复项目现状声明。此为文档可靠性修订，不改变任何产品/authority语义、certificate或Tick率；本轮只等独立窄复核，不代替Android复测。

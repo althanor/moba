@@ -1,9 +1,35 @@
-# M3 0.4.2 toolbar multitouch 修复候选交付
+<!-- current-state:start -->
+# M3 候选交付
 
-唯一 patch 基线：althanor/moba main c95a6d76f34a9f8621586a9bd84160f71061170d /0.4.1 /phase M3。0.4.1软件出口此前独立复核通过，Android验收因toolbar第二触点blocker暂停；本轮未推送/部署。
+<!-- current-state:json {"schema":"moba-document-current-state-v1","version":"0.4.3","phase":"M3","baseCommit":"c7ed67a9582f211335d4ed55414595969d696ebf","candidate":"输入误锁 documentation-respun repair candidate，等待独立窄复核","productReview":"PASS_SOURCE_REVIEW","documentationReview":"PENDING_NARROW_REVIEW","softwareExitFinal":"NOT_DECLARED","toolbarBlocker":"CLOSED_ON_ANDROID_DEVICE","currentAndroidBlocker":"skill-control interstitial gap → unintended authoritative targetLock","androidGapRetest":"NOT_EXECUTED","overall":"BLOCKED","androidOverall":"BLOCKED","formalAB":"NOT_COMPLETED","thermalBattery20min":"NOT_COMPLETED","secondTier4GB":"NOT_COMPLETED","portrait":"UNAVAILABLE","tickRate":30,"tickRateStatus":"provisional","modeA":"default","modeB":"experimental","modeC":"not-triggered","pushed":false,"deployed":false,"androidAcceptanceResumed":false,"nextPhaseStarted":false,"contentHash":"f166a531","certificate":"6f60c23c","m2Certificate":"74b0fd50","jointCertificate":"6d8796a9","toolbarFixVersion":"0.4.2","nextPhase":"M4"} -->
 
-完整ZIP含源码、锁文件、规范、全部测试、本轮报告、生产dist与FILE_MANIFEST.json，排除.git/node_modules。版本绑定生成物重新生成；build-info source=local/commit=c95.../workingTreeDirty=true，不冒充远端Actions构建。独立完整检查：npm ci、npx playwright install chromium、npm run check。
+当前：M3 0.4.3 输入误锁 documentation-respun repair candidate，等待独立窄复核。
 
-M3_v0.4.2_against_c95a6d76.patch 包括源码/测试/文档/报告、生产dist和FILE_MANIFEST.json；以git binary patch携带全部候选字节。在精确干净c95基线上git apply --check再apply，核对整个候选文件集合及SHA256；反向恢复基线再正向重建重复核对。完整ZIPmanifest也单独核对每个文件SHA256。报告列出原163项保留、新21项、完整11门禁、M2极限及代表性正常玩法成本；proof包含基线逐文件hash与authority源码相同/容量数值相同的机器核对。重新运行build会更新构建时间等本地诊断元数据，故精确交付字节重建使用patch，源码复验可另外运行完整检查。
+基线：`c7ed67a9582f211335d4ed55414595969d696ebf`（althanor/moba main）；version=0.4.3，phase=M3；contentHash=f166a531，certificate=6f60c23c，M2=74b0fd50，joint=6d8796a9。
 
-停止点：“M3 0.4.2 toolbar multitouch 软件修复候选，等待独立源码复核。”复核和Android blocker复测前不宣布M3整体PASS、Android PASS、最终Tick率，不进入M4。未来仅在获授权发布并核对实际0.4.2 build-info后优先复测blocker；当前0.4.1页面不能验此修复，无需用户在本轮安装Termux。此前有效Android事实保留于M3_ACCEPTANCE。
+产品源码独立审核=PASS_SOURCE_REVIEW；本轮文档窄复核=PENDING_NARROW_REVIEW；software-exit final=NOT_DECLARED。
+
+0.4.2 toolbar blocker=CLOSED_ON_ANDROID_DEVICE；后续发现 skill-control interstitial gap → unintended authoritative targetLock；Android gap blocker retest=NOT_EXECUTED。M3 overall=BLOCKED；Android overall=BLOCKED。
+
+formal A/B=NOT_COMPLETED；20min thermal/battery=NOT_COMPLETED；second-tier ~4GB=NOT_COMPLETED；portrait=UNAVAILABLE。30Hz provisional；A=default / B=experimental / C=not-triggered。
+
+push=false；deploy=false；继续 Android 验收=false；进入下一阶段=false（本候选不得进入 M4）。状态源：docs/current-status.json；历史记录不充当当前状态。
+<!-- current-state:end -->
+
+## 当前交付与方案选择
+
+选择方案A：M3_DELIVERY.md是现行delivery source，更新为输入误锁documentation-respun repair candidate，而非保留无标记旧版本交付。唯一base/version/phase/content/certificate绑定见顶部结构化声明（与package及集中状态源交叉验证）。第一份产品候选200tests、21browser已获独立源码审核；本轮新增文档validator tests后总数大于200，本轮实测213tests=原200+新增13、21browser，skipped/flaky/retry均0；逐gate结果见M3_TEST_REPORT。
+
+第一份0.4.3产品范围：有限skill-control envelope，具体按钮优先，gap整段ignored且不改lock，battlefield target tap仍正式提交；1503×536真实CDP A/B多指、mend盾/60Tick/pause与双charge测试补强。本轮只respins文档、check:docs/helper/对应tests与生成物，不再次修产品；所有src/、content JSON、package/lock、既有200tests逐字保留。
+
+## 文件与复验
+
+- MOBA_Core_Engine_M3_v0.4.3.zip
+- M3_v0.4.3_against_c7ed67a9.patch
+- M3_TEST_REPORT_v0.4.3.md
+- FILE_MANIFEST_M3_v0.4.3.json
+- SHA256SUMS_M3_v0.4.3.txt
+
+重新生成并替换上一份同名候选。ZIP含源码、规范、lock、全部tests、当轮reports、dist、FILE_MANIFEST；排除.git/node_modules与历史嵌套ZIP。完整binary patch含dist/manifest，必须从精确base apply --check、forward、reverse恢复clean基线、reapply得到同一完整Git tree与逐文件字节；ZIP与self-manifest逐文件SHA匹配，外部报告/manifest等于包内副本，SHA256SUMS验证其余四件。build-info明确local/dirty/base来源，不冒充push/Actions。
+
+本轮需实际运行npm run typecheck/lint/check:deps/check:docs/validate:content/test:unit/test:content/test:sim/test:capacity/build/test:browser与完整npm run check；旧报告不能替代本轮实测。停止点：**M3 0.4.3 documentation-respun repair candidate，等待独立窄复核。** 产品源码审核PASS不代替文档窄复核与Android gap blocker retest，不宣布software-exit final/Android PASS/M3完成，不push/deploy/继续Android/进入M4。无需本轮用户安装Termux。

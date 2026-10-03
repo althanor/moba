@@ -1,7 +1,7 @@
 {
   "config": {
-    "configFile": "/workspace/scratch/258450a66912/moba-042/playwright.config.ts",
-    "rootDir": "/workspace/scratch/258450a66912/moba-042/tests/browser",
+    "configFile": "/workspace/scratch/258450a66912/moba-043-docs/playwright.config.ts",
+    "rootDir": "/workspace/scratch/258450a66912/moba-043-docs/tests/browser",
     "forbidOnly": false,
     "fullyParallel": false,
     "globalSetup": null,
@@ -33,7 +33,7 @@
     "quiet": false,
     "projects": [
       {
-        "outputDir": "/workspace/scratch/258450a66912/moba-042/test-results",
+        "outputDir": "/workspace/scratch/258450a66912/moba-043-docs/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -41,7 +41,7 @@
         },
         "id": "software-regression",
         "name": "software-regression",
-        "testDir": "/workspace/scratch/258450a66912/moba-042/tests/browser",
+        "testDir": "/workspace/scratch/258450a66912/moba-043-docs/tests/browser",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -49,7 +49,7 @@
         "timeout": 30000
       },
       {
-        "outputDir": "/workspace/scratch/258450a66912/moba-042/test-results",
+        "outputDir": "/workspace/scratch/258450a66912/moba-043-docs/test-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -57,7 +57,7 @@
         },
         "id": "gameplay-measurement",
         "name": "gameplay-measurement",
-        "testDir": "/workspace/scratch/258450a66912/moba-042/tests/browser",
+        "testDir": "/workspace/scratch/258450a66912/moba-043-docs/tests/browser",
         "testIgnore": [],
         "testMatch": [
           "**/*.@(spec|test).?(c|m)[jt]s?(x)"
@@ -99,12 +99,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3589,
+                  "duration": 3247,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:20.199Z",
+                  "startTime": "2026-10-03T13:02:34.670Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -133,12 +133,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2296,
+                  "duration": 2371,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:23.879Z",
+                  "startTime": "2026-10-03T13:02:37.986Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -148,7 +148,7 @@
           ],
           "id": "1a3c1f1222cc49964b15-da4f047f229be783d74c",
           "file": "battle.spec.ts",
-          "line": 56,
+          "line": 58,
           "column": 1
         },
         {
@@ -167,12 +167,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1591,
+                  "duration": 1524,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:26.192Z",
+                  "startTime": "2026-10-03T13:02:40.370Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -182,7 +182,7 @@
           ],
           "id": "1a3c1f1222cc49964b15-15a69a8d1476db9395a7",
           "file": "battle.spec.ts",
-          "line": 138,
+          "line": 140,
           "column": 1
         },
         {
@@ -201,12 +201,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2150,
+                  "duration": 2226,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:27.807Z",
+                  "startTime": "2026-10-03T13:02:41.908Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -216,7 +216,7 @@
           ],
           "id": "1a3c1f1222cc49964b15-f80e57afbcb6c9108857",
           "file": "battle.spec.ts",
-          "line": 211,
+          "line": 213,
           "column": 1
         },
         {
@@ -235,12 +235,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1331,
+                  "duration": 1099,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:29.968Z",
+                  "startTime": "2026-10-03T13:02:44.144Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -250,7 +250,7 @@
           ],
           "id": "1a3c1f1222cc49964b15-f62d0cfdefe72aa2dff3",
           "file": "battle.spec.ts",
-          "line": 277,
+          "line": 279,
           "column": 32
         },
         {
@@ -269,12 +269,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1196,
+                  "duration": 1373,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:31.310Z",
+                  "startTime": "2026-10-03T13:02:45.252Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -284,7 +284,7 @@
           ],
           "id": "1a3c1f1222cc49964b15-3495e7e6b7fad0365393",
           "file": "battle.spec.ts",
-          "line": 277,
+          "line": 279,
           "column": 32
         },
         {
@@ -303,12 +303,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1985,
+                  "duration": 1992,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:32.518Z",
+                  "startTime": "2026-10-03T13:02:46.633Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -318,7 +318,7 @@
           ],
           "id": "1a3c1f1222cc49964b15-5ac32d7b6a4d6f49b3cb",
           "file": "battle.spec.ts",
-          "line": 505,
+          "line": 507,
           "column": 32
         },
         {
@@ -337,12 +337,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1715,
+                  "duration": 2097,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:34.516Z",
+                  "startTime": "2026-10-03T13:02:48.633Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -352,7 +352,7 @@
           ],
           "id": "1a3c1f1222cc49964b15-2c72fb4c99d7964d92b4",
           "file": "battle.spec.ts",
-          "line": 505,
+          "line": 507,
           "column": 32
         },
         {
@@ -371,12 +371,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1167,
+                  "duration": 1438,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:36.241Z",
+                  "startTime": "2026-10-03T13:02:50.738Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -386,7 +386,7 @@
           ],
           "id": "1a3c1f1222cc49964b15-1073cbc5ded760c48aaf",
           "file": "battle.spec.ts",
-          "line": 604,
+          "line": 606,
           "column": 1
         },
         {
@@ -405,12 +405,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 944,
+                  "duration": 968,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:37.417Z",
+                  "startTime": "2026-10-03T13:02:52.186Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -420,7 +420,7 @@
           ],
           "id": "1a3c1f1222cc49964b15-a684ba62b8b2a0d18c30",
           "file": "battle.spec.ts",
-          "line": 667,
+          "line": 669,
           "column": 1
         },
         {
@@ -439,12 +439,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1260,
+                  "duration": 1313,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:38.372Z",
+                  "startTime": "2026-10-03T13:02:53.166Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -454,7 +454,7 @@
           ],
           "id": "1a3c1f1222cc49964b15-299f252397d472c216dc",
           "file": "battle.spec.ts",
-          "line": 699,
+          "line": 701,
           "column": 1
         },
         {
@@ -473,12 +473,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2115,
+                  "duration": 2137,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:39.642Z",
+                  "startTime": "2026-10-03T13:02:54.487Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -488,7 +488,143 @@
           ],
           "id": "1a3c1f1222cc49964b15-e50ce0db76e76a209526",
           "file": "battle.spec.ts",
-          "line": 735,
+          "line": 737,
+          "column": 1
+        },
+        {
+          "title": "skill-control region A: 1503x536 CDP joystick + interstitial gap ignores targetLock, battlefield tap preserves lock",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2159,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T13:02:56.631Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-6ea632856a137daf674c",
+          "file": "battle.spec.ts",
+          "line": 816,
+          "column": 32
+        },
+        {
+          "title": "skill-control region B: 1503x536 CDP joystick + interstitial gap ignores targetLock, battlefield tap preserves lock",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2103,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T13:02:58.802Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-65ca6dd58ff00514f57e",
+          "file": "battle.spec.ts",
+          "line": 816,
+          "column": 32
+        },
+        {
+          "title": "skill-control region: concrete bolt still previews and casts through CDP press/drag/release",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 911,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T13:03:00.914Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-da38f5eb0bdda3ec862f",
+          "file": "battle.spec.ts",
+          "line": 974,
+          "column": 1
+        },
+        {
+          "title": "mend shield is exactly 100 on release, pauses without expiry, and expires at release + 60 authority Ticks",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "software-regression",
+              "projectName": "software-regression",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8193,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-03T13:03:01.833Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1a3c1f1222cc49964b15-900f0d848a7d02499f5a",
+          "file": "battle.spec.ts",
+          "line": 1021,
           "column": 1
         },
         {
@@ -507,12 +643,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 25868,
+                  "duration": 26291,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:46.227Z",
+                  "startTime": "2026-10-03T13:03:14.652Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -522,7 +658,7 @@
           ],
           "id": "1a3c1f1222cc49964b15-b46d5ecd4a3131977607",
           "file": "battle.spec.ts",
-          "line": 362,
+          "line": 364,
           "column": 1
         }
       ]
@@ -549,12 +685,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 806,
+                  "duration": 813,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:41.772Z",
+                  "startTime": "2026-10-03T13:03:10.046Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -583,12 +719,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 717,
+                  "duration": 911,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:42.586Z",
+                  "startTime": "2026-10-03T13:03:10.866Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -617,12 +753,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1571,
+                  "duration": 1655,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:43.312Z",
+                  "startTime": "2026-10-03T13:03:11.783Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -651,12 +787,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 756,
+                  "duration": 647,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-02T16:55:44.890Z",
+                  "startTime": "2026-10-03T13:03:13.450Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -674,9 +810,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-02T16:55:13.680Z",
-    "duration": 58523.238,
-    "expected": 17,
+    "startTime": "2026-10-03T13:02:28.264Z",
+    "duration": 72809.07500000001,
+    "expected": 21,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

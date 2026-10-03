@@ -1,0 +1,215 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 check
+> node tools/check.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 typecheck
+> tsc -p tsconfig.json --noEmit && tsc -p tsconfig.core.json --noEmit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 lint
+> eslint .
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 check:deps
+> node tools/check-deps.mjs
+
+Dependencies PASS: 120 files, 396 edges; whitelist, SCC, aliases, public entry, pinned versions.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 check:docs
+> node tools/check-docs.mjs
+
+Documentation PASS: 15 root/docs pairs agree; current-phase semantic status M3 is consistent.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 validate:content
+> node tools/validate-content.mjs
+
+Content PASS: schema/reference/units/attribute DAG/finite fuel/capacity/profile; 4302def2
+Content PASS: schema/reference/units/attribute DAG/finite fuel/capacity/profile; f166a531
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 test:unit
+> vitest run tests/unit tests/architecture
+
+
+ RUN  v3.2.4 /workspace/scratch/258450a66912/moba-043
+
+ ✓ tests/unit/gameplay-input.test.ts (9 tests) 115ms
+ ✓ tests/unit/gameplay-region.test.ts (10 tests) 87ms
+ ✓ tests/unit/attributes.test.ts (2 tests) 14ms
+ ✓ tests/architecture/dependencies.test.ts (7 tests) 931ms
+   ✓ real import graph enforcement > checks the actual project whitelist, all resolved edges and exact installed versions  349ms
+   ✓ real import graph enforcement > lint actually rejects environment-driven authority and unseeded random  568ms
+ ✓ tests/unit/toolbar.test.ts (15 tests) 8ms
+ ✓ tests/unit/milestone-status.test.ts (6 tests) 7ms
+ ✓ tests/unit/foundation.test.ts (5 tests) 5ms
+ ✓ tests/unit/clock.test.ts (3 tests) 4ms
+ ✓ tests/unit/presentation-fps.test.ts (1 test) 5ms
+ ✓ tests/unit/build-info.test.ts (3 tests) 6ms
+ ✓ tests/unit/entity-store.whitebox.test.ts (3 tests) 3ms
+ ✓ tests/unit/input.test.ts (3 tests) 3ms
+
+ Test Files  12 passed (12)
+      Tests  67 passed (67)
+   Start at  14:44:39
+   Duration  2.16s (transform 546ms, setup 0ms, collect 1.19s, tests 1.19s, environment 1ms, prepare 581ms)
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 test:content
+> vitest run tests/content
+
+
+ RUN  v3.2.4 /workspace/scratch/258450a66912/moba-043
+
+ ✓ tests/content/catalog.test.ts (9 tests) 61ms
+ ✓ tests/content/m3.test.ts (3 tests) 591ms
+   ✓ Area saturation emits rejection, preserves existing instances, and frees slots in P0 before same-Tick release  541ms
+
+ Test Files  2 passed (2)
+      Tests  12 passed (12)
+   Start at  14:44:42
+   Duration  1.04s (transform 262ms, setup 0ms, collect 587ms, tests 652ms, environment 0ms, prepare 96ms)
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 test:sim
+> vitest run tests/simulation tests/replay tests/property
+
+
+ RUN  v3.2.4 /workspace/scratch/258450a66912/moba-043
+
+ ✓ tests/simulation/m3-penetration.test.ts (15 tests) 487ms
+ ✓ tests/replay/combat.test.ts (2 tests) 677ms
+   ✓ debug archive retention and attribute caching do not change authoritative replay/hash  581ms
+ ✓ tests/replay/m3.test.ts (2 tests) 219ms
+ ✓ tests/simulation/combat-fault.whitebox.test.ts (5 tests) 156ms
+ ✓ tests/simulation/m3-charges.test.ts (2 tests) 135ms
+ ✓ tests/simulation/m3-interrupt.test.ts (7 tests) 136ms
+ ✓ tests/property/combat-conservation.test.ts (1 test) 154ms
+ ✓ tests/simulation/m3-space.test.ts (5 tests) 108ms
+ ✓ tests/simulation/combat.test.ts (15 tests) 128ms
+ ✓ tests/simulation/m3-projectile-area.test.ts (3 tests) 98ms
+ ✓ tests/simulation/m3-actions.test.ts (4 tests) 116ms
+ ✓ tests/replay/frame-rate.test.ts (4 tests) 46ms
+ ✓ tests/simulation/shell.test.ts (6 tests) 12ms
+ ✓ tests/simulation/session.test.ts (6 tests) 8ms
+
+ Test Files  14 passed (14)
+      Tests  77 passed (77)
+   Start at  14:44:43
+   Duration  2.98s (transform 390ms, setup 0ms, collect 1.24s, tests 2.48s, environment 2ms, prepare 710ms)
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 test:capacity
+> vitest run tests/capacity tests/performance
+
+
+ RUN  v3.2.4 /workspace/scratch/258450a66912/moba-043
+
+ ✓ tests/capacity/m3-capacity.test.ts (3 tests) 10636ms
+   ✓ certifies 454 startup, simultaneous actions, 128 sweeps x 326 targets, 64 Areas and CC expiry  9449ms
+   ✓ certifies command ingress, bounded history eviction and replay membership independently of Tick work  1175ms
+ ✓ tests/performance/m3-gameplay.test.ts (1 test) 8003ms
+   ✓ measures representative gameplay separately from logical maximum; three same-stream runs have identical hashes  8002ms
+ ✓ tests/capacity/indexed-work.test.ts (5 tests) 2332ms
+   ✓ catalog cardinality and runtime lookup work > keeps executable root and Tick work constant at 4096 formulas/effects/modifiers; only startup grows  2183ms
+ ✓ tests/capacity/capacity.test.ts (11 tests) 1778ms
+   ✓ full legal fanout and simultaneous capacity > overlaps all certified M2 work classes: full targets, multiple roots, Hook/Replacement, expiry, pulse, shield and regeneration  1019ms
+ ✓ tests/performance/capacity.test.ts (3 tests) 92942ms
+   ✓ settles the full ten-producer fixture envelope: twenty roots x 454 x three Operations  383ms
+   ✓ measures the 454-target joint peak with independent expected work; all Facts and results are retained  14079ms
+   ✓ settles the main Ruleset twenty-root Hook/Replacement/expiry peak using lossless Fact consumption and bounded debug retention  78478ms
+
+ Test Files  5 passed (5)
+      Tests  23 passed (23)
+   Start at  14:44:47
+   Duration  93.45s (transform 309ms, setup 0ms, collect 764ms, tests 115.69s, environment 1ms, prepare 227ms)
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 build
+> npm run typecheck && vite build
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 typecheck
+> tsc -p tsconfig.json --noEmit && tsc -p tsconfig.core.json --noEmit
+
+vite v7.3.1 building client environment for production...
+transforming...
+✓ 70 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/build-info.json                0.24 kB │ gzip:   0.19 kB
+dist/index.html                     1.30 kB │ gzip:   0.77 kB
+dist/assets/index-BWb8wRmO.css      1.17 kB │ gzip:   0.54 kB
+dist/assets/index-Bn2K0wtW.js     154.53 kB │ gzip:  49.00 kB │ map:    502.87 kB
+dist/assets/phaser-DXXWZowi.js  1,208.09 kB │ gzip: 332.21 kB │ map: 10,130.75 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.60s
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> moba-core@0.4.3 test:browser
+> playwright test
+
+[2m[WebServer] [22m(node:1284) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22mnpm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+[2m[WebServer] [22m(node:1297) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22m
+[2m[WebServer] [22m(!) Some chunks are larger than 500 kB after minification. Consider:
+[2m[WebServer] [22m- Using dynamic import() to code-split the application
+[2m[WebServer] [22m- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+[2m[WebServer] [22m- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[2m[WebServer] [22m(node:1323) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+[2m[WebServer] [22mnpm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+[2m[WebServer] [22m(node:1336) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 21 tests using 1 worker
+
+(node:1360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1360) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [software-regression] › tests/browser/battle.spec.ts:28:1 › public debug battle composes attacks, projectile, healing/shield, Area and dash via real pointer input (3.4s)
+  ✓   2 [software-regression] › tests/browser/battle.spec.ts:58:1 › target lock uses authoritative refs; clearing a held joystick on export or lost capture stops intent (2.3s)
+  ✓   3 [software-regression] › tests/browser/battle.spec.ts:140:1 › two CDP touch contacts move and aim/cast; cancellation never spends; pointer loss cleans both contacts (1.5s)
+  ✓   4 [software-regression] › tests/browser/battle.spec.ts:213:1 › M3 pause/orientation/blur, explicit resume, 20 recreations and gameplay measurement export (1.8s)
+  ✓   5 [software-regression] › tests/browser/battle.spec.ts:279:32 › ultrawide 1503x536 gameplay A: rendered diagonal movement and multi-touch aim line follow CSS finger vectors (1.2s)
+  ✓   6 [software-regression] › tests/browser/battle.spec.ts:279:32 › ultrawide 1503x536 gameplay B: rendered diagonal movement and multi-touch aim line follow CSS finger vectors (1.3s)
+  ✓   7 [software-regression] › tests/browser/battle.spec.ts:507:32 › toolbar multitouch A: held joystick + control once, authority CC stops and held contact resumes (1.8s)
+  ✓   8 [software-regression] › tests/browser/battle.spec.ts:507:32 › toolbar multitouch B: held joystick + control once, authority CC stops and held contact resumes (1.9s)
+  ✓   9 [software-regression] › tests/browser/battle.spec.ts:606:1 › toolbar multitouch: held joystick + pause clears pointers, freezes Tick and resumes with neutral intent (1.2s)
+  ✓  10 [software-regression] › tests/browser/battle.spec.ts:669:1 › toolbar touch activation counts recreate/mode/export exactly once and emits one download (892ms)
+  ✓  11 [software-regression] › tests/browser/battle.spec.ts:701:1 › toolbar desktop and keyboard/accessibility click each activate once; solo control still uses enemy action (1.5s)
+  ✓  12 [software-regression] › tests/browser/battle.spec.ts:737:1 › toolbar control preserves held joystick and skill contacts through a third CDP touch, without casting the held skill (2.0s)
+  ✓  13 [software-regression] › tests/browser/battle.spec.ts:816:32 › skill-control region A: 1503x536 CDP joystick + interstitial gap ignores targetLock, battlefield tap preserves lock (2.0s)
+  ✓  14 [software-regression] › tests/browser/battle.spec.ts:816:32 › skill-control region B: 1503x536 CDP joystick + interstitial gap ignores targetLock, battlefield tap preserves lock (2.2s)
+  ✓  15 [software-regression] › tests/browser/battle.spec.ts:974:1 › skill-control region: concrete bolt still previews and casts through CDP press/drag/release (921ms)
+  ✓  16 [software-regression] › tests/browser/battle.spec.ts:1021:1 › mend shield is exactly 100 on release, pauses without expiry, and expires at release + 60 authority Ticks (8.4s)
+  ✓  17 [software-regression] › tests/browser/probe.spec.ts:7:1 › Phaser shell, pause/single-step/resume, report download and no page errors (790ms)
+  ✓  18 [software-regression] › tests/browser/probe.spec.ts:54:1 › two real CDP touch contacts, touchcancel, blur and explicit focus recovery (756ms)
+  ✓  19 [software-regression] › tests/browser/probe.spec.ts:103:1 › portrait pause keeps Session; empty shell, A/B and 20 recreations keep one canvas (1.5s)
+  ✓  20 [software-regression] › tests/browser/probe.spec.ts:150:1 › WebGL context loss pauses the same Session and restoration still needs explicit resume (715ms)
+(node:1721) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1721) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  21 [gameplay-measurement] › tests/browser/battle.spec.ts:364:1 › three alternating gameplay A/B pairs: turns, blocking, dash, projectile, cancel, CC and multitouch; exports software metrics (26.7s)
+
+  21 passed (1.2m)

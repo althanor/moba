@@ -1,5 +1,8 @@
 # M1 收口软件验证报告
 
+历史阶段记录（historical/superseded）：下方保留原版本当时的状态、证据与结论，不作为当前阶段/交付状态；现行状态见 docs/current-status.json 与 M3 验收。架构约束及未来硬门禁继续有效。
+
+<!-- historical/superseded:start -->
 2026-10-01；工程0.2.1 / 规范0.1.2。本轮仅M1文档收口、Phaser配置回归和构建追溯；M2未实施。本轮全部适用软件门禁已实际运行通过，结果在reports/check.json；当前无M1出口阻塞，长期性能/兼容项目仍按正式延期追踪。
 
 ## 本轮实际门禁
@@ -139,3 +142,4 @@ Android 非旗舰+高档两档真机、S0 三分钟空外壳、A/B 操作与软�
 构建保留 Phaser >500 KB chunk 提醒（gzip 约332KB），source map 为调试额外体积，不提高阈值隐藏提示。ESLint 锁定分支的 npm 支持期提醒已记录。当前 Linux headless 缺少中文系统字形，截图汉字显示方框；DOM 文本与操作测试正常，Android 系统字体显示待真机检查，本轮未引入字体素材。
 
 M1 没有正式内容编译、容量证书、存档、伤害/技能/碰撞/视野/装备/Bot/PWA；没有通过空壳伪称这些系统完成。下一步为补齐 M1 真机证据，更新 ADR 003，再由新的明确阶段任务进入后续阶段。本轮不进入 M2。
+<!-- historical/superseded:end -->

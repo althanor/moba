@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "shieldOnRelease": 100,
+  "releaseTick": 7,
+  "expiryTick": 67,
+  "durationTicks": 60,
+  "pausedTick": 16,
+  "pausePreservesShield": true,
+  "shieldAtExpiry": 0,
+  "scope": "real pointer cast; toolbar pause/single-step; authority BattleView"
+}

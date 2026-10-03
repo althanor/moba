@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "baseCommit": "c7ed67a9582f211335d4ed55414595969d696ebf",
+  "authorityFilesCompared": 68,
+  "onlyAuthorityChanges": [
+    "src/content/compiler/capacity.ts",
+    "src/simulation/runtime/combat.ts"
+  ],
+  "contentHash": "f166a531",
+  "contentAndProfilesByteIdentical": true,
+  "certificates": [
+    {
+      "report": "reports/m2-content.json",
+      "oldId": "04d4c8b9",
+      "newId": "74b0fd50",
+      "numericCertificateAndProfileUnchanged": true
+    },
+    {
+      "report": "reports/m3-content.json",
+      "oldId": "af8e1f05",
+      "newId": "6f60c23c",
+      "numericCertificateAndProfileUnchanged": true
+    }
+  ],
+  "originalTestFilesPreserved": 45,
+  "originalTests": 184,
+  "originalAssertionsRemoved": 0,
+  "originalTestsSkippedOrDeleted": 0,
+  "existingBrowserChange": "one additional mend Shield=100 assertion; every prior byte/assertion otherwise retained",
+  "newTests": 16,
+  "expectedTotal": 200,
+  "newTestFiles": [
+    "tests/unit/gameplay-region.test.ts",
+    "tests/simulation/m3-charges.test.ts"
+  ],
+  "newBrowserTests": 4,
+  "scope": "only foundation layout envelope and Controller classification; no authority/content/touch toolbar semantics changed"
+}

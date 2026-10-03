@@ -1,4 +1,42 @@
+<!-- current-state:start -->
 # MOBA 变更记录
+
+<!-- current-state:json {"schema":"moba-document-current-state-v1","version":"0.4.3","phase":"M3","baseCommit":"c7ed67a9582f211335d4ed55414595969d696ebf","candidate":"输入误锁 documentation-respun repair candidate，等待独立窄复核","productReview":"PASS_SOURCE_REVIEW","documentationReview":"PENDING_NARROW_REVIEW","softwareExitFinal":"NOT_DECLARED","toolbarBlocker":"CLOSED_ON_ANDROID_DEVICE","currentAndroidBlocker":"skill-control interstitial gap → unintended authoritative targetLock","androidGapRetest":"NOT_EXECUTED","overall":"BLOCKED","androidOverall":"BLOCKED","formalAB":"NOT_COMPLETED","thermalBattery20min":"NOT_COMPLETED","secondTier4GB":"NOT_COMPLETED","portrait":"UNAVAILABLE","tickRate":30,"tickRateStatus":"provisional","modeA":"default","modeB":"experimental","modeC":"not-triggered","pushed":false,"deployed":false,"androidAcceptanceResumed":false,"nextPhaseStarted":false,"contentHash":"f166a531","certificate":"6f60c23c","m2Certificate":"74b0fd50","jointCertificate":"6d8796a9","toolbarFixVersion":"0.4.2","nextPhase":"M4"} -->
+
+当前：M3 0.4.3 输入误锁 documentation-respun repair candidate，等待独立窄复核。
+
+基线：`c7ed67a9582f211335d4ed55414595969d696ebf`（althanor/moba main）；version=0.4.3，phase=M3；contentHash=f166a531，certificate=6f60c23c，M2=74b0fd50，joint=6d8796a9。
+
+产品源码独立审核=PASS_SOURCE_REVIEW；本轮文档窄复核=PENDING_NARROW_REVIEW；software-exit final=NOT_DECLARED。
+
+0.4.2 toolbar blocker=CLOSED_ON_ANDROID_DEVICE；后续发现 skill-control interstitial gap → unintended authoritative targetLock；Android gap blocker retest=NOT_EXECUTED。M3 overall=BLOCKED；Android overall=BLOCKED。
+
+formal A/B=NOT_COMPLETED；20min thermal/battery=NOT_COMPLETED；second-tier ~4GB=NOT_COMPLETED；portrait=UNAVAILABLE。30Hz provisional；A=default / B=experimental / C=not-triggered。
+
+push=false；deploy=false；继续 Android 验收=false；进入下一阶段=false（本候选不得进入 M4）。状态源：docs/current-status.json；历史记录不充当当前状态。
+<!-- current-state:end -->
+
+## 0.4.3 — Documentation consistency respin（等待独立窄复核）
+
+- 不升0.4.4。第一份0.4.3产品修复及200tests设计已由用户独立源码审核PASS；本轮只修stale current-state文档与文档门禁，全部产品字节冻结。
+- 修正五份规范顶部与四组尾部、ADR及全部现行M3/README/MILESTONES；M3_DELIVERY选方案A更新为真正0.4.3交付。M1/M2、依赖/许可核实及旧版本ADR/CHANGELOG显式历史化，不篡改证据。
+- docs/current-status.json与集中current-state集合，canonical header和semantic validator；新增正/负例涵盖共同stale镜像、旧version/blocker/base、历史文本、声明注册/完整性与package binding；保留原milestone tests。
+- 原200tests全保留，本轮全量重跑11gate及check，当前实测以M3_TEST_REPORT为准；content/certificates/hash/work必须原值不变，否则停止。
+- Android gap复测未执行，formal A/B、20min热态/电量、4GB设备未完成，portrait UNAVAILABLE，M3/Android整体BLOCKED；不push/deploy/继续Android/M4，不自行声明software-exit final。
+
+下方旧版本/第一份0.4.3交付状态为历史记录，不作为当前候选声明。
+
+<!-- historical/superseded:start -->
+## 0.4.3 — M3 输入误锁 repair candidate（等待独立源码审核）
+
+- 精确基线 main c7ed67a9582f211335d4ed55414595969d696ebf/0.4.2/M3/184 tests；停止继续Android验收，不推送/部署/M4。
+- touchLayout推导有限skill-control envelope；按钮优先，簇间隙begin为ignored且无held target，后续move/end/cancel无targetLock，战场点击与旧lock保留。
+- 新增区域/六按钮/真实CDP A/B双指1503×536与实际真机点回归；保留旧184项及toolbar/CC/三指/向量修复。
+- 补强mend Shield100、pause不推进、60Tick expiry；补真实双charge消费/逐枚恢复测试，正式debug bolt content不改，注明manual fixture盲区。
+- engine0.4.3正式重新编译证书6f60c23c；contentHash f166a531、全部capacity/profile/authority semantics不变，完整门禁/联合容量/M2 extreme/代表性性能重新运行。
+- 保留0.4.2已确认Android toolbar/A/B control恢复/dash中断/basic/mend事实；新gap blocker仍BLOCKED。独立审核后需Android复测；formal A/B、热态/电量、4GB设备未完成，portrait UNAVAILABLE。
+
+历史状态：0.4.2下列“候选/等待复核”措辞记录当时交付；当前已推送main c7ed67a并确认关闭旧toolbar blocker，随后发现新gap blocker，不能称M3 final。
 
 ## 0.4.2 — M3 Android toolbar multitouch repair candidate（等待独立源码复核）
 
@@ -138,3 +176,4 @@ M0 已正式结束，按 0.1.1 的 M1 范围创建 Phaser/TypeScript/Vite 工程
 - 文档路径、相对链接、Markdown 结构、系统覆盖、依赖白名单 DAG 与跨文档阶段/限额一致性在交付前核查。
 - TypeScript、Vite build、运行测试、Android 真机与性能实测：不适用或尚未实施，没有报告为通过。
 - 性能数值和部分技术选择为初始目标，具体依赖版本、最低设备、地图/导航/视野和正式战斗数值仍待后续阶段验证。
+<!-- historical/superseded:end -->

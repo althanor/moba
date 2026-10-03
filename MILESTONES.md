@@ -1,8 +1,24 @@
+<!-- current-state:start -->
 # MOBA 开发阶段与验收标准
 
-版本：0.1.4。日期：2026-10-03。当前：M3 0.4.2 toolbar multitouch 软件修复候选，等待独立源码复核；0.4.1 软件出口已由用户确认独立复核通过并推送 main c95a6d76f34a9f8621586a9bd84160f71061170d；Android A/B 因真机 toolbar multitouch blocker 暂停；M3 整体未通过，不进入 M4。
+<!-- current-state:json {"schema":"moba-document-current-state-v1","version":"0.4.3","phase":"M3","baseCommit":"c7ed67a9582f211335d4ed55414595969d696ebf","candidate":"输入误锁 documentation-respun repair candidate，等待独立窄复核","productReview":"PASS_SOURCE_REVIEW","documentationReview":"PENDING_NARROW_REVIEW","softwareExitFinal":"NOT_DECLARED","toolbarBlocker":"CLOSED_ON_ANDROID_DEVICE","currentAndroidBlocker":"skill-control interstitial gap → unintended authoritative targetLock","androidGapRetest":"NOT_EXECUTED","overall":"BLOCKED","androidOverall":"BLOCKED","formalAB":"NOT_COMPLETED","thermalBattery20min":"NOT_COMPLETED","secondTier4GB":"NOT_COMPLETED","portrait":"UNAVAILABLE","tickRate":30,"tickRateStatus":"provisional","modeA":"default","modeB":"experimental","modeC":"not-triggered","pushed":false,"deployed":false,"androidAcceptanceResumed":false,"nextPhaseStarted":false,"contentHash":"f166a531","certificate":"6f60c23c","m2Certificate":"74b0fd50","jointCertificate":"6d8796a9","toolbarFixVersion":"0.4.2","nextPhase":"M4"} -->
 
-M0 已完成；M1 按修订后的阶段标准正式收口。M2 0.3.1 已收口，M3 已获明确授权；当前只修复 0.4.2 toolbar/debug input；0.4.1 Android 验收已经开始，现因真机 blocker 暂停。本轮不推送 main 或部署 M3 Pages，不进入 M4。最终单机目标为 Android 横屏 5v5、一个玩家和九个 Bot；MVP 也要形成可维护工程，阶段性简化的内容不能变成绕过架构的特殊代码。
+当前：M3 0.4.3 输入误锁 documentation-respun repair candidate，等待独立窄复核。
+
+基线：`c7ed67a9582f211335d4ed55414595969d696ebf`（althanor/moba main）；version=0.4.3，phase=M3；contentHash=f166a531，certificate=6f60c23c，M2=74b0fd50，joint=6d8796a9。
+
+产品源码独立审核=PASS_SOURCE_REVIEW；本轮文档窄复核=PENDING_NARROW_REVIEW；software-exit final=NOT_DECLARED。
+
+0.4.2 toolbar blocker=CLOSED_ON_ANDROID_DEVICE；后续发现 skill-control interstitial gap → unintended authoritative targetLock；Android gap blocker retest=NOT_EXECUTED。M3 overall=BLOCKED；Android overall=BLOCKED。
+
+formal A/B=NOT_COMPLETED；20min thermal/battery=NOT_COMPLETED；second-tier ~4GB=NOT_COMPLETED；portrait=UNAVAILABLE。30Hz provisional；A=default / B=experimental / C=not-triggered。
+
+push=false；deploy=false；继续 Android 验收=false；进入下一阶段=false（本候选不得进入 M4）。状态源：docs/current-status.json；历史记录不充当当前状态。
+<!-- current-state:end -->
+
+规范版本：0.1.4；项目现行状态见顶部current-state声明。
+
+M0/M1 已收口；M2 0.3.1已独立复核并推送，Actions/Pages PASS；M3已获授权。本轮仅0.4.3 documentation-only respin，产品修复已独立源码审核PASS；不改版本/Controller/authority/content；不推送、不部署、不继续正式Android验收，不进入M4。最终单机目标Android横屏5v5，一个玩家和九Bot；阶段性简化不绕过架构。
 
 依赖规范：[总架构](ARCHITECTURE.md)、[战斗流水线](COMBAT_PIPELINE.md)、[编码和测试](CODING_RULES.md)、[性能预算](PERFORMANCE_BUDGET.md)。时间不按聊天轮数或天数承诺，各阶段依据验收结果推进。
 
@@ -153,9 +169,9 @@ M1 历史出口决策：高档参考基础验收 PASS；A 默认、B 实验、C 
 
 重要跨阶段选择回写 DESIGN_DECISIONS：例如从 30 Hz 改 60 Hz、更换导航结构、扩展硬规模、改伤害路由或存档兼容。先评估测试、内容时间精度和性能再修改，不能只改一个配置数字。
 
-M1 已收口；M2 0.3.1 已由用户独立复核并推送远端 main，Actions/Pages PASS；M3 0.4.1 软件已独立复核通过并推送 main；0.4.2 是新输入 blocker 修复候选，整体尚未通过，独立复核与 Android blocker 复测各有门禁。M1 空壳/高档参考的结果不代替未来容量编译、技能/墙体/CC、低档 Android、代表性热态和完整 5v5 发行验收。历史版本要求以 CHANGELOG 保留；阶段调整必须有 ADR、明确 DEFERRED 项和未来门禁。
+M1已收口；M2 0.3.1独立复核/远端main/Actions/Pages PASS。M3 0.4.1软件独立复核通过，0.4.2已推送并关闭旧toolbar真机blocker；0.4.3产品修复已独立源码审核PASS，本轮文档窄复核及Android gap复测未完成。formal A/B三轮×各情景≥20、20min热态/电量和第二档约4GB仍是M3硬门禁，portrait为UNAVAILABLE。不得将软件自动化视为Android/M3整体PASS，M7/M10原门禁保留。
 
-## M3 0.4.2 当前实施与边界
+## 已实现M3能力与边界
 
 通用 Action/资源 reservation、Movement intent/step Operation、有限 grid queries、relative swept Projectile、Area 与 public debug arena/触屏适配已实现，全部使用既有 executeRoot/Operation/Hook/Fact/CapacityCertificate。实现与明确阶段规则见 [M3_IMPLEMENTATION.md](M3_IMPLEMENTATION.md)，新 producer/计账上界见 [M3_WORK_ACCOUNTING.md](M3_WORK_ACCOUNTING.md)，软件门禁见 [M3_TEST_REPORT.md](M3_TEST_REPORT.md)，Android/ADR 019 当前硬门禁见 [M3_ACCEPTANCE.md](M3_ACCEPTANCE.md)。正式决策见 ADR 024。
 

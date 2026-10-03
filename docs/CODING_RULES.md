@@ -1,6 +1,22 @@
+<!-- current-state:start -->
 # MOBA 工程编码与验证规范
 
-版本：0.1.4。日期：2026-10-03。当前：M3 0.4.2 toolbar multitouch 软件修复候选，等待独立源码复核；0.4.1 软件出口已由用户确认独立复核通过并推送 main c95a6d76f34a9f8621586a9bd84160f71061170d；Android A/B 因真机 toolbar multitouch blocker 暂停；M3 整体未通过，不进入 M4。
+<!-- current-state:json {"schema":"moba-document-current-state-v1","version":"0.4.3","phase":"M3","baseCommit":"c7ed67a9582f211335d4ed55414595969d696ebf","candidate":"输入误锁 documentation-respun repair candidate，等待独立窄复核","productReview":"PASS_SOURCE_REVIEW","documentationReview":"PENDING_NARROW_REVIEW","softwareExitFinal":"NOT_DECLARED","toolbarBlocker":"CLOSED_ON_ANDROID_DEVICE","currentAndroidBlocker":"skill-control interstitial gap → unintended authoritative targetLock","androidGapRetest":"NOT_EXECUTED","overall":"BLOCKED","androidOverall":"BLOCKED","formalAB":"NOT_COMPLETED","thermalBattery20min":"NOT_COMPLETED","secondTier4GB":"NOT_COMPLETED","portrait":"UNAVAILABLE","tickRate":30,"tickRateStatus":"provisional","modeA":"default","modeB":"experimental","modeC":"not-triggered","pushed":false,"deployed":false,"androidAcceptanceResumed":false,"nextPhaseStarted":false,"contentHash":"f166a531","certificate":"6f60c23c","m2Certificate":"74b0fd50","jointCertificate":"6d8796a9","toolbarFixVersion":"0.4.2","nextPhase":"M4"} -->
+
+当前：M3 0.4.3 输入误锁 documentation-respun repair candidate，等待独立窄复核。
+
+基线：`c7ed67a9582f211335d4ed55414595969d696ebf`（althanor/moba main）；version=0.4.3，phase=M3；contentHash=f166a531，certificate=6f60c23c，M2=74b0fd50，joint=6d8796a9。
+
+产品源码独立审核=PASS_SOURCE_REVIEW；本轮文档窄复核=PENDING_NARROW_REVIEW；software-exit final=NOT_DECLARED。
+
+0.4.2 toolbar blocker=CLOSED_ON_ANDROID_DEVICE；后续发现 skill-control interstitial gap → unintended authoritative targetLock；Android gap blocker retest=NOT_EXECUTED。M3 overall=BLOCKED；Android overall=BLOCKED。
+
+formal A/B=NOT_COMPLETED；20min thermal/battery=NOT_COMPLETED；second-tier ~4GB=NOT_COMPLETED；portrait=UNAVAILABLE。30Hz provisional；A=default / B=experimental / C=not-triggered。
+
+push=false；deploy=false；继续 Android 验收=false；进入下一阶段=false（本候选不得进入 M4）。状态源：docs/current-status.json；历史记录不充当当前状态。
+<!-- current-state:end -->
+
+规范版本：0.1.4；当前工程/验收状态由顶部 current-state 声明给出。
 
 本规范约束后续 Phaser、TypeScript、Vite 工程的实现与修改。M1 可构建工程与相应门禁已落实；本文中正式内容、玩法和持久化要求按里程碑实施。
 
@@ -169,8 +185,12 @@ CHANGELOG 写用户可理解的行为与验证，不只列“优化/修复”。
 
 M2 0.3.1 计账规则：新增动态集合读取/副本/筛选/排序必须同步更新 actual 入口、compiler 成本模型和 conservation 测试。固定字段/协议工作需列出有限次数证明；不得只引用 schema 最大长度。热路径 definition/Entity/trace 不得 Array.find；索引必须私有且保留冻结内容/原迭代顺序。见 ADR 023 和 M2_WORK_ACCOUNTING.md。
 
-## M3 0.4.2 当前实施与边界
+## 已实现能力与边界
 
 通用 Action/资源 reservation、Movement intent/step Operation、有限 grid queries、relative swept Projectile、Area 与 public debug arena/触屏适配已实现，全部使用既有 executeRoot/Operation/Hook/Fact/CapacityCertificate。实现与明确阶段规则见 [M3_IMPLEMENTATION.md](M3_IMPLEMENTATION.md)，新 producer/计账上界见 [M3_WORK_ACCOUNTING.md](M3_WORK_ACCOUNTING.md)，软件门禁见 [M3_TEST_REPORT.md](M3_TEST_REPORT.md)，Android/ADR 019 当前硬门禁见 [M3_ACCEPTANCE.md](M3_ACCEPTANCE.md)。正式决策见 ADR 024。
 
 logical maximum capacity 与 representative gameplay performance 分开。30 Hz provisional、A 默认、B experimental、C 未触发；缺第二档/热态证据不接受最终率、最低设备、Android 性能或最终手感。M3 软件候选不代表 M3 整体通过，不进入 M4。
+
+## 文档现行状态门禁
+
+docs/current-status.json是documentation metadata（不进入产品/content/hash）；version/phase必须匹配package.json。tools/current-state.mjs集中登记现行文档及存在的docs镜像，renderCurrentStateHeader统一生成可读声明和JSON marker。现行声明必须位于文件起始唯一current-state区，header与集中源逐字一致；项目版本/阶段/base/blocker重复声明不得散落正文。历史记录用historical/superseded:start/end明确括起，允许旧版本数字和旧结论，不能借历史记录描述当前阶段；嵌套/未闭合/孤立结束标记拒绝。规范语义与当时证据保留，不改战斗设计。增加文档时需登记current-state集合，所有未注册现行marker拒绝；更新状态源后使用同一render函数重生成声明，不维护几十条全文grep。check:docs先核镜像，另核每份语义，所以两份共同stale也会失败。原milestone-status与全部产品tests不得删除/弱化。

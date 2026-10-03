@@ -3,7 +3,7 @@ import { WORK_KEYS, M2_COMMAND_LIMITS, addWork, limitWork, maxWork, scaleWork, z
 import type { CapacityCertificate, ContentDocument, ContentId, EffectNode, Expression, Work } from '../../contracts/index';
 import { expressionNodes, requireId } from './graphs';
 
-export const ENGINE_VERSION = '0.4.2';
+export const ENGINE_VERSION = '0.4.3';
 export const COMPILER_VERSION = 'm3-bounded-v2';
 /** Bound for the explicit stable merge sort in simulation/shared/work.ts. */
 export function sortCost(n: number): number { return n ? checkedMultiply(n, 1 + 2 * Math.ceil(Math.log2(n))) : 0; }

@@ -1,5 +1,8 @@
 # M1 验收状态与 Android 操作
 
+历史阶段记录（historical/superseded）：下方保留原版本当时的状态、证据与结论，不作为当前阶段/交付状态；现行状态见 docs/current-status.json 与 M3 验收。架构约束及未来硬门禁继续有效。
+
+<!-- historical/superseded:start -->
 2026-10-01；工程 0.2.1 / 规范 0.1.2（M0 架构不变量保留）。**M1 按正式修订标准可以结束；M2 就绪，未实施。** 真机结果由用户实际执行并提交；本环境只核对仓库、部署链并运行软件门禁，未冒充控制 Android 硬件。
 
 ## 验收矩阵与出口
@@ -84,3 +87,4 @@ Visual/UI 为采集至首次软件渲染提交，不是物理发光；capture→
 6. 无法使用Pages时，在Android本机私有目录或可信本地开发机执行npm ci→npm run build→npm run preview -- --port 4173，打开对应HTTP服务；loopback仅在运行服务的本机可访问。记录commit/local/dirty与产物，不能把fallback冒充Actions。不要用file://，不因缺Termux而重做已完成验收。
 
 云端/桌面浏览器仅用于软件回归，不能替代Android真实触控、GPU、系统生命周期、热态或电量验收。
+<!-- historical/superseded:end -->

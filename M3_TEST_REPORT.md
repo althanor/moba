@@ -1,91 +1,161 @@
-# M3 0.4.2 toolbar multitouch 软件修复报告
+<!-- current-state:start -->
+# M3 软件验证报告
 
-**M3 0.4.2 toolbar multitouch 软件修复候选，等待独立源码复核。** 本轮完整 `npm run check` 的11自动门禁PASS，184 tests=原163+新增21，无skipped、无flaky、所有browser retry=0。自动软件证据不代替独立复核或Android blocker复测；M3整体/Android整体仍BLOCKED，未推送main、未部署Pages、未进入M4。
+<!-- current-state:json {"schema":"moba-document-current-state-v1","version":"0.4.3","phase":"M3","baseCommit":"c7ed67a9582f211335d4ed55414595969d696ebf","candidate":"输入误锁 documentation-respun repair candidate，等待独立窄复核","productReview":"PASS_SOURCE_REVIEW","documentationReview":"PENDING_NARROW_REVIEW","softwareExitFinal":"NOT_DECLARED","toolbarBlocker":"CLOSED_ON_ANDROID_DEVICE","currentAndroidBlocker":"skill-control interstitial gap → unintended authoritative targetLock","androidGapRetest":"NOT_EXECUTED","overall":"BLOCKED","androidOverall":"BLOCKED","formalAB":"NOT_COMPLETED","thermalBattery20min":"NOT_COMPLETED","secondTier4GB":"NOT_COMPLETED","portrait":"UNAVAILABLE","tickRate":30,"tickRateStatus":"provisional","modeA":"default","modeB":"experimental","modeC":"not-triggered","pushed":false,"deployed":false,"androidAcceptanceResumed":false,"nextPhaseStarted":false,"contentHash":"f166a531","certificate":"6f60c23c","m2Certificate":"74b0fd50","jointCertificate":"6d8796a9","toolbarFixVersion":"0.4.2","nextPhase":"M4"} -->
 
-基线：`althanor/moba` main `c95a6d76f34a9f8621586a9bd84160f71061170d` /0.4.1 /M3。远端main ref经只读核对并git fetch；独立工作树HEAD=精确基线。开始前重新完整读取19个指定文件，全部ADR001–024在DESIGN_DECISIONS.md，相关git blob/hash记录在reports/m3-042-baseline-verification.json。0.4.1此前独立源码复核通过来自用户确认；Android验收因本次新blocker暂停，不撤销此前合法功能证据。
+当前：M3 0.4.3 输入误锁 documentation-respun repair candidate，等待独立窄复核。
 
-## 根因与修复
+基线：`c7ed67a9582f211335d4ed55414595969d696ebf`（althanor/moba main）；version=0.4.3，phase=M3；contentHash=f166a531，certificate=6f60c23c，M2=74b0fd50，joint=6d8796a9。
 
-真机确认Canvas第一touch持续时，DOM toolbar第二touch的合成click路径在A/B均无响应；单独control/pause与Canvas双指正常。第二独立问题是所有toolbar callback统一clearInput，control即使触发也主动丢joystick/skill contacts，无法测试受控与B prediction transition。
+产品源码独立审核=PASS_SOURCE_REVIEW；本轮文档窄复核=PENDING_NARROW_REVIEW；software-exit final=NOT_DECLARED。
 
-新事件模型：touch/pen主按钮pointerdown立即activation，不过滤非primary contact；鼠标仅click，键盘Enter/Space及可访问性/程序化click保留。touch/pen来源的PointerEvent click忽略；旧Chromium兼容MouseEvent的sourceCapabilities.firesTouchEvents同样忽略。pointerdown.preventDefault不是唯一去重机制；没有UA sniff、wall-clock窗口、延迟、重试。pointerup/cancel不重复执行调试动作，按下后action已经生效。逐按钮activation-count/source直接计数，不用幂等UI状态冒充一次调用。
+0.4.2 toolbar blocker=CLOSED_ON_ANDROID_DEVICE；后续发现 skill-control interstitial gap → unintended authoritative targetLock；Android gap blocker retest=NOT_EXECUTED。M3 overall=BLOCKED；Android overall=BLOCKED。
 
-control唯一不调用host.clearInput/scene.clearInput；仍使用原host.debug(control)→Session.submit→enemy bolt Action→Projectile→Effect/Operation→Status正式路径。pause/resume/step/recreate/modeA/modeB/export/empty/probe九种动作保留原清理，export仍清held joystick。
+formal A/B=NOT_COMPLETED；20min thermal/battery=NOT_COMPLETED；second-tier ~4GB=NOT_COMPLETED；portrait=UNAVAILABLE。30Hz provisional；A=default / B=experimental / C=not-triggered。
 
-原CC权威规则会清movement intent。表现层在同Session、inputEnabled/alive且观察到canMove false→true时，对仍held的Canvas contacts各重采一次move，经原controller/Session/command恢复意图；不合成begin/end，不自行cast。清理、失pointer、暂停、后台、重建会清tracker及观察状态，不能复活旧input。重采时戳是软件事件，不当作新的物理touch。Action/CC/Movement/碰撞/penetration/CSS-world/analog/aim/sweep/Area逻辑逐字未改。
+push=false；deploy=false；继续 Android 验收=false；进入下一阶段=false（本候选不得进入 M4）。状态源：docs/current-status.json；历史记录不充当当前状态。
+<!-- current-state:end -->
 
-## 实际修改范围
+本轮结果：**M3 0.4.3 documentation-respun repair candidate，等待独立窄复核。** 产品修复已由用户独立源码审核PASS；本轮只修文档/文档门禁与其生成物。最终全量npm run check exit0，213 tests=原200+新增13，21browser，skipped/flaky/retry均0。这里的自动门禁PASS不是software-exit final；Android/M3整体仍BLOCKED。不push/deploy/继续Android/进入M4，不升0.4.4。
 
-- presentation：src/presentation/index.ts；新src/presentation/input/index.ts与toolbar.ts；src/presentation/phaser/scenes/battle-scene.ts。包含事件绑定/清理、held恢复与纯debug DOM观察。
-- tests：tests/browser/battle.spec.ts只追加；新tests/unit/toolbar.test.ts。
-- 版本绑定：package.json/package-lock.json；src/content/compiler/capacity.ts的ENGINE_VERSION与src/simulation/runtime/combat.ts的binding literal两行。
-- 工具：tools/check.mjs候选状态文本；未改检查命令、范围、断言或容量算法。
-- 文档：CHANGELOG、MILESTONES、M3_IMPLEMENTATION/TEST_REPORT/WORK_ACCOUNTING/ACCEPTANCE/DELIVERY、README、ADR024；规范当前状态header同步及root/docs副本。
-- 生成物：本轮check/browser/content/M2 extreme/M3 joint/performance/software A/B/截图报告、baseline验证、生产dist和manifest/hash。精确路径/字节改动以patch为准。
+## Documentation consistency respin
 
-## 原测试保留与新增21项
+### 独立审核发现与额外审计
 
-基线32个原测试源码逐字保留：31文件完整字节相同，battle.spec.ts的整个原文件作为未改前缀保留，包括全部原断言与afterEach；原163执行项本轮全部重跑。机器证明还核对66个authority/content/foundation/contracts/controllers/application相关源文件：除两行engine binding，逐字相同。1503×536 ultrawide A/B、低render FPS hash、M2 indexed/scan/producer/454×454/20-root回归保留。
+独立审核发现ARCHITECTURE/CODING_RULES/COMBAT_PIPELINE/DESIGN_DECISIONS/PERFORMANCE_BUDGET顶部（及存在的docs镜像）仍将M3 0.4.2 toolbar repair candidate、Android因toolbar blocker暂停当作当前。四组规范尾部也写“0.4.2当前实施”。M3_DELIVERY仍是0.4.2且base为c95a6d76/0.4.1。本轮扫描第一份候选全部39份Markdown，不只点名文件：修正23份现行声明（14个注册root/path和9个实际镜像），另外16份M1/M2/依赖/许可记录加明确历史边界；更新README/MILESTONES/M3阶段报告的当前独立审核措辞，content/README补齐实际注册M2/M3范围。规范设计、历史证据与产品语义未改。
 
-新增15 unit：touch/pen各1；mouse+keyboard/accessibility、compatibility provenance、连续press/cancel、barrel/disabled/dispose各1；九种destructive action各1。新测试所有9种清理恰好一次，control两种输入均不清；一次touch/pen后兼容click不再执行。
+| 每个修正文件 | 处理 |
+|---|---|
+| `ARCHITECTURE.md` | 现行状态统一 |
+| `ASSET_LICENSES.md` | 显式 historical/superseded，保留原证据 |
+| `CHANGELOG.md` | 现行状态统一 |
+| `CODING_RULES.md` | 现行状态统一 |
+| `COMBAT_PIPELINE.md` | 现行状态统一 |
+| `DESIGN_DECISIONS.md` | 现行状态统一 |
+| `M1_ACCEPTANCE.md` | 显式 historical/superseded，保留原证据 |
+| `M1_TEST_REPORT.md` | 显式 historical/superseded，保留原证据 |
+| `M2_ACCEPTANCE.md` | 显式 historical/superseded，保留原证据 |
+| `M2_IMPLEMENTATION.md` | 显式 historical/superseded，保留原证据 |
+| `M2_TEST_REPORT.md` | 显式 historical/superseded，保留原证据 |
+| `M2_WORK_ACCOUNTING.md` | 显式 historical/superseded，保留原证据 |
+| `M3_ACCEPTANCE.md` | 现行状态统一 |
+| `M3_DELIVERY.md` | 现行状态统一 |
+| `M3_IMPLEMENTATION.md` | 现行状态统一 |
+| `M3_TEST_REPORT.md` | 现行状态统一 |
+| `M3_WORK_ACCOUNTING.md` | 现行状态统一 |
+| `MILESTONES.md` | 现行状态统一 |
+| `PERFORMANCE_BUDGET.md` | 现行状态统一 |
+| `README.md` | 现行状态统一 |
+| `content/README.md` | 现行状态统一 |
+| `docs/ARCHITECTURE.md` | 现行状态统一 |
+| `docs/CODING_RULES.md` | 现行状态统一 |
+| `docs/COMBAT_PIPELINE.md` | 现行状态统一 |
+| `docs/DEPENDENCIES.md` | 显式 historical/superseded，保留原证据 |
+| `docs/M1_ACCEPTANCE.md` | 显式 historical/superseded，保留原证据 |
+| `docs/M1_IMPLEMENTATION.md` | 显式 historical/superseded，保留原证据 |
+| `docs/M1_TEST_REPORT.md` | 显式 historical/superseded，保留原证据 |
+| `docs/M2_ACCEPTANCE.md` | 显式 historical/superseded，保留原证据 |
+| `docs/M2_DELIVERY.md` | 显式 historical/superseded，保留原证据 |
+| `docs/M2_IMPLEMENTATION.md` | 显式 historical/superseded，保留原证据 |
+| `docs/M2_TEST_REPORT.md` | 显式 historical/superseded，保留原证据 |
+| `docs/M2_WORK_ACCOUNTING.md` | 显式 historical/superseded，保留原证据 |
+| `docs/M3_ACCEPTANCE.md` | 现行状态统一 |
+| `docs/M3_IMPLEMENTATION.md` | 现行状态统一 |
+| `docs/M3_TEST_REPORT.md` | 现行状态统一 |
+| `docs/M3_WORK_ACCOUNTING.md` | 现行状态统一 |
+| `docs/MILESTONES.md` | 现行状态统一 |
+| `docs/PERFORMANCE_BUDGET.md` | 现行状态统一 |
 
-新增6 browser（真实CDP touch，不用mouse替代双指）：
-- `toolbar multitouch A: held joystick + control once, authority CC stops and held contact resumes`
-- `toolbar multitouch B: held joystick + control once, authority CC stops and held contact resumes`
-- `toolbar multitouch: held joystick + pause clears pointers, freezes Tick and resumes with neutral intent`
-- `toolbar touch activation counts recreate/mode/export exactly once and emits one download`
-- `toolbar desktop and keyboard/accessibility click each activate once; solo control still uses enemy action`
-- `toolbar control preserves held joystick and skill contacts through a third CDP touch, without casting the held skill`
+新增docs/current-status.json为文档集中状态源；只有documentation工具/tests读取它，不进入content catalog、Simulation、authority hash或certificate。原规范版本0.1.4与engine0.4.3分开记录；canonical当前声明不能被旧日期/历史章节覆盖。
 
-A/B control回归逐帧记录第一pointerId完整持续，activation count+1、enemy charge仅消耗1、HP仅损80、CC前移动/期间停步/结束无新touch事件自然恢复；B受控不预测。projectile active ID总数≤1（该75world短距可同Tick spawn/hit/despawn），enemy release/charge与一次damage也证明攻击一次，不将“未观察到存活sprite”冒充无攻击。touchEnd只指定需释放的toolbarcontact，第一contact一直保持；trace断言无end/cancel造成丢指。三指回归保留skill preview，未提前释放，CC后正常松技能。
+### M3_DELIVERY 处理
 
-pause第二指触发后pointer=0、Tick/位置冻结；保持旧Canvas contact时用第二指resume，不产生旧intent。touch和mouse的recreate/mode分别action count+1且Session serial仅+1；export只一个download。keyboard Enter/Space与程序化accessible click正常。browser所有17执行项均无重试、跳过或page fault。
+选**方案A**：M3_DELIVERY.md保留为真正现行delivery source。顶部结构化声明绑定唯一base c7ed67a9582f211335d4ed55414595969d696ebf、version0.4.3、phaseM3、contentHash f166a531、certificate6f60c23c（M2 74b0fd50/joint6d8796a9）。正文记录第一份已审产品候选200tests/21browser，以及本轮213tests/21browser、gap修复范围、documentation-only冻结、五个同名artifact与仍需文档窄复核/Android gap retest。没有把旧c95a6d76/0.4.2文件留作现行delivery。
 
-## 全部11自动软件门禁
+### 旧门禁为什么漏过，新门禁如何工作
 
-| 门禁 | 状态 | tests/结果 | 本轮耗时 |
-|---|---|---:|---:|
-| `npm run typecheck` | PASS | exit 0 | 3.47 s |
-| `npm run lint` | PASS | exit 0 | 1.85 s |
-| `npm run check:deps` | PASS | exit 0 | 0.53 s |
-| `npm run check:docs` | PASS | exit 0 | 0.17 s |
-| `npm run validate:content` | PASS | exit 0 | 0.89 s |
-| `npm run test:unit` | PASS | 57 | 2.44 s |
-| `npm run test:content` | PASS | 12 | 1.52 s |
-| `npm run test:sim` | PASS | 75 | 3.23 s |
-| `npm run test:capacity` | PASS | 23 | 95.26 s |
-| `npm run build` | PASS | exit 0 | 8.09 s |
-| `npm run test:browser` | PASS | 17 | 59.25 s |
+原check:docs只验证15对root/docs镜像（允许四种根文档相对链接规范化），只对MILESTONES两份调用milestone semantic validator，所以“两份一起写错旧状态”仍PASS。原milestone helper和6项tests逐字保留，没有删除或弱化。
 
-57 unit/architecture +12 content +75 simulation/replay/property +23 capacity/performance +17 browser=184。生产构建桌面Chromium141软件回归，不能冒充Android硬件。完整check exit0；browser expected17/skipped0/unexpected0/flaky0/retry0。原三轮交替A/B软件测量保留，6个Session均running/version0.4.2/certificate af8e1f05；真实手感与热态未由它验收。
+新tools/current-state.mjs及d.mts集中登记14个现行文档及所有实际存在的docs镜像。docs/current-status.json的version/phase必须匹配package；每份必须在文件起始有唯一current-state:start/end声明区，由renderCurrentStateHeader生成同源JSON marker与可读状态，逐字验证canonical头部，覆盖current version、base、blocker、审核、设备/热态/portrait、30Hz/A/B/C与生命周期。故正确JSON配错误可读段、两份共同stale、漏/重复/篡改声明也拒绝；M3_DELIVERY五个artifact文件名额外按phase/version/base前8位推导核对。
 
-## 版本与容量
+historical/superseded:start/end只承载历史record，允许旧0.4.2/0.4.1、旧toolbar blocker及旧候选结论；嵌套/未闭合/孤立结束拒绝。当前声明只能在canonical区；正文的项目“当前版本/阶段/base/blocker”声明语法不能散落或重复，未注册current marker也拒绝。没有全文件禁止0.4.2，也不是几十条hardcoded全文句子grep；状态来自可维护的结构化源，版本从package绑定，模板与登记集合集中维护。历史架构accepted约束与未来硬门禁继续有效，历史阶段进度不当作当前。
 
-engine=0.4.2，compiler=m3-bounded-v2，contentHash=f166a531，certificateId=af8e1f05（旧0.4.1 b1434902不再用），profile=m3-debug-logical-v1，tickRate=30。maxUnits454、projectiles128、Areas64、grid≤256、actions/obstacles≤16、fanout≤454保持。
+### 新增13项validator tests与真实CLI负例
 
-与基线逐字段比较：root/producer/maintenance/Tick/startup/command全部certificate数值相同，fault limits和configured profile完全相同；authority producer/query/scan/lookup/structure/content semantics未变。新version-bound证书本轮重新编译，不复制旧生成报告。所有scope actual≤certificate≤fault≤configured与scan conservation再次通过；完整表在M3_WORK_ACCOUNTING和reports/m3-content.json。
+新增tests/unit/current-state.test.ts，全部通过：
 
-M3 joint fixture本轮certificate 06c72880：454 action completions、128 projectile×326 targets、64 Areas×128 targets、2608 CC expiry+pulse；同root Hook/Replacement/cancel-refund和command600history保持。release Tick actual Operations94,634/Facts94,896/scans28,184,273/structure12,001,232、roots1100，全部消费，无截断。
+1. 实际完整当前文档集与package/source相容。
+2. 每个注册root及实际mirror的当前version退回0.4.2拒绝。
+3. 当前Android blocker改回toolbar pending拒绝。
+4. 历史0.4.2/旧toolbar/归档声明正常通过。
+5. root/docs完全相同但共同stale仍拒绝。
+6. M3_DELIVERY使用旧c95a6d76完整base拒绝。
+7. 中央source与package version/phase不符拒绝。
+8. 可读声明与正确JSON矛盾拒绝。
+9. 缺失/重复/截断声明、缺当前文档拒绝。
+10. 未注册声明及正文重复current声明拒绝。
+11. 不完整/嵌套history不能隐藏旧声明。
+12. pending窄复核不能升software-final，硬件未齐不能升overall/进入下阶段。
+13. 正确header之后，artifact ZIP旧version或patch旧base缩写仍拒绝。
 
-M2极限原4,574,049 Operations /9,135,386 Facts /163,705,610 scans /809,164,729 structure精确保留，Fact produced=consumed=9,135,386；454×454与20-root正式路径通过。桌面单次极端诊断78.377秒/Tick仍是逻辑容量性能债，不是代表性实时负载。
+另外在隔离文件夹实际运行check-docs命令六组：当前集exit0、当前旧version exit1、toolbar pending exit1、历史0.4.2 exit0、两份相同stale exit1、旧delivery base exit1；见reports/m3-docs-respin-negative-cli.json。原产品/输入/multitouch/authority/容量200项逐字保留，没有改browser fixture来换绿。
 
-## 正常玩法成本（本轮重新测量）
+### 产品源码byte-diff证明
 
-30Hz，同命令3轮，各60Tick warmup+300measured，单位ms。
+第一份0.4.3 ZIP SHA256=`310066242734ada6ec77a49686404a9106dfce66887f3bf2c28b9d009171aeb6`，Git tree=`66363317c67c6fc34b2fda3ab3378cc602d02b69`，基线仍c7ed67a。与该ZIP manifest逐项比较，**119个src文件、47个既有test/fixture文件**，加content JSON、package/lock、配置与其他tools，共201个受保护文件SHA256完全相同；产品diff=0，原200tests保留。Controller、touch-layout、Simulation、Action/Movement/Projectile/Area、toolbar/BattleScene、capacity算法与engine绑定均无字节变化。唯一原工具修改check-docs.mjs；新增current-state.mjs/d.mts与validator test。报告/manifest/dist等生成物另列，不误记为authority修改。机器证据reports/m3-docs-respin-scope.json含全部201项摘要及39份文档分类；最终文档SHA以FILE_MANIFEST为准，避免报告自引用。
 
-| profile | Tick p50 | Tick p95 | CPU ms/模拟秒 | final hash |
+## 当轮完整门禁
+
+| Gate command | exit code | tests | skipped | flaky | retry | status |
+|---|---:|---:|---:|---:|---:|---|
+| `npm run typecheck` | 0 | 0 | 0 | 0 | 0 | PASS |
+| `npm run lint` | 0 | 0 | 0 | 0 | 0 | PASS |
+| `npm run check:deps` | 0 | 0 | 0 | 0 | 0 | PASS |
+| `npm run check:docs` | 0 | 0 | 0 | 0 | 0 | PASS |
+| `npm run validate:content` | 0 | 0 | 0 | 0 | 0 | PASS |
+| `npm run test:unit` | 0 | 80 | 0 | 0 | 0 | PASS |
+| `npm run test:content` | 0 | 12 | 0 | 0 | 0 | PASS |
+| `npm run test:sim` | 0 | 77 | 0 | 0 | 0 | PASS |
+| `npm run test:capacity` | 0 | 23 | 0 | 0 | 0 | PASS |
+| `npm run build` | 0 | 0 | 0 | 0 | 0 | PASS |
+| `npm run test:browser` | 0 | 21 | 0 | 0 | 0 | PASS |
+| `npm run check`（完整wrapper） | 0 | 213（总数） | 0 | 0 | 0 | PASS |
+
+80 unit/architecture +12 content +77 simulation/replay/property +23 capacity/performance +21 browser=213。原200保留＋新增13文档测试，browser gameplay tests仍21且逐字未改。正式wrapper实际逐条执行上述11个npm命令，每项退出码独立记录；不采用上一份0.4.3报告代替。最新报告reports/check.json、m3-docs-respin-gates.json、browser.json，完整日志m3-docs-respin-check.log。报告收口后再次check:docs及diff--check。
+
+初次当轮运行前10gate通过，browser因本环境缺锁定Chromium executable而在launch阶段失败，玩法未执行；初次check.json/log保存在reports/m3-docs-respin-initial-check.json/.log。安装Playwright build1194并验证Chromium141.0.7390.37可启动后，**重新完整运行npm run check**，最终11gate全部exit0，Playwright每结果retry0、expected21/unexpected0/flaky0/skipped0。这是环境准备失败后的独立完整复跑，不是flaky retry或skip，也没有动任何旧test断言。
+
+## content / certificate / authority unchanged
+
+engine仍0.4.3/M3；contentHash f166a531、M3certificate6f60c23c、M2certificate74b0fd50、joint6d8796a9。通过当轮正式validate:content及joint fixture compile重新验证，**m2-content、m3-content和整个m3-capacity-joint报告与第一份候选逐字相同**。没有新engine/version/content导致的certificate差异，不手改ID。fixed profile m3-debug-logical-v1、454 units/128projectiles/64Area、grid≤256、actions/obstacles≤16、fanout≤454全保留；所有actual≤certificate≤fault≤configured scope照常回归。
+
+M3 joint release/expiry/startup/root/scanConservation/FactDelivery全报告不变，release Operations94634/Facts94896/scans28184273/lookups3428948/structure12001232、roots1100保持。454动作完成、128×326projectile sweep、64×128Area、2608CC到期与Hook/Replacement集成等原用例全部保留。
+
+M2 extreme **4,574,049 Operations /9,135,386 Facts /163,705,610 scans /809,164,729 structure**，完整actual（含root work）、FactDelivery、certificate/profile、独立实体结果与第一份相同；20root/454×454/no truncation回归保持。最新桌面单Tick约79.552s，仅性能诊断，不是Android实时PASS。
+
+固定代表性命令流两profile各三轮、60warmup+300measurementTicks；全量replay/property/同率低renderFPS authority回归通过。各run hash/maxWork/maxRoots/projectile/Area/伤害数与第一份一致：
+
+| representative profile | p50 ms/Tick | p95 ms/Tick | CPU ms/sec | fixed-stream hash |
 |---|---:|---:|---:|---|
-| debug-battle-4 | 1.08–1.13 | 1.62–1.89 | 34.76–36.86 | 5716d35d |
-| representative-64-eight-active | 5.65–6.01 | 6.78–7.83 | 172.24–182.89 | 1130166b |
+| debug-battle-4 | 1.007–1.163 | 1.384–2.541 | 31.286–38.158 | `5716d35d`（不变） |
+| representative-64-eight-active | 5.650–6.084 | 6.847–7.659 | 172.392–184.218 | `1130166b`（不变） |
 
-logical maximum capacity与representative performance分别判断。软件input/UI/visual/acceptance/release/CPU/frame/correction细项见本轮reports/m3-gameplay-ab.json；不将运行间噪声称修复带来的性能改善，不决定最终rate/B策略。
+CPU来自本次fresh桌面软件测量，波动不表示authority变化或Android性能通过；报告列第一份与本轮各run成本。实时CDP输入的targetTick受软件调度影响，两个现场session并非同一命令/Tick流，不拿其最终hash相互比较；固定脚本/replay的hash才进行相同流比较。全部证明reports/m3-docs-respin-authority.json。所有保护检查相等；若certificate/固定流hash/work有差异，本轮流程会assert停止，未跳过调查。
 
-## 硬件事实与停止点
+## 尚未完成的硬门禁
 
-PASS：本轮自动门禁；此前0.4.1独立复核；用户已确认Android A大量功能、B普通移动/碰墙/move→dash、Canvas双指及单独toolbar。UNAVAILABLE：竖屏因设备操作时防转屏保护。BLOCKED/PENDING：toolbar第二触点真机blocker尚待0.4.2复测，移动中control/dash受控/B prediction→control正式结论不接受旧PASS；新候选独立复核、第二档约4GB、代表性20分钟冷热态/电量/温度/降频、M3/Android整体均未通过。DEFERRED：physical端到端与M7/M10原未来硬门禁。NOT_APPLICABLE：C=60Hz（未触发）。
+产品source review PASS是用户提供的独立结论：finite envelope、ignored lifecycle、battlefield lock、六按钮优先、1503×536 A/B CDP设计、mend盾/60Tick/pause、charge、authority及第一份交付一致性已确认。此次只剩documentation narrow review PENDING；Android gap retest NOT_EXECUTED。旧0.4.2 toolbar blocker已真机关闭，A/B held joystick→CC stop/resume、dash中断、basic范围、mend Heal100+Shield100约2s合法事实保留。
 
-A默认/Bexperimental/30Hzprovisional，不推送main、不部署Pages、不宣布整体或Android PASS，不接受最终Tick率、不进入M4。独立复核通过后优先复测blocker，再恢复其余正式Android验收；不抹掉此前合法设备证据。交付ZIP/patch/manifest/hash的精确round-trip与完整性独立验证；应用补丁不代替源码复核。
+M3 overall/Android overall仍BLOCKED；formal A/B三轮交替×每情景≥20未完成；A/B各20min thermal/battery/温度/降频与second-tier约4GB未完成；portrait anti-rotation UNAVAILABLE。physical端到端DEFERRED/缺工具UNAVAILABLE；M7/M10原硬门禁保留。30Hz provisional，A default/B experimental/C not-triggered，不接受最终Tick率、最低设备、Android性能或最终手感。停止点：“M3 0.4.3 documentation-respun repair candidate，等待独立窄复核。”
 
-## 交付完整性
+## 重新交付一致性
 
-PASS：manifest 292/292文件SHA256一致；ZIP共293项（含FILE_MANIFEST.json自身），missing/hash mismatch/extra均0。完整git binary patch包含dist与manifest，以c95a6d76f34a9f8621586a9bd84160f71061170d为唯一base；干净工作树apply --check、正向完整Git tree及逐文件字节相同、反向恢复精确基线且git status为空、再次正向重建全部相同均通过。基线历史M1 ZIP保持原Git tree字节，按原打包规则不重复嵌套旧ZIP。四个导出文件SHA256列于SHA256SUMS_M3_v0.4.2.txt；所有交付件均为本地候选，未提交远端。
+<!-- respin-delivery:start -->
+五个同名artifact已全部重新生成。精确patch base为`c7ed67a9582f211335d4ed55414595969d696ebf`，不是上一轮c95a6d76；git apply --check、forward完整tree、reverse恢复clean精确base、reapply同一完整tree与逐文件字节均PASS，包含dist和FILE_MANIFEST。外部manifest与包内self-manifest逐字相同；manifest覆盖313个文件，ZIP含314项（额外一项为FILE_MANIFEST本身），missing/hash mismatch/extra均0；SHA256SUMS验证其余四件artifact全部PASS。最终tree与SHA256由交付验证记录和外部checksum记录，不在本报告自写自身摘要。
+
+原第一份候选的dist文件逐字相同，产品/content/certificate/固定流hash/work差异均0。重新生成的实时browser和performance报告允许计时差异；既有test与assertions没有变化。初次环境失败log仅清理行尾空白以通过diff --check，失败内容、exit code及机器报告完整保留。
+
+本轮精确修改范围：上方逐项列出的39份文档；新增docs/current-status.json；修改tools/check-docs.mjs，新增tools/current-state.mjs与tools/current-state.d.mts；新增tests/unit/current-state.test.ts。生成物：FILE_MANIFEST.json、reports/browser.json、reports/check.json、reports/m2-capacity-peak.json、reports/m2-main-capacity-peak.json、reports/m3-043-gap-A.json、reports/m3-043-gap-B.json、reports/m3-043-mend.json、reports/m3-debug-battle.png、reports/m3-gameplay-ab.json、reports/m3-gameplay-performance.json，以及新增reports/m3-docs-respin-authority.json、m3-docs-respin-check.log、m3-docs-respin-gates.json、m3-docs-respin-initial-check.json、m3-docs-respin-initial-check.log、m3-docs-respin-negative-cli.json、m3-docs-respin-scope.json。共62个路径相对第一份0.4.3 candidate发生变化；其他文件无变化。
+
+全部重新交付检查PASS仅指软件自动门禁及artifact一致性。停止点仍为：**M3 0.4.3 documentation-respun repair candidate，等待独立窄复核。** 不宣布M3 software-exit final；不push/deploy/继续Android/进入M4。
+<!-- respin-delivery:end -->

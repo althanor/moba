@@ -1,0 +1,93 @@
+{
+  "status": "PASS",
+  "authorityCertificateHashChanged": false,
+  "contentHash": "f166a531",
+  "catalogAndJointReports": [
+    {
+      "path": "reports/m2-content.json",
+      "byteIdentical": true,
+      "certificate": "74b0fd50"
+    },
+    {
+      "path": "reports/m3-content.json",
+      "byteIdentical": true,
+      "certificate": "6f60c23c"
+    },
+    {
+      "path": "reports/m3-capacity-joint.json",
+      "byteIdentical": true,
+      "certificate": "6d8796a9"
+    }
+  ],
+  "M2extreme": {
+    "fullActualAndFactDeliveryUnchanged": true,
+    "tick": {
+      "operations": 4574049,
+      "hooks": 224275,
+      "queries": 9553,
+      "ast": 4589051,
+      "formula": 4571780,
+      "scans": 163705610,
+      "facts": 9135386,
+      "lookups": 35478464,
+      "structure": 809164729
+    },
+    "durationMs": 79551.818269
+  },
+  "representative": [
+    {
+      "profile": "debug-battle-4",
+      "fixedStreamHash": "5716d35d",
+      "workUnchanged": true,
+      "firstP50Ms": [
+        1.1063159999999925,
+        1.0588149999999814,
+        1.1221499999999196
+      ],
+      "respinP50Ms": [
+        1.1631009999999833,
+        1.0917329999999765,
+        1.0071159999999963
+      ],
+      "respinP95Ms": [
+        1.7241149999999834,
+        2.5409049999999525,
+        1.3838130000001456
+      ],
+      "respinCpuMsPerSecond": [
+        36.214646499999944,
+        38.158133400000146,
+        31.28554970000032
+      ]
+    },
+    {
+      "profile": "representative-64-eight-active",
+      "fixedStreamHash": "1130166b",
+      "workUnchanged": true,
+      "firstP50Ms": [
+        5.874128999999812,
+        5.685183999999936,
+        5.7611180000003515
+      ],
+      "respinP50Ms": [
+        6.0843079999999645,
+        5.767802000000302,
+        5.649793999999929
+      ],
+      "respinP95Ms": [
+        7.6585369999997965,
+        6.847396000000117,
+        6.851112000000285
+      ],
+      "respinCpuMsPerSecond": [
+        184.21774730000018,
+        174.7082784000013,
+        172.3916810000006
+      ]
+    }
+  ],
+  "sourceByteDiffs": 0,
+  "protectedFilesByteIdentical": 201,
+  "original200TestsPreserved": true,
+  "note": "Exact fixed command streams compared; fresh live browser timing exports are not identical command/Tick streams and are not used for hash comparison."
+}

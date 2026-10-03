@@ -57,7 +57,11 @@ export class GameplayController {
         if (sample.phase === 'begin') {
             const button = layout.buttons.findIndex(b => Math.hypot(p.xWorld - b.xCss, p.yWorld - b.yCss) <= b.radiusCss);
             const action = button >= 0 ? view.actions[button] ?? null : null;
-            const role = action ? 'skill' : Math.hypot(p.xWorld - layout.cancel.xCss, p.yWorld - layout.cancel.yCss) <= layout.cancel.radiusCss ? 'cancel' : p.xWorld < widthCss * .5 && p.yWorld > heightCss * .55 ? 'joystick' : 'target';
+            const cancel = Math.hypot(p.xWorld - layout.cancel.xCss, p.yWorld - layout.cancel.yCss) <= layout.cancel.radiusCss;
+            const region = layout.skillControl;
+            if (!action && !cancel && region && p.xWorld >= region.minXCss && p.xWorld <= region.maxXCss && p.yWorld >= region.minYCss && p.yWorld <= region.maxYCss)
+                return 'ignored'; // No held role: subsequent move/end/cancel cannot become target input.
+            const role = action ? 'skill' : cancel ? 'cancel' : p.xWorld < widthCss * .5 && p.yWorld > heightCss * .55 ? 'joystick' : 'target';
             if (role === 'joystick' && [...this.#held.values()].some(h => h.role === 'joystick') || role === 'skill' && [...this.#held.values()].some(h => h.role === 'skill'))
                 return 'ignored';
             held = { origin: p, point: actor.position, role, action, sampleId: sample.sampleId };

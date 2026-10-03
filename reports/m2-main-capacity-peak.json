@@ -4,8 +4,8 @@
   "diagnosticArchive": "summary: every Fact consumed exactly once, all counts retained; latest 2000 raw diagnostic records",
   "contentHash": "4302def2",
   "certificate": {
-    "id": "04d4c8b9",
-    "engineVersion": "0.4.2",
+    "id": "74b0fd50",
+    "engineVersion": "0.4.3",
     "compilerVersion": "m3-bounded-v2",
     "contentHash": "4302def2",
     "tickRate": 30,
@@ -8542,9 +8542,9 @@
     "maximum": 991405
   },
   "cost": {
-    "durationMs": 78376.579905,
-    "beforeHeapBytes": 1558486232,
-    "afterHeapBytes": 91011984
+    "durationMs": 79551.818269,
+    "beforeHeapBytes": 1545315304,
+    "afterHeapBytes": 117104848
   },
   "noTruncationOfSettlement": true
 }

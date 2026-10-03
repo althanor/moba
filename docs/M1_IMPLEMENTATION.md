@@ -1,5 +1,8 @@
 # M1 工程实现说明
 
+历史核实记录：保留原版本/日期证据及契约，不作为当前工程版本、阶段或交付声明；现行状态见 docs/current-status.json。
+
+<!-- historical/superseded:start -->
 工程0.2.1；规范0.1.2保留M0架构不变量；2026-10-01。M1按修订验收标准收口，M2就绪但未实施。
 
 ## 系统与状态所有者
@@ -47,3 +50,4 @@ Tick CPU 包围 simulation.step；帧 CPU 为 Scene.update 至 POST_RENDER，包
 采集结果存 reports/software-probe，阶段验收见 M1_ACCEPTANCE.md，版本与锁定依据见 DEPENDENCIES.md。M1 调试 shell 的 build 是开发验收产物，不能视为正式发行游戏；未来正式发行需关闭作弊与内部 Debug 权限。
 
 构建/测量导出携带同一commit与Actions run/attempt；本地dirty/unknown明确标记，不进入权威hash。根目录/docs规范副本一致性门禁check:docs已加入check。当前硬件PASS与DEFERRED见M1_ACCEPTANCE.md，未测的热态/第二设备不自动变为PASS。
+<!-- historical/superseded:end -->

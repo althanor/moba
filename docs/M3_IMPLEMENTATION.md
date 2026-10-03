@@ -1,6 +1,22 @@
-# M3 0.4.2 toolbar multitouch 修复实施
+<!-- current-state:start -->
+# M3 实施与输入修复记录
 
-当前基线：`althanor/moba` main `c95a6d76f34a9f8621586a9bd84160f71061170d`，engine 0.4.1 / phase M3；软件出口已通过独立复核（用户确认）。下列通用能力始于 M2 0.3.1/c57fa8c 上的 M3 实施历史。开始前按远端树逐 blob SHA 核对源码，重新读取架构、流水线、编码、阶段、性能、决策、变更、README、M2 三份报告及 M1/M2 验收；全部 23 个既有 ADR 位于 DESIGN_DECISIONS.md。M2 独立复核、推送及 Actions/Pages 通过状态来自用户确认。本轮 0.4.2 为本地 toolbar 修复候选；0.4.1 已推送，Android 验收因新 blocker 暂停。
+<!-- current-state:json {"schema":"moba-document-current-state-v1","version":"0.4.3","phase":"M3","baseCommit":"c7ed67a9582f211335d4ed55414595969d696ebf","candidate":"输入误锁 documentation-respun repair candidate，等待独立窄复核","productReview":"PASS_SOURCE_REVIEW","documentationReview":"PENDING_NARROW_REVIEW","softwareExitFinal":"NOT_DECLARED","toolbarBlocker":"CLOSED_ON_ANDROID_DEVICE","currentAndroidBlocker":"skill-control interstitial gap → unintended authoritative targetLock","androidGapRetest":"NOT_EXECUTED","overall":"BLOCKED","androidOverall":"BLOCKED","formalAB":"NOT_COMPLETED","thermalBattery20min":"NOT_COMPLETED","secondTier4GB":"NOT_COMPLETED","portrait":"UNAVAILABLE","tickRate":30,"tickRateStatus":"provisional","modeA":"default","modeB":"experimental","modeC":"not-triggered","pushed":false,"deployed":false,"androidAcceptanceResumed":false,"nextPhaseStarted":false,"contentHash":"f166a531","certificate":"6f60c23c","m2Certificate":"74b0fd50","jointCertificate":"6d8796a9","toolbarFixVersion":"0.4.2","nextPhase":"M4"} -->
+
+当前：M3 0.4.3 输入误锁 documentation-respun repair candidate，等待独立窄复核。
+
+基线：`c7ed67a9582f211335d4ed55414595969d696ebf`（althanor/moba main）；version=0.4.3，phase=M3；contentHash=f166a531，certificate=6f60c23c，M2=74b0fd50，joint=6d8796a9。
+
+产品源码独立审核=PASS_SOURCE_REVIEW；本轮文档窄复核=PENDING_NARROW_REVIEW；software-exit final=NOT_DECLARED。
+
+0.4.2 toolbar blocker=CLOSED_ON_ANDROID_DEVICE；后续发现 skill-control interstitial gap → unintended authoritative targetLock；Android gap blocker retest=NOT_EXECUTED。M3 overall=BLOCKED；Android overall=BLOCKED。
+
+formal A/B=NOT_COMPLETED；20min thermal/battery=NOT_COMPLETED；second-tier ~4GB=NOT_COMPLETED；portrait=UNAVAILABLE。30Hz provisional；A=default / B=experimental / C=not-triggered。
+
+push=false；deploy=false；继续 Android 验收=false；进入下一阶段=false（本候选不得进入 M4）。状态源：docs/current-status.json；历史记录不充当当前状态。
+<!-- current-state:end -->
+
+远端patch base历史出处：`althanor/moba` main `c7ed67a9582f211335d4ed55414595969d696ebf`，engine 0.4.2 / phase M3，184 tests，contentHash f166a531，certificate af8e1f05。本轮从精确远端 main 独立工作树重新完整读取规范、全部 ADR、M3 实施/报告、M1/M2/M3 验收与当前 Controller/layout/Scene/toolbar 和全部 M3 输入/多指测试。0.4.2 已在真机关闭 toolbar blocker，但随后确认技能簇间隙误发权威 targetLock；Android 验收停止。第一份0.4.3只修产品输入分类，已由用户独立源码审核PASS；本轮documentation-only respin冻结产品，仅修文档/文档门禁，等待独立窄复核。
 
 ## 已实现纵切面
 
@@ -52,8 +68,9 @@ Ordinary Observation 的 BattleView 是批准的 public-debug-arena-v1：全部�
 
 Phaser 只绘制 authoritative snapshots；B 只预测本地普通移动、最多 1 Tick，control/death/action/discontinuity 不预测；projectile 始终 snapshot interpolation，无预测 projectile correction 指标。B 的位置/错误不进入 hash。软件导出分列 input/UI、visual、acceptance、release、首次 authority movement、Tick CPU、frame CPU、CPU/sec、prediction error 与公共 gameplay 事件。physical touch-to-photon、玩家手感、温度和电量仍需人工记录。
 
-历史 0.4.0 三项阻塞已在 0.4.1 修复，全部 11 门禁/163 tests 并通过独立复核。当前 0.4.2 只修复真机发现的 toolbar blocker，等待独立源码复核；正式 Android A/B 暂停，复核后优先复测 blocker。软件门禁结果见 M3_TEST_REPORT.md，证明见 M3_WORK_ACCOUNTING.md，真机硬门禁见 M3_ACCEPTANCE.md。停在 M3，不进入 M4。
+历史 0.4.0 三项阻塞已在 0.4.1 修复并通过独立复核；0.4.2 软件基线为 184 tests，toolbar blocker 已由用户确认真机关闭。0.4.3产品输入误锁修复已独立源码审核PASS；本轮仅修文档一致性，等待文档窄复核与Android blocker复测。软件门禁结果见 M3_TEST_REPORT.md，证明见 M3_WORK_ACCOUNTING.md，真机硬门禁见 M3_ACCEPTANCE.md。停在 M3，不进入 M4。
 
+<!-- historical/superseded:start -->
 ## 0.4.1 输入坐标与 penetration recovery 修订
 
 CSS 点与向量使用不同契约：点独立缩放 X/Y 后加 arena.min；向量只乘 worldPerCssX=arenaWidth/widthCss、worldPerCssY=arenaHeight/heightCss，再归一化。Joystick magnitude=min(1,screenDragLength/48)，单独保留屏幕拖距力度；方向用转换后的 world unit vector。技能 deadzone/cancel/按钮 hit test 仍使用 CSS，direction/point drag 的 world direction 经过同一转换；投影 preview 随当前授权 actor snapshot 重定位，松手重新从当前 snapshot 构造 Command，preview 不决定命中。目标 tap 的点映射保留。
@@ -66,9 +83,9 @@ wall:ignore / units:ignore 明确忽略对应的 path + endpoint collision，允
 
 新增 helper 均是固定数量标量算术，不新增动态集合、candidate query、元素遍历、lookup 或结构快照。每个原 candidate/obstacle 仍恰好读取一次；本次重新生成 engine=0.4.1/compiler=m3-bounded-v2 的证书并验证全部 scope，work 上界/profile 数值保持，不能复用旧版本证书 ID。Projectile 起点重叠依旧 t=0 命中，命中/结束/expiry 不重复。
 
-0.4.1 修订已由用户确认独立复核通过。本轮 0.4.2 等待新独立复核，不推送 main/Pages，不进入 M4；A 默认、B experimental、30 Hz provisional、C 未触发。
+0.4.1 修订已由用户确认独立复核通过；以下 0.4.2 契约是已推送的历史修订，本轮0.4.3等待独立文档窄复核，不推送 main/Pages，不进入 M4；A 默认、B experimental、30 Hz provisional、C 未触发。
 
-## 0.4.2 toolbar multitouch 输入契约
+## 0.4.2 toolbar multitouch 输入契约（历史、保持有效）
 
 真机已确认：Canvas 摇杆 contact 持续时，第二指点击 DOM control/pause 在 A/B 都无响应；单独 toolbar 点击及 Canvas 内部双指移动+技能正常。根因是 toolbar 依赖合成 click，不能作为非 primary touch 的可靠 activation，且所有 action 统一 clearInput 错误清掉 control 所需的 held contacts。
 
@@ -81,3 +98,17 @@ CC 的原权威语义会清 movement intent。表现层在稳定 Session、input
 每按钮 data-activation-count/source 和 Canvas data-input-state 是 presentation-only/debug-only 观察计数，直接证明一次 activation；从不进入 Simulation/权威 hash/内容/证书。正式浏览器回归使用 CDP active touch set，同时 Canvas 与 DOM contacts；touchEnd 显式指定 toolbar contact 释放，保留第一 contact 的完整事件流，再验证 CC 前移动、受控停步、结束自动恢复和三指保留技能。原 1503×536 A/B 回归不变。鼠标/键盘、一次 recreate/mode/export/下载另有去重断言。
 
 版本 0.4.2 只重新绑定 engineVersion；authority producers、Effect/Action/Movement/Projectile/Area/Hook/查询和所有 work 算法不变，contentHash 和 profile 数值不变。旧版本证书不得复用；当前证书/完整门禁以本轮 M3_TEST_REPORT/M3_WORK_ACCOUNTING 和生成报告为准。
+<!-- historical/superseded:end -->
+## 0.4.3 输入区域契约
+
+根因：begin 命中具体按钮失败后，技能 UI interstitial gap 落入 target 分支，end 经正式 Command 产生权威 lock；不是自动寻敌、B 或 Movement 问题。touchLayout 以全部按钮 center±radius 推导有限闭矩形 skillControl。具体 skill、cancel 优先；矩形内部未命中按钮直接 ignored，不建立 held role。该 pointer 后续 move/end/cancel，即便移出矩形，也不能补建 target、排入 targetLock 或改已有 lock。矩形外仍沿原 joystick/target 分类，战场点仍按 CSS→world/稳定最近敌人生成正式 targetLock。按钮半径、位置、摇杆 analog、向量变换及 drag/cancel 均不变。
+
+此 envelope 是 foundation 的 CSS 布局几何，由 layout 参数确定；零按钮返回 null，不硬编码设备坐标、不禁用整个右半屏、不进入 Simulation/hash。1503×536 六按钮 envelope=[1294,1492]×[395,523]；推导间隙及真机点 (1444.63,466.04) 都在 envelope 内且不在任何按钮半径内。Controller 测试覆盖同 aspect、16:9、ultrawide 全事件序列、已有 lock、全部六个按钮及有限边缘。浏览器用真实 CDP A/B 同时 contacts 验证摇杆持续、第二指 gap/部分 release、正常战场锁定与旧 lock 保留；保留全部旧 toolbar/CC/三指回归。
+
+补强验收测试：mend release Shield=100，pause 不推进 expiry，release+60 Tick Shield=0；两枚 charge 的真实编译 simulation fixture 消费 2→1→0、第三发 charges 拒绝、34/64 Tick 逐枚恢复。正式 debug bolt 保持 cooldownMs=rechargeMs=1000、maxCharges=2；cooldown 先于 charges gate，所以当前模板不适合人工区分 charge lifecycle，不把 Android 单发冷却表现冒充双 charge 验收。测试仅将独立 fixture cooldownMs=0，正式 content 未改。
+
+0.4.2 toolbar event provenance 去重、control 保留输入、其他九 action 清理、CC结束重采 held intent 原样保留。authority 除 engineVersion 两处绑定外逐字不变；正式重新编译 engine 0.4.3 证书，数值与内容不变，见工作证明与软件报告。
+
+## Documentation consistency respin
+
+产品、全部既有200tests及内容/证书算法逐字冻结；只更正文档状态、更新M3_DELIVERY、增加current-state源/validator/negative tests并重新运行门禁。第一份0.4.3的输入、mend和charge测试已独立确认正确；新的状态机仅属于文档校验，不是战斗系统。当前验收出口以顶部声明和M3_TEST_REPORT为准。

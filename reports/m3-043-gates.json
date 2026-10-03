@@ -1,0 +1,137 @@
+{
+  "status": "PASS",
+  "wrapper": {
+    "command": "npm run check",
+    "exitCode": 0
+  },
+  "retainedTests": 184,
+  "newTests": 16,
+  "totalTests": 200,
+  "browserTests": 21,
+  "skipped": 0,
+  "flaky": 0,
+  "retry": 0,
+  "gates": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "durationMs": 3315.911784,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "durationMs": 1732.1769869999998,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run check:deps",
+      "exitCode": 0,
+      "durationMs": 579.7261349999999,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run check:docs",
+      "exitCode": 0,
+      "durationMs": 161.67976799999997,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run validate:content",
+      "exitCode": 0,
+      "durationMs": 870.1473830000004,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run test:unit",
+      "exitCode": 0,
+      "durationMs": 2579.4270069999993,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 67,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run test:content",
+      "exitCode": 0,
+      "durationMs": 1469.3848240000007,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 12,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run test:sim",
+      "exitCode": 0,
+      "durationMs": 3404.9633109999995,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 77,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run test:capacity",
+      "exitCode": 0,
+      "durationMs": 93883.26084,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 23,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "durationMs": 8391.236982999995,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    },
+    {
+      "command": "npm run test:browser",
+      "exitCode": 0,
+      "durationMs": 72993.69765799999,
+      "stage": "applicable",
+      "status": "PASS",
+      "tests": 21,
+      "skipped": 0,
+      "flaky": 0,
+      "retry": 0
+    }
+  ]
+}

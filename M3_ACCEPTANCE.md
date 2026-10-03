@@ -1,47 +1,59 @@
-# M3 0.4.2 验收状态与 Android blocker 复测执行单
+<!-- current-state:start -->
+# M3 验收与 Android 执行单
 
-基线：althanor/moba main c95a6d76f34a9f8621586a9bd84160f71061170d /0.4.1 /M3。用户确认 0.4.1 软件出口此前已通过独立源码复核并推送；Android A/B 验收已开始，现因新 toolbar multitouch blocker 暂停。0.4.2 是本地软件修复候选，等待独立源码复核；本轮不推送 main、不部署 Pages、不进入 M4。先复核，再优先复测 blocker，不重复抹去已合法通过的真机事实。
+<!-- current-state:json {"schema":"moba-document-current-state-v1","version":"0.4.3","phase":"M3","baseCommit":"c7ed67a9582f211335d4ed55414595969d696ebf","candidate":"输入误锁 documentation-respun repair candidate，等待独立窄复核","productReview":"PASS_SOURCE_REVIEW","documentationReview":"PENDING_NARROW_REVIEW","softwareExitFinal":"NOT_DECLARED","toolbarBlocker":"CLOSED_ON_ANDROID_DEVICE","currentAndroidBlocker":"skill-control interstitial gap → unintended authoritative targetLock","androidGapRetest":"NOT_EXECUTED","overall":"BLOCKED","androidOverall":"BLOCKED","formalAB":"NOT_COMPLETED","thermalBattery20min":"NOT_COMPLETED","secondTier4GB":"NOT_COMPLETED","portrait":"UNAVAILABLE","tickRate":30,"tickRateStatus":"provisional","modeA":"default","modeB":"experimental","modeC":"not-triggered","pushed":false,"deployed":false,"androidAcceptanceResumed":false,"nextPhaseStarted":false,"contentHash":"f166a531","certificate":"6f60c23c","m2Certificate":"74b0fd50","jointCertificate":"6d8796a9","toolbarFixVersion":"0.4.2","nextPhase":"M4"} -->
+
+当前：M3 0.4.3 输入误锁 documentation-respun repair candidate，等待独立窄复核。
+
+基线：`c7ed67a9582f211335d4ed55414595969d696ebf`（althanor/moba main）；version=0.4.3，phase=M3；contentHash=f166a531，certificate=6f60c23c，M2=74b0fd50，joint=6d8796a9。
+
+产品源码独立审核=PASS_SOURCE_REVIEW；本轮文档窄复核=PENDING_NARROW_REVIEW；software-exit final=NOT_DECLARED。
+
+0.4.2 toolbar blocker=CLOSED_ON_ANDROID_DEVICE；后续发现 skill-control interstitial gap → unintended authoritative targetLock；Android gap blocker retest=NOT_EXECUTED。M3 overall=BLOCKED；Android overall=BLOCKED。
+
+formal A/B=NOT_COMPLETED；20min thermal/battery=NOT_COMPLETED；second-tier ~4GB=NOT_COMPLETED；portrait=UNAVAILABLE。30Hz provisional；A=default / B=experimental / C=not-triggered。
+
+push=false；deploy=false；继续 Android 验收=false；进入下一阶段=false（本候选不得进入 M4）。状态源：docs/current-status.json；历史记录不充当当前状态。
+<!-- current-state:end -->
+
+基线：althanor/moba main c7ed67a9582f211335d4ed55414595969d696ebf /0.4.2 /M3；184 tests、contentHash f166a531、certificate af8e1f05。0.4.2 已推送且以下真实 Android 功能证据来自用户确认。本轮停止继续正式验收，只制作本地 0.4.3 repair candidate，产品修复已独立源码审核PASS；本轮documentation-only respin等待独立窄复核，之后仍需Android blocker retest。不推送、不部署、不进入 M4。
 
 ## 当前证据与出口
 
-| 项目 | 状态 | 证据与范围 |
+| 项目 | 状态 | 证据与边界 |
 |---|---|---|
-| M3 0.4.1 软件出口 | PASS（此前独立复核） | 用户确认，远端 main c95a6d76；不自动授予新候选 PASS |
-| 0.4.1 Android A 模式大量功能路径 | PASS（用户真机事实） | 已测试路径保留；未提供逐路径量化统计，不扩大为整组/整个 Android PASS |
-| 0.4.1 Android B 普通移动、碰墙、move→dash | PASS（用户真机事实） | 不外推到 prediction→control 或最终手感 |
-| Canvas 内部双指摇杆+技能 | PASS（用户真机事实） | 证明设备多点触控可用，不证明 DOM toolbar 第二指可用 |
-| 单独 control、单独 pause | PASS（用户真机事实） | 不代表持续 Canvas contact 时可用 |
-| 竖屏/旋转 M3 真机情景 | UNAVAILABLE | 设备“操作时防转屏保护”使该情景不可执行，绝非 PASS；原软件生命周期回归保留 |
-| Canvas held joystick + toolbar control/pause | BLOCKED（已真机确认） | A/B均稳定无响应；0.4.2 软件修复不自动撤销硬件 blocker |
-| 移动中 control、dash 中受控、B prediction→control 正式真机结论 | PENDING / 不接受旧结论 | 因 blocker 未能有效测试；此前如有通过表述撤回，优先复测 |
-| 0.4.2 软件自动门禁 | 见 M3_TEST_REPORT.md / reports/check.json | 必须本轮完整重跑，不复制旧报告 |
-| 0.4.2 软件修复候选 | 等待独立源码复核 | 自动 PASS 与候选独立复核分开 |
-| 当前 A/B/C | A 默认；B experimental；C NOT_APPLICABLE | Simulation 30 Hz provisional，无本轮自动触发 C |
-| 第二档非旗舰约4GB | BLOCKED / 等待设备 | M3 真机决策硬门禁；ADR019 空壳理由不继续延长 |
-| A/B各约20分钟代表性冷热态/电量/温度/降频 | BLOCKED / 等待真机 | 不接受最终率/最低设备/Android 性能/最终手感 |
-| physical touch-to-photon | DEFERRED / 人工测量；无工具则 UNAVAILABLE | 软件重采/渲染提交时间不能冒充物理端到端 |
-| M7低档45分钟完整对局 / M10兼容与发行 | DEFERRED 到原硬门禁 | 保留全部要求 |
-| M3整体 / Android整体 / M4开始 | BLOCKED | 软件候选复核、blocker真机复测及代表性硬件证据尚未满足 |
+| 0.4.1 软件出口 | PASS（历史独立复核） | 保留此前证据，不授予新候选独立复核 PASS |
+| 0.4.1 Android A 大量功能；B 普通移动/碰墙/move→dash | PASS（历史用户真机事实） | 未外推整个 Android 或最终手感 |
+| 0.4.2 toolbar second-touch blocker | CLOSED（用户真机确认） | 已关闭原 blocker，不被新问题抹掉 |
+| 0.4.2 A/B held joystick + control | PASS（用户真机确认） | CC stop + 原 held intent 自动恢复均通过 |
+| 0.4.2 A/B dash→CC interruption | PASS（用户真机确认） | 保留合法功能证据 |
+| 0.4.2 basic out-of-range / in-range | PASS（用户真机确认） | 越界拒绝、范围内命中 |
+| 0.4.2 mend Heal100 + Shield100 + ~2s expiry | PASS（用户真机确认） | 对应 60 authority Ticks；软件另补 pause/到期精确断言 |
+| skill-cluster interstitial gap→unintended authoritative targetLock | BLOCKED（用户真机确认） | 静止点击间隙稳定锁敌；独立单指摇杆不自动锁。导出 lock index3/generation1、pointer453，CSS约1444.63/466.04，interaction=target，queued/accepted |
+| 0.4.3 自动软件门禁 | 见 M3_TEST_REPORT.md / reports/check.json | 当轮全量软件证据，不能代替 Android |
+| 0.4.3 产品修复 | PASS（用户独立源码审核） | gap/envelope/target-lock/六按钮/CDP/mend/charge/authority与交付证明已确认 |
+| 0.4.3 documentation-respun repair candidate | PENDING 独立窄复核 | 本轮只修stale状态与门禁；复核后仍须Android gap复测 |
+| 当前 debug bolt 人工 charge fixture | NOT_SUITABLE | cooldown=recharge=1s 先锁全技能；不能人工区分两枚消费。保留 content；真实双 charge 自动测试单列 |
+| formal A/B 3 alternating rounds × each scenario≥20 | PENDING / 未完成 | 部分功能 PASS 不替代正式配对统计 |
+| A/B各约20min热态/电量/温度/降频 | BLOCKED / 未完成 | M3 真机决策硬门禁 |
+| 第二档非旗舰约4GB | BLOCKED / 未完成 | 不沿用 ADR019 空壳理由无限延期 |
+| portrait/rotation 真机 | UNAVAILABLE | 设备操作时 anti-rotation 保护，不是 PASS |
+| physical touch-to-photon | DEFERRED；无工具时 UNAVAILABLE | 软件 capture/重采不等于物理端到端 |
+| A/B/C | A 默认、B experimental、C NOT_APPLICABLE | 30Hz provisional；本输入 bug 不触发60Hz |
+| M7低档45min / M10发行矩阵 | DEFERRED 到原硬门禁 | 保留原要求 |
+| M3整体 / Android整体 / M4开始 | BLOCKED | 0.4.2不是M3 final；新候选、blocker复测与硬件证据未齐 |
 
-事实来源是用户本轮 Android 报告；未在本环境操作 Android，不伪造原始样本、Actions run、温度或电耗。此前合法 A/B 功能证据属于 0.4.1，保留版本归属；当前自动化仅为生产构建桌面 Chromium/CDP 软件证据。
+事实来自用户本轮 Android 报告。本环境没有操作真机；不伪造硬件原始样本、温度、电耗或 Actions run。生产构建 Chromium/CDP 仅为软件证据。
 
-## 复核通过后优先执行 blocker 复测
+## 独立文档窄复核后优先复测
 
-核对未来获授权发布的 0.4.2 build-info、commit/run/attempt、version/contentHash/certificateId；当前本地候选没有部署，不能使用 0.4.1 Pages 页面假验 0.4.2。记录设备/OS/浏览器/刷新/FPS/亮度/充电/电量/可获取温度，不要求 Termux。
+核对获授权部署的 0.4.3 build-info/version/commit/contentHash/certificate；当前本地候选没有部署，0.4.2页面不能冒充0.4.3。记录设备/OS/浏览器/viewport/FPS及屏幕条件。
 
-1. A：左手按住摇杆并持续移动，右手按 control；第一触点不松开、不重按。按钮 counter+1；只有一次敌方 bolt；命中前仍移动，命中后 canMove=false 停止；CC结束后保持同触点自然恢复。多次反复检查，无 duplicate。
-2. B：同样流程，检查普通 prediction→control 停预测→控制结束；记录 visual/correction 和实际手感，不先接受最终B策略。
-3. A/B：移动+技能瞄准两指保持，第三指 control，技能pointer/preview不消失、不自行释放；控制结束后松技能仍按正常策略提交。
-4. A/B：持续摇杆，第二指 pause，必须暂停并清零Canvas pointers；resume后旧手指仍 held 也不能残留intent，只有新begin才能重新移动。
-5. 单指toolbar：control、recreate、modeA/modeB各一次；export一次下载一个JSON，并仍清held joystick。确认鼠标/键盘可用时的fallback未改变。
-6. 完成上述后再恢复移动中/受控dash的正式验收与A/B记录；此前A及B已通过路径不要求全部重做，若发现新回归才扩展。
+1. 重建、静止，A/B分别点六按钮间隙和对应右下 interstitial dead zone，完整 begin/move/end/cancel：interaction=ignored，无 targetLock queued/accepted，无新黄圈/authority lock。
+2. 在 envelope 外真实战场点锁敌 A，再点 gap：仍锁 A；六实际按钮及技能 drag/release/cancel 仍可用。
+3. A/B 左手 held joystick，第二指 gap 后松第二指：左指保持、移动继续、无 lock/ghost pointer。再组合 joystick+skill+第三指control，保留0.4.2已确认CC停止/自动恢复与toolbar exact-once。
+4. 若 blocker 关闭，才恢复正式 A/B 3交替轮×各情景≥20；保留已确认0.4.2功能证据，不无故重做全部。新回归才扩展范围。
 
-每按钮 data-activation-count/source 可在浏览器DOM调试观察，本阶段纯debug；不进入authority hash。Android最终结果须用户提交实际观察或导出，不能由CDP自动化代填。
+仍须按M3范围记录joystick持续/急转/碰墙、dash、projectile、skill按下/拖拽/释放/取消、control开始/结束/中断、多指的input/UI latency、visual、authority acceptance、correction、CPU/Tick、frameCPU、CPU/sec、prediction error及玩家说明。代表性冷热态A/B各20min，在0/5/10/15/20min记录电量/可取温度/降频与帧/CPU；第二档约4GB同样保留。无低档/热态证据不接受最终率、最低设备、Android性能或最终手感。
 
-## 保留的完整玩法与性能门禁
-
-基础摇杆/急转/松开、墙体/单位碰撞、dash、投射物/Area/治疗盾、技能按下/拖拽/释放/取消、目标锁、control开始/结束/动作中断、move+skill多指、background/blur/lost pointer/pause/resume/recreate均继续按M3范围验收。原131+32软件回归保留；竖屏真机不可执行仅记UNAVAILABLE。
-
-正式A/B仍需三轮交替、分阶段input/UI/visual/accept/release/authority、CPU/Tick/frame/CPU-sec、prediction error与玩家说明。没有原始数据的指标保持缺口。第二档约4GB及A/B各20分钟代表性冷热态需配对条件，记录0/5/10/15/20分钟电量、可取温度/降频/帧时与CPU；缺设备BLOCKED，接口不可用UNAVAILABLE，不造mWh。M7/M10原门禁未豁免。
-
-停止点：“M3 0.4.2 toolbar multitouch 软件修复候选，等待独立源码复核。”独立复核和 Android blocker 复测前不宣布M3整体PASS、Android PASS、最终Tick率或进入M4。
+停止点：**M3 0.4.3 documentation-respun repair candidate，等待独立窄复核。** 本轮不继续Android验收、不宣布M3完成、不进入M4。
